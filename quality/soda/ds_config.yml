@@ -1,0 +1,11 @@
+# Soda Core v4 データソース設定(postgres)
+# 参照: docs.soda.io/soda-v4/reference/data-source-reference-for-soda-core
+# 資格情報は環境変数から注入する(${env.VAR} 構文)。値はデモ専用(.env.example 参照)。
+type: postgres
+name: postgres_demo
+connection:
+  host: ${env.DEMO_DB_HOST}
+  port: ${env.DEMO_DB_PORT}
+  user: ${env.DEMO_DB_USER}
+  password: ${env.DEMO_DB_PASSWORD}
+  database: ${env.DEMO_DB_NAME}

@@ -1,0 +1,24 @@
+# チェック (b): raw.orders.order_id が一意であること
+# チェック (d): raw.orders のスキーマ(列の存在と型)が契約どおりであること
+# GX 側の同一チェック: ExpectColumnValuesToBeUnique(order_id) /
+#                     ExpectTableColumnsToMatchOrderedList + ExpectColumnValuesToBeOfType
+dataset: postgres_demo/demo/raw/orders
+
+columns:
+  - name: order_id
+    data_type: integer
+    checks:
+      - duplicate:
+          threshold:
+            must_be: 0
+  - name: customer_id
+    data_type: integer
+  - name: order_date
+    data_type: date
+  - name: status
+    data_type: varchar
+
+checks:
+  - schema:
+      allow_extra_columns: false
+      allow_other_column_order: false

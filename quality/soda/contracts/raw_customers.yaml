@@ -1,0 +1,10 @@
+# チェック (a): raw.customers.email の欠損が 0 件であること
+# GX 側の同一チェック: quality/gx/run_checks.py の ExpectColumnValuesToNotBeNull(email)
+dataset: postgres_demo/demo/raw/customers
+
+columns:
+  - name: email
+    checks:
+      - missing:
+          threshold:
+            must_be: 0

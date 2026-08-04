@@ -1,0 +1,18 @@
+# チェック (c): raw.order_items の quantity > 0 かつ unit_price が値域内であること
+# GX 側の同一チェック: ExpectColumnValuesToBeBetween(quantity / unit_price)
+dataset: postgres_demo/demo/raw/order_items
+
+columns:
+  - name: quantity
+    checks:
+      - invalid:
+          valid_min: 1
+          threshold:
+            must_be: 0
+  - name: unit_price
+    checks:
+      - invalid:
+          valid_min: 0
+          valid_max: 100000
+          threshold:
+            must_be: 0

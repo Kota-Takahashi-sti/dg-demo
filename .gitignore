@@ -1,6 +1,12 @@
 .env
 *.log
+# 検収用の生ログは証跡としてコミットする(DoD)
+!verification/**/*.log
 __pycache__/
 .venv/
 node_modules/
 .DS_Store
+# 異常系デモ用の汚染データ(実行時に生成。クリーンな seed CSV はコミットする)
+data/seed/csv-injected/
+# GX の実行時生成物(Data Docs は証跡として verification/ 側に保存する)
+quality/gx/output/

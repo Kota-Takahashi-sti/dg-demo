@@ -1,0 +1,41 @@
+# データガバナンス OSS デモ環境
+# profile で領域ごとに起動・停止する(全製品の同時起動はしない)。
+#   base    : デモ用データ DB(全デモの前提)
+#   tools   : ツール実行用 CLI コンテナ(常駐せず `docker compose run` で都度実行)
+#   lineage : Marquez 一式(フェーズ2で追加)
+#   catalog : OpenMetadata 一式(フェーズ3で追加)
+services:
+  postgres-demo:
+    image: postgres:16
+    profiles: ["base"]
+    environment:
+      POSTGRES_USER: ${DEMO_DB_USER:-demo}
+      POSTGRES_PASSWORD: ${DEMO_DB_PASSWORD:-demo_password}
+      POSTGRES_DB: ${DEMO_DB_NAME:-demo}
+    ports:
+      - "${DEMO_DB_HOST_PORT:-15432}:5432"
+    volumes:
+      - demo-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DEMO_DB_USER:-demo} -d ${DEMO_DB_NAME:-demo}"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  tools:
+    build:
+      context: docker/tools
+    image: dgd-tools:phase1
+    profiles: ["tools"]
+    environment:
+      DEMO_DB_HOST: ${DEMO_DB_HOST:-postgres-demo}
+      DEMO_DB_PORT: ${DEMO_DB_PORT:-5432}
+      DEMO_DB_USER: ${DEMO_DB_USER:-demo}
+      DEMO_DB_PASSWORD: ${DEMO_DB_PASSWORD:-demo_password}
+      DEMO_DB_NAME: ${DEMO_DB_NAME:-demo}
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace
+
+volumes:
+  demo-db-data:

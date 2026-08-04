@@ -1,0 +1,409 @@
+scenarios/demo_quality_gx.sh ng
+# 実行日時: 2026-08-04 17:12:17 JST
+# コマンドログ: verification/phase1/demo-quality-gx-ng.log
+--- デモ用 DB(profile: base)を起動 ---
+ Container claude-demo-data-governance-postgres-demo-1  Running
+ Container claude-demo-data-governance-postgres-demo-1  Waiting
+ Container claude-demo-data-governance-postgres-demo-1  Healthy
+--- 汚染データを生成(--inject all)して投入 ---
+[inject] email_null: raw.customers 30 行の email を NULL 化
+[inject] dup_order_id: raw.orders に重複 order_id を 20 行追加
+[inject] bad_quantity: raw.order_items 15 行の quantity を 0 以下に変更
+[inject] bad_unit_price: raw.order_items 10 行の unit_price を負値に変更
+[write] data/seed/csv-injected/customers.csv (1000 行)
+[write] data/seed/csv-injected/products.csv (200 行)
+[write] data/seed/csv-injected/orders.csv (5020 行)
+[write] data/seed/csv-injected/order_items.csv (12561 行)
+=== step: seed ===
+[sql] 01_create_raw.sql を実行
+[seed] raw.customers: 1000 行
+[seed] raw.products: 200 行
+[seed] raw.orders: 5020 行
+[seed] raw.order_items: 12561 行
+=== step: build_staging ===
+[sql] 02_staging.sql を実行
+[build_staging] staging.stg_orders: 11975 行
+=== step: build_mart ===
+[sql] 03_mart.sql を実行
+[build_mart] mart.daily_sales: 365 行
+[build_mart] mart.customer_summary(ビュー): 1000 行
+パイプライン完了
+
+=== Great Expectations 1.19.1: checkpoint 実行(4チェック)===
+{
+    "success": false,
+    "statistics": {
+        "evaluated_validations": 3,
+        "success_percent": 0.0,
+        "successful_validations": 0,
+        "unsuccessful_validations": 3
+    },
+    "validation_results": [
+        {
+            "success": false,
+            "statistics": {
+                "evaluated_expectations": 1,
+                "successful_expectations": 0,
+                "unsuccessful_expectations": 1,
+                "success_percent": 0.0
+            },
+            "expectations": [
+                {
+                    "expectation_type": "expect_column_values_to_not_be_null",
+                    "success": false,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.customers",
+                        "column": "email"
+                    },
+                    "result": {
+                        "element_count": 1000,
+                        "unexpected_count": 30,
+                        "unexpected_percent": 3.0,
+                        "partial_unexpected_list": [
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null
+                        ],
+                        "partial_unexpected_counts": [
+                            {
+                                "value": null,
+                                "count": 20
+                            }
+                        ]
+                    }
+                }
+            ],
+            "result_url": null
+        },
+        {
+            "success": false,
+            "statistics": {
+                "evaluated_expectations": 6,
+                "successful_expectations": 5,
+                "unsuccessful_expectations": 1,
+                "success_percent": 83.33333333333334
+            },
+            "expectations": [
+                {
+                    "expectation_type": "expect_column_values_to_be_unique",
+                    "success": false,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.orders",
+                        "column": "order_id"
+                    },
+                    "result": {
+                        "element_count": 5020,
+                        "unexpected_count": 40,
+                        "unexpected_percent": 0.796812749003984,
+                        "partial_unexpected_list": [
+                            127,
+                            215,
+                            928,
+                            957,
+                            1034,
+                            1726,
+                            2074,
+                            2610,
+                            2806,
+                            2909,
+                            3071,
+                            3445,
+                            3566,
+                            3666,
+                            3673,
+                            4066,
+                            4350,
+                            4712,
+                            4726,
+                            4747
+                        ],
+                        "missing_count": 0,
+                        "missing_percent": 0.0,
+                        "unexpected_percent_total": 0.796812749003984,
+                        "unexpected_percent_nonmissing": 0.796812749003984,
+                        "partial_unexpected_counts": [
+                            {
+                                "value": 127,
+                                "count": 1
+                            },
+                            {
+                                "value": 215,
+                                "count": 1
+                            },
+                            {
+                                "value": 928,
+                                "count": 1
+                            },
+                            {
+                                "value": 957,
+                                "count": 1
+                            },
+                            {
+                                "value": 1034,
+                                "count": 1
+                            },
+                            {
+                                "value": 1726,
+                                "count": 1
+                            },
+                            {
+                                "value": 2074,
+                                "count": 1
+                            },
+                            {
+                                "value": 2610,
+                                "count": 1
+                            },
+                            {
+                                "value": 2806,
+                                "count": 1
+                            },
+                            {
+                                "value": 2909,
+                                "count": 1
+                            },
+                            {
+                                "value": 3071,
+                                "count": 1
+                            },
+                            {
+                                "value": 3445,
+                                "count": 1
+                            },
+                            {
+                                "value": 3566,
+                                "count": 1
+                            },
+                            {
+                                "value": 3666,
+                                "count": 1
+                            },
+                            {
+                                "value": 3673,
+                                "count": 1
+                            },
+                            {
+                                "value": 4066,
+                                "count": 1
+                            },
+                            {
+                                "value": 4350,
+                                "count": 1
+                            },
+                            {
+                                "value": 4712,
+                                "count": 1
+                            },
+                            {
+                                "value": 4726,
+                                "count": 1
+                            },
+                            {
+                                "value": 4747,
+                                "count": 1
+                            }
+                        ]
+                    }
+                },
+                {
+                    "expectation_type": "expect_column_values_to_be_of_type",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.orders",
+                        "column": "order_id",
+                        "type_": "INTEGER"
+                    },
+                    "result": {
+                        "observed_value": "INTEGER"
+                    }
+                },
+                {
+                    "expectation_type": "expect_table_columns_to_match_ordered_list",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.orders",
+                        "column_list": [
+                            "order_id",
+                            "customer_id",
+                            "order_date",
+                            "status"
+                        ]
+                    },
+                    "result": {
+                        "observed_value": [
+                            "order_id",
+                            "customer_id",
+                            "order_date",
+                            "status"
+                        ]
+                    }
+                },
+                {
+                    "expectation_type": "expect_column_values_to_be_of_type",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.orders",
+                        "column": "customer_id",
+                        "type_": "INTEGER"
+                    },
+                    "result": {
+                        "observed_value": "INTEGER"
+                    }
+                },
+                {
+                    "expectation_type": "expect_column_values_to_be_of_type",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.orders",
+                        "column": "order_date",
+                        "type_": "DATE"
+                    },
+                    "result": {
+                        "observed_value": "DATE"
+                    }
+                },
+                {
+                    "expectation_type": "expect_column_values_to_be_of_type",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.orders",
+                        "column": "status",
+                        "type_": "VARCHAR(20)"
+                    },
+                    "result": {
+                        "observed_value": "VARCHAR(20)"
+                    }
+                }
+            ],
+            "result_url": null
+        },
+        {
+            "success": false,
+            "statistics": {
+                "evaluated_expectations": 2,
+                "successful_expectations": 0,
+                "unsuccessful_expectations": 2,
+                "success_percent": 0.0
+            },
+            "expectations": [
+                {
+                    "expectation_type": "expect_column_values_to_be_between",
+                    "success": false,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.order_items",
+                        "column": "quantity",
+                        "min_value": 1.0
+                    },
+                    "result": {
+                        "element_count": 12561,
+                        "unexpected_count": 15,
+                        "unexpected_percent": 0.11941724385001193,
+                        "partial_unexpected_list": [
+                            -1,
+                            0,
+                            -2,
+                            0,
+                            0,
+                            0,
+                            0,
+                            -1,
+                            0,
+                            -1,
+                            -1,
+                            -1,
+                            -2,
+                            -1,
+                            -1
+                        ],
+                        "missing_count": 0,
+                        "missing_percent": 0.0,
+                        "unexpected_percent_total": 0.11941724385001193,
+                        "unexpected_percent_nonmissing": 0.11941724385001193,
+                        "partial_unexpected_counts": [
+                            {
+                                "value": -1,
+                                "count": 7
+                            },
+                            {
+                                "value": 0,
+                                "count": 6
+                            },
+                            {
+                                "value": -2,
+                                "count": 2
+                            }
+                        ]
+                    }
+                },
+                {
+                    "expectation_type": "expect_column_values_to_be_between",
+                    "success": false,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.order_items",
+                        "column": "unit_price",
+                        "min_value": 0.0,
+                        "max_value": 100000.0
+                    },
+                    "result": {
+                        "element_count": 12561,
+                        "unexpected_count": 10,
+                        "unexpected_percent": 0.07961149590000796,
+                        "partial_unexpected_list": [
+                            -1200.0,
+                            -1200.0,
+                            -1200.0,
+                            -500.0,
+                            -9800.0,
+                            -1200.0,
+                            -9800.0,
+                            -1200.0,
+                            -1200.0,
+                            -500.0
+                        ],
+                        "missing_count": 0,
+                        "missing_percent": 0.0,
+                        "unexpected_percent_total": 0.07961149590000796,
+                        "unexpected_percent_nonmissing": 0.07961149590000796,
+                        "partial_unexpected_counts": [
+                            {
+                                "value": -1200.0,
+                                "count": 6
+                            },
+                            {
+                                "value": -9800.0,
+                                "count": 2
+                            },
+                            {
+                                "value": -500.0,
+                                "count": 2
+                            }
+                        ]
+                    }
+                }
+            ],
+            "result_url": null
+        }
+    ]
+}
+
+GX チェック結果: 品質違反を検知(詳細は上記 JSON)
+
+GX 結果: 品質違反を検知(exit 1)
+make: *** [Makefile:44: demo-quality-gx-ng] Error 1

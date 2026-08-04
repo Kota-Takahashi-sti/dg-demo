@@ -1,0 +1,5 @@
+# データ品質領域(フェーズ1)— バージョンはすべてピン留め(plan.md §1)
+soda-postgres==4.19.0
+great_expectations[postgresql]==1.19.1
+# 合成データ投入・パイプライン(素の SQL 実行)用ドライバ
+psycopg2-binary==2.9.10

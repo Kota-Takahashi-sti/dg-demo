@@ -1,0 +1,12 @@
+=== date ===
+2026-08-04T16:02:56+09:00
+=== df -h / /var/lib/docker ===
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdc       1007G  105G  852G  11% /
+/dev/sdc       1007G  105G  852G  11% /var/lib/docker
+=== docker system df ===
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          133       62        55.66GB   28.97GB (52%)
+Containers      89        2         2.763GB   2.76GB (99%)
+Local Volumes   70        52        30.21GB   1.55GB (5%)
+Build Cache     358       0         54.95MB   54.95MB

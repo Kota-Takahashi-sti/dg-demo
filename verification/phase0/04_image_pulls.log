@@ -1,0 +1,375 @@
+=== date ===
+2026-08-04T16:09:43+09:00
+
+=== docker pull marquezproject/marquez:0.51.1 ===
+0.51.1: Pulling from marquezproject/marquez
+Digest: sha256:0721c976cff17d8b14f7949d85d6dac9c7ea37cb9fe857caa19833730fcb1a50
+Status: Image is up to date for marquezproject/marquez:0.51.1
+docker.io/marquezproject/marquez:0.51.1
+exit=0
+
+=== docker pull marquezproject/marquez-web:0.51.1 ===
+0.51.1: Pulling from marquezproject/marquez-web
+Digest: sha256:7312112ca0e611b0a37b00d3da6a677485ae4a97622b23d3ae24d849a927868b
+Status: Image is up to date for marquezproject/marquez-web:0.51.1
+docker.io/marquezproject/marquez-web:0.51.1
+exit=0
+
+=== docker pull docker.getcollate.io/openmetadata/server:1.13.3 ===
+1.13.3: Pulling from openmetadata/server
+55afa1ecc21d: Already exists
+1743cf694a28: Pulling fs layer
+9ceba9e18628: Pulling fs layer
+b8ea7c5ede5a: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+4f4fb700ef54: Waiting
+b8ea7c5ede5a: Verifying Checksum
+b8ea7c5ede5a: Download complete
+4f4fb700ef54: Download complete
+1743cf694a28: Verifying Checksum
+1743cf694a28: Download complete
+9ceba9e18628: Verifying Checksum
+9ceba9e18628: Download complete
+1743cf694a28: Pull complete
+9ceba9e18628: Pull complete
+b8ea7c5ede5a: Pull complete
+4f4fb700ef54: Pull complete
+Digest: sha256:997d666b01f674fc4d587f034759c826082ea7666cd7bc0e6db8fdbb707df010
+Status: Downloaded newer image for docker.getcollate.io/openmetadata/server:1.13.3
+docker.getcollate.io/openmetadata/server:1.13.3
+exit=0
+
+=== docker pull docker.getcollate.io/openmetadata/postgresql:1.13.3 ===
+1.13.3: Pulling from openmetadata/postgresql
+062e450697fa: Already exists
+a3fa325953d3: Pulling fs layer
+85e291df2b0c: Pulling fs layer
+917f393d78ad: Pulling fs layer
+8bf473d6c1d8: Pulling fs layer
+4c8260904ed6: Pulling fs layer
+b2a10d459416: Pulling fs layer
+d6db1dccda5c: Pulling fs layer
+0062ea3f2dce: Pulling fs layer
+10316a63e71a: Pulling fs layer
+35b060784592: Pulling fs layer
+1957aab81dc6: Pulling fs layer
+99a2a1f42a28: Pulling fs layer
+5c19c71a6265: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+0062ea3f2dce: Waiting
+10316a63e71a: Waiting
+35b060784592: Waiting
+8bf473d6c1d8: Waiting
+4c8260904ed6: Waiting
+b2a10d459416: Waiting
+d6db1dccda5c: Waiting
+1957aab81dc6: Waiting
+99a2a1f42a28: Waiting
+5c19c71a6265: Waiting
+ece2288b9e9c: Pulling fs layer
+7cdd76bb0766: Pulling fs layer
+7cdd76bb0766: Waiting
+ece2288b9e9c: Waiting
+4f4fb700ef54: Waiting
+a3fa325953d3: Verifying Checksum
+a3fa325953d3: Download complete
+a3fa325953d3: Pull complete
+917f393d78ad: Verifying Checksum
+917f393d78ad: Download complete
+85e291df2b0c: Download complete
+85e291df2b0c: Pull complete
+917f393d78ad: Pull complete
+b2a10d459416: Verifying Checksum
+b2a10d459416: Download complete
+8bf473d6c1d8: Verifying Checksum
+8bf473d6c1d8: Download complete
+4c8260904ed6: Verifying Checksum
+4c8260904ed6: Download complete
+8bf473d6c1d8: Pull complete
+4c8260904ed6: Pull complete
+10316a63e71a: Verifying Checksum
+10316a63e71a: Download complete
+d6db1dccda5c: Download complete
+b2a10d459416: Pull complete
+d6db1dccda5c: Pull complete
+1957aab81dc6: Download complete
+35b060784592: Verifying Checksum
+35b060784592: Download complete
+0062ea3f2dce: Verifying Checksum
+0062ea3f2dce: Download complete
+99a2a1f42a28: Verifying Checksum
+99a2a1f42a28: Download complete
+4f4fb700ef54: Verifying Checksum
+4f4fb700ef54: Download complete
+5c19c71a6265: Download complete
+7cdd76bb0766: Verifying Checksum
+7cdd76bb0766: Download complete
+ece2288b9e9c: Download complete
+0062ea3f2dce: Pull complete
+10316a63e71a: Pull complete
+35b060784592: Pull complete
+1957aab81dc6: Pull complete
+99a2a1f42a28: Pull complete
+5c19c71a6265: Pull complete
+4f4fb700ef54: Pull complete
+ece2288b9e9c: Pull complete
+7cdd76bb0766: Pull complete
+Digest: sha256:4b225b4fcc810983c5e4578c690477688beaa587457310a5f4c615700334e321
+Status: Downloaded newer image for docker.getcollate.io/openmetadata/postgresql:1.13.3
+docker.getcollate.io/openmetadata/postgresql:1.13.3
+exit=0
+
+=== docker pull docker.elastic.co/elasticsearch/elasticsearch:9.3.0 ===
+9.3.0: Pulling from elasticsearch/elasticsearch
+317ce2aed5f4: Pulling fs layer
+4e734bfadf7d: Pulling fs layer
+f59c6d9308d0: Pulling fs layer
+0e9b1e6d7391: Pulling fs layer
+4ca545ee6d5d: Pulling fs layer
+884b2f340e03: Pulling fs layer
+1e745264966e: Pulling fs layer
+cd8469cd9638: Pulling fs layer
+4b96446c3089: Pulling fs layer
+d6e75bce595a: Pulling fs layer
+0e9b1e6d7391: Waiting
+4ca545ee6d5d: Waiting
+884b2f340e03: Waiting
+1e745264966e: Waiting
+cd8469cd9638: Waiting
+4b96446c3089: Waiting
+d6e75bce595a: Waiting
+f59c6d9308d0: Download complete
+4e734bfadf7d: Verifying Checksum
+4e734bfadf7d: Download complete
+317ce2aed5f4: Verifying Checksum
+317ce2aed5f4: Download complete
+0e9b1e6d7391: Verifying Checksum
+0e9b1e6d7391: Download complete
+4ca545ee6d5d: Verifying Checksum
+4ca545ee6d5d: Download complete
+1e745264966e: Verifying Checksum
+1e745264966e: Download complete
+cd8469cd9638: Download complete
+4b96446c3089: Verifying Checksum
+4b96446c3089: Download complete
+d6e75bce595a: Verifying Checksum
+d6e75bce595a: Download complete
+317ce2aed5f4: Pull complete
+4e734bfadf7d: Pull complete
+f59c6d9308d0: Pull complete
+0e9b1e6d7391: Pull complete
+4ca545ee6d5d: Pull complete
+884b2f340e03: Verifying Checksum
+884b2f340e03: Download complete
+884b2f340e03: Pull complete
+1e745264966e: Pull complete
+cd8469cd9638: Pull complete
+4b96446c3089: Pull complete
+d6e75bce595a: Pull complete
+Digest: sha256:4f6bdcb742e892539c6ac49b0dd3e4e182e90218546e8c6a22db378c344acb60
+Status: Downloaded newer image for docker.elastic.co/elasticsearch/elasticsearch:9.3.0
+docker.elastic.co/elasticsearch/elasticsearch:9.3.0
+exit=0
+
+=== docker pull datacontract/cli:1.0.17 ===
+1.0.17: Pulling from datacontract/cli
+e504837f9b94: Pulling fs layer
+b2e2c13486d8: Pulling fs layer
+8991a38b86e5: Pulling fs layer
+ebd89bb9fa24: Pulling fs layer
+d9d437142fb8: Pulling fs layer
+666f40e33f3d: Pulling fs layer
+c2d4bca7231f: Pulling fs layer
+9dba01b4f8d7: Pulling fs layer
+ebd89bb9fa24: Waiting
+d9d437142fb8: Waiting
+666f40e33f3d: Waiting
+c2d4bca7231f: Waiting
+9dba01b4f8d7: Waiting
+8991a38b86e5: Verifying Checksum
+8991a38b86e5: Download complete
+e504837f9b94: Download complete
+e504837f9b94: Pull complete
+ebd89bb9fa24: Verifying Checksum
+ebd89bb9fa24: Download complete
+d9d437142fb8: Verifying Checksum
+d9d437142fb8: Download complete
+b2e2c13486d8: Verifying Checksum
+b2e2c13486d8: Download complete
+9dba01b4f8d7: Download complete
+c2d4bca7231f: Verifying Checksum
+c2d4bca7231f: Download complete
+b2e2c13486d8: Pull complete
+8991a38b86e5: Pull complete
+ebd89bb9fa24: Pull complete
+d9d437142fb8: Pull complete
+666f40e33f3d: Verifying Checksum
+666f40e33f3d: Download complete
+666f40e33f3d: Pull complete
+c2d4bca7231f: Pull complete
+9dba01b4f8d7: Pull complete
+Digest: sha256:8e5636eabfcec6139547ef8384296553f089ad23536a0a6dc6b5c3a6f1b34d9c
+Status: Downloaded newer image for datacontract/cli:1.0.17
+docker.io/datacontract/cli:1.0.17
+exit=0
+
+=== docker pull postgres:16 ===
+16: Pulling from library/postgres
+062e450697fa: Already exists
+c68b4bd1f4db: Pulling fs layer
+d05a3039bf71: Pulling fs layer
+16a6273f39e4: Pulling fs layer
+2f0a4cdcb4a0: Pulling fs layer
+0991be5ba967: Pulling fs layer
+7b78d2f26598: Pulling fs layer
+7f9e3a85794c: Pulling fs layer
+cb52fa00305a: Pulling fs layer
+98d8c18b5328: Pulling fs layer
+115bb5c8bb8b: Pulling fs layer
+ed3f4fc92f94: Pulling fs layer
+55e69f401030: Pulling fs layer
+971d8ffba74c: Pulling fs layer
+cb52fa00305a: Waiting
+98d8c18b5328: Waiting
+115bb5c8bb8b: Waiting
+ed3f4fc92f94: Waiting
+55e69f401030: Waiting
+971d8ffba74c: Waiting
+7f9e3a85794c: Waiting
+2f0a4cdcb4a0: Waiting
+0991be5ba967: Waiting
+7b78d2f26598: Waiting
+c68b4bd1f4db: Verifying Checksum
+c68b4bd1f4db: Download complete
+c68b4bd1f4db: Pull complete
+16a6273f39e4: Verifying Checksum
+16a6273f39e4: Download complete
+d05a3039bf71: Verifying Checksum
+d05a3039bf71: Download complete
+d05a3039bf71: Pull complete
+2f0a4cdcb4a0: Verifying Checksum
+2f0a4cdcb4a0: Download complete
+16a6273f39e4: Pull complete
+0991be5ba967: Verifying Checksum
+0991be5ba967: Download complete
+7b78d2f26598: Download complete
+7f9e3a85794c: Download complete
+98d8c18b5328: Verifying Checksum
+98d8c18b5328: Download complete
+115bb5c8bb8b: Download complete
+2f0a4cdcb4a0: Pull complete
+ed3f4fc92f94: Download complete
+0991be5ba967: Pull complete
+7b78d2f26598: Pull complete
+7f9e3a85794c: Pull complete
+55e69f401030: Verifying Checksum
+55e69f401030: Download complete
+971d8ffba74c: Download complete
+cb52fa00305a: Download complete
+cb52fa00305a: Pull complete
+98d8c18b5328: Pull complete
+115bb5c8bb8b: Pull complete
+ed3f4fc92f94: Pull complete
+55e69f401030: Pull complete
+971d8ffba74c: Pull complete
+Digest: sha256:33f923b05f64ca54ac4401c01126a6b92afe839a0aa0a52bc5aeb5cc958e5f20
+Status: Downloaded newer image for postgres:16
+docker.io/library/postgres:16
+exit=0
+
+=== docker pull postgres:14 ===
+14: Pulling from library/postgres
+062e450697fa: Already exists
+ed9037b8fd9b: Pulling fs layer
+2d1b479017ee: Pulling fs layer
+2761b21b9415: Pulling fs layer
+640af8819000: Pulling fs layer
+96f87e579b83: Pulling fs layer
+35832926ac44: Pulling fs layer
+fd37b59f8f55: Pulling fs layer
+ad7468e08f67: Pulling fs layer
+106a01781b78: Pulling fs layer
+f24c45a99999: Pulling fs layer
+7a532c3344f6: Pulling fs layer
+799703cf9a54: Pulling fs layer
+a1abb2178ec7: Pulling fs layer
+640af8819000: Waiting
+96f87e579b83: Waiting
+35832926ac44: Waiting
+fd37b59f8f55: Waiting
+ad7468e08f67: Waiting
+106a01781b78: Waiting
+f24c45a99999: Waiting
+7a532c3344f6: Waiting
+a1abb2178ec7: Waiting
+799703cf9a54: Waiting
+ed9037b8fd9b: Verifying Checksum
+ed9037b8fd9b: Download complete
+ed9037b8fd9b: Pull complete
+2761b21b9415: Verifying Checksum
+2761b21b9415: Download complete
+2d1b479017ee: Verifying Checksum
+2d1b479017ee: Download complete
+2d1b479017ee: Pull complete
+2761b21b9415: Pull complete
+96f87e579b83: Verifying Checksum
+96f87e579b83: Download complete
+640af8819000: Verifying Checksum
+640af8819000: Download complete
+35832926ac44: Download complete
+fd37b59f8f55: Verifying Checksum
+fd37b59f8f55: Download complete
+106a01781b78: Download complete
+640af8819000: Pull complete
+96f87e579b83: Pull complete
+35832926ac44: Pull complete
+7a532c3344f6: Verifying Checksum
+7a532c3344f6: Download complete
+f24c45a99999: Download complete
+fd37b59f8f55: Pull complete
+799703cf9a54: Verifying Checksum
+799703cf9a54: Download complete
+a1abb2178ec7: Verifying Checksum
+a1abb2178ec7: Download complete
+ad7468e08f67: Verifying Checksum
+ad7468e08f67: Download complete
+ad7468e08f67: Pull complete
+106a01781b78: Pull complete
+f24c45a99999: Pull complete
+7a532c3344f6: Pull complete
+799703cf9a54: Pull complete
+a1abb2178ec7: Pull complete
+Digest: sha256:caf49e3b10d377aa2cfee478591d623808527beb27125d38797b418013f72d81
+Status: Downloaded newer image for postgres:14
+docker.io/library/postgres:14
+exit=0
+
+=== docker pull python:3.11-slim ===
+3.11-slim: Pulling from library/python
+Digest: sha256:db3ff2e1800a8581e2c48a27c3995339d47bdf046da21c7627accd3d51053a93
+Status: Image is up to date for python:3.11-slim
+docker.io/library/python:3.11-slim
+exit=0
+
+=== docker images (採用候補) ===
+datacontract/cli                                                     1.0.17                         1.58GB
+docker.getcollate.io/openmetadata/server                             1.13.3                         596MB
+docker.getcollate.io/openmetadata/postgresql                         1.13.3                         445MB
+postgres                                                             14                             441MB
+postgres                                                             16                             451MB
+datacontract/cli                                                     1.0.13                         1.58GB
+python                                                               3.11-slim                      125MB
+mds-demo/oltp-postgres                                               local                          452MB
+mds-demo/python                                                      local                          1.02GB
+postgres                                                             16-alpine                      294MB
+python                                                               3.12-slim                      119MB
+postgres                                                             <none>                         294MB
+docker.elastic.co/elasticsearch/elasticsearch                        9.3.0                          1.42GB
+postgres                                                             16.9                           452MB
+postgres                                                             13                             423MB
+marquezproject/marquez-web                                           0.51.1                         722MB
+marquezproject/marquez                                               0.51.1                         578MB
+marquezproject/marquez-web                                           0.50.0                         707MB
+marquezproject/marquez                                               0.50.0                         558MB
+debezium/postgres                                                    16                             664MB
+postgres                                                             9.5                            197MB
