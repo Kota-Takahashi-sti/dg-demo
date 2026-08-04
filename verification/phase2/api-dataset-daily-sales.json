@@ -4,21 +4,21 @@
       "inputFields": [
         {
           "dataset": "demo.staging.stg_orders",
-          "field": "order_date",
+          "field": "amount",
           "namespace": "postgres://postgres-demo:5432",
-          "transformationDescription": "count(DISTINCT order_id)",
+          "transformationDescription": "sum(amount)",
           "transformationType": "AGGREGATION"
         },
         {
           "dataset": "demo.staging.stg_orders",
-          "field": "order_id",
+          "field": "order_date",
           "namespace": "postgres://postgres-demo:5432",
-          "transformationDescription": "count(DISTINCT order_id)",
+          "transformationDescription": "sum(amount)",
           "transformationType": "AGGREGATION"
         }
       ],
-      "name": "order_count",
-      "transformationDescription": "count(DISTINCT order_id)",
+      "name": "total_amount",
+      "transformationDescription": "sum(amount)",
       "transformationType": "AGGREGATION"
     },
     {
@@ -39,26 +39,26 @@
       "inputFields": [
         {
           "dataset": "demo.staging.stg_orders",
-          "field": "amount",
+          "field": "order_date",
           "namespace": "postgres://postgres-demo:5432",
-          "transformationDescription": "sum(amount)",
+          "transformationDescription": "count(DISTINCT order_id)",
           "transformationType": "AGGREGATION"
         },
         {
           "dataset": "demo.staging.stg_orders",
-          "field": "order_date",
+          "field": "order_id",
           "namespace": "postgres://postgres-demo:5432",
-          "transformationDescription": "sum(amount)",
+          "transformationDescription": "count(DISTINCT order_id)",
           "transformationType": "AGGREGATION"
         }
       ],
-      "name": "total_amount",
-      "transformationDescription": "sum(amount)",
+      "name": "order_count",
+      "transformationDescription": "count(DISTINCT order_id)",
       "transformationType": "AGGREGATION"
     }
   ],
   "createdAt": "2026-08-04T08:46:15.992475Z",
-  "currentVersion": "3c252757-2e20-4d76-aea3-60fbbac8786f",
+  "currentVersion": "473ae6a3-8ae6-43ff-88ff-5ccb801ea920",
   "deleted": false,
   "description": null,
   "facets": {
@@ -206,5 +206,5 @@
   "sourceName": "default",
   "tags": [],
   "type": "DB_TABLE",
-  "updatedAt": "2026-08-04T08:59:41.243623Z"
+  "updatedAt": "2026-08-04T09:11:53.010172Z"
 }

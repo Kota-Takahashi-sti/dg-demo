@@ -34,6 +34,9 @@
 - [x] docs/guides/lineage.md(手順・UI 確認ポイント・長所短所・トラブルシュート。
       出力例 6 ブロックの逐語一致を機械検証 6/6 VERBATIM)
 - [x] build-log.md(調査・実装・問題4件と解決・検証結果)・PROGRESS.md 更新
+- [x] 検収指摘対応: 「UI の URL は .env の MARQUEZ_WEB_HOST_PORT で決まる」ことの
+      確認方法をガイド §3 に新設し、§4.1/§7 に「UI が開けない」時の導線を追加
+      (build-log.md「検収指摘への対応(フェーズ2)」参照)
 
 フェーズ1(2026-08-04 完了報告):
 - [x] 公式ドキュメント調査(Soda v4 contract 構文 / CLI、GX 1.x API。参照 URL は build-log.md)

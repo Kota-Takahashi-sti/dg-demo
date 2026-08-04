@@ -17,7 +17,7 @@
         "sourceName": "default",
         "tags": [],
         "type": "DB_TABLE",
-        "updatedAt": "2026-08-04T08:59:39.132760Z"
+        "updatedAt": "2026-08-04T09:11:46.084983Z"
       },
       "id": "dataset:file:data/seed/csv/customers.csv",
       "inEdges": [],
@@ -46,7 +46,7 @@
         "sourceName": "default",
         "tags": [],
         "type": "DB_TABLE",
-        "updatedAt": "2026-08-04T08:59:39.132760Z"
+        "updatedAt": "2026-08-04T09:11:46.084983Z"
       },
       "id": "dataset:file:data/seed/csv/order_items.csv",
       "inEdges": [],
@@ -75,7 +75,7 @@
         "sourceName": "default",
         "tags": [],
         "type": "DB_TABLE",
-        "updatedAt": "2026-08-04T08:59:39.132760Z"
+        "updatedAt": "2026-08-04T09:11:46.084983Z"
       },
       "id": "dataset:file:data/seed/csv/orders.csv",
       "inEdges": [],
@@ -104,7 +104,7 @@
         "sourceName": "default",
         "tags": [],
         "type": "DB_TABLE",
-        "updatedAt": "2026-08-04T08:59:39.132760Z"
+        "updatedAt": "2026-08-04T09:11:46.084983Z"
       },
       "id": "dataset:file:data/seed/csv/products.csv",
       "inEdges": [],
@@ -158,7 +158,7 @@
         "sourceName": "default",
         "tags": [],
         "type": "DB_TABLE",
-        "updatedAt": "2026-08-04T08:59:41.246989Z"
+        "updatedAt": "2026-08-04T09:11:53.017761Z"
       },
       "id": "dataset:postgres://postgres-demo:5432:demo.mart.customer_summary",
       "inEdges": [
@@ -206,7 +206,7 @@
         "sourceName": "default",
         "tags": [],
         "type": "DB_TABLE",
-        "updatedAt": "2026-08-04T08:59:41.243623Z"
+        "updatedAt": "2026-08-04T09:11:53.010172Z"
       },
       "id": "dataset:postgres://postgres-demo:5432:demo.mart.daily_sales",
       "inEdges": [
@@ -266,7 +266,7 @@
         "sourceName": "default",
         "tags": [],
         "type": "DB_TABLE",
-        "updatedAt": "2026-08-04T08:59:40.732708Z"
+        "updatedAt": "2026-08-04T09:11:51.432605Z"
       },
       "id": "dataset:postgres://postgres-demo:5432:demo.raw.customers",
       "inEdges": [
@@ -331,7 +331,7 @@
         "sourceName": "default",
         "tags": [],
         "type": "DB_TABLE",
-        "updatedAt": "2026-08-04T08:59:40.033690Z"
+        "updatedAt": "2026-08-04T09:11:49.269818Z"
       },
       "id": "dataset:postgres://postgres-demo:5432:demo.raw.order_items",
       "inEdges": [
@@ -390,7 +390,7 @@
         "sourceName": "default",
         "tags": [],
         "type": "DB_TABLE",
-        "updatedAt": "2026-08-04T08:59:40.033690Z"
+        "updatedAt": "2026-08-04T09:11:49.269818Z"
       },
       "id": "dataset:postgres://postgres-demo:5432:demo.raw.orders",
       "inEdges": [
@@ -449,7 +449,7 @@
         "sourceName": "default",
         "tags": [],
         "type": "DB_TABLE",
-        "updatedAt": "2026-08-04T08:59:40.033690Z"
+        "updatedAt": "2026-08-04T09:11:49.269818Z"
       },
       "id": "dataset:postgres://postgres-demo:5432:demo.raw.products",
       "inEdges": [
@@ -550,7 +550,7 @@
         "sourceName": "default",
         "tags": [],
         "type": "DB_TABLE",
-        "updatedAt": "2026-08-04T08:59:40.732708Z"
+        "updatedAt": "2026-08-04T09:11:51.432605Z"
       },
       "id": "dataset:postgres://postgres-demo:5432:demo.staging.stg_orders",
       "inEdges": [
@@ -570,7 +570,7 @@
     {
       "data": {
         "createdAt": "2026-08-04T08:46:15.549841Z",
-        "currentRunUuid": "019fcc00-021b-7848-92f4-f341db714140",
+        "currentRunUuid": "019fcc0b-25f4-7187-af0a-ecd55fcf80c8",
         "description": null,
         "id": {
           "name": "run_pipeline.build_mart",
@@ -588,9 +588,9 @@
         ],
         "latestRun": {
           "args": {},
-          "createdAt": "2026-08-04T08:59:40.444482Z",
-          "durationMs": 288,
-          "endedAt": "2026-08-04T08:59:40.732708Z",
+          "createdAt": "2026-08-04T09:11:50.517209Z",
+          "durationMs": 915,
+          "endedAt": "2026-08-04T09:11:51.432605Z",
           "facets": {
             "tags": {
               "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
@@ -604,13 +604,13 @@
               ]
             }
           },
-          "id": "019fcc00-021b-7848-92f4-f341db714140",
+          "id": "019fcc0b-25f4-7187-af0a-ecd55fcf80c8",
           "inputDatasetVersions": [
             {
               "datasetVersionId": {
                 "name": "demo.raw.customers",
                 "namespace": "postgres://postgres-demo:5432",
-                "version": "d2471329-b3b1-342d-bc6d-fa37dd6752d2"
+                "version": "48c9453c-a042-34b8-a6f0-48e0c7b45942"
               },
               "facets": {}
             },
@@ -618,7 +618,7 @@
               "datasetVersionId": {
                 "name": "demo.staging.stg_orders",
                 "namespace": "postgres://postgres-demo:5432",
-                "version": "3f87b6f5-ac97-323b-9e8a-225e1f7bf05d"
+                "version": "18e7d5d6-1ac0-3d03-b5d9-6a4530e5926a"
               },
               "facets": {}
             }
@@ -635,7 +635,7 @@
               "datasetVersionId": {
                 "name": "demo.mart.daily_sales",
                 "namespace": "postgres://postgres-demo:5432",
-                "version": "53d0fb11-2805-3248-bd09-82e3c1f06074"
+                "version": "848165a3-3661-32e3-9530-21826ccff913"
               },
               "facets": {}
             },
@@ -643,14 +643,14 @@
               "datasetVersionId": {
                 "name": "demo.mart.customer_summary",
                 "namespace": "postgres://postgres-demo:5432",
-                "version": "cde8439c-1918-3a90-9619-726b2f1f6814"
+                "version": "1f3f28b9-eb7f-3ff8-ba0f-a844aa98aa42"
               },
               "facets": {}
             }
           ],
-          "startedAt": "2026-08-04T08:59:40.444482Z",
+          "startedAt": "2026-08-04T09:11:50.517209Z",
           "state": "COMPLETED",
-          "updatedAt": "2026-08-04T08:59:40.732708Z"
+          "updatedAt": "2026-08-04T09:11:51.432605Z"
         },
         "location": null,
         "name": "run_pipeline.build_mart",
@@ -669,7 +669,7 @@
         "parentJobUuid": null,
         "simpleName": "run_pipeline.build_mart",
         "type": "BATCH",
-        "updatedAt": "2026-08-04T08:59:40.732708Z"
+        "updatedAt": "2026-08-04T09:11:51.432605Z"
       },
       "id": "job:demo_pipeline:run_pipeline.build_mart",
       "inEdges": [
@@ -697,7 +697,7 @@
     {
       "data": {
         "createdAt": "2026-08-04T08:46:14.189648Z",
-        "currentRunUuid": "019fcbff-fefd-7335-8868-814993255a2f",
+        "currentRunUuid": "019fcc0b-1db1-78c3-acbb-f60048a3b790",
         "description": null,
         "id": {
           "name": "run_pipeline.build_staging",
@@ -719,9 +719,9 @@
         ],
         "latestRun": {
           "args": {},
-          "createdAt": "2026-08-04T08:59:39.645488Z",
-          "durationMs": 388,
-          "endedAt": "2026-08-04T08:59:40.033690Z",
+          "createdAt": "2026-08-04T09:11:48.402488Z",
+          "durationMs": 867,
+          "endedAt": "2026-08-04T09:11:49.269818Z",
           "facets": {
             "tags": {
               "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
@@ -735,13 +735,13 @@
               ]
             }
           },
-          "id": "019fcbff-fefd-7335-8868-814993255a2f",
+          "id": "019fcc0b-1db1-78c3-acbb-f60048a3b790",
           "inputDatasetVersions": [
             {
               "datasetVersionId": {
                 "name": "demo.raw.products",
                 "namespace": "postgres://postgres-demo:5432",
-                "version": "a448a8c2-b4d3-3c8c-9623-de4e66ff0667"
+                "version": "e945bcd5-8a60-3711-adaf-581e8d43e00c"
               },
               "facets": {}
             },
@@ -749,7 +749,7 @@
               "datasetVersionId": {
                 "name": "demo.raw.orders",
                 "namespace": "postgres://postgres-demo:5432",
-                "version": "0c46fdc6-2f5c-392c-8b9d-da76797d0ec1"
+                "version": "5bca1cfe-197e-33f8-a825-5b274a803777"
               },
               "facets": {}
             },
@@ -757,7 +757,7 @@
               "datasetVersionId": {
                 "name": "demo.raw.order_items",
                 "namespace": "postgres://postgres-demo:5432",
-                "version": "facfe720-4de5-3128-8596-6730c6b080ea"
+                "version": "020e60ef-a9a0-36f0-a803-ae227fe13cce"
               },
               "facets": {}
             }
@@ -774,14 +774,14 @@
               "datasetVersionId": {
                 "name": "demo.staging.stg_orders",
                 "namespace": "postgres://postgres-demo:5432",
-                "version": "3f87b6f5-ac97-323b-9e8a-225e1f7bf05d"
+                "version": "18e7d5d6-1ac0-3d03-b5d9-6a4530e5926a"
               },
               "facets": {}
             }
           ],
-          "startedAt": "2026-08-04T08:59:39.645488Z",
+          "startedAt": "2026-08-04T09:11:48.402488Z",
           "state": "COMPLETED",
-          "updatedAt": "2026-08-04T08:59:40.033690Z"
+          "updatedAt": "2026-08-04T09:11:49.269818Z"
         },
         "location": null,
         "name": "run_pipeline.build_staging",
@@ -796,7 +796,7 @@
         "parentJobUuid": null,
         "simpleName": "run_pipeline.build_staging",
         "type": "BATCH",
-        "updatedAt": "2026-08-04T08:59:40.033690Z"
+        "updatedAt": "2026-08-04T09:11:49.269818Z"
       },
       "id": "job:demo_pipeline:run_pipeline.build_staging",
       "inEdges": [
@@ -824,7 +824,7 @@
     {
       "data": {
         "createdAt": "2026-08-04T08:46:10.581397Z",
-        "currentRunUuid": "019fcbff-fbda-77c3-abde-afce53092be6",
+        "currentRunUuid": "019fcc0b-0aa9-772d-9f2f-480098263ced",
         "description": null,
         "id": {
           "name": "run_pipeline.seed",
@@ -850,9 +850,9 @@
         ],
         "latestRun": {
           "args": {},
-          "createdAt": "2026-08-04T08:59:38.843804Z",
-          "durationMs": 289,
-          "endedAt": "2026-08-04T08:59:39.132760Z",
+          "createdAt": "2026-08-04T09:11:43.531011Z",
+          "durationMs": 2553,
+          "endedAt": "2026-08-04T09:11:46.084983Z",
           "facets": {
             "tags": {
               "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
@@ -866,7 +866,7 @@
               ]
             }
           },
-          "id": "019fcbff-fbda-77c3-abde-afce53092be6",
+          "id": "019fcc0b-0aa9-772d-9f2f-480098263ced",
           "inputDatasetVersions": [
             {
               "datasetVersionId": {
@@ -913,7 +913,7 @@
               "datasetVersionId": {
                 "name": "demo.raw.customers",
                 "namespace": "postgres://postgres-demo:5432",
-                "version": "d2471329-b3b1-342d-bc6d-fa37dd6752d2"
+                "version": "48c9453c-a042-34b8-a6f0-48e0c7b45942"
               },
               "facets": {}
             },
@@ -921,7 +921,7 @@
               "datasetVersionId": {
                 "name": "demo.raw.products",
                 "namespace": "postgres://postgres-demo:5432",
-                "version": "a448a8c2-b4d3-3c8c-9623-de4e66ff0667"
+                "version": "e945bcd5-8a60-3711-adaf-581e8d43e00c"
               },
               "facets": {}
             },
@@ -929,7 +929,7 @@
               "datasetVersionId": {
                 "name": "demo.raw.orders",
                 "namespace": "postgres://postgres-demo:5432",
-                "version": "0c46fdc6-2f5c-392c-8b9d-da76797d0ec1"
+                "version": "5bca1cfe-197e-33f8-a825-5b274a803777"
               },
               "facets": {}
             },
@@ -937,14 +937,14 @@
               "datasetVersionId": {
                 "name": "demo.raw.order_items",
                 "namespace": "postgres://postgres-demo:5432",
-                "version": "facfe720-4de5-3128-8596-6730c6b080ea"
+                "version": "020e60ef-a9a0-36f0-a803-ae227fe13cce"
               },
               "facets": {}
             }
           ],
-          "startedAt": "2026-08-04T08:59:38.843804Z",
+          "startedAt": "2026-08-04T09:11:43.531011Z",
           "state": "COMPLETED",
-          "updatedAt": "2026-08-04T08:59:39.132760Z"
+          "updatedAt": "2026-08-04T09:11:46.084983Z"
         },
         "location": null,
         "name": "run_pipeline.seed",
@@ -971,7 +971,7 @@
         "parentJobUuid": null,
         "simpleName": "run_pipeline.seed",
         "type": "BATCH",
-        "updatedAt": "2026-08-04T08:59:39.132760Z"
+        "updatedAt": "2026-08-04T09:11:46.084983Z"
       },
       "id": "job:demo_pipeline:run_pipeline.seed",
       "inEdges": [

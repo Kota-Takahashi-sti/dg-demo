@@ -79,8 +79,20 @@ $ make down            # 全プロファイル停止(データ保持)
 $ make clean-db        # 全停止 + データ削除(Marquez の蓄積イベントも消える)
 ```
 
-起動後、ブラウザで **http://localhost:3000**(Marquez UI)を開けます
-(ポートを変更した場合は読み替え。以降の出力例では検証環境の都合で `13000` になっています)。
+### Marquez UI の URL の確認
+
+Marquez UI の URL は **`http://localhost:<MARQUEZ_WEB_HOST_PORT>`** です。
+ポートは自分の `.env` の値で決まります(未設定なら既定の **3000**)。
+次のコマンドで確認できます:
+
+```console
+$ grep MARQUEZ_WEB_HOST_PORT .env || echo "未設定(既定の 3000)"
+```
+
+各デモコマンドも、実行結果の最後に実際の URL を表示します。
+**以降の本文では既定の http://localhost:3000 と表記しますが、必ず自分の環境の
+ポートに読み替えてください**(このリポジトリの検証ログ・スクリーンショット内の URL が
+`13000` なのは、検証環境でポート競合があり `.env` で変更していたためです。→ §7)。
 
 ## 4. デモの実行手順
 
@@ -138,7 +150,9 @@ Marquez API のレスポンスを保存します。
 
 #### UI 確認ポイント(スクリーンショット: `verification/phase2/ui/`)
 
-ブラウザで http://localhost:3000 を開きます。
+ブラウザで Marquez UI を開きます(URL は §3 の方法で確認。既定は
+http://localhost:3000 で、デモ出力の最後にも実際の URL が表示されています)。
+開けない場合は §7 の最初の項を確認してください。
 
 1. **ジョブ一覧**: 左サイドバーのジョブ(歯車)アイコンから Jobs 画面を開き、
    右上の namespace セレクタ(`ns default` と表示されている部分)で **`demo_pipeline`** を
@@ -330,6 +344,13 @@ make: *** [Makefile:58: demo-lineage-fail] Error 1
 | `verification/phase2/resource-usage.log` | lineage 一式の実測メモリ |
 
 ## 7. トラブルシューティング(リネージュ領域)
+
+- **UI(http://localhost:3000)が開けない**: 原因は主に次の 2 つです。
+  1. **Marquez が起動していない**: `make down` 後は停止しています。
+     `docker compose --profile lineage ps` で確認し、`make up-lineage` で起動してください。
+  2. **ポートが `.env` で変更されている**: §3 のコマンドで実際のポートを確認し、
+     その番号で開いてください(例: `MARQUEZ_WEB_HOST_PORT=13000` なら
+     http://localhost:13000)。
 
 - **ポート競合で起動に失敗する / macOS で 5000 が使えない**:
   `.env` に以下を追記して(値は例)、`make down-lineage && make up-lineage` で再起動
