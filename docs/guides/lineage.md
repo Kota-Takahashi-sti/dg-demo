@@ -173,6 +173,15 @@ http://localhost:3000 で、デモ出力の最後にも実際の URL が表示�
    上流一式(どの CSV・どのジョブに由来するか)が追えます
    (実測: `b1-lineage-dataset-daily-sales.png`)。
 
+> **Run の履歴は実行のたびに蓄積されます**: Marquez は「実行の事実」をすべて記録する
+> ため、デモを繰り返すと COMPLETED の Run が増えていき、異常系デモ(§4.2)を一度でも
+> 実行していれば **FAILED の Run が 1 件、履歴に残り続けます**。これは正常であり、
+> むしろ Marquez の価値そのものです(例: 正常系 2 回 + 異常系 1 回のあとの履歴は
+> COMPLETED 8 件 + FAILED 1 件になります)。B-1 の成否は「コマンドが
+> `リネージュデモ結果: 全ステップ COMPLETE(exit 0)` で終わること」と
+> 「ジョブ一覧の LATEST RUN STATE(**最新** Run の状態)がすべて COMPLETED であること」で
+> 判断してください。履歴ごと消してやり直したい場合は `make clean-db` です。
+
 #### カラムレベルリネージュの確認(API)
 
 `mart.daily_sales` に付与した `columnLineage` facet は、保存済みの API レスポンス
@@ -375,6 +384,10 @@ make: *** [Makefile:58: demo-lineage-fail] Error 1
 - **UI にジョブが出ない**: namespace セレクタが `default` のままになっていないかを
   確認してください(ジョブは `demo_pipeline`、データセットは
   `postgres://postgres-demo:5432` にあります)。
+- **正常系しか実行していないのに UI に FAILED が表示されている**: 過去に異常系デモ
+  (§4.2)を実行した履歴です。Run 履歴は蓄積される仕様で、最新の実行結果は
+  ジョブ一覧の LATEST RUN STATE で確認します(§4.1 の注記)。
+  履歴ごとリセットするには `make clean-db` を実行してください。
 - **`demo.mart.daily_sales` のグラフが単独ノードになる**: 直前に異常系デモを実行した
   場合の仕様どおりの挙動です(§4.2 の注記)。`make demo-lineage` を実行すると戻ります。
 - **リネージュを一からやり直したい**: `make clean-db` で Marquez の蓄積イベントごと

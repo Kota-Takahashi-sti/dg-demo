@@ -27,20 +27,6 @@
           "dataset": "demo.staging.stg_orders",
           "field": "order_date",
           "namespace": "postgres://postgres-demo:5432",
-          "transformationDescription": "order_date をそのまま採用",
-          "transformationType": "IDENTITY"
-        }
-      ],
-      "name": "sales_date",
-      "transformationDescription": "order_date をそのまま採用",
-      "transformationType": "IDENTITY"
-    },
-    {
-      "inputFields": [
-        {
-          "dataset": "demo.staging.stg_orders",
-          "field": "order_date",
-          "namespace": "postgres://postgres-demo:5432",
           "transformationDescription": "count(DISTINCT order_id)",
           "transformationType": "AGGREGATION"
         },
@@ -55,10 +41,24 @@
       "name": "order_count",
       "transformationDescription": "count(DISTINCT order_id)",
       "transformationType": "AGGREGATION"
+    },
+    {
+      "inputFields": [
+        {
+          "dataset": "demo.staging.stg_orders",
+          "field": "order_date",
+          "namespace": "postgres://postgres-demo:5432",
+          "transformationDescription": "order_date をそのまま採用",
+          "transformationType": "IDENTITY"
+        }
+      ],
+      "name": "sales_date",
+      "transformationDescription": "order_date をそのまま採用",
+      "transformationType": "IDENTITY"
     }
   ],
   "createdAt": "2026-08-04T08:46:15.992475Z",
-  "currentVersion": "473ae6a3-8ae6-43ff-88ff-5ccb801ea920",
+  "currentVersion": "edf8669b-505f-44ed-8324-22e189a83b1d",
   "deleted": false,
   "description": null,
   "facets": {
@@ -206,5 +206,5 @@
   "sourceName": "default",
   "tags": [],
   "type": "DB_TABLE",
-  "updatedAt": "2026-08-04T09:11:53.010172Z"
+  "updatedAt": "2026-08-04T09:22:57.132047Z"
 }

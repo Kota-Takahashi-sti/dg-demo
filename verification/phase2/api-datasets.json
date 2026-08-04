@@ -3,7 +3,7 @@
     {
       "columnLineage": null,
       "createdAt": "2026-08-04T08:46:15.992475Z",
-      "currentVersion": "d4cafb77-043c-4b12-b777-9263f5065efd",
+      "currentVersion": "461e76ba-3c15-4d41-ad79-45b91ee391f4",
       "deleted": false,
       "description": null,
       "facets": {
@@ -37,18 +37,6 @@
       "fields": [
         {
           "description": null,
-          "name": "customer_id",
-          "tags": [],
-          "type": "integer"
-        },
-        {
-          "description": null,
-          "name": "total_orders",
-          "tags": [],
-          "type": "bigint"
-        },
-        {
-          "description": null,
           "name": "total_amount",
           "tags": [],
           "type": "numeric"
@@ -58,6 +46,18 @@
           "name": "last_order_date",
           "tags": [],
           "type": "date"
+        },
+        {
+          "description": null,
+          "name": "customer_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "total_orders",
+          "tags": [],
+          "type": "bigint"
         }
       ],
       "id": {
@@ -72,7 +72,7 @@
       "sourceName": "default",
       "tags": [],
       "type": "DB_TABLE",
-      "updatedAt": "2026-08-04T09:11:53.017761Z"
+      "updatedAt": "2026-08-04T09:22:57.135894Z"
     },
     {
       "columnLineage": [
@@ -103,6 +103,20 @@
               "dataset": "demo.staging.stg_orders",
               "field": "order_date",
               "namespace": "postgres://postgres-demo:5432",
+              "transformationDescription": "order_date をそのまま採用",
+              "transformationType": "IDENTITY"
+            }
+          ],
+          "name": "sales_date",
+          "transformationDescription": "order_date をそのまま採用",
+          "transformationType": "IDENTITY"
+        },
+        {
+          "inputFields": [
+            {
+              "dataset": "demo.staging.stg_orders",
+              "field": "order_date",
+              "namespace": "postgres://postgres-demo:5432",
               "transformationDescription": "count(DISTINCT order_id)",
               "transformationType": "AGGREGATION"
             },
@@ -117,24 +131,10 @@
           "name": "order_count",
           "transformationDescription": "count(DISTINCT order_id)",
           "transformationType": "AGGREGATION"
-        },
-        {
-          "inputFields": [
-            {
-              "dataset": "demo.staging.stg_orders",
-              "field": "order_date",
-              "namespace": "postgres://postgres-demo:5432",
-              "transformationDescription": "order_date をそのまま採用",
-              "transformationType": "IDENTITY"
-            }
-          ],
-          "name": "sales_date",
-          "transformationDescription": "order_date をそのまま採用",
-          "transformationType": "IDENTITY"
         }
       ],
       "createdAt": "2026-08-04T08:46:15.992475Z",
-      "currentVersion": "473ae6a3-8ae6-43ff-88ff-5ccb801ea920",
+      "currentVersion": "edf8669b-505f-44ed-8324-22e189a83b1d",
       "deleted": false,
       "description": null,
       "facets": {
@@ -282,12 +282,12 @@
       "sourceName": "default",
       "tags": [],
       "type": "DB_TABLE",
-      "updatedAt": "2026-08-04T09:11:53.010172Z"
+      "updatedAt": "2026-08-04T09:22:57.132047Z"
     },
     {
       "columnLineage": null,
       "createdAt": "2026-08-04T08:46:12.192697Z",
-      "currentVersion": "abfc2e62-c41b-490d-beaf-f3b781635f22",
+      "currentVersion": "b6dfb318-a86c-44d3-aa24-c43016b1ec84",
       "deleted": false,
       "description": null,
       "facets": {
@@ -367,12 +367,12 @@
       "sourceName": "default",
       "tags": [],
       "type": "DB_TABLE",
-      "updatedAt": "2026-08-04T09:11:51.432605Z"
+      "updatedAt": "2026-08-04T09:22:56.690173Z"
     },
     {
       "columnLineage": null,
       "createdAt": "2026-08-04T08:46:12.192697Z",
-      "currentVersion": "c98d7ae0-a250-4ea1-938b-3e5aaaafa61d",
+      "currentVersion": "ba9621e3-3f8b-4e75-b8f1-b57c9703d614",
       "deleted": false,
       "description": null,
       "facets": {
@@ -452,12 +452,12 @@
       "sourceName": "default",
       "tags": [],
       "type": "DB_TABLE",
-      "updatedAt": "2026-08-04T09:11:49.269818Z"
+      "updatedAt": "2026-08-04T09:22:55.932828Z"
     },
     {
       "columnLineage": null,
       "createdAt": "2026-08-04T08:46:12.192697Z",
-      "currentVersion": "0772d699-a17d-449c-bb56-1f3011fc4b97",
+      "currentVersion": "869ebdf9-8526-4e5b-b7c9-32fc80d4dc47",
       "deleted": false,
       "description": null,
       "facets": {
@@ -526,12 +526,12 @@
       "sourceName": "default",
       "tags": [],
       "type": "DB_TABLE",
-      "updatedAt": "2026-08-04T09:11:49.269818Z"
+      "updatedAt": "2026-08-04T09:22:55.932828Z"
     },
     {
       "columnLineage": null,
       "createdAt": "2026-08-04T08:46:12.192697Z",
-      "currentVersion": "dd9591f5-fc13-424c-9df6-2d05e14bdd23",
+      "currentVersion": "77ca15e6-25d8-4316-9844-ceed9a3e622b",
       "deleted": false,
       "description": null,
       "facets": {
@@ -600,12 +600,12 @@
       "sourceName": "default",
       "tags": [],
       "type": "DB_TABLE",
-      "updatedAt": "2026-08-04T09:11:49.269818Z"
+      "updatedAt": "2026-08-04T09:22:55.932828Z"
     },
     {
       "columnLineage": null,
       "createdAt": "2026-08-04T08:46:14.790037Z",
-      "currentVersion": "b9cd5107-e532-4b4b-a06b-54ad178604b3",
+      "currentVersion": "4254e837-4acc-44ef-b5d4-88b17cb324f6",
       "deleted": false,
       "description": null,
       "facets": {
@@ -674,6 +674,18 @@
       "fields": [
         {
           "description": null,
+          "name": "order_item_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "order_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
           "name": "customer_id",
           "tags": [],
           "type": "integer"
@@ -725,18 +737,6 @@
           "name": "amount",
           "tags": [],
           "type": "numeric"
-        },
-        {
-          "description": null,
-          "name": "order_item_id",
-          "tags": [],
-          "type": "integer"
-        },
-        {
-          "description": null,
-          "name": "order_id",
-          "tags": [],
-          "type": "integer"
         }
       ],
       "id": {
@@ -751,7 +751,7 @@
       "sourceName": "default",
       "tags": [],
       "type": "DB_TABLE",
-      "updatedAt": "2026-08-04T09:11:51.432605Z"
+      "updatedAt": "2026-08-04T09:22:56.690173Z"
     }
   ],
   "totalCount": 7
