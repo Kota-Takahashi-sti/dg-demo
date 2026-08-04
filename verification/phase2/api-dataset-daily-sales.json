@@ -1,0 +1,210 @@
+{
+  "columnLineage": [
+    {
+      "inputFields": [
+        {
+          "dataset": "demo.staging.stg_orders",
+          "field": "order_date",
+          "namespace": "postgres://postgres-demo:5432",
+          "transformationDescription": "count(DISTINCT order_id)",
+          "transformationType": "AGGREGATION"
+        },
+        {
+          "dataset": "demo.staging.stg_orders",
+          "field": "order_id",
+          "namespace": "postgres://postgres-demo:5432",
+          "transformationDescription": "count(DISTINCT order_id)",
+          "transformationType": "AGGREGATION"
+        }
+      ],
+      "name": "order_count",
+      "transformationDescription": "count(DISTINCT order_id)",
+      "transformationType": "AGGREGATION"
+    },
+    {
+      "inputFields": [
+        {
+          "dataset": "demo.staging.stg_orders",
+          "field": "order_date",
+          "namespace": "postgres://postgres-demo:5432",
+          "transformationDescription": "order_date をそのまま採用",
+          "transformationType": "IDENTITY"
+        }
+      ],
+      "name": "sales_date",
+      "transformationDescription": "order_date をそのまま採用",
+      "transformationType": "IDENTITY"
+    },
+    {
+      "inputFields": [
+        {
+          "dataset": "demo.staging.stg_orders",
+          "field": "amount",
+          "namespace": "postgres://postgres-demo:5432",
+          "transformationDescription": "sum(amount)",
+          "transformationType": "AGGREGATION"
+        },
+        {
+          "dataset": "demo.staging.stg_orders",
+          "field": "order_date",
+          "namespace": "postgres://postgres-demo:5432",
+          "transformationDescription": "sum(amount)",
+          "transformationType": "AGGREGATION"
+        }
+      ],
+      "name": "total_amount",
+      "transformationDescription": "sum(amount)",
+      "transformationType": "AGGREGATION"
+    }
+  ],
+  "createdAt": "2026-08-04T08:46:15.992475Z",
+  "currentVersion": "3c252757-2e20-4d76-aea3-60fbbac8786f",
+  "deleted": false,
+  "description": null,
+  "facets": {
+    "columnLineage": {
+      "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+      "_schemaURL": "https://openlineage.io/spec/facets/1-2-0/ColumnLineageDatasetFacet.json#/$defs/ColumnLineageDatasetFacet",
+      "dataset": [],
+      "fields": {
+        "order_count": {
+          "inputFields": [
+            {
+              "field": "order_id",
+              "name": "demo.staging.stg_orders",
+              "namespace": "postgres://postgres-demo:5432",
+              "transformations": [
+                {
+                  "description": "count(DISTINCT order_id)",
+                  "masking": false,
+                  "subtype": "AGGREGATION",
+                  "type": "DIRECT"
+                }
+              ]
+            },
+            {
+              "field": "order_date",
+              "name": "demo.staging.stg_orders",
+              "namespace": "postgres://postgres-demo:5432",
+              "transformations": [
+                {
+                  "description": "GROUP BY order_date",
+                  "masking": false,
+                  "subtype": "GROUP_BY",
+                  "type": "INDIRECT"
+                }
+              ]
+            }
+          ],
+          "transformationDescription": "count(DISTINCT order_id)",
+          "transformationType": "AGGREGATION"
+        },
+        "sales_date": {
+          "inputFields": [
+            {
+              "field": "order_date",
+              "name": "demo.staging.stg_orders",
+              "namespace": "postgres://postgres-demo:5432",
+              "transformations": [
+                {
+                  "description": "order_date をそのまま採用",
+                  "masking": false,
+                  "subtype": "IDENTITY",
+                  "type": "DIRECT"
+                }
+              ]
+            }
+          ],
+          "transformationDescription": "order_date をそのまま採用",
+          "transformationType": "IDENTITY"
+        },
+        "total_amount": {
+          "inputFields": [
+            {
+              "field": "amount",
+              "name": "demo.staging.stg_orders",
+              "namespace": "postgres://postgres-demo:5432",
+              "transformations": [
+                {
+                  "description": "sum(amount)",
+                  "masking": false,
+                  "subtype": "AGGREGATION",
+                  "type": "DIRECT"
+                }
+              ]
+            },
+            {
+              "field": "order_date",
+              "name": "demo.staging.stg_orders",
+              "namespace": "postgres://postgres-demo:5432",
+              "transformations": [
+                {
+                  "description": "GROUP BY order_date",
+                  "masking": false,
+                  "subtype": "GROUP_BY",
+                  "type": "INDIRECT"
+                }
+              ]
+            }
+          ],
+          "transformationDescription": "sum(amount)",
+          "transformationType": "AGGREGATION"
+        }
+      }
+    },
+    "schema": {
+      "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+      "_schemaURL": "https://openlineage.io/spec/facets/1-2-0/SchemaDatasetFacet.json#/$defs/SchemaDatasetFacet",
+      "fields": [
+        {
+          "fields": [],
+          "name": "sales_date",
+          "type": "date"
+        },
+        {
+          "fields": [],
+          "name": "order_count",
+          "type": "bigint"
+        },
+        {
+          "fields": [],
+          "name": "total_amount",
+          "type": "numeric"
+        }
+      ]
+    }
+  },
+  "fields": [
+    {
+      "description": null,
+      "name": "sales_date",
+      "tags": [],
+      "type": "date"
+    },
+    {
+      "description": null,
+      "name": "order_count",
+      "tags": [],
+      "type": "bigint"
+    },
+    {
+      "description": null,
+      "name": "total_amount",
+      "tags": [],
+      "type": "numeric"
+    }
+  ],
+  "id": {
+    "name": "demo.mart.daily_sales",
+    "namespace": "postgres://postgres-demo:5432"
+  },
+  "lastLifecycleState": "",
+  "lastModifiedAt": null,
+  "name": "demo.mart.daily_sales",
+  "namespace": "postgres://postgres-demo:5432",
+  "physicalName": "demo.mart.daily_sales",
+  "sourceName": "default",
+  "tags": [],
+  "type": "DB_TABLE",
+  "updatedAt": "2026-08-04T08:59:41.243623Z"
+}

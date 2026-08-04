@@ -1,0 +1,126 @@
+{
+  "runs": [
+    {
+      "args": {},
+      "createdAt": "2026-08-04T08:46:31.224524Z",
+      "durationMs": 335,
+      "endedAt": "2026-08-04T08:46:31.559607Z",
+      "facets": {
+        "errorMessage": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-0-1/ErrorMessageRunFacet.json#/$defs/ErrorMessageRunFacet",
+          "message": "column \"amount_with_tax\" does not exist\nLINE 13:     sum(amount_with_tax)    AS total_amount   -- ← この列は...\n                 ^\n",
+          "programmingLanguage": "python"
+        },
+        "tags": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+          "tags": [
+            {
+              "key": "openlineage_client_version",
+              "source": "OPENLINEAGE_CLIENT",
+              "value": "1.52.0"
+            }
+          ]
+        }
+      },
+      "id": "019fcbf3-f736-74dc-aba8-20fbcaa3792b",
+      "inputDatasetVersions": [
+        {
+          "datasetVersionId": {
+            "name": "demo.staging.stg_orders",
+            "namespace": "postgres://postgres-demo:5432",
+            "version": "c69ba856-88fc-3199-bf6e-4f5a1ada9741"
+          },
+          "facets": {}
+        },
+        {
+          "datasetVersionId": {
+            "name": "demo.raw.customers",
+            "namespace": "postgres://postgres-demo:5432",
+            "version": "15c8065f-88f4-3ba7-910d-7a362f7477cf"
+          },
+          "facets": {}
+        }
+      ],
+      "jobVersion": {
+        "name": "run_pipeline.build_mart",
+        "namespace": "demo_pipeline",
+        "version": "290dd748-5487-33ab-b690-abaa1209f083"
+      },
+      "nominalEndTime": null,
+      "nominalStartTime": null,
+      "outputDatasetVersions": [],
+      "startedAt": "2026-08-04T08:46:31.224524Z",
+      "state": "FAILED",
+      "updatedAt": "2026-08-04T08:46:31.559607Z"
+    },
+    {
+      "args": {},
+      "createdAt": "2026-08-04T08:46:15.549841Z",
+      "durationMs": 443,
+      "endedAt": "2026-08-04T08:46:15.992475Z",
+      "facets": {
+        "tags": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+          "tags": [
+            {
+              "key": "openlineage_client_version",
+              "source": "OPENLINEAGE_CLIENT",
+              "value": "1.52.0"
+            }
+          ]
+        }
+      },
+      "id": "019fcbf3-b9fc-751d-812e-2e474233fa47",
+      "inputDatasetVersions": [
+        {
+          "datasetVersionId": {
+            "name": "demo.staging.stg_orders",
+            "namespace": "postgres://postgres-demo:5432",
+            "version": "07c6cb06-d165-3c4a-96f7-925c0b9905c7"
+          },
+          "facets": {}
+        },
+        {
+          "datasetVersionId": {
+            "name": "demo.raw.customers",
+            "namespace": "postgres://postgres-demo:5432",
+            "version": "36a6b74e-6725-3df6-9840-1f105b98292e"
+          },
+          "facets": {}
+        }
+      ],
+      "jobVersion": {
+        "name": "run_pipeline.build_mart",
+        "namespace": "demo_pipeline",
+        "version": "e75bd430-fdd5-3006-975c-85e2f07a7672"
+      },
+      "nominalEndTime": null,
+      "nominalStartTime": null,
+      "outputDatasetVersions": [
+        {
+          "datasetVersionId": {
+            "name": "demo.mart.daily_sales",
+            "namespace": "postgres://postgres-demo:5432",
+            "version": "618599b8-3a53-3e0b-bc8f-678232183cc0"
+          },
+          "facets": {}
+        },
+        {
+          "datasetVersionId": {
+            "name": "demo.mart.customer_summary",
+            "namespace": "postgres://postgres-demo:5432",
+            "version": "4a5ca5d6-0338-3322-abfd-33571db1a4b4"
+          },
+          "facets": {}
+        }
+      ],
+      "startedAt": "2026-08-04T08:46:15.549841Z",
+      "state": "COMPLETED",
+      "updatedAt": "2026-08-04T08:46:15.992475Z"
+    }
+  ],
+  "totalCount": 2
+}

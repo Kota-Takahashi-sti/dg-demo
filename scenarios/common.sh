@@ -5,10 +5,17 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_ROOT"
 
+# .env(compose と同じ設定値)をシェルにも読み込む。
+# シナリオ内のメッセージ(ポート番号等)を compose の実際の設定と一致させるため。
+if [ -f .env ]; then
+    set -a; source .env; set +a
+fi
+
 COMPOSE="docker compose"
 # tools は常駐させず都度実行する(plan.md §3.4)
 TOOLS_RUN="$COMPOSE --profile tools run --rm -T tools"
 PYTHON_QUALITY="/opt/venv/quality/bin/python"
+PYTHON_LINEAGE="/opt/venv/lineage/bin/python"
 SODA="/opt/venv/quality/bin/soda"
 
 # ログ設定: 標準出力・標準エラーを加工せず verification/ に保存する(DoD)
@@ -23,6 +30,22 @@ setup_log() {
 ensure_base() {
     echo "--- デモ用 DB(profile: base)を起動 ---"
     $COMPOSE --profile base up -d --wait postgres-demo
+}
+
+ensure_lineage() {
+    echo "--- Marquez 一式(profile: lineage)を起動 ---"
+    $COMPOSE --profile lineage up -d --wait
+    echo "--- Marquez API の起動を待機 ---"
+    $TOOLS_RUN $PYTHON_LINEAGE lineage/marquez_api.py wait
+}
+
+# Marquez API レスポンスを証跡として保存する
+# 使い方: save_marquez_api <保存先ファイル> <marquez_api.py のサブコマンド...>
+save_marquez_api() {
+    local out="$1"; shift
+    mkdir -p "$(dirname "$out")"
+    $TOOLS_RUN $PYTHON_LINEAGE lineage/marquez_api.py "$@" > "$out"
+    echo "[証跡] $out(marquez_api.py $*)"
 }
 
 # $1: clean | ng

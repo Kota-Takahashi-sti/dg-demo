@@ -1,0 +1,758 @@
+{
+  "datasets": [
+    {
+      "columnLineage": null,
+      "createdAt": "2026-08-04T08:46:15.992475Z",
+      "currentVersion": "fd703cbb-91f2-4721-a79c-bf77da6da513",
+      "deleted": false,
+      "description": null,
+      "facets": {
+        "schema": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-2-0/SchemaDatasetFacet.json#/$defs/SchemaDatasetFacet",
+          "fields": [
+            {
+              "fields": [],
+              "name": "customer_id",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "total_orders",
+              "type": "bigint"
+            },
+            {
+              "fields": [],
+              "name": "total_amount",
+              "type": "numeric"
+            },
+            {
+              "fields": [],
+              "name": "last_order_date",
+              "type": "date"
+            }
+          ]
+        }
+      },
+      "fields": [
+        {
+          "description": null,
+          "name": "total_orders",
+          "tags": [],
+          "type": "bigint"
+        },
+        {
+          "description": null,
+          "name": "total_amount",
+          "tags": [],
+          "type": "numeric"
+        },
+        {
+          "description": null,
+          "name": "last_order_date",
+          "tags": [],
+          "type": "date"
+        },
+        {
+          "description": null,
+          "name": "customer_id",
+          "tags": [],
+          "type": "integer"
+        }
+      ],
+      "id": {
+        "name": "demo.mart.customer_summary",
+        "namespace": "postgres://postgres-demo:5432"
+      },
+      "lastLifecycleState": "",
+      "lastModifiedAt": null,
+      "name": "demo.mart.customer_summary",
+      "namespace": "postgres://postgres-demo:5432",
+      "physicalName": "demo.mart.customer_summary",
+      "sourceName": "default",
+      "tags": [],
+      "type": "DB_TABLE",
+      "updatedAt": "2026-08-04T08:59:41.246989Z"
+    },
+    {
+      "columnLineage": [
+        {
+          "inputFields": [
+            {
+              "dataset": "demo.staging.stg_orders",
+              "field": "order_date",
+              "namespace": "postgres://postgres-demo:5432",
+              "transformationDescription": "order_date をそのまま採用",
+              "transformationType": "IDENTITY"
+            }
+          ],
+          "name": "sales_date",
+          "transformationDescription": "order_date をそのまま採用",
+          "transformationType": "IDENTITY"
+        },
+        {
+          "inputFields": [
+            {
+              "dataset": "demo.staging.stg_orders",
+              "field": "order_date",
+              "namespace": "postgres://postgres-demo:5432",
+              "transformationDescription": "count(DISTINCT order_id)",
+              "transformationType": "AGGREGATION"
+            },
+            {
+              "dataset": "demo.staging.stg_orders",
+              "field": "order_id",
+              "namespace": "postgres://postgres-demo:5432",
+              "transformationDescription": "count(DISTINCT order_id)",
+              "transformationType": "AGGREGATION"
+            }
+          ],
+          "name": "order_count",
+          "transformationDescription": "count(DISTINCT order_id)",
+          "transformationType": "AGGREGATION"
+        },
+        {
+          "inputFields": [
+            {
+              "dataset": "demo.staging.stg_orders",
+              "field": "amount",
+              "namespace": "postgres://postgres-demo:5432",
+              "transformationDescription": "sum(amount)",
+              "transformationType": "AGGREGATION"
+            },
+            {
+              "dataset": "demo.staging.stg_orders",
+              "field": "order_date",
+              "namespace": "postgres://postgres-demo:5432",
+              "transformationDescription": "sum(amount)",
+              "transformationType": "AGGREGATION"
+            }
+          ],
+          "name": "total_amount",
+          "transformationDescription": "sum(amount)",
+          "transformationType": "AGGREGATION"
+        }
+      ],
+      "createdAt": "2026-08-04T08:46:15.992475Z",
+      "currentVersion": "3c252757-2e20-4d76-aea3-60fbbac8786f",
+      "deleted": false,
+      "description": null,
+      "facets": {
+        "columnLineage": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-2-0/ColumnLineageDatasetFacet.json#/$defs/ColumnLineageDatasetFacet",
+          "dataset": [],
+          "fields": {
+            "order_count": {
+              "inputFields": [
+                {
+                  "field": "order_id",
+                  "name": "demo.staging.stg_orders",
+                  "namespace": "postgres://postgres-demo:5432",
+                  "transformations": [
+                    {
+                      "description": "count(DISTINCT order_id)",
+                      "masking": false,
+                      "subtype": "AGGREGATION",
+                      "type": "DIRECT"
+                    }
+                  ]
+                },
+                {
+                  "field": "order_date",
+                  "name": "demo.staging.stg_orders",
+                  "namespace": "postgres://postgres-demo:5432",
+                  "transformations": [
+                    {
+                      "description": "GROUP BY order_date",
+                      "masking": false,
+                      "subtype": "GROUP_BY",
+                      "type": "INDIRECT"
+                    }
+                  ]
+                }
+              ],
+              "transformationDescription": "count(DISTINCT order_id)",
+              "transformationType": "AGGREGATION"
+            },
+            "sales_date": {
+              "inputFields": [
+                {
+                  "field": "order_date",
+                  "name": "demo.staging.stg_orders",
+                  "namespace": "postgres://postgres-demo:5432",
+                  "transformations": [
+                    {
+                      "description": "order_date をそのまま採用",
+                      "masking": false,
+                      "subtype": "IDENTITY",
+                      "type": "DIRECT"
+                    }
+                  ]
+                }
+              ],
+              "transformationDescription": "order_date をそのまま採用",
+              "transformationType": "IDENTITY"
+            },
+            "total_amount": {
+              "inputFields": [
+                {
+                  "field": "amount",
+                  "name": "demo.staging.stg_orders",
+                  "namespace": "postgres://postgres-demo:5432",
+                  "transformations": [
+                    {
+                      "description": "sum(amount)",
+                      "masking": false,
+                      "subtype": "AGGREGATION",
+                      "type": "DIRECT"
+                    }
+                  ]
+                },
+                {
+                  "field": "order_date",
+                  "name": "demo.staging.stg_orders",
+                  "namespace": "postgres://postgres-demo:5432",
+                  "transformations": [
+                    {
+                      "description": "GROUP BY order_date",
+                      "masking": false,
+                      "subtype": "GROUP_BY",
+                      "type": "INDIRECT"
+                    }
+                  ]
+                }
+              ],
+              "transformationDescription": "sum(amount)",
+              "transformationType": "AGGREGATION"
+            }
+          }
+        },
+        "schema": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-2-0/SchemaDatasetFacet.json#/$defs/SchemaDatasetFacet",
+          "fields": [
+            {
+              "fields": [],
+              "name": "sales_date",
+              "type": "date"
+            },
+            {
+              "fields": [],
+              "name": "order_count",
+              "type": "bigint"
+            },
+            {
+              "fields": [],
+              "name": "total_amount",
+              "type": "numeric"
+            }
+          ]
+        }
+      },
+      "fields": [
+        {
+          "description": null,
+          "name": "sales_date",
+          "tags": [],
+          "type": "date"
+        },
+        {
+          "description": null,
+          "name": "order_count",
+          "tags": [],
+          "type": "bigint"
+        },
+        {
+          "description": null,
+          "name": "total_amount",
+          "tags": [],
+          "type": "numeric"
+        }
+      ],
+      "id": {
+        "name": "demo.mart.daily_sales",
+        "namespace": "postgres://postgres-demo:5432"
+      },
+      "lastLifecycleState": "",
+      "lastModifiedAt": null,
+      "name": "demo.mart.daily_sales",
+      "namespace": "postgres://postgres-demo:5432",
+      "physicalName": "demo.mart.daily_sales",
+      "sourceName": "default",
+      "tags": [],
+      "type": "DB_TABLE",
+      "updatedAt": "2026-08-04T08:59:41.243623Z"
+    },
+    {
+      "columnLineage": null,
+      "createdAt": "2026-08-04T08:46:12.192697Z",
+      "currentVersion": "22384c28-a83a-4199-867c-a1968eb0378d",
+      "deleted": false,
+      "description": null,
+      "facets": {
+        "schema": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-2-0/SchemaDatasetFacet.json#/$defs/SchemaDatasetFacet",
+          "fields": [
+            {
+              "fields": [],
+              "name": "customer_id",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "fields": [],
+              "name": "email",
+              "type": "varchar"
+            },
+            {
+              "fields": [],
+              "name": "prefecture",
+              "type": "varchar"
+            },
+            {
+              "fields": [],
+              "name": "created_at",
+              "type": "timestamp"
+            }
+          ]
+        }
+      },
+      "fields": [
+        {
+          "description": null,
+          "name": "customer_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "name",
+          "tags": [],
+          "type": "varchar"
+        },
+        {
+          "description": null,
+          "name": "email",
+          "tags": [],
+          "type": "varchar"
+        },
+        {
+          "description": null,
+          "name": "prefecture",
+          "tags": [],
+          "type": "varchar"
+        },
+        {
+          "description": null,
+          "name": "created_at",
+          "tags": [],
+          "type": "timestamp"
+        }
+      ],
+      "id": {
+        "name": "demo.raw.customers",
+        "namespace": "postgres://postgres-demo:5432"
+      },
+      "lastLifecycleState": "",
+      "lastModifiedAt": null,
+      "name": "demo.raw.customers",
+      "namespace": "postgres://postgres-demo:5432",
+      "physicalName": "demo.raw.customers",
+      "sourceName": "default",
+      "tags": [],
+      "type": "DB_TABLE",
+      "updatedAt": "2026-08-04T08:59:40.732708Z"
+    },
+    {
+      "columnLineage": null,
+      "createdAt": "2026-08-04T08:46:12.192697Z",
+      "currentVersion": "7a15f97b-eca1-457d-946f-bea00863998f",
+      "deleted": false,
+      "description": null,
+      "facets": {
+        "schema": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-2-0/SchemaDatasetFacet.json#/$defs/SchemaDatasetFacet",
+          "fields": [
+            {
+              "fields": [],
+              "name": "order_item_id",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "order_id",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "product_id",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "quantity",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "unit_price",
+              "type": "numeric"
+            }
+          ]
+        }
+      },
+      "fields": [
+        {
+          "description": null,
+          "name": "order_item_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "order_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "product_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "quantity",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "unit_price",
+          "tags": [],
+          "type": "numeric"
+        }
+      ],
+      "id": {
+        "name": "demo.raw.order_items",
+        "namespace": "postgres://postgres-demo:5432"
+      },
+      "lastLifecycleState": "",
+      "lastModifiedAt": null,
+      "name": "demo.raw.order_items",
+      "namespace": "postgres://postgres-demo:5432",
+      "physicalName": "demo.raw.order_items",
+      "sourceName": "default",
+      "tags": [],
+      "type": "DB_TABLE",
+      "updatedAt": "2026-08-04T08:59:40.033690Z"
+    },
+    {
+      "columnLineage": null,
+      "createdAt": "2026-08-04T08:46:12.192697Z",
+      "currentVersion": "680637e6-5a38-4e9b-9c43-fe05e9fbc5a4",
+      "deleted": false,
+      "description": null,
+      "facets": {
+        "schema": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-2-0/SchemaDatasetFacet.json#/$defs/SchemaDatasetFacet",
+          "fields": [
+            {
+              "fields": [],
+              "name": "order_id",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "customer_id",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "order_date",
+              "type": "date"
+            },
+            {
+              "fields": [],
+              "name": "status",
+              "type": "varchar"
+            }
+          ]
+        }
+      },
+      "fields": [
+        {
+          "description": null,
+          "name": "order_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "customer_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "order_date",
+          "tags": [],
+          "type": "date"
+        },
+        {
+          "description": null,
+          "name": "status",
+          "tags": [],
+          "type": "varchar"
+        }
+      ],
+      "id": {
+        "name": "demo.raw.orders",
+        "namespace": "postgres://postgres-demo:5432"
+      },
+      "lastLifecycleState": "",
+      "lastModifiedAt": null,
+      "name": "demo.raw.orders",
+      "namespace": "postgres://postgres-demo:5432",
+      "physicalName": "demo.raw.orders",
+      "sourceName": "default",
+      "tags": [],
+      "type": "DB_TABLE",
+      "updatedAt": "2026-08-04T08:59:40.033690Z"
+    },
+    {
+      "columnLineage": null,
+      "createdAt": "2026-08-04T08:46:12.192697Z",
+      "currentVersion": "d28c792e-c245-41d5-83af-64875a2ce6f5",
+      "deleted": false,
+      "description": null,
+      "facets": {
+        "schema": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-2-0/SchemaDatasetFacet.json#/$defs/SchemaDatasetFacet",
+          "fields": [
+            {
+              "fields": [],
+              "name": "product_id",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "name",
+              "type": "varchar"
+            },
+            {
+              "fields": [],
+              "name": "category",
+              "type": "varchar"
+            },
+            {
+              "fields": [],
+              "name": "price",
+              "type": "numeric"
+            }
+          ]
+        }
+      },
+      "fields": [
+        {
+          "description": null,
+          "name": "product_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "name",
+          "tags": [],
+          "type": "varchar"
+        },
+        {
+          "description": null,
+          "name": "category",
+          "tags": [],
+          "type": "varchar"
+        },
+        {
+          "description": null,
+          "name": "price",
+          "tags": [],
+          "type": "numeric"
+        }
+      ],
+      "id": {
+        "name": "demo.raw.products",
+        "namespace": "postgres://postgres-demo:5432"
+      },
+      "lastLifecycleState": "",
+      "lastModifiedAt": null,
+      "name": "demo.raw.products",
+      "namespace": "postgres://postgres-demo:5432",
+      "physicalName": "demo.raw.products",
+      "sourceName": "default",
+      "tags": [],
+      "type": "DB_TABLE",
+      "updatedAt": "2026-08-04T08:59:40.033690Z"
+    },
+    {
+      "columnLineage": null,
+      "createdAt": "2026-08-04T08:46:14.790037Z",
+      "currentVersion": "f313fd27-4f51-4f58-b21f-471cdef3569f",
+      "deleted": false,
+      "description": null,
+      "facets": {
+        "schema": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-2-0/SchemaDatasetFacet.json#/$defs/SchemaDatasetFacet",
+          "fields": [
+            {
+              "fields": [],
+              "name": "order_item_id",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "order_id",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "customer_id",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "order_date",
+              "type": "date"
+            },
+            {
+              "fields": [],
+              "name": "status",
+              "type": "varchar"
+            },
+            {
+              "fields": [],
+              "name": "product_id",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "product_name",
+              "type": "varchar"
+            },
+            {
+              "fields": [],
+              "name": "category",
+              "type": "varchar"
+            },
+            {
+              "fields": [],
+              "name": "quantity",
+              "type": "integer"
+            },
+            {
+              "fields": [],
+              "name": "unit_price",
+              "type": "numeric"
+            },
+            {
+              "fields": [],
+              "name": "amount",
+              "type": "numeric"
+            }
+          ]
+        }
+      },
+      "fields": [
+        {
+          "description": null,
+          "name": "order_item_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "order_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "customer_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "order_date",
+          "tags": [],
+          "type": "date"
+        },
+        {
+          "description": null,
+          "name": "status",
+          "tags": [],
+          "type": "varchar"
+        },
+        {
+          "description": null,
+          "name": "product_id",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "product_name",
+          "tags": [],
+          "type": "varchar"
+        },
+        {
+          "description": null,
+          "name": "category",
+          "tags": [],
+          "type": "varchar"
+        },
+        {
+          "description": null,
+          "name": "quantity",
+          "tags": [],
+          "type": "integer"
+        },
+        {
+          "description": null,
+          "name": "unit_price",
+          "tags": [],
+          "type": "numeric"
+        },
+        {
+          "description": null,
+          "name": "amount",
+          "tags": [],
+          "type": "numeric"
+        }
+      ],
+      "id": {
+        "name": "demo.staging.stg_orders",
+        "namespace": "postgres://postgres-demo:5432"
+      },
+      "lastLifecycleState": "",
+      "lastModifiedAt": null,
+      "name": "demo.staging.stg_orders",
+      "namespace": "postgres://postgres-demo:5432",
+      "physicalName": "demo.staging.stg_orders",
+      "sourceName": "default",
+      "tags": [],
+      "type": "DB_TABLE",
+      "updatedAt": "2026-08-04T08:59:40.732708Z"
+    }
+  ],
+  "totalCount": 7
+}

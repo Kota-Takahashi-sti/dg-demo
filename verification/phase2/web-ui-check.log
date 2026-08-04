@@ -1,0 +1,8 @@
+# 実行日時: 2026-08-04 17:43:21 JST
+# Marquez Web UI 疎通確認(ホストから。この環境では MARQUEZ_WEB_HOST_PORT=13000 に変更済み)
+$ curl -sS -o /dev/null -w "%{http_code}" http://localhost:13000/
+200
+$ curl -sS http://localhost:13000/api/v1/namespaces(Web サーバの API プロキシ経由)
+{"namespaces":[{"name":"default","createdAt":"2026-08-04T08:42:18.906910Z","updatedAt":"2026-08-04T08:42:18.906910Z","ownerName":"anonymous","description":"The default global namespace for dataset, job, and run metadata not belonging to a user-specified namespace.","isHidden":false},{"name":"demo_pipeline","createdAt":"2026-08-04T08:42:25.260371Z","updatedAt":"2026-08-04T08:42:25.260371Z","ownerName":"anonymous","description":null,"isHidden":false},{"name":"file","createdAt":"2026-08-04T08:42:25.260371Z","updatedAt":"2026-08-04T08:42:25.260371Z","ownerName":"anonymous","description":null,"isHidden":false},{"name":"postgres://postgres-demo:5432","createdAt":"2026-08-04T08:42:26.906239Z","updatedAt":"2026-08-04T08:42:26.906239Z","ownerName":"anonymous","description":null,"isHidden":false}]}
+$ curl -sS -o /dev/null -w "%{http_code}" http://localhost:5000/api/v1/namespaces(API 直接)
+200

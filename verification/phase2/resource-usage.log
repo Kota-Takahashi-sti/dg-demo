@@ -1,0 +1,7 @@
+# 実行日時: 2026-08-04 17:43:21 JST
+# lineage profile 起動中の実測リソース(docker stats --no-stream)
+NAME                                          MEM USAGE / LIMIT     CPU %
+claude-demo-data-governance-marquez-web-1     17.62MiB / 15.36GiB   0.00%
+claude-demo-data-governance-marquez-api-1     231.6MiB / 15.36GiB   0.12%
+claude-demo-data-governance-marquez-db-1      74.81MiB / 15.36GiB   0.02%
+claude-demo-data-governance-postgres-demo-1   37.44MiB / 15.36GiB   0.02%

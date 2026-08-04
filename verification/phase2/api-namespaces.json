@@ -1,0 +1,36 @@
+{
+  "namespaces": [
+    {
+      "createdAt": "2026-08-04T08:46:04.361734Z",
+      "description": "The default global namespace for dataset, job, and run metadata not belonging to a user-specified namespace.",
+      "isHidden": false,
+      "name": "default",
+      "ownerName": "anonymous",
+      "updatedAt": "2026-08-04T08:46:04.361734Z"
+    },
+    {
+      "createdAt": "2026-08-04T08:46:10.581397Z",
+      "description": null,
+      "isHidden": false,
+      "name": "demo_pipeline",
+      "ownerName": "anonymous",
+      "updatedAt": "2026-08-04T08:46:10.581397Z"
+    },
+    {
+      "createdAt": "2026-08-04T08:46:10.581397Z",
+      "description": null,
+      "isHidden": false,
+      "name": "file",
+      "ownerName": "anonymous",
+      "updatedAt": "2026-08-04T08:46:10.581397Z"
+    },
+    {
+      "createdAt": "2026-08-04T08:46:12.192697Z",
+      "description": null,
+      "isHidden": false,
+      "name": "postgres://postgres-demo:5432",
+      "ownerName": "anonymous",
+      "updatedAt": "2026-08-04T08:46:12.192697Z"
+    }
+  ]
+}

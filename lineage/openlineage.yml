@@ -1,0 +1,15 @@
+# openlineage-python クライアントの transport 設定(フェーズ2)。
+# tools コンテナには OPENLINEAGE_CONFIG=/workspace/lineage/openlineage.yml として渡される。
+# 参照: openlineage.io/docs/client/python/configuration(調査日 2026-08-04)
+#
+# トラブルシュート: Marquez に届いているか切り分けたいときは、下の http を
+# コメントアウトして console transport(イベントを標準出力に表示)に切り替えられる。
+#   transport:
+#     type: console
+transport:
+  type: http
+  # tools コンテナと marquez-api は同じ compose ネットワーク上にあるため
+  # コンテナ名で到達できる(ホスト公開ポートの変更に影響されない)
+  url: http://marquez-api:5000
+  endpoint: api/v1/lineage
+  timeout: 5

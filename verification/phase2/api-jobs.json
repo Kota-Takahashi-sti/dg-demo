@@ -1,0 +1,1074 @@
+{
+  "jobs": [
+    {
+      "createdAt": "2026-08-04T08:46:15.549841Z",
+      "currentVersion": "d4e3d22a-de85-4593-8fe0-e8e8e8496f3b",
+      "description": null,
+      "facets": {
+        "sql": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-1-0/SQLJobFacet.json#/$defs/SQLJobFacet",
+          "query": "-- mart 層: 集計テーブル(CTAS)とビュー\n-- daily_sales はフェーズ4 のデータコントラクト(ODCS)の対象テーブル\nDROP TABLE IF EXISTS mart.daily_sales;\n\nCREATE TABLE mart.daily_sales AS\nSELECT\n    order_date              AS sales_date,\n    count(DISTINCT order_id) AS order_count,\n    sum(amount)             AS total_amount\nFROM staging.stg_orders\nGROUP BY order_date\nORDER BY order_date;\n\n-- customer_summary はあえて「ビュー」として定義する\n-- (フェーズ3 で OpenMetadata がビュー定義 SQL を解析してリネージュを\n--  自動生成する様子を見せるため。plan.md §3.1)\nCREATE OR REPLACE VIEW mart.customer_summary AS\nSELECT\n    c.customer_id,\n    count(DISTINCT s.order_id) AS total_orders,\n    coalesce(sum(s.amount), 0) AS total_amount,\n    max(s.order_date)          AS last_order_date\nFROM raw.customers c\nLEFT JOIN staging.stg_orders s ON s.customer_id = c.customer_id\nGROUP BY c.customer_id;\n"
+        }
+      },
+      "id": {
+        "name": "run_pipeline.build_mart",
+        "namespace": "demo_pipeline"
+      },
+      "inputs": [
+        {
+          "name": "demo.raw.customers",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        {
+          "name": "demo.staging.stg_orders",
+          "namespace": "postgres://postgres-demo:5432"
+        }
+      ],
+      "labels": [],
+      "latestRun": {
+        "args": {},
+        "createdAt": "2026-08-04T08:59:40.444482Z",
+        "durationMs": 288,
+        "endedAt": "2026-08-04T08:59:40.732708Z",
+        "facets": {
+          "tags": {
+            "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+            "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+            "tags": [
+              {
+                "key": "openlineage_client_version",
+                "source": "OPENLINEAGE_CLIENT",
+                "value": "1.52.0"
+              }
+            ]
+          }
+        },
+        "id": "019fcc00-021b-7848-92f4-f341db714140",
+        "inputDatasetVersions": [
+          {
+            "datasetVersionId": {
+              "name": "demo.staging.stg_orders",
+              "namespace": "postgres://postgres-demo:5432",
+              "version": "3f87b6f5-ac97-323b-9e8a-225e1f7bf05d"
+            },
+            "facets": {}
+          },
+          {
+            "datasetVersionId": {
+              "name": "demo.raw.customers",
+              "namespace": "postgres://postgres-demo:5432",
+              "version": "d2471329-b3b1-342d-bc6d-fa37dd6752d2"
+            },
+            "facets": {}
+          }
+        ],
+        "jobVersion": {
+          "name": "run_pipeline.build_mart",
+          "namespace": "demo_pipeline",
+          "version": "e75bd430-fdd5-3006-975c-85e2f07a7672"
+        },
+        "nominalEndTime": null,
+        "nominalStartTime": null,
+        "outputDatasetVersions": [
+          {
+            "datasetVersionId": {
+              "name": "demo.mart.daily_sales",
+              "namespace": "postgres://postgres-demo:5432",
+              "version": "53d0fb11-2805-3248-bd09-82e3c1f06074"
+            },
+            "facets": {}
+          },
+          {
+            "datasetVersionId": {
+              "name": "demo.mart.customer_summary",
+              "namespace": "postgres://postgres-demo:5432",
+              "version": "cde8439c-1918-3a90-9619-726b2f1f6814"
+            },
+            "facets": {}
+          }
+        ],
+        "startedAt": "2026-08-04T08:59:40.444482Z",
+        "state": "COMPLETED",
+        "updatedAt": "2026-08-04T08:59:40.732708Z"
+      },
+      "latestRuns": [
+        {
+          "args": {},
+          "createdAt": "2026-08-04T08:59:40.444482Z",
+          "durationMs": 288,
+          "endedAt": "2026-08-04T08:59:40.732708Z",
+          "facets": {
+            "tags": {
+              "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+              "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+              "tags": [
+                {
+                  "key": "openlineage_client_version",
+                  "source": "OPENLINEAGE_CLIENT",
+                  "value": "1.52.0"
+                }
+              ]
+            }
+          },
+          "id": "019fcc00-021b-7848-92f4-f341db714140",
+          "inputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.staging.stg_orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "3f87b6f5-ac97-323b-9e8a-225e1f7bf05d"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.customers",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "d2471329-b3b1-342d-bc6d-fa37dd6752d2"
+              },
+              "facets": {}
+            }
+          ],
+          "jobVersion": {
+            "name": "run_pipeline.build_mart",
+            "namespace": "demo_pipeline",
+            "version": "e75bd430-fdd5-3006-975c-85e2f07a7672"
+          },
+          "nominalEndTime": null,
+          "nominalStartTime": null,
+          "outputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.mart.daily_sales",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "53d0fb11-2805-3248-bd09-82e3c1f06074"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.mart.customer_summary",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "cde8439c-1918-3a90-9619-726b2f1f6814"
+              },
+              "facets": {}
+            }
+          ],
+          "startedAt": "2026-08-04T08:59:40.444482Z",
+          "state": "COMPLETED",
+          "updatedAt": "2026-08-04T08:59:40.732708Z"
+        },
+        {
+          "args": {},
+          "createdAt": "2026-08-04T08:46:31.224524Z",
+          "durationMs": 335,
+          "endedAt": "2026-08-04T08:46:31.559607Z",
+          "facets": {
+            "errorMessage": {
+              "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+              "_schemaURL": "https://openlineage.io/spec/facets/1-0-1/ErrorMessageRunFacet.json#/$defs/ErrorMessageRunFacet",
+              "message": "column \"amount_with_tax\" does not exist\nLINE 13:     sum(amount_with_tax)    AS total_amount   -- ← この列は...\n                 ^\n",
+              "programmingLanguage": "python"
+            },
+            "tags": {
+              "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+              "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+              "tags": [
+                {
+                  "key": "openlineage_client_version",
+                  "source": "OPENLINEAGE_CLIENT",
+                  "value": "1.52.0"
+                }
+              ]
+            }
+          },
+          "id": "019fcbf3-f736-74dc-aba8-20fbcaa3792b",
+          "inputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.staging.stg_orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "c69ba856-88fc-3199-bf6e-4f5a1ada9741"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.customers",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "15c8065f-88f4-3ba7-910d-7a362f7477cf"
+              },
+              "facets": {}
+            }
+          ],
+          "jobVersion": {
+            "name": "run_pipeline.build_mart",
+            "namespace": "demo_pipeline",
+            "version": "290dd748-5487-33ab-b690-abaa1209f083"
+          },
+          "nominalEndTime": null,
+          "nominalStartTime": null,
+          "outputDatasetVersions": [],
+          "startedAt": "2026-08-04T08:46:31.224524Z",
+          "state": "FAILED",
+          "updatedAt": "2026-08-04T08:46:31.559607Z"
+        },
+        {
+          "args": {},
+          "createdAt": "2026-08-04T08:46:15.549841Z",
+          "durationMs": 443,
+          "endedAt": "2026-08-04T08:46:15.992475Z",
+          "facets": {
+            "tags": {
+              "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+              "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+              "tags": [
+                {
+                  "key": "openlineage_client_version",
+                  "source": "OPENLINEAGE_CLIENT",
+                  "value": "1.52.0"
+                }
+              ]
+            }
+          },
+          "id": "019fcbf3-b9fc-751d-812e-2e474233fa47",
+          "inputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.staging.stg_orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "07c6cb06-d165-3c4a-96f7-925c0b9905c7"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.customers",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "36a6b74e-6725-3df6-9840-1f105b98292e"
+              },
+              "facets": {}
+            }
+          ],
+          "jobVersion": {
+            "name": "run_pipeline.build_mart",
+            "namespace": "demo_pipeline",
+            "version": "e75bd430-fdd5-3006-975c-85e2f07a7672"
+          },
+          "nominalEndTime": null,
+          "nominalStartTime": null,
+          "outputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.mart.daily_sales",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "618599b8-3a53-3e0b-bc8f-678232183cc0"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.mart.customer_summary",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "4a5ca5d6-0338-3322-abfd-33571db1a4b4"
+              },
+              "facets": {}
+            }
+          ],
+          "startedAt": "2026-08-04T08:46:15.549841Z",
+          "state": "COMPLETED",
+          "updatedAt": "2026-08-04T08:46:15.992475Z"
+        }
+      ],
+      "location": null,
+      "name": "run_pipeline.build_mart",
+      "namespace": "demo_pipeline",
+      "outputs": [
+        {
+          "name": "demo.mart.customer_summary",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        {
+          "name": "demo.mart.daily_sales",
+          "namespace": "postgres://postgres-demo:5432"
+        }
+      ],
+      "parentJobName": null,
+      "parentJobUuid": null,
+      "simpleName": "run_pipeline.build_mart",
+      "tags": [],
+      "type": "BATCH",
+      "updatedAt": "2026-08-04T08:59:40.732708Z"
+    },
+    {
+      "createdAt": "2026-08-04T08:46:14.189648Z",
+      "currentVersion": "f4a5c4cb-61fe-46a2-ae47-61b39160ce0f",
+      "description": null,
+      "facets": {
+        "sql": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-1-0/SQLJobFacet.json#/$defs/SQLJobFacet",
+          "query": "-- staging 層: 注文明細を結合・クレンジングした中間テーブル\n-- (フェーズ2 のリネージュデモで raw → staging → mart の中間ノードになる)\nDROP TABLE IF EXISTS staging.stg_orders;\n\nCREATE TABLE staging.stg_orders AS\nSELECT\n    oi.order_item_id,\n    o.order_id,\n    o.customer_id,\n    o.order_date,\n    o.status,\n    oi.product_id,\n    p.name          AS product_name,\n    p.category,\n    oi.quantity,\n    oi.unit_price,\n    oi.quantity * oi.unit_price AS amount\nFROM raw.orders o\nJOIN raw.order_items oi ON oi.order_id = o.order_id\nJOIN raw.products p     ON p.product_id = oi.product_id\nWHERE o.status <> 'cancelled';\n"
+        }
+      },
+      "id": {
+        "name": "run_pipeline.build_staging",
+        "namespace": "demo_pipeline"
+      },
+      "inputs": [
+        {
+          "name": "demo.raw.order_items",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        {
+          "name": "demo.raw.products",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        {
+          "name": "demo.raw.orders",
+          "namespace": "postgres://postgres-demo:5432"
+        }
+      ],
+      "labels": [],
+      "latestRun": {
+        "args": {},
+        "createdAt": "2026-08-04T08:59:39.645488Z",
+        "durationMs": 388,
+        "endedAt": "2026-08-04T08:59:40.033690Z",
+        "facets": {
+          "tags": {
+            "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+            "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+            "tags": [
+              {
+                "key": "openlineage_client_version",
+                "source": "OPENLINEAGE_CLIENT",
+                "value": "1.52.0"
+              }
+            ]
+          }
+        },
+        "id": "019fcbff-fefd-7335-8868-814993255a2f",
+        "inputDatasetVersions": [
+          {
+            "datasetVersionId": {
+              "name": "demo.raw.orders",
+              "namespace": "postgres://postgres-demo:5432",
+              "version": "0c46fdc6-2f5c-392c-8b9d-da76797d0ec1"
+            },
+            "facets": {}
+          },
+          {
+            "datasetVersionId": {
+              "name": "demo.raw.order_items",
+              "namespace": "postgres://postgres-demo:5432",
+              "version": "facfe720-4de5-3128-8596-6730c6b080ea"
+            },
+            "facets": {}
+          },
+          {
+            "datasetVersionId": {
+              "name": "demo.raw.products",
+              "namespace": "postgres://postgres-demo:5432",
+              "version": "a448a8c2-b4d3-3c8c-9623-de4e66ff0667"
+            },
+            "facets": {}
+          }
+        ],
+        "jobVersion": {
+          "name": "run_pipeline.build_staging",
+          "namespace": "demo_pipeline",
+          "version": "be1ea9b9-3ad2-3b56-a4bd-c4d781534083"
+        },
+        "nominalEndTime": null,
+        "nominalStartTime": null,
+        "outputDatasetVersions": [
+          {
+            "datasetVersionId": {
+              "name": "demo.staging.stg_orders",
+              "namespace": "postgres://postgres-demo:5432",
+              "version": "3f87b6f5-ac97-323b-9e8a-225e1f7bf05d"
+            },
+            "facets": {}
+          }
+        ],
+        "startedAt": "2026-08-04T08:59:39.645488Z",
+        "state": "COMPLETED",
+        "updatedAt": "2026-08-04T08:59:40.033690Z"
+      },
+      "latestRuns": [
+        {
+          "args": {},
+          "createdAt": "2026-08-04T08:59:39.645488Z",
+          "durationMs": 388,
+          "endedAt": "2026-08-04T08:59:40.033690Z",
+          "facets": {
+            "tags": {
+              "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+              "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+              "tags": [
+                {
+                  "key": "openlineage_client_version",
+                  "source": "OPENLINEAGE_CLIENT",
+                  "value": "1.52.0"
+                }
+              ]
+            }
+          },
+          "id": "019fcbff-fefd-7335-8868-814993255a2f",
+          "inputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "0c46fdc6-2f5c-392c-8b9d-da76797d0ec1"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.order_items",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "facfe720-4de5-3128-8596-6730c6b080ea"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.products",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "a448a8c2-b4d3-3c8c-9623-de4e66ff0667"
+              },
+              "facets": {}
+            }
+          ],
+          "jobVersion": {
+            "name": "run_pipeline.build_staging",
+            "namespace": "demo_pipeline",
+            "version": "be1ea9b9-3ad2-3b56-a4bd-c4d781534083"
+          },
+          "nominalEndTime": null,
+          "nominalStartTime": null,
+          "outputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.staging.stg_orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "3f87b6f5-ac97-323b-9e8a-225e1f7bf05d"
+              },
+              "facets": {}
+            }
+          ],
+          "startedAt": "2026-08-04T08:59:39.645488Z",
+          "state": "COMPLETED",
+          "updatedAt": "2026-08-04T08:59:40.033690Z"
+        },
+        {
+          "args": {},
+          "createdAt": "2026-08-04T08:46:30.361562Z",
+          "durationMs": 382,
+          "endedAt": "2026-08-04T08:46:30.743558Z",
+          "facets": {
+            "tags": {
+              "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+              "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+              "tags": [
+                {
+                  "key": "openlineage_client_version",
+                  "source": "OPENLINEAGE_CLIENT",
+                  "value": "1.52.0"
+                }
+              ]
+            }
+          },
+          "id": "019fcbf3-f3d7-713a-9948-e000c635c62e",
+          "inputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "1e9cdea7-0640-3dd9-8312-e14ddd668ab4"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.order_items",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "c6f32547-3398-3c70-8c2d-8c9b11f56432"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.products",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "7c06ed04-e8dd-36db-b665-4b7f85c45fcb"
+              },
+              "facets": {}
+            }
+          ],
+          "jobVersion": {
+            "name": "run_pipeline.build_staging",
+            "namespace": "demo_pipeline",
+            "version": "be1ea9b9-3ad2-3b56-a4bd-c4d781534083"
+          },
+          "nominalEndTime": null,
+          "nominalStartTime": null,
+          "outputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.staging.stg_orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "c69ba856-88fc-3199-bf6e-4f5a1ada9741"
+              },
+              "facets": {}
+            }
+          ],
+          "startedAt": "2026-08-04T08:46:30.361562Z",
+          "state": "COMPLETED",
+          "updatedAt": "2026-08-04T08:46:30.743558Z"
+        },
+        {
+          "args": {},
+          "createdAt": "2026-08-04T08:46:14.189648Z",
+          "durationMs": 601,
+          "endedAt": "2026-08-04T08:46:14.790037Z",
+          "facets": {
+            "tags": {
+              "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+              "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+              "tags": [
+                {
+                  "key": "openlineage_client_version",
+                  "source": "OPENLINEAGE_CLIENT",
+                  "value": "1.52.0"
+                }
+              ]
+            }
+          },
+          "id": "019fcbf3-b4ad-7ba4-89ee-866168e5cb00",
+          "inputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "fd8cd4a2-9820-3896-b38f-d29e02731c42"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.order_items",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "f8cb68dc-c33d-32a0-9661-4b4e0574cc33"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.products",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "638bf1de-fa12-393a-b743-9851319e290d"
+              },
+              "facets": {}
+            }
+          ],
+          "jobVersion": {
+            "name": "run_pipeline.build_staging",
+            "namespace": "demo_pipeline",
+            "version": "be1ea9b9-3ad2-3b56-a4bd-c4d781534083"
+          },
+          "nominalEndTime": null,
+          "nominalStartTime": null,
+          "outputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.staging.stg_orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "07c6cb06-d165-3c4a-96f7-925c0b9905c7"
+              },
+              "facets": {}
+            }
+          ],
+          "startedAt": "2026-08-04T08:46:14.189648Z",
+          "state": "COMPLETED",
+          "updatedAt": "2026-08-04T08:46:14.790037Z"
+        }
+      ],
+      "location": null,
+      "name": "run_pipeline.build_staging",
+      "namespace": "demo_pipeline",
+      "outputs": [
+        {
+          "name": "demo.staging.stg_orders",
+          "namespace": "postgres://postgres-demo:5432"
+        }
+      ],
+      "parentJobName": null,
+      "parentJobUuid": null,
+      "simpleName": "run_pipeline.build_staging",
+      "tags": [],
+      "type": "BATCH",
+      "updatedAt": "2026-08-04T08:59:40.033690Z"
+    },
+    {
+      "createdAt": "2026-08-04T08:46:10.581397Z",
+      "currentVersion": "ec3526e6-eb46-4916-8473-33a63b249a2e",
+      "description": null,
+      "facets": {
+        "sql": {
+          "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+          "_schemaURL": "https://openlineage.io/spec/facets/1-1-0/SQLJobFacet.json#/$defs/SQLJobFacet",
+          "query": "-- raw 層: seed CSV をそのまま載せる層(品質チェックの対象)\nCREATE SCHEMA IF NOT EXISTS raw;\nCREATE SCHEMA IF NOT EXISTS staging;\nCREATE SCHEMA IF NOT EXISTS mart;\n\n-- mart.customer_summary(ビュー)は raw.customers に依存するため、\n-- 再シード時は先にビューを削除する(依存エラー回避)\nDROP VIEW IF EXISTS mart.customer_summary;\n\nDROP TABLE IF EXISTS raw.order_items;\nDROP TABLE IF EXISTS raw.orders;\nDROP TABLE IF EXISTS raw.products;\nDROP TABLE IF EXISTS raw.customers;\n\n-- 品質違反(NULL・重複)を「投入できてしまう」ことがデモの前提のため、\n-- raw 層には PRIMARY KEY / NOT NULL 制約を意図的に付けない。\nCREATE TABLE raw.customers (\n    customer_id integer,\n    name        varchar(100),\n    email       varchar(255),\n    prefecture  varchar(10),\n    created_at  timestamp\n);\n\nCREATE TABLE raw.products (\n    product_id integer,\n    name       varchar(200),\n    category   varchar(50),\n    price      numeric(10, 2)\n);\n\nCREATE TABLE raw.orders (\n    order_id    integer,\n    customer_id integer,\n    order_date  date,\n    status      varchar(20)\n);\n\nCREATE TABLE raw.order_items (\n    order_item_id integer,\n    order_id      integer,\n    product_id    integer,\n    quantity      integer,\n    unit_price    numeric(10, 2)\n);\n"
+        }
+      },
+      "id": {
+        "name": "run_pipeline.seed",
+        "namespace": "demo_pipeline"
+      },
+      "inputs": [
+        {
+          "name": "data/seed/csv/order_items.csv",
+          "namespace": "file"
+        },
+        {
+          "name": "data/seed/csv/customers.csv",
+          "namespace": "file"
+        },
+        {
+          "name": "data/seed/csv/orders.csv",
+          "namespace": "file"
+        },
+        {
+          "name": "data/seed/csv/products.csv",
+          "namespace": "file"
+        }
+      ],
+      "labels": [],
+      "latestRun": {
+        "args": {},
+        "createdAt": "2026-08-04T08:59:38.843804Z",
+        "durationMs": 289,
+        "endedAt": "2026-08-04T08:59:39.132760Z",
+        "facets": {
+          "tags": {
+            "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+            "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+            "tags": [
+              {
+                "key": "openlineage_client_version",
+                "source": "OPENLINEAGE_CLIENT",
+                "value": "1.52.0"
+              }
+            ]
+          }
+        },
+        "id": "019fcbff-fbda-77c3-abde-afce53092be6",
+        "inputDatasetVersions": [
+          {
+            "datasetVersionId": {
+              "name": "data/seed/csv/customers.csv",
+              "namespace": "file",
+              "version": "9494dcda-d3b6-3438-953f-2fa56702b13c"
+            },
+            "facets": {}
+          },
+          {
+            "datasetVersionId": {
+              "name": "data/seed/csv/products.csv",
+              "namespace": "file",
+              "version": "53981d9c-32e5-3d8c-9047-1b761e65a83c"
+            },
+            "facets": {}
+          },
+          {
+            "datasetVersionId": {
+              "name": "data/seed/csv/orders.csv",
+              "namespace": "file",
+              "version": "014ad1dd-5216-30d2-a854-800f9643a433"
+            },
+            "facets": {}
+          },
+          {
+            "datasetVersionId": {
+              "name": "data/seed/csv/order_items.csv",
+              "namespace": "file",
+              "version": "e682cbc8-fdd9-32d6-b9be-82ef99a574c4"
+            },
+            "facets": {}
+          }
+        ],
+        "jobVersion": {
+          "name": "run_pipeline.seed",
+          "namespace": "demo_pipeline",
+          "version": "f44f87bb-d4b6-3f74-ad91-3204cc523f66"
+        },
+        "nominalEndTime": null,
+        "nominalStartTime": null,
+        "outputDatasetVersions": [
+          {
+            "datasetVersionId": {
+              "name": "demo.raw.customers",
+              "namespace": "postgres://postgres-demo:5432",
+              "version": "d2471329-b3b1-342d-bc6d-fa37dd6752d2"
+            },
+            "facets": {}
+          },
+          {
+            "datasetVersionId": {
+              "name": "demo.raw.products",
+              "namespace": "postgres://postgres-demo:5432",
+              "version": "a448a8c2-b4d3-3c8c-9623-de4e66ff0667"
+            },
+            "facets": {}
+          },
+          {
+            "datasetVersionId": {
+              "name": "demo.raw.orders",
+              "namespace": "postgres://postgres-demo:5432",
+              "version": "0c46fdc6-2f5c-392c-8b9d-da76797d0ec1"
+            },
+            "facets": {}
+          },
+          {
+            "datasetVersionId": {
+              "name": "demo.raw.order_items",
+              "namespace": "postgres://postgres-demo:5432",
+              "version": "facfe720-4de5-3128-8596-6730c6b080ea"
+            },
+            "facets": {}
+          }
+        ],
+        "startedAt": "2026-08-04T08:59:38.843804Z",
+        "state": "COMPLETED",
+        "updatedAt": "2026-08-04T08:59:39.132760Z"
+      },
+      "latestRuns": [
+        {
+          "args": {},
+          "createdAt": "2026-08-04T08:59:38.843804Z",
+          "durationMs": 289,
+          "endedAt": "2026-08-04T08:59:39.132760Z",
+          "facets": {
+            "tags": {
+              "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+              "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+              "tags": [
+                {
+                  "key": "openlineage_client_version",
+                  "source": "OPENLINEAGE_CLIENT",
+                  "value": "1.52.0"
+                }
+              ]
+            }
+          },
+          "id": "019fcbff-fbda-77c3-abde-afce53092be6",
+          "inputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/customers.csv",
+                "namespace": "file",
+                "version": "9494dcda-d3b6-3438-953f-2fa56702b13c"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/products.csv",
+                "namespace": "file",
+                "version": "53981d9c-32e5-3d8c-9047-1b761e65a83c"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/orders.csv",
+                "namespace": "file",
+                "version": "014ad1dd-5216-30d2-a854-800f9643a433"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/order_items.csv",
+                "namespace": "file",
+                "version": "e682cbc8-fdd9-32d6-b9be-82ef99a574c4"
+              },
+              "facets": {}
+            }
+          ],
+          "jobVersion": {
+            "name": "run_pipeline.seed",
+            "namespace": "demo_pipeline",
+            "version": "f44f87bb-d4b6-3f74-ad91-3204cc523f66"
+          },
+          "nominalEndTime": null,
+          "nominalStartTime": null,
+          "outputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.customers",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "d2471329-b3b1-342d-bc6d-fa37dd6752d2"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.products",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "a448a8c2-b4d3-3c8c-9623-de4e66ff0667"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "0c46fdc6-2f5c-392c-8b9d-da76797d0ec1"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.order_items",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "facfe720-4de5-3128-8596-6730c6b080ea"
+              },
+              "facets": {}
+            }
+          ],
+          "startedAt": "2026-08-04T08:59:38.843804Z",
+          "state": "COMPLETED",
+          "updatedAt": "2026-08-04T08:59:39.132760Z"
+        },
+        {
+          "args": {},
+          "createdAt": "2026-08-04T08:46:29.475114Z",
+          "durationMs": 263,
+          "endedAt": "2026-08-04T08:46:29.738590Z",
+          "facets": {
+            "tags": {
+              "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+              "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+              "tags": [
+                {
+                  "key": "openlineage_client_version",
+                  "source": "OPENLINEAGE_CLIENT",
+                  "value": "1.52.0"
+                }
+              ]
+            }
+          },
+          "id": "019fcbf3-f062-7878-9e9c-233bdfb04c7f",
+          "inputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/customers.csv",
+                "namespace": "file",
+                "version": "9494dcda-d3b6-3438-953f-2fa56702b13c"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/products.csv",
+                "namespace": "file",
+                "version": "53981d9c-32e5-3d8c-9047-1b761e65a83c"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/orders.csv",
+                "namespace": "file",
+                "version": "014ad1dd-5216-30d2-a854-800f9643a433"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/order_items.csv",
+                "namespace": "file",
+                "version": "e682cbc8-fdd9-32d6-b9be-82ef99a574c4"
+              },
+              "facets": {}
+            }
+          ],
+          "jobVersion": {
+            "name": "run_pipeline.seed",
+            "namespace": "demo_pipeline",
+            "version": "f44f87bb-d4b6-3f74-ad91-3204cc523f66"
+          },
+          "nominalEndTime": null,
+          "nominalStartTime": null,
+          "outputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.customers",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "15c8065f-88f4-3ba7-910d-7a362f7477cf"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.products",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "7c06ed04-e8dd-36db-b665-4b7f85c45fcb"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "1e9cdea7-0640-3dd9-8312-e14ddd668ab4"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.order_items",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "c6f32547-3398-3c70-8c2d-8c9b11f56432"
+              },
+              "facets": {}
+            }
+          ],
+          "startedAt": "2026-08-04T08:46:29.475114Z",
+          "state": "COMPLETED",
+          "updatedAt": "2026-08-04T08:46:29.738590Z"
+        },
+        {
+          "args": {},
+          "createdAt": "2026-08-04T08:46:10.581397Z",
+          "durationMs": 1611,
+          "endedAt": "2026-08-04T08:46:12.192697Z",
+          "facets": {
+            "tags": {
+              "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+              "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+              "tags": [
+                {
+                  "key": "openlineage_client_version",
+                  "source": "OPENLINEAGE_CLIENT",
+                  "value": "1.52.0"
+                }
+              ]
+            }
+          },
+          "id": "019fcbf3-a694-7b04-8e11-85e7ec82b25a",
+          "inputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/customers.csv",
+                "namespace": "file",
+                "version": "9494dcda-d3b6-3438-953f-2fa56702b13c"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/products.csv",
+                "namespace": "file",
+                "version": "53981d9c-32e5-3d8c-9047-1b761e65a83c"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/orders.csv",
+                "namespace": "file",
+                "version": "014ad1dd-5216-30d2-a854-800f9643a433"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/order_items.csv",
+                "namespace": "file",
+                "version": "e682cbc8-fdd9-32d6-b9be-82ef99a574c4"
+              },
+              "facets": {}
+            }
+          ],
+          "jobVersion": {
+            "name": "run_pipeline.seed",
+            "namespace": "demo_pipeline",
+            "version": "f44f87bb-d4b6-3f74-ad91-3204cc523f66"
+          },
+          "nominalEndTime": null,
+          "nominalStartTime": null,
+          "outputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.customers",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "36a6b74e-6725-3df6-9840-1f105b98292e"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.products",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "638bf1de-fa12-393a-b743-9851319e290d"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "fd8cd4a2-9820-3896-b38f-d29e02731c42"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.order_items",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "f8cb68dc-c33d-32a0-9661-4b4e0574cc33"
+              },
+              "facets": {}
+            }
+          ],
+          "startedAt": "2026-08-04T08:46:10.581397Z",
+          "state": "COMPLETED",
+          "updatedAt": "2026-08-04T08:46:12.192697Z"
+        }
+      ],
+      "location": null,
+      "name": "run_pipeline.seed",
+      "namespace": "demo_pipeline",
+      "outputs": [
+        {
+          "name": "demo.raw.order_items",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        {
+          "name": "demo.raw.customers",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        {
+          "name": "demo.raw.products",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        {
+          "name": "demo.raw.orders",
+          "namespace": "postgres://postgres-demo:5432"
+        }
+      ],
+      "parentJobName": null,
+      "parentJobUuid": null,
+      "simpleName": "run_pipeline.seed",
+      "tags": [],
+      "type": "BATCH",
+      "updatedAt": "2026-08-04T08:59:39.132760Z"
+    }
+  ],
+  "totalCount": 3
+}

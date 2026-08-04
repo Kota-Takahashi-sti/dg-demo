@@ -309,3 +309,122 @@
   逐語一致することを確認(8/8 VERBATIM)。
 - **留意点**: 「成功の目印」の make エラー行に含まれる `Makefile:38` 等の行番号は
   Makefile の変更で変わりうる旨をガイドに注記した。
+
+## フェーズ2: リネージュ(OpenLineage / Marquez)(2026-08-04 着手)
+
+### 公式ドキュメント調査(openlineage-python 1.52.0 / Marquez 0.51.1)— 調査日 2026-08-04
+
+- **openlineage-python クライアント**(openlineage.io/docs/client/python の
+  configuration / usage ページを参照):
+  - イベントモデルは `openlineage.client.event_v2`(`RunEvent` / `RunState` / `Run` / `Job` /
+    `Dataset` / `InputDataset` / `OutputDataset`)、facet は `openlineage.client.facet_v2`
+    (`schema_dataset`、`column_lineage_dataset`、`error_message_run` 等)を使う。
+    run の ID は `openlineage.client.uuid.generate_new_uuid()`(UUIDv7)。
+  - クライアント設定の優先順位: ①コンストラクタ引数 → ② YAML(`OPENLINEAGE_CONFIG` で指定、
+    または CWD の `openlineage.yml`)→ ③ `OPENLINEAGE__TRANSPORT__*` 環境変数 →
+    ④ レガシー env(`OPENLINEAGE_URL` / `OPENLINEAGE_ENDPOINT`)。
+    `OPENLINEAGE_DISABLED=true` で発行停止、`OPENLINEAGE_CLIENT_LOGGING` でログレベル指定。
+  - HTTP transport の YAML 例: `transport: {type: http, url: http://backend:5000,
+    endpoint: api/v1/lineage, timeout: 5}`。
+  - **本デモの選択**: 設定は `lineage/openlineage.yml`(HTTP transport)を `OPENLINEAGE_CONFIG` で
+    指定する方式にする。理由: 設定ファイルがリポジトリに残り、初学者が transport 設定を目で
+    確認できる。console transport への切替(トラブルシュート用)もファイル差し替えで示せる。
+- **ColumnLineageDatasetFacet(spec 1-2-0)**(openlineage.io/docs/spec/facets/dataset-facets/
+  column_lineage_facet): 出力列ごとに `fields.<列名>.inputFields[]`(namespace / name / field /
+  transformations[])を持つ。transformation は `type`(DIRECT/INDIRECT)+ `subtype`
+  (IDENTITY/TRANSFORMATION/AGGREGATION、JOIN/GROUP_BY/FILTER 等)+ description + masking。
+  → mart.daily_sales の 3 列に手動付与する(build_mart ステップ)。
+- **Marquez 0.51.1 の compose 構成**(github.com/MarquezProject/marquez の 0.51.1 タグの
+  docker-compose.yml / docker-compose.web.yml / marquez.dev.yml / docker/entrypoint.sh を参照):
+  - API イメージの entrypoint は `MARQUEZ_CONFIG`(既定 `marquez.dev.yml`)を読み、
+    `java -jar marquez-*.jar server <config>` を起動。
+  - `marquez.dev.yml` の DB 接続は `jdbc:postgresql://${POSTGRES_HOST:-localhost}:${POSTGRES_PORT:-5432}/marquez`、
+    ユーザー/パスワードは **`marquez`/`marquez` 固定・DB 名 `marquez` 固定**。
+    → メタ DB(postgres:14)は `POSTGRES_USER=marquez / POSTGRES_PASSWORD=marquez / POSTGRES_DB=marquez`
+    で起動すれば公式 init スクリプト相当になる(公式 compose は init スクリプトで同等の DB を作成)。
+  - サーバポートは `${MARQUEZ_PORT:-8080}` / `${MARQUEZ_ADMIN_PORT:-8081}`。公式 quickstart に
+    合わせ **5000 / 5001** を注入する(macOS の 5000 予約問題は .env で変更可能にして対処)。
+  - **検索機能は `${SEARCH_ENABLED:-true}` で既定有効**で、OpenSearch(9200)を参照する。
+    OpenSearch はデモに不要なため **`SEARCH_ENABLED=false` を明示**して外す
+    (公式 compose も `--no-search` 時に同じ env を渡す)。
+  - Web(marquez-web)は `MARQUEZ_HOST` / `MARQUEZ_PORT` で API を**サーバ側プロキシ**するため、
+    ブラウザからは Web ポート(3000)だけ届けばよい。`WEB_PORT` でリッスンポート指定。
+  - 公式 compose は `wait-for-it.sh` で DB を待つ → 本デモは compose の
+    `depends_on: condition: service_healthy` + pg healthcheck で代替する(compose v2 標準機能)。
+- facet の Python クラスの正確なシグネチャ(`column_lineage_dataset.Fields` 等)は、
+  イメージビルド後にインストール実体を introspect して確認する(下に追記)。
+
+### 実装(フェーズ2、2026-08-04)
+
+- compose に `lineage` profile を追加(marquez-db: postgres:14 / marquez-api / marquez-web、
+  すべて 0.51.1 タグ・`platform: linux/amd64` 明示)。DB 待ちは公式 compose の
+  wait-for-it.sh の代わりに `depends_on: condition: service_healthy` + pg healthcheck で実装。
+  `SEARCH_ENABLED=false` で OpenSearch 依存を無効化。ポートはホスト側のみ
+  `.env`(MARQUEZ_*_HOST_PORT)で変更可能にし、コンテナ間は `marquez-api:5000` 固定。
+  なお marquez-web 0.51.1 はイメージ組込みの healthcheck を持つ(compose の `--wait` が
+  そのまま機能することを実測確認)。
+- tools イメージ(dgd-tools:phase2)に lineage venv を追加
+  (openlineage-python==1.52.0 + psycopg2-binary==2.9.10)。
+- `pipeline/run_pipeline.py` に `--openlineage` フラグを追加。イベント構築・発行は
+  `LineageEmitter` クラスに集約(quality venv に openlineage が無いため import は有効時のみ)。
+  - ステップごとに START/COMPLETE/FAIL を発行。job facet に `sql`(実行 SQL 全文)、
+    データセットに `schema` facet、mart.daily_sales に `columnLineage` facet(3列、
+    DIRECT: IDENTITY/AGGREGATION + INDIRECT: GROUP_BY)、FAIL 時は run facet に
+    `errorMessage`(SQL エラー本文)を付与。
+  - facet クラスのシグネチャはインストール実体を introspect して確認
+    (column_lineage_dataset.Fields / InputField / Transformation、
+    schema_dataset.SchemaDatasetFacetFields、error_message_run.ErrorMessageRunFacet 等。
+    公式 docs のコード例と一致)。
+  - `--simulate-failure` で build_mart が `03_mart_broken.sql`(存在しない列
+    amount_with_tax を参照)を実行して失敗する。トランザクションはロールバックされる
+    ため既存 mart は壊れない(実測確認: 失敗後も mart.daily_sales 365 行)。
+- `lineage/openlineage.yml`(HTTP transport 設定。OPENLINEAGE_CONFIG で注入)、
+  `lineage/marquez_api.py`(API 取得ヘルパ: wait/namespaces/jobs/runs/datasets/dataset/lineage。
+  標準ライブラリのみ)、`scenarios/demo_lineage{,_fail}.sh`、
+  Make ターゲット `demo-lineage` / `demo-lineage-fail` / `up-lineage` / `down-lineage` を追加。
+  `down` / `clean-db` は lineage profile も対象にした。
+
+### 遭遇した問題と解決(フェーズ2)
+
+1. **ホスト 3000 番ポートが本プロジェクト外のコンテナ(obs-lab)と競合**。
+   → 設計どおり `.env` の `MARQUEZ_WEB_HOST_PORT=13000` で回避(R10 の想定ケースが
+   実際に発生した形。ガイド §7 に手順を記載)。このため本環境の実測ログ・
+   スクリーンショットの UI URL は 13000 になっている(既定は 3000)。
+2. **異常系ログで stderr(エラー行)が stdout(ステップ出力)より先に記録される**。
+   パイプ経由実行時の Python stdout のブロックバッファリングが原因。
+   → tools サービスに `PYTHONUNBUFFERED=1` を設定し、クリーン状態から全ログを再取得。
+3. **scenarios 内のメッセージが .env のポート上書きを反映しない**(シェルは .env を
+   読まないため)。→ common.sh で `set -a; source .env; set +a` するよう修正。
+4. **実測で確認した仕様**: FAIL イベント直後に対象データセットのグラフを UI で開くと
+   単独ノードになる(FAIL には outputs を付けていないため、ジョブ最新バージョンの
+   入出力がその時点の情報になる)。次の COMPLETE で全系譜表示に戻る。
+   ガイド §4.2 に注記として明記した。
+
+### UI 証跡の取得方法(フェーズ2)
+
+- 本環境にブラウザが無いため、スクリーンショットは Playwright コンテナ
+  (mcr.microsoft.com/playwright/python:v1.54.0-noble、--network host)で取得した
+  (playwright pip パッケージは実行時に追加インストール。イメージはデモ実行環境の
+  一部ではなく、証跡取得専用)。UI ルートは実測で
+  `/lineage/job/{ns}/{job}` / `/lineage/dataset/{ns}/{name}` を確認。
+- 取得画像 5 点は verification/phase2/ui/ に保存
+  (b1-* = 正常系実行直後、b2-* = 異常系実行直後の状態)。
+
+### フェーズ2 検証結果(2026-08-04)
+
+| コマンド | 期待 | 実測 |
+|---|---|---|
+| `make clean-db` → `make demo-lineage` | まっさら状態から exit 0 | **0**(3 ステップ COMPLETE、Marquez 初回マイグレーション込み) |
+| `make demo-lineage-fail` | 非0 + FAILED 記録 | **非0**(シナリオ 1 / make 2。API 応答で `"state": "FAILED"` と errorMessage facet を確認) |
+| `make demo-quality-soda`(回帰) | パイプライン改修後も exit 0 | **0**(quality venv での OL なし実行に影響なし。実行後、上書きされた phase1 証跡ログは git checkout で復元) |
+
+- 実測リソース(アイドル時): marquez-api 253 MiB / marquez-db 75 MiB / marquez-web 23 MiB
+  (計約 0.35 GiB。verification/phase2/resource-usage.log)。
+- 証跡: 生ログ 2 本 + 端末出力 2 本 + API レスポンス 6 本 + UI スクリーンショット 5 点 +
+  疎通・リソースログ(verification/phase2/)。
+- ガイド(docs/guides/lineage.md)の出力例 6 ブロックすべてが生ログ・API 証跡と
+  逐語一致することをスクリプトで機械検証(**6/6 VERBATIM**。フェーズ1 検収指摘の
+  再発防止策を踏襲。「成功の目印」方式・端末出力全体の保存も同様に踏襲)。
+- 既知の制約: 異常系の make 終了コードはラップにより 2(シナリオ自体は 1)。
+  Marquez は amd64 のみ(arm64 実機検証は本環境では不可)。
+- quality.md のイメージタグ記述を dgd-tools:phase2 に更新(タグ変更の追随)。

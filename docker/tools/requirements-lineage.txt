@@ -1,0 +1,4 @@
+# データリネージュ領域(フェーズ2)— バージョンはすべてピン留め(plan.md §1)
+openlineage-python==1.52.0
+# パイプライン(素の SQL 実行)用ドライバ(quality venv と同じバージョン)
+psycopg2-binary==2.9.10

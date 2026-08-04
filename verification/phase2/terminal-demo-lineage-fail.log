@@ -1,0 +1,56 @@
+scenarios/demo_lineage_fail.sh
+# 実行日時: 2026-08-04 17:46:25 JST
+# コマンドログ: verification/phase2/demo-lineage-fail.log
+--- デモ用 DB(profile: base)を起動 ---
+ Container claude-demo-data-governance-postgres-demo-1  Running
+ Container claude-demo-data-governance-postgres-demo-1  Waiting
+ Container claude-demo-data-governance-postgres-demo-1  Healthy
+--- Marquez 一式(profile: lineage)を起動 ---
+ Container claude-demo-data-governance-marquez-db-1  Running
+ Container claude-demo-data-governance-marquez-api-1  Running
+ Container claude-demo-data-governance-marquez-web-1  Running
+ Container claude-demo-data-governance-marquez-db-1  Waiting
+ Container claude-demo-data-governance-marquez-db-1  Healthy
+ Container claude-demo-data-governance-marquez-web-1  Waiting
+ Container claude-demo-data-governance-marquez-db-1  Waiting
+ Container claude-demo-data-governance-marquez-api-1  Waiting
+ Container claude-demo-data-governance-marquez-api-1  Healthy
+ Container claude-demo-data-governance-marquez-web-1  Healthy
+ Container claude-demo-data-governance-marquez-db-1  Healthy
+--- Marquez API の起動を待機 ---
+Marquez API は応答しています(http://marquez-api:5000, 1 回目で成功)
+
+=== パイプライン実行(--simulate-failure: build_mart が壊れた SQL で失敗する)===
+=== step: seed ===
+[openlineage] START    run_pipeline.seed (runId=019fcbf3-f062-7878-9e9c-233bdfb04c7f)
+[sql] 01_create_raw.sql を実行
+[seed] raw.customers: 1000 行
+[seed] raw.products: 200 行
+[seed] raw.orders: 5000 行
+[seed] raw.order_items: 12561 行
+[openlineage] COMPLETE run_pipeline.seed
+=== step: build_staging ===
+[openlineage] START    run_pipeline.build_staging (runId=019fcbf3-f3d7-713a-9948-e000c635c62e)
+[sql] 02_staging.sql を実行
+[build_staging] staging.stg_orders: 11927 行
+[openlineage] COMPLETE run_pipeline.build_staging
+=== step: build_mart ===
+[openlineage] START    run_pipeline.build_mart (runId=019fcbf3-f736-74dc-aba8-20fbcaa3792b)
+[sql] 03_mart_broken.sql を実行
+[openlineage] FAIL     run_pipeline.build_mart
+エラー: step build_mart が失敗しました: column "amount_with_tax" does not exist
+LINE 13:     sum(amount_with_tax)    AS total_amount   -- ← この列は...
+                 ^
+
+
+(パイプラインは想定どおり build_mart で失敗し、FAIL イベントを発行しました)
+
+=== 証跡: build_mart の Run 履歴を Marquez API から取得 ===
+[証跡] verification/phase2/api-runs-build-mart.json(marquez_api.py runs run_pipeline.build_mart)
+
+=== 検知結果: 最新 Run の状態 ===
+      "state": "FAILED",
+Marquez 上で run_pipeline.build_mart の Run が FAILED として記録されています。
+UI: http://localhost:13000 の Jobs → run_pipeline.build_mart でも確認できます。
+リネージュ異常系デモ結果: 失敗 Run を検知(exit 1)
+make: *** [Makefile:58: demo-lineage-fail] Error 1

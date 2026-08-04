@@ -25,7 +25,7 @@ services:
   tools:
     build:
       context: docker/tools
-    image: dgd-tools:phase1
+    image: dgd-tools:phase2
     profiles: ["tools"]
     environment:
       DEMO_DB_HOST: ${DEMO_DB_HOST:-postgres-demo}
@@ -33,9 +33,68 @@ services:
       DEMO_DB_USER: ${DEMO_DB_USER:-demo}
       DEMO_DB_PASSWORD: ${DEMO_DB_PASSWORD:-demo_password}
       DEMO_DB_NAME: ${DEMO_DB_NAME:-demo}
+      # openlineage-python の設定ファイル(HTTP transport → marquez-api)
+      OPENLINEAGE_CONFIG: /workspace/lineage/openlineage.yml
+      # パイプ実行時も stdout/stderr の出力順序をログで正しく保つ
+      PYTHONUNBUFFERED: "1"
     volumes:
       - ./:/workspace
     working_dir: /workspace
 
+  # --- lineage profile: Marquez 一式(plan.md §3.4)---
+  # Marquez のイメージは amd64 のみ提供(plan.md R2)。platform を明示し、
+  # Apple Silicon ではエミュレーションで動作する(既知の制約)。
+  marquez-db:
+    image: postgres:14
+    platform: linux/amd64
+    profiles: ["lineage"]
+    environment:
+      # marquez.dev.yml(API コンテナの既定設定)が DB 名/ユーザー/パスワード
+      # `marquez` を前提とするため固定(デモ専用値。build-log.md 参照)
+      POSTGRES_USER: marquez
+      POSTGRES_PASSWORD: marquez
+      POSTGRES_DB: marquez
+    volumes:
+      - marquez-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U marquez -d marquez"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  marquez-api:
+    image: marquezproject/marquez:0.51.1
+    platform: linux/amd64
+    profiles: ["lineage"]
+    environment:
+      MARQUEZ_PORT: 5000
+      MARQUEZ_ADMIN_PORT: 5001
+      POSTGRES_HOST: marquez-db
+      POSTGRES_PORT: 5432
+      # OpenSearch 連携(0.51 で既定 true)はデモに不要のため無効化
+      SEARCH_ENABLED: "false"
+    ports:
+      - "${MARQUEZ_API_HOST_PORT:-5000}:5000"
+      - "${MARQUEZ_ADMIN_HOST_PORT:-5001}:5001"
+    depends_on:
+      marquez-db:
+        condition: service_healthy
+
+  marquez-web:
+    image: marquezproject/marquez-web:0.51.1
+    platform: linux/amd64
+    profiles: ["lineage"]
+    environment:
+      # Web は API をサーバ側でプロキシするため、コンテナ名で到達できればよい
+      MARQUEZ_HOST: marquez-api
+      MARQUEZ_PORT: 5000
+      WEB_PORT: 3000
+      REACT_APP_ADVANCED_SEARCH: "false"
+    ports:
+      - "${MARQUEZ_WEB_HOST_PORT:-3000}:3000"
+    depends_on:
+      - marquez-api
+
 volumes:
   demo-db-data:
+  marquez-db-data:
