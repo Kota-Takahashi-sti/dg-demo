@@ -7,7 +7,7 @@
 | 0 | 調査・設計(docs/plan.md) | 完了報告済み | 合格(フェーズ1指示により承認とみなす) |
 | 1 | 基盤 + データ品質(Soda Core / GX) | 完了報告済み | 合格(フェーズ2指示により承認とみなす) |
 | 2 | リネージュ(OpenLineage / Marquez) | 完了報告済み | 合格(フェーズ3指示により承認とみなす) |
-| 3 | カタログ(OpenMetadata) | 完了報告済み | - |
+| 3 | カタログ(OpenMetadata) | 完了報告済み | 合格(2026-08-05。main へマージ済み) |
 | 4 | コントラクト(datacontract-cli / CI) | 未着手 | - |
 | 5 | ドキュメント統合・通し検証 | 未着手 | - |
 
@@ -87,8 +87,8 @@
 
 ## 次にやること(セッション再開時はここから)
 
-- **フェーズ3 の発注者検収待ち。検収前にフェーズ4へ進まないこと。**
-- 検収後: フェーズ4(コントラクト: datacontract-cli 1.0.17 / ODCS v3.1.0)。
+- **フェーズ3 検収合格(2026-08-05)。フェーズ4 の指示待ち。**
+- フェーズ4(コントラクト: datacontract-cli 1.0.17 / ODCS v3.1.0)。
   contracts/(v1・v2-breaking)、test/export/changelog + 自作 breaking 判定、
   .github/workflows/contract.yml(静的検証 + ローカル等価実行。plan.md §4 領域D・R1・R8)。
 
