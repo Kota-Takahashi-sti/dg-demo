@@ -92,14 +92,3 @@
   contracts/(v1・v2-breaking)、test/export/changelog + 自作 breaking 判定、
   .github/workflows/contract.yml(静的検証 + ローカル等価実行。plan.md §4 領域D・R1・R8)。
 
-## 未解決の問題・発注者への確認事項
-
-- Marquez 0.51.1(GitHub Release なしの Docker Hub 最新タグ)はフェーズ2 の全シナリオで
-  問題なく動作した。0.50.0 へのフォールバックは不要だった(build-log.md 参照)。
-- openmetadata-ingestion のライセンスは 1.6 以降 Collate Community License(OSI 外・無料利用可)。
-  CLAUDE.md の「ソース公開・無料利用可能」の範囲内と判断した(plan.md R5)。要確認。
-- 本環境は amd64(WSL2)のため arm64(Apple Silicon)実機検証は不可。Marquez は arm64
-  イメージ未提供でエミュレーション動作になる(plan.md R2・R11。ガイドに明記済み)。
-- 本環境ではホスト 3000 番が別プロジェクトと競合していたため、.env(コミット対象外)で
-  MARQUEZ_WEB_HOST_PORT=13000 に変更して検証した。実測ログ・スクリーンショット内の
-  UI URL が 13000 になっているのはこのため(既定は 3000。ガイド §7 参照)。
