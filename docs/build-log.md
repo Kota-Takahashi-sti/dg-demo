@@ -462,3 +462,37 @@
      判断すること、リセットは `make clean-db`。
   2. §7 に「正常系しか実行していないのに UI に FAILED が表示されている」項を追加。
 - 出力例ブロックは変更なし。逐語一致の機械検証を再実行(6/6 VERBATIM)。
+
+## 開発ツーリング整備(フェーズ外、2026-08-05)
+
+### サブエージェント・スキルの導入(.claude/)
+
+- **目的**: Claude Code での開発時、セッションごとのコンテキスト(トークン)消費を削減する
+  (発注者指示)。長大な Web 調査結果・デモ実行ログをメイン会話から隔離し、要約のみを扱う。
+- **内容**:
+  - `.claude/agents/doc-researcher.md` — 公式ドキュメント・バージョン調査の専任
+    (モデル: メイン継承。CLAUDE.md がバージョン調査の正確性を要求するため)
+  - `.claude/agents/demo-verifier.md` — make demo-* 実行・exit code 検証・証跡保存の専任
+    (モデル: Haiku。機械的作業のためコスト優先)
+  - `.claude/agents/acceptance-checker.md` — 発注者検収のシミュレーション専任
+    (モデル: メイン継承。合否判断の品質が差し戻しに直結するため)
+  - `.claude/skills/verify-verbatim/` — ガイド出力例と証跡ログの逐語一致検証。
+    LLM でなく同梱の Python スクリプト(scripts/verify_verbatim.py)が判定するため
+    追加トークンはほぼゼロ。```console=コマンド / ```text・```json=出力例 という
+    既存ガイドのフェンス規約をそのまま検証規約に採用
+  - `.claude/skills/record-progress/` — build-log / PROGRESS の定型追記フォーマット
+- **不採用の代替案**:
+  - ユーザーグローバル(~/.claude/)配置 — make ターゲット名等プロジェクト固有の手順が
+    中心のため汎用化の利点がなく、別マシンで再現できないため不採用。リポジトリにコミット。
+  - 逐語検証を LLM(サブエージェント)にやらせる案 — スクリプトなら追加トークンゼロで
+    決定的に判定できるため不採用。
+- **記法の調査**: Claude Code 公式ドキュメント(code.claude.com/docs の sub-agents / skills、
+  調査日 2026-08-05)。agents は name/description 必須・model: inherit 可、skills は
+  ${CLAUDE_SKILL_DIR} でスクリプト同梱可、を確認して実装。
+- **検証**: verify_verbatim.py を既存フェーズの実績データで実行し、過去の手動検証と
+  同一の結果を再現 — lineage.md 6/6 VERBATIM(verification/phase2)、
+  quality.md 8/8 VERBATIM(verification/phase1、--langs plain,text,json)。
+  quality.md はフェーズ1時点の規約で出力例がラベルなしフェンスのため plain 指定が必要
+  (SKILL.md に明記)。
+- **既知の制約**: サブエージェント委譲はメイン会話のコンテキスト消費を減らすが、
+  別コンテキストが立つため総トークン数はやや増える。総コストは Haiku 配分で相殺する方針。
