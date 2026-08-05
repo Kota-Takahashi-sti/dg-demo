@@ -1,0 +1,111 @@
+# mart.daily_sales のデータコントラクト(ODCS v3.1.0 / datacontract-cli 1.1.0 で検証)
+# 「生産者(データエンジニアリング)と消費者(経営企画)の合意」を 1 ファイルで表す:
+#   スキーマ + 品質 + SLA + 責任者。品質チェック定義(Soda/GX)との違いは docs/guides/contract.md 参照。
+apiVersion: v3.1.0
+kind: DataContract
+id: dgd-demo-mart-daily-sales
+name: daily_sales
+version: 1.0.0
+status: active
+domain: sales
+tenant: dgd-demo
+
+description:
+  purpose: >-
+    日次の売上金額と注文数を BI ダッシュボード・経営レポートに提供する。
+    生産者はデータエンジニアリングチーム、想定消費者は経営企画チーム(いずれもデモ用の架空チーム)。
+  usage: 日次売上・注文数の推移の可視化。sales_date 単位の集計値としてそのまま利用できる。
+  limitations: >-
+    キャンセル済み注文(raw.orders.status = 'cancelled')は集計に含まない。
+    金額は円建て想定の合成データであり、実在の取引を含まない。
+
+schema:
+  - name: daily_sales
+    physicalName: daily_sales
+    physicalType: table
+    description: 日次売上集計(staging.stg_orders を order_date で集計した CTAS テーブル)
+    properties:
+      - name: sales_date
+        description: 集計対象日(注文日)。1 日 1 行。
+        logicalType: date
+        physicalType: date
+        required: true
+        unique: true
+        primaryKey: true
+        primaryKeyPosition: 1
+        quality:
+          - id: sales_date_no_nulls
+            description: 集計日が NULL の行は存在しないこと
+            metric: nullValues
+            mustBe: 0
+          - id: sales_date_no_duplicates
+            description: 同じ日付の行が重複しないこと(1 日 1 行の合意)
+            metric: duplicateValues
+            mustBe: 0
+      - name: order_count
+        description: その日の注文数(order_id の distinct カウント)
+        logicalType: integer
+        physicalType: bigint
+        required: true
+        quality:
+          - id: order_count_no_nulls
+            description: 注文数が NULL の行は存在しないこと
+            metric: nullValues
+            mustBe: 0
+      - name: total_amount
+        description: その日の売上合計(quantity × unit_price の合計)
+        logicalType: number
+        physicalType: numeric
+        required: true
+        quality:
+          - id: total_amount_no_nulls
+            description: 売上合計が NULL の行は存在しないこと
+            metric: nullValues
+            mustBe: 0
+          - id: total_amount_not_negative
+            description: 売上合計が負の日は存在しないこと(消費者向けの業務的な保証)
+            type: sql
+            query: SELECT COUNT(*) FROM {object} WHERE total_amount < 0
+            mustBe: 0
+    quality:
+      - id: daily_sales_row_count
+        description: 約 1 年分の日次行が存在すること(データ欠落の検知)
+        metric: rowCount
+        mustBeGreaterThan: 300
+
+servers:
+  - server: local
+    type: postgres
+    host: postgres-demo
+    port: 5432
+    database: demo
+    schema: mart
+    description: >-
+      デモ環境(compose の base profile)。資格情報は契約に書かず、
+      環境変数 DATACONTRACT_POSTGRES_USERNAME / _PASSWORD で渡す(公式仕様)。
+
+team:
+  name: data-engineering
+  description: デモ用の架空チーム(実在の個人情報を含まない)
+  members:
+    - username: producer@example.com
+      name: 生産者(データエンジニアリング)
+      role: owner
+    - username: consumer@example.com
+      name: 消費者(経営企画)
+      role: consumer
+
+slaProperties:
+  - property: frequency
+    description: 更新頻度は日次(パイプライン実行ごと)
+    value: 1
+    unit: d
+    element: daily_sales.sales_date
+  # retention は datacontract test が実際に検査する(最古データの経過秒数 < retention)。
+  # 合成データの日付範囲は 2025-07-01 起点で固定のため、3 年なら 2028-06 まで合格する
+  # (それ以降に検証する場合はデータの再生成が必要。docs/guides/contract.md 参照)。
+  - property: retention
+    description: データは 3 年を超えて保持しない(最古行の経過時間として検査される)
+    value: 3
+    unit: y
+    element: daily_sales.sales_date

@@ -18,6 +18,10 @@ PYTHON_QUALITY="/opt/venv/quality/bin/python"
 PYTHON_LINEAGE="/opt/venv/lineage/bin/python"
 PYTHON_CATALOG="/opt/venv/catalog/bin/python"
 SODA="/opt/venv/quality/bin/soda"
+# contract は datacontract-cli 公式イメージを都度実行する(plan.md §3.4、フェーズ4)
+DC_RUN="$COMPOSE --profile contract run --rm -T datacontract"
+# 判定スクリプト等はイメージ同梱の Python(pyyaml あり)で実行する(tools の再ビルド不要)
+DC_PYTHON_RUN="$COMPOSE --profile contract run --rm -T --entrypoint python datacontract"
 
 # ログ設定: 標準出力・標準エラーを加工せず verification/ に保存する(DoD)
 setup_log() {

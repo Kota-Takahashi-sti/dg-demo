@@ -7,7 +7,10 @@ COMPOSE := docker compose
         down clean-db seed \
         demo-quality-soda demo-quality-soda-ng demo-quality-gx demo-quality-gx-ng \
         demo-lineage demo-lineage-fail \
-        demo-catalog-ingest demo-catalog-profile demo-catalog-lineage demo-catalog-drift
+        demo-catalog-ingest demo-catalog-profile demo-catalog-lineage demo-catalog-drift \
+        demo-contract-export demo-contract-test demo-contract-violation \
+        demo-contract-breaking demo-contract-ci demo-contract-precommit \
+        install-contract-hook
 
 help: ## このヘルプを表示
 	@grep -E '^[a-zA-Z_-]+:.*## ' $(MAKEFILE_LIST) | awk -F ':.*## ' '{printf "  %-24s %s\n", $$1, $$2}'
@@ -35,10 +38,10 @@ down-catalog: ## OpenMetadata 一式のみ停止(データは保持)
 	$(COMPOSE) --profile catalog down
 
 down: ## 全サービス停止(データは保持)
-	$(COMPOSE) --profile base --profile tools --profile lineage --profile catalog down
+	$(COMPOSE) --profile base --profile tools --profile lineage --profile catalog --profile contract down
 
 clean-db: ## 全サービス停止 + DB データ削除(OpenMetadata のカタログ内容も消える)
-	$(COMPOSE) --profile base --profile tools --profile lineage --profile catalog down -v
+	$(COMPOSE) --profile base --profile tools --profile lineage --profile catalog --profile contract down -v
 
 seed: ## クリーンデータを DB に投入(raw→staging→mart)
 	$(COMPOSE) --profile base up -d --wait postgres-demo
@@ -77,3 +80,26 @@ demo-catalog-lineage: ## C-3 リネージュ(SQL 解析の自動導出 + API 手
 
 demo-catalog-drift: ## C-4 スキーマ変更(列削除)の検知(異常系・非0 終了)
 	scenarios/demo_catalog_drift.sh
+
+# --- 領域D: データコントラクト(datacontract-cli)---
+demo-contract-export: ## D-1 契約の可視化(export html/mermaid ほか)(正常系・exit 0)
+	scenarios/demo_contract_export.sh
+
+demo-contract-test: ## D-2 契約テスト(実 DB へスキーマ+品質+SLA を検証)(正常系・exit 0)
+	scenarios/demo_contract_test.sh
+
+demo-contract-violation: ## D-3 データ違反の検知(異常系・非0 終了)
+	scenarios/demo_contract_violation.sh
+
+demo-contract-breaking: ## D-4 破壊的変更(v1→v2)の検知(異常系・非0 終了)
+	scenarios/demo_contract_breaking.sh
+
+demo-contract-ci: ## D-5 CI 構成の検証(YAML 静的検証 + ローカル等価実行)(正常系・exit 0)
+	scenarios/demo_contract_ci.sh
+
+demo-contract-precommit: ## D-6 pre-commit フックが破壊的変更のコミットをブロック(非0 終了)
+	scenarios/demo_contract_precommit.sh
+
+install-contract-hook: ## pre-commit フック(破壊的変更ゲート)を .git/hooks に導入
+	install -m 755 contracts/hooks/pre-commit .git/hooks/pre-commit
+	@echo "pre-commit フックを導入しました(解除: rm .git/hooks/pre-commit)"

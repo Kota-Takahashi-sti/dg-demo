@@ -1,0 +1,90 @@
+# データコントラクト CI(フェーズ4 / plan.md 領域D D-5)
+# PR で contracts/ 配下が変更されたときに実行し、
+#   contract-gate : 構文検証(lint)+ ベースブランチとの破壊的変更判定。
+#                   破壊的変更を検知したらジョブが fail し、PR がブロックされる。
+#   contract-test : postgres サービスにサンプルデータを構築し、
+#                   datacontract ci(公式推奨の CI 用コマンド)で契約テストを実行する。
+#
+# 注意: 本デモの開発環境では GitHub Actions を実行できない(CLAUDE.md「環境上の既知の制約」)。
+# このワークフローは (a) actionlint 1.7.12 による静的検証、(b) 同一コマンドのローカル実行
+# (make demo-contract-ci)、(c) act によるローカル実行、で検証した。
+# 検証できた範囲・できなかった範囲は docs/guides/contract.md と docs/build-log.md に明記している。
+name: data-contract-ci
+
+on:
+  pull_request:
+    paths:
+      - "contracts/**"
+
+jobs:
+  contract-gate:
+    name: 契約の構文検証と破壊的変更ゲート
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: datacontract-cli をインストール(バージョン固定)
+        run: pip install "datacontract-cli==1.1.0"
+
+      - name: 契約の構文検証(lint)
+        run: datacontract lint contracts/daily_sales.yaml
+
+      - name: ベースブランチ版の契約を取得
+        run: |
+          git fetch --no-tags --depth=1 origin "${{ github.base_ref }}"
+          git show "origin/${{ github.base_ref }}:contracts/daily_sales.yaml" > /tmp/base_contract.yaml
+
+      - name: 変更内容の表示(datacontract changelog は参考表示・常に exit 0)
+        run: datacontract changelog /tmp/base_contract.yaml contracts/daily_sales.yaml
+
+      - name: 破壊的変更の判定(検知したら fail = PR をブロック)
+        run: python contracts/check_breaking.py /tmp/base_contract.yaml contracts/daily_sales.yaml
+
+  contract-test:
+    name: 実データベースへの契約テスト(datacontract ci)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: demo
+          POSTGRES_PASSWORD: demo_password
+          POSTGRES_DB: demo
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U demo -d demo"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      # pipeline/run_pipeline.py の接続先(サービスコンテナはホスト側 localhost:5432 に公開される)
+      DEMO_DB_HOST: localhost
+      DEMO_DB_PORT: "5432"
+      DEMO_DB_USER: demo
+      DEMO_DB_PASSWORD: demo_password
+      DEMO_DB_NAME: demo
+      # 契約の servers.local は compose 内ホスト名(postgres-demo)のため、CI では
+      # 環境変数で接続先を上書きする(datacontract-cli 1.0.17 以降の公式仕様)
+      DATACONTRACT_POSTGRES_HOST: localhost
+      DATACONTRACT_POSTGRES_USERNAME: demo
+      DATACONTRACT_POSTGRES_PASSWORD: demo_password
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 依存をインストール(バージョン固定)
+        run: pip install "datacontract-cli[postgres]==1.1.0" "psycopg2-binary==2.9.10"
+
+      - name: サンプルデータを構築(raw→staging→mart)
+        run: python pipeline/run_pipeline.py --data-dir data/seed/csv
+
+      - name: 契約テスト(datacontract ci、違反でジョブが fail)
+        run: datacontract ci contracts/daily_sales.yaml --server local

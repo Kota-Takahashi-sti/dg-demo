@@ -4,6 +4,7 @@
 #   tools   : ツール実行用 CLI コンテナ(常駐せず `docker compose run` で都度実行)
 #   lineage : Marquez 一式(フェーズ2で追加)
 #   catalog : OpenMetadata 一式(フェーズ3で追加)
+#   contract: datacontract-cli 公式イメージ(常駐せず `run` で都度実行。フェーズ4で追加)
 # OpenMetadata の migrate ワンショットと server で共通の設定値。
 # 値は公式リリースアセット docker-compose-postgres.yml(1.13.3-release)の既定値に
 # 合わせ、ホスト名のみ本 compose のサービス名に置換(build-log.md 参照)。
@@ -60,6 +61,27 @@ services:
       OPENLINEAGE_CONFIG: /workspace/lineage/openlineage.yml
       # パイプ実行時も stdout/stderr の出力順序をログで正しく保つ
       PYTHONUNBUFFERED: "1"
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace
+
+  # --- contract profile: datacontract-cli(plan.md §3.4、フェーズ4)---
+  # 公式イメージをそのまま使う(自前ビルド不要)。常駐せず `run --rm` で都度実行。
+  # 1.1.0 のイメージはシェルレス(distroless 化)だが、CLI 実行のみのため影響なし
+  # (バージョン判断は build-log.md 参照)。
+  datacontract:
+    image: datacontract/cli:1.1.0
+    profiles: ["contract"]
+    # イメージ既定の実行ユーザーは nonroot(uid 65532)で、マウントした
+    # リポジトリ(verification/ 等)へ書き込めないため、ホスト側ユーザーに合わせる。
+    # ホストの `id -u` が 1000 以外の場合は .env の DC_UID / DC_GID を変更する。
+    user: "${DC_UID:-1000}:${DC_GID:-1000}"
+    environment:
+      # 任意 uid 実行でもホームディレクトリ書き込みが失敗しないようにする
+      HOME: /tmp
+      # postgres 接続の資格情報は契約 YAML に書かず環境変数で渡す(公式仕様)
+      DATACONTRACT_POSTGRES_USERNAME: ${DEMO_DB_USER:-demo}
+      DATACONTRACT_POSTGRES_PASSWORD: ${DEMO_DB_PASSWORD:-demo_password}
     volumes:
       - ./:/workspace
     working_dir: /workspace

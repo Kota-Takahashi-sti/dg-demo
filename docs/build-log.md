@@ -696,3 +696,58 @@
 - 検収時のデモ再実行で verification/phase3/ のログが再生成されたが、ガイドの出力例と
   逐語一致する正準証跡はコミット済み版のため、再生成分(タイムスタンプ違いの同内容)は
   破棄してコミット済み版を維持した。
+
+## フェーズ4: データコントラクト(datacontract-cli / CI)
+
+### datacontract-cli バージョン調査(2026-08-05)
+
+- 調査日: 2026-08-05 / 参照URL: https://pypi.org/project/datacontract-cli/ 、
+  https://github.com/datacontract/datacontract-cli/releases 、https://docs.datacontract.com/commands 、
+  https://docs.datacontract.com/reference/postgres 、https://bitol-io.github.io/open-data-contract-standard/v3.1.0/
+- リリース状況: 最新 **1.1.0**(2026-08-04、PyPI / GitHub Releases / Docker Hub で確認)。
+  フェーズ0調査時の候補 1.0.17(2026-08-01)→ 1.1.0 の変更は PySpark 依存の除去・
+  Kafka テストの Java 不要化・Docker イメージのシェルレス化(777MB→277MB)。
+  postgres / export / changelog / ci に破壊的変更なし。MIT / Python >=3.10,<3.15。
+- 採用: **datacontract/cli:1.1.0**(公式 Docker イメージ、compose の contract profile に
+  タグ固定で追加。plan.md §2 のとおり自前ビルドなし)。理由: CLAUDE.md の最新安定版
+  原則に従う。シェルレス化の影響は実機確認済み — entrypoint `datacontract` の CLI 実行
+  のみで使うため問題なし(uid 1000 指定での lint / export html / マウント先への --output
+  書き込みを 2026-08-05 に検証、すべて成功)。
+- 実装に効く要点(1.1.0 実機ヘルプ + 公式 docs + ソースで確認):
+  - コントラクトは ODCS v3.1.0 形式。quality は `metric` キーを使う(`rule` は deprecated)。
+    property レベル metric: nullValues / missingValues / invalidValues / duplicateValues。
+    schema レベル metric: rowCount / duplicateValues。比較子: mustBe / mustNotBe /
+    mustBeGreaterThan / mustBeGreaterOrEqualTo / mustBeLessThan / mustBeLessOrEqualTo /
+    mustBeBetween: [a, b] など。type: sql(query 内 {object} / {property} プレースホルダ)も可。
+  - team はオブジェクト形式(name / members)— v3.0 系のリスト直下形式から変更。
+  - servers(postgres): server / type / host / database が必須、port 既定 5432、schema 任意。
+    資格情報は環境変数 `DATACONTRACT_POSTGRES_USERNAME` / `_PASSWORD`(host 等も
+    `DATACONTRACT_POSTGRES_HOST` 等で上書き可。1.0.17 で追加された仕様)。
+  - `test [location] --server <key> --output <path> --output-format json|junit`。
+  - `ci [locations]... --fail-on warning|error|never`(既定 error)。失敗で exit 1
+    (ソース command_ci.py で確認)。GitHub Actions 検知でアノテーション + step summary。
+  - `changelog v1 v2` は **テキスト出力のみ・常に exit 0**(--format / --output なし。
+    ソース command_changelog.py / changelog/changelog.py で確認)。フェーズ0調査時の
+    「JSON 出力を判定」という想定は誤りだったため、破壊的変更判定は自作スクリプトで
+    契約 YAML を直接比較する設計に変更(下記の設計判断参照)。
+  - `export <format> [location] --output <file>`(format は位置サブコマンド。
+    html / mermaid / sodacl / great-expectations / markdown ほか計33種)。
+  - `lint <file>` は ODCS JSON Schema による構文検証(構文エラーで非0)。
+- 公式 Docker イメージの実行ユーザーは nonroot(uid 65532)で、バインドマウントした
+  リポジトリへ書き込めない。compose で `user: "${DC_UID:-1000}:${DC_GID:-1000}"` +
+  `HOME=/tmp` を指定して回避(実機検証済み。.env.example に変数を追記)。
+
+### 設計判断: 破壊的変更(D-4)の判定は自作スクリプトによる契約 YAML の直接比較(フェーズ4、2026-08-05)
+
+- **判断**: `scripts/check_breaking.py`(仮称)で v1 / v2 の ODCS YAML の schema
+  セクションを直接比較し、列削除・型変更・required 化などを breaking と判定して
+  非0 終了する。`datacontract changelog` は人間向けの差分表示(証跡)として併用する。
+- **理由**: changelog はテキスト出力のみ・行フォーマットは公式に仕様化されておらず・
+  常に exit 0(ソース確認済み)。テキストのパースは CLI のバージョンアップで壊れる
+  恐れがあり、判定ロジックの根拠を YAML 構造に置くほうが確実で、デモとしても
+  「何を breaking とみなすか」を読者に見せられる。
+- **不採用の代替案**:
+  - changelog テキスト出力のパース — 出力フォーマットが公式仕様でないため脆い。
+  - `datacontract test` を v2 契約で実 DB に当てて失敗させる方式のみで代替 —
+    「実データに当てる前に契約同士の比較で破壊的変更を検知する」という
+    CI ゲートのデモ意図(PR 時点でのブロック)が薄れるため、D-4 の主役にはしない。

@@ -1,0 +1,109 @@
+# mart.daily_sales のデータコントラクト v2 案(D-4 / CI デモ用の「破壊的変更を含む提案」)
+# v1(daily_sales.yaml)との差分:
+#   - order_count 列を削除                          ← 破壊的変更(列削除)
+#   - total_amount を numeric → integer に型変更    ← 破壊的変更(型変更)
+#   - cancelled_count 列を追加                      ← 非破壊的変更(列追加)
+# この契約は「消費者と合意せずに v2 を出すと何が壊れるか」を見せるための教材で、
+# 実際にパイプラインへ適用はしない。
+apiVersion: v3.1.0
+kind: DataContract
+id: dgd-demo-mart-daily-sales
+name: daily_sales
+version: 2.0.0
+status: proposed
+domain: sales
+tenant: dgd-demo
+
+description:
+  purpose: >-
+    日次の売上金額を BI ダッシュボード・経営レポートに提供する。
+    v2 では格納効率のため金額を整数円に変更し、注文数の提供を廃止する(という想定の提案)。
+  usage: 日次売上の推移の可視化。sales_date 単位の集計値としてそのまま利用できる。
+  limitations: >-
+    キャンセル済み注文(raw.orders.status = 'cancelled')は集計に含まない。
+    金額は円建て想定の合成データであり、実在の取引を含まない。
+
+schema:
+  - name: daily_sales
+    physicalName: daily_sales
+    physicalType: table
+    description: 日次売上集計(staging.stg_orders を order_date で集計した CTAS テーブル)
+    properties:
+      - name: sales_date
+        description: 集計対象日(注文日)。1 日 1 行。
+        logicalType: date
+        physicalType: date
+        required: true
+        unique: true
+        primaryKey: true
+        primaryKeyPosition: 1
+        quality:
+          - id: sales_date_no_nulls
+            description: 集計日が NULL の行は存在しないこと
+            metric: nullValues
+            mustBe: 0
+          - id: sales_date_no_duplicates
+            description: 同じ日付の行が重複しないこと(1 日 1 行の合意)
+            metric: duplicateValues
+            mustBe: 0
+      # order_count は v2 で削除(破壊的変更の例)
+      - name: total_amount
+        description: その日の売上合計(v2 で整数円に型変更。破壊的変更の例)
+        logicalType: integer
+        physicalType: integer
+        required: true
+        quality:
+          - id: total_amount_no_nulls
+            description: 売上合計が NULL の行は存在しないこと
+            metric: nullValues
+            mustBe: 0
+          - id: total_amount_not_negative
+            description: 売上合計が負の日は存在しないこと(消費者向けの業務的な保証)
+            type: sql
+            query: SELECT COUNT(*) FROM {object} WHERE total_amount < 0
+            mustBe: 0
+      - name: cancelled_count
+        description: その日のキャンセル注文数(v2 で追加。非破壊的変更の例)
+        logicalType: integer
+        physicalType: bigint
+        required: false
+    quality:
+      - id: daily_sales_row_count
+        description: 約 1 年分の日次行が存在すること(データ欠落の検知)
+        metric: rowCount
+        mustBeGreaterThan: 300
+
+servers:
+  - server: local
+    type: postgres
+    host: postgres-demo
+    port: 5432
+    database: demo
+    schema: mart
+    description: >-
+      デモ環境(compose の base profile)。資格情報は契約に書かず、
+      環境変数 DATACONTRACT_POSTGRES_USERNAME / _PASSWORD で渡す(公式仕様)。
+
+team:
+  name: data-engineering
+  description: デモ用の架空チーム(実在の個人情報を含まない)
+  members:
+    - username: producer@example.com
+      name: 生産者(データエンジニアリング)
+      role: owner
+    - username: consumer@example.com
+      name: 消費者(経営企画)
+      role: consumer
+
+slaProperties:
+  - property: frequency
+    description: 更新頻度は日次(パイプライン実行ごと)
+    value: 1
+    unit: d
+    element: daily_sales.sales_date
+  # retention は datacontract test が実際に検査する(最古データの経過秒数 < retention)。
+  - property: retention
+    description: データは 3 年を超えて保持しない(最古行の経過時間として検査される)
+    value: 3
+    unit: y
+    element: daily_sales.sales_date
