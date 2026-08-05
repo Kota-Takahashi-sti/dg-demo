@@ -1,0 +1,131 @@
+{
+  "changeDescription": {
+    "changeSummary": {},
+    "fieldsAdded": [
+      {
+        "name": "columns.email.tags",
+        "newValue": "[{\"tagFQN\":\"PersonalData.Personal\",\"name\":\"Personal\",\"description\":\"Data that can be used to directly or indirectly identify a person.\",\"source\":\"Classification\",\"labelType\":\"Manual\",\"state\":\"Confirmed\",\"appliedBy\":\"admin\"}]"
+      }
+    ],
+    "fieldsDeleted": [],
+    "fieldsUpdated": [],
+    "previousVersion": 0.1
+  },
+  "columns": [
+    {
+      "children": [],
+      "constraint": "NULL",
+      "dataLength": 1,
+      "dataType": "INT",
+      "dataTypeDisplay": "integer",
+      "fullyQualifiedName": "demo_postgres.demo.raw.customers.customer_id",
+      "name": "customer_id",
+      "tags": []
+    },
+    {
+      "children": [],
+      "constraint": "NULL",
+      "dataLength": 100,
+      "dataType": "VARCHAR",
+      "dataTypeDisplay": "character varying(100)",
+      "fullyQualifiedName": "demo_postgres.demo.raw.customers.name",
+      "name": "name",
+      "tags": []
+    },
+    {
+      "children": [],
+      "constraint": "NULL",
+      "dataLength": 255,
+      "dataType": "VARCHAR",
+      "dataTypeDisplay": "character varying(255)",
+      "fullyQualifiedName": "demo_postgres.demo.raw.customers.email",
+      "name": "email",
+      "tags": [
+        {
+          "appliedAt": 1785914842942,
+          "appliedBy": "admin",
+          "description": "Data that can be used to directly or indirectly identify a person.",
+          "labelType": "Manual",
+          "name": "Personal",
+          "source": "Classification",
+          "state": "Confirmed",
+          "tagFQN": "PersonalData.Personal"
+        }
+      ]
+    },
+    {
+      "children": [],
+      "constraint": "NULL",
+      "dataLength": 10,
+      "dataType": "VARCHAR",
+      "dataTypeDisplay": "character varying(10)",
+      "fullyQualifiedName": "demo_postgres.demo.raw.customers.prefecture",
+      "name": "prefecture",
+      "tags": []
+    },
+    {
+      "children": [],
+      "constraint": "NULL",
+      "dataLength": 1,
+      "dataType": "TIMESTAMP",
+      "dataTypeDisplay": "timestamp without time zone",
+      "fullyQualifiedName": "demo_postgres.demo.raw.customers.created_at",
+      "name": "created_at",
+      "tags": []
+    }
+  ],
+  "database": {
+    "deleted": false,
+    "displayName": "demo",
+    "fullyQualifiedName": "demo_postgres.demo",
+    "href": "http://localhost:8585/api/v1/databases/db4524a7-1ae1-4f43-ba60-92354c5d59ec",
+    "id": "db4524a7-1ae1-4f43-ba60-92354c5d59ec",
+    "name": "demo",
+    "type": "database"
+  },
+  "databaseSchema": {
+    "deleted": false,
+    "displayName": "raw",
+    "fullyQualifiedName": "demo_postgres.demo.raw",
+    "href": "http://localhost:8585/api/v1/databaseSchemas/e8bb1461-6b4e-4f90-a702-f85011b3596d",
+    "id": "e8bb1461-6b4e-4f90-a702-f85011b3596d",
+    "name": "raw",
+    "type": "databaseSchema"
+  },
+  "deleted": false,
+  "entityStatus": "Unprocessed",
+  "fullyQualifiedName": "demo_postgres.demo.raw.customers",
+  "href": "http://localhost:8585/api/v1/tables/0bd22e08-de8a-4374-974f-732315396143",
+  "id": "0bd22e08-de8a-4374-974f-732315396143",
+  "incrementalChangeDescription": {
+    "changeSummary": {},
+    "fieldsAdded": [
+      {
+        "name": "columns.email.tags",
+        "newValue": "[{\"tagFQN\":\"PersonalData.Personal\",\"name\":\"Personal\",\"description\":\"Data that can be used to directly or indirectly identify a person.\",\"source\":\"Classification\",\"labelType\":\"Manual\",\"state\":\"Confirmed\",\"appliedBy\":\"admin\"}]"
+      }
+    ],
+    "fieldsDeleted": [],
+    "fieldsUpdated": [],
+    "previousVersion": 0.1
+  },
+  "name": "customers",
+  "owners": [],
+  "processedLineage": false,
+  "service": {
+    "deleted": false,
+    "displayName": "demo_postgres",
+    "fullyQualifiedName": "demo_postgres",
+    "href": "http://localhost:8585/api/v1/services/databaseServices/eb3fb88e-64db-49f6-9a8f-5e515492a80c",
+    "id": "eb3fb88e-64db-49f6-9a8f-5e515492a80c",
+    "name": "demo_postgres",
+    "type": "databaseService"
+  },
+  "serviceType": "Postgres",
+  "sourceHash": "19647d2e15debc11af7d1261e514c940",
+  "tableType": "Regular",
+  "tags": [],
+  "updatedAt": 1785914842858,
+  "updatedBy": "admin",
+  "version": 0.2
+}

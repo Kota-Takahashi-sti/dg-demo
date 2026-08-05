@@ -6,8 +6,8 @@
 |---|---|---|---|
 | 0 | 調査・設計(docs/plan.md) | 完了報告済み | 合格(フェーズ1指示により承認とみなす) |
 | 1 | 基盤 + データ品質(Soda Core / GX) | 完了報告済み | 合格(フェーズ2指示により承認とみなす) |
-| 2 | リネージュ(OpenLineage / Marquez) | 完了報告済み | - |
-| 3 | カタログ(OpenMetadata) | 未着手 | - |
+| 2 | リネージュ(OpenLineage / Marquez) | 完了報告済み | 合格(フェーズ3指示により承認とみなす) |
+| 3 | カタログ(OpenMetadata) | 完了報告済み | - |
 | 4 | コントラクト(datacontract-cli / CI) | 未着手 | - |
 | 5 | ドキュメント統合・通し検証 | 未着手 | - |
 
@@ -15,6 +15,23 @@
 検収: - / 合格 / 差し戻し
 
 ## 現在のフェーズの詳細タスク
+
+フェーズ3(2026-08-05 完了報告。ブランチ: phase3):
+- [x] 公式ドキュメント調査(OM 1.13.3 リリースアセット compose、openmetadata-ingestion
+      1.13.3.0 の CLI/ワークフロー YAML、Lineage/Versions API、JWT 取得。build-log.md 参照)
+- [x] compose に catalog profile(om-postgresql / om-elasticsearch / om-migrate / om-server、
+      内部 DB/ES はホスト非公開)+ .env.example に OM_*_HOST_PORT
+- [x] tools イメージに catalog venv(openmetadata-ingestion[postgres,pii-processor]==1.13.3.0)
+- [x] catalog/(ingest/lineage/profiler/classify の 4 YAML、om_api.py、run_ingestion.py)
+- [x] scenarios/demo_catalog_{ingest,profile,lineage,drift}.sh + Make ターゲット 4 本
+      + up-catalog / down-catalog
+- [x] 全デモ動作確認(C-1〜C-3 exit 0、C-4 非0 で列削除検知)。品質・リネージュ回帰 exit 0。
+      初回起動 186〜218 秒・メモリ約 2.9 GiB 実測(verification/phase3/resource-usage.log)
+- [x] UI スクリーンショット 9 点(verification/phase3/ui/)
+- [x] 最終 clean-db 通し実行(C-1〜C-3 exit 0 / C-4 非0。証跡 verification/phase3/)
+- [x] docs/guides/catalog.md(手順・UI 確認ポイント・Marquez 比較・長所短所・
+      トラブルシュート。出力例の機械検証 10/10 VERBATIM)
+- [x] PROGRESS.md / build-log.md 更新・完了報告
 
 フェーズ2(2026-08-04 完了報告):
 - [x] 公式ドキュメント調査(openlineage-python 1.52.0 の event_v2/facet_v2/設定、
@@ -70,10 +87,10 @@
 
 ## 次にやること(セッション再開時はここから)
 
-- **フェーズ2 の発注者検収待ち。検収前にフェーズ3へ進まないこと。**
-- 検収後: フェーズ3(カタログ: OpenMetadata 1.13.3、Airflow なし構成)。
-  catalog profile 追加、tools に catalog venv(openmetadata-ingestion==1.13.3.0)、
-  metadata/profiler/lineage workflow + Lineage API 登録(plan.md §4 領域C・§5)。
+- **フェーズ3 の発注者検収待ち。検収前にフェーズ4へ進まないこと。**
+- 検収後: フェーズ4(コントラクト: datacontract-cli 1.0.17 / ODCS v3.1.0)。
+  contracts/(v1・v2-breaking)、test/export/changelog + 自作 breaking 判定、
+  .github/workflows/contract.yml(静的検証 + ローカル等価実行。plan.md §4 領域D・R1・R8)。
 
 ## 未解決の問題・発注者への確認事項
 

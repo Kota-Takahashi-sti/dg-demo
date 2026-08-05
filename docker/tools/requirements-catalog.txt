@@ -1,0 +1,5 @@
+# データカタログ領域(フェーズ3)— バージョンはすべてピン留め(plan.md §1)
+# postgres extra: psycopg2-binary 等の Postgres コネクタ依存
+# pii-processor extra: presidio_analyzer 等。`metadata classify`(C-2b サンプルデータ格納)が
+#   自動分類の有効/無効にかかわらず import するため必須(build-log.md 参照)
+openmetadata-ingestion[postgres,pii-processor]==1.13.3.0

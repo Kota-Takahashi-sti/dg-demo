@@ -1,0 +1,27 @@
+# OpenMetadata(catalog profile)リソース実測
+# 検証環境: WSL2 / amd64 / ホストメモリ 15.36 GiB
+
+## 初回起動所要時間(docker compose --profile catalog up -d --wait + API 応答待ち)
+
+- 2026-08-05 実測1(ボリューム新規作成・イメージ pull 済み): 186 秒
+- 2026-08-05 実測2(make clean-db 直後のまっさら状態・通し検証時): 218 秒
+- 2026-08-05 実測3(make clean-db 直後・最終通し検証時): 360 秒
+  (verification/phase3/demo-catalog-ingest.log の「起動所要: 360 秒」)
+→ ガイドには「約 3〜6 分(実測 186〜360 秒)」として記載
+
+## メモリ実測(docker stats --no-stream)
+
+### 実測1: 初回起動直後(2026-08-05 15:22)
+
+NAME                                             MEM USAGE / LIMIT     CPU %
+claude-demo-data-governance-om-server-1          968.2MiB / 15.36GiB   9.28%
+claude-demo-data-governance-om-elasticsearch-1   1.785GiB / 15.36GiB   2.37%
+claude-demo-data-governance-om-postgresql-1      146.5MiB / 15.36GiB   1.94%
+
+### 実測2: C-1〜C-3 実行後(2026-08-05 通し検証時)
+
+om-server: 909.6 MiB
+om-elasticsearch: 1.907 GiB
+om-postgresql: 134.7 MiB
+
+→ 一式で約 2.9 GiB。公式要件は「Docker に 6 GiB / 4 vCPUs 以上の割当」。

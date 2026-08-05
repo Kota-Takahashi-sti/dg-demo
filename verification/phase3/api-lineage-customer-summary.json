@@ -1,0 +1,86 @@
+{
+  "downstreamEdges": [],
+  "entity": {
+    "deleted": false,
+    "displayName": "customer_summary",
+    "fullyQualifiedName": "demo_postgres.demo.mart.customer_summary",
+    "href": "http://localhost:8585/api/v1/tables/1eca3ca5-e9f8-4dde-90e1-39d7c556643f",
+    "id": "1eca3ca5-e9f8-4dde-90e1-39d7c556643f",
+    "name": "customer_summary",
+    "type": "table"
+  },
+  "nodes": [
+    {
+      "deleted": false,
+      "displayName": "customers",
+      "fullyQualifiedName": "demo_postgres.demo.raw.customers",
+      "href": "http://localhost:8585/api/v1/tables/0bd22e08-de8a-4374-974f-732315396143",
+      "id": "0bd22e08-de8a-4374-974f-732315396143",
+      "name": "customers",
+      "type": "table"
+    },
+    {
+      "deleted": false,
+      "displayName": "stg_orders",
+      "fullyQualifiedName": "demo_postgres.demo.staging.stg_orders",
+      "href": "http://localhost:8585/api/v1/tables/f22901ed-1901-47b1-bd7d-9005a33fff2e",
+      "id": "f22901ed-1901-47b1-bd7d-9005a33fff2e",
+      "name": "stg_orders",
+      "type": "table"
+    }
+  ],
+  "upstreamEdges": [
+    {
+      "fromEntity": "0bd22e08-de8a-4374-974f-732315396143",
+      "lineageDetails": {
+        "columnsLineage": [
+          {
+            "fromColumns": [
+              "demo_postgres.demo.raw.customers.customer_id"
+            ],
+            "toColumn": "demo_postgres.demo.mart.customer_summary.customer_id"
+          }
+        ],
+        "createdAt": 1785915093599,
+        "createdBy": "ingestion-bot",
+        "source": "ViewLineage",
+        "sqlQuery": "create view mart.customer_summary as  SELECT c.customer_id,\n    count(DISTINCT s.order_id) AS total_orders,\n    COALESCE(sum(s.amount), ?::numeric) AS total_amount,\n    max(s.order_date) AS last_order_date\n   FROM raw.customers c\n     LEFT JOIN staging.stg_orders s ON s.customer_id = c.customer_id\n  GROUP BY c.customer_id;",
+        "updatedAt": 1785915093599,
+        "updatedBy": "ingestion-bot"
+      },
+      "toEntity": "1eca3ca5-e9f8-4dde-90e1-39d7c556643f"
+    },
+    {
+      "fromEntity": "f22901ed-1901-47b1-bd7d-9005a33fff2e",
+      "lineageDetails": {
+        "columnsLineage": [
+          {
+            "fromColumns": [
+              "demo_postgres.demo.staging.stg_orders.order_date"
+            ],
+            "toColumn": "demo_postgres.demo.mart.customer_summary.last_order_date"
+          },
+          {
+            "fromColumns": [
+              "demo_postgres.demo.staging.stg_orders.amount"
+            ],
+            "toColumn": "demo_postgres.demo.mart.customer_summary.total_amount"
+          },
+          {
+            "fromColumns": [
+              "demo_postgres.demo.staging.stg_orders.order_id"
+            ],
+            "toColumn": "demo_postgres.demo.mart.customer_summary.total_orders"
+          }
+        ],
+        "createdAt": 1785915095290,
+        "createdBy": "ingestion-bot",
+        "source": "ViewLineage",
+        "sqlQuery": "create view mart.customer_summary as  SELECT c.customer_id,\n    count(DISTINCT s.order_id) AS total_orders,\n    COALESCE(sum(s.amount), ?::numeric) AS total_amount,\n    max(s.order_date) AS last_order_date\n   FROM raw.customers c\n     LEFT JOIN staging.stg_orders s ON s.customer_id = c.customer_id\n  GROUP BY c.customer_id;",
+        "updatedAt": 1785915095290,
+        "updatedBy": "ingestion-bot"
+      },
+      "toEntity": "1eca3ca5-e9f8-4dde-90e1-39d7c556643f"
+    }
+  ]
+}

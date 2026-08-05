@@ -1,0 +1,15 @@
+docker compose --profile lineage down
+ Container claude-demo-data-governance-marquez-web-1  Stopping
+ Container claude-demo-data-governance-marquez-web-1  Stopped
+ Container claude-demo-data-governance-marquez-web-1  Removing
+ Container claude-demo-data-governance-marquez-web-1  Removed
+ Container claude-demo-data-governance-marquez-api-1  Stopping
+ Container claude-demo-data-governance-marquez-api-1  Stopped
+ Container claude-demo-data-governance-marquez-api-1  Removing
+ Container claude-demo-data-governance-marquez-api-1  Removed
+ Container claude-demo-data-governance-marquez-db-1  Stopping
+ Container claude-demo-data-governance-marquez-db-1  Stopped
+ Container claude-demo-data-governance-marquez-db-1  Removing
+ Container claude-demo-data-governance-marquez-db-1  Removed
+ Network claude-demo-data-governance_default  Removing
+ Network claude-demo-data-governance_default  Resource is still in use

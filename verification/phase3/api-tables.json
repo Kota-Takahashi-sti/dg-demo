@@ -1,0 +1,40 @@
+{
+  "count": 7,
+  "tables": [
+    {
+      "fullyQualifiedName": "demo_postgres.demo.raw.customers",
+      "tableType": "Regular",
+      "version": 0.2
+    },
+    {
+      "fullyQualifiedName": "demo_postgres.demo.mart.customer_summary",
+      "tableType": "View",
+      "version": 0.1
+    },
+    {
+      "fullyQualifiedName": "demo_postgres.demo.mart.daily_sales",
+      "tableType": "Regular",
+      "version": 0.2
+    },
+    {
+      "fullyQualifiedName": "demo_postgres.demo.raw.order_items",
+      "tableType": "Regular",
+      "version": 0.1
+    },
+    {
+      "fullyQualifiedName": "demo_postgres.demo.raw.orders",
+      "tableType": "Regular",
+      "version": 0.1
+    },
+    {
+      "fullyQualifiedName": "demo_postgres.demo.raw.products",
+      "tableType": "Regular",
+      "version": 0.1
+    },
+    {
+      "fullyQualifiedName": "demo_postgres.demo.staging.stg_orders",
+      "tableType": "Regular",
+      "version": 0.1
+    }
+  ]
+}

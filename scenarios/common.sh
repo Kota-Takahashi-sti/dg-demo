@@ -16,6 +16,7 @@ COMPOSE="docker compose"
 TOOLS_RUN="$COMPOSE --profile tools run --rm -T tools"
 PYTHON_QUALITY="/opt/venv/quality/bin/python"
 PYTHON_LINEAGE="/opt/venv/lineage/bin/python"
+PYTHON_CATALOG="/opt/venv/catalog/bin/python"
 SODA="/opt/venv/quality/bin/soda"
 
 # ログ設定: 標準出力・標準エラーを加工せず verification/ に保存する(DoD)
@@ -46,6 +47,24 @@ save_marquez_api() {
     mkdir -p "$(dirname "$out")"
     $TOOLS_RUN $PYTHON_LINEAGE lineage/marquez_api.py "$@" > "$out"
     echo "[証跡] $out(marquez_api.py $*)"
+}
+
+ensure_catalog() {
+    echo "--- OpenMetadata 一式(profile: catalog)を起動 ---"
+    local start=$SECONDS
+    $COMPOSE --profile catalog up -d --wait
+    echo "--- OpenMetadata サーバの起動を待機 ---"
+    $TOOLS_RUN $PYTHON_CATALOG catalog/om_api.py wait
+    echo "(起動所要: $((SECONDS - start)) 秒。初回はイメージ展開と DB 移行でさらにかかる)"
+}
+
+# OpenMetadata API レスポンスを証跡として保存する
+# 使い方: save_om_api <保存先ファイル> <om_api.py のサブコマンド...>
+save_om_api() {
+    local out="$1"; shift
+    mkdir -p "$(dirname "$out")"
+    $TOOLS_RUN $PYTHON_CATALOG catalog/om_api.py "$@" > "$out"
+    echo "[証跡] $out(om_api.py $*)"
 }
 
 # $1: clean | ng

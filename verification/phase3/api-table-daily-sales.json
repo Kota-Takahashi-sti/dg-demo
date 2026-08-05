@@ -1,0 +1,153 @@
+{
+  "changeDescription": {
+    "changeSummary": {
+      "description": {
+        "changeSource": "Manual",
+        "changedAt": 1785914845459,
+        "changedBy": "admin"
+      },
+      "owners": {
+        "changeSource": "Manual",
+        "changedAt": 1785914845459,
+        "changedBy": "admin"
+      }
+    },
+    "fieldsAdded": [
+      {
+        "name": "description",
+        "newValue": "日次売上集計テーブル。staging.stg_orders を日付で集計して作成される(フェーズ4 のデータコントラクトの対象)。"
+      },
+      {
+        "name": "owners",
+        "newValue": "[{\"id\":\"a5705758-86e9-408e-9802-15f3325d74ff\",\"type\":\"user\",\"name\":\"admin\",\"fullyQualifiedName\":\"admin\",\"displayName\":\"admin\",\"deleted\":false}]"
+      },
+      {
+        "name": "columns.total_amount.tags",
+        "newValue": "[{\"tagFQN\":\"demo_glossary.uriage_kingaku\",\"name\":\"uriage_kingaku\",\"displayName\":\"売上金額\",\"description\":\"税抜の受注金額合計。キャンセル済み注文(status&#61;cancelled)は含まない。\",\"source\":\"Glossary\",\"labelType\":\"Manual\",\"state\":\"Confirmed\",\"appliedBy\":\"admin\"}]"
+      }
+    ],
+    "fieldsDeleted": [],
+    "fieldsUpdated": [],
+    "previousVersion": 0.1
+  },
+  "columns": [
+    {
+      "children": [],
+      "constraint": "NULL",
+      "dataLength": 1,
+      "dataType": "DATE",
+      "dataTypeDisplay": "date",
+      "fullyQualifiedName": "demo_postgres.demo.mart.daily_sales.sales_date",
+      "name": "sales_date",
+      "tags": []
+    },
+    {
+      "children": [],
+      "constraint": "NULL",
+      "dataLength": 1,
+      "dataType": "BIGINT",
+      "dataTypeDisplay": "bigint",
+      "fullyQualifiedName": "demo_postgres.demo.mart.daily_sales.order_count",
+      "name": "order_count",
+      "tags": []
+    },
+    {
+      "children": [],
+      "constraint": "NULL",
+      "dataLength": 1,
+      "dataType": "NUMERIC",
+      "dataTypeDisplay": "numeric",
+      "fullyQualifiedName": "demo_postgres.demo.mart.daily_sales.total_amount",
+      "name": "total_amount",
+      "tags": [
+        {
+          "appliedAt": 1785914845527,
+          "appliedBy": "admin",
+          "description": "税抜の受注金額合計。キャンセル済み注文(status&#61;cancelled)は含まない。",
+          "displayName": "売上金額",
+          "labelType": "Manual",
+          "name": "uriage_kingaku",
+          "source": "Glossary",
+          "state": "Confirmed",
+          "tagFQN": "demo_glossary.uriage_kingaku"
+        }
+      ]
+    }
+  ],
+  "database": {
+    "deleted": false,
+    "displayName": "demo",
+    "fullyQualifiedName": "demo_postgres.demo",
+    "href": "http://localhost:8585/api/v1/databases/db4524a7-1ae1-4f43-ba60-92354c5d59ec",
+    "id": "db4524a7-1ae1-4f43-ba60-92354c5d59ec",
+    "name": "demo",
+    "type": "database"
+  },
+  "databaseSchema": {
+    "deleted": false,
+    "displayName": "mart",
+    "fullyQualifiedName": "demo_postgres.demo.mart",
+    "href": "http://localhost:8585/api/v1/databaseSchemas/4ef504e0-091a-4194-9f57-1b61c68cdb36",
+    "id": "4ef504e0-091a-4194-9f57-1b61c68cdb36",
+    "name": "mart",
+    "type": "databaseSchema"
+  },
+  "deleted": false,
+  "description": "日次売上集計テーブル。staging.stg_orders を日付で集計して作成される(フェーズ4 のデータコントラクトの対象)。",
+  "entityStatus": "Unprocessed",
+  "fullyQualifiedName": "demo_postgres.demo.mart.daily_sales",
+  "href": "http://localhost:8585/api/v1/tables/67f77477-3824-4afe-88ae-9ccbce19d846",
+  "id": "67f77477-3824-4afe-88ae-9ccbce19d846",
+  "incrementalChangeDescription": {
+    "changeSummary": {
+      "description": {
+        "changeSource": "Manual",
+        "changedAt": 1785914842001,
+        "changedBy": "admin"
+      },
+      "owners": {
+        "changeSource": "Manual",
+        "changedAt": 1785914842001,
+        "changedBy": "admin"
+      }
+    },
+    "fieldsAdded": [
+      {
+        "name": "columns.total_amount.tags",
+        "newValue": "[{\"tagFQN\":\"demo_glossary.uriage_kingaku\",\"name\":\"uriage_kingaku\",\"displayName\":\"売上金額\",\"description\":\"税抜の受注金額合計。キャンセル済み注文(status&#61;cancelled)は含まない。\",\"source\":\"Glossary\",\"labelType\":\"Manual\",\"state\":\"Confirmed\",\"appliedBy\":\"admin\"}]"
+      }
+    ],
+    "fieldsDeleted": [],
+    "fieldsUpdated": [],
+    "previousVersion": 0.2
+  },
+  "name": "daily_sales",
+  "owners": [
+    {
+      "deleted": false,
+      "displayName": "admin",
+      "fullyQualifiedName": "admin",
+      "href": "http://localhost:8585/api/v1/users/a5705758-86e9-408e-9802-15f3325d74ff",
+      "id": "a5705758-86e9-408e-9802-15f3325d74ff",
+      "name": "admin",
+      "type": "user"
+    }
+  ],
+  "processedLineage": false,
+  "service": {
+    "deleted": false,
+    "displayName": "demo_postgres",
+    "fullyQualifiedName": "demo_postgres",
+    "href": "http://localhost:8585/api/v1/services/databaseServices/eb3fb88e-64db-49f6-9a8f-5e515492a80c",
+    "id": "eb3fb88e-64db-49f6-9a8f-5e515492a80c",
+    "name": "demo_postgres",
+    "type": "databaseService"
+  },
+  "serviceType": "Postgres",
+  "sourceHash": "1ae8ed80920829097d6a999f35c3dd82",
+  "tableType": "Regular",
+  "tags": [],
+  "updatedAt": 1785914845459,
+  "updatedBy": "admin",
+  "version": 0.2
+}

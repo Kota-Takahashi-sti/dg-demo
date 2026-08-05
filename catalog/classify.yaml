@@ -1,0 +1,37 @@
+# C-2: 自動分類ワークフロー(サンプルデータの格納を含む)
+# 実行: catalog/run_ingestion.py classify catalog/classify.yaml
+# 1.13 では「UI の Sample Data タブに出るサンプルデータ」はプロファイラではなく
+# この AutoClassification ワークフローが格納する(storeSampleData。既定 false)。
+source:
+  type: postgres
+  serviceName: demo_postgres
+  serviceConnection:
+    config:
+      type: Postgres
+      username: ${DEMO_DB_USER}
+      authType:
+        password: ${DEMO_DB_PASSWORD}
+      hostPort: ${DEMO_DB_HOST}:${DEMO_DB_PORT}
+      database: ${DEMO_DB_NAME}
+  sourceConfig:
+    config:
+      type: AutoClassification
+      storeSampleData: true           # サンプルデータを UI で見せるため有効化
+      # 自動タグ付け(PII 検出)は presidio_analyzer(pii-processor extra、spaCy モデルの
+      # 追加ダウンロードが必要)に依存するため本デモでは使わない(build-log.md 参照)
+      enableAutoClassification: false
+      schemaFilterPattern:
+        includes: ["^raw$", "^staging$", "^mart$"]
+processor:
+  type: orm-profiler
+  config: {}
+sink:
+  type: metadata-rest
+  config: {}
+workflowConfig:
+  loggerLevel: INFO
+  openMetadataServerConfig:
+    hostPort: http://om-server:8585/api
+    authProvider: openmetadata
+    securityConfig:
+      jwtToken: ${OM_JWT}

@@ -1,0 +1,136 @@
+scenarios/demo_quality_soda.sh clean
+# 実行日時: 2026-08-05 15:45:38 JST
+# コマンドログ: verification/phase1/demo-quality-soda.log
+--- デモ用 DB(profile: base)を起動 ---
+ Network claude-demo-data-governance_default  Creating
+ Network claude-demo-data-governance_default  Created
+ Volume "claude-demo-data-governance_demo-db-data"  Creating
+ Volume "claude-demo-data-governance_demo-db-data"  Created
+ Container claude-demo-data-governance-postgres-demo-1  Creating
+ Container claude-demo-data-governance-postgres-demo-1  Created
+ Container claude-demo-data-governance-postgres-demo-1  Starting
+ Container claude-demo-data-governance-postgres-demo-1  Started
+ Container claude-demo-data-governance-postgres-demo-1  Waiting
+ Container claude-demo-data-governance-postgres-demo-1  Healthy
+--- クリーンデータ(コミット済み seed CSV)を投入 ---
+=== step: seed ===
+[sql] 01_create_raw.sql を実行
+[seed] raw.customers: 1000 行
+[seed] raw.products: 200 行
+[seed] raw.orders: 5000 行
+[seed] raw.order_items: 12561 行
+=== step: build_staging ===
+[sql] 02_staging.sql を実行
+[build_staging] staging.stg_orders: 11927 行
+=== step: build_mart ===
+[sql] 03_mart.sql を実行
+[build_mart] mart.daily_sales: 365 行
+[build_mart] mart.customer_summary(ビュー): 1000 行
+パイプライン完了
+
+=== Soda Core 4.19.0: contract verify(4チェック / 3 contract)===
+
+--- quality/soda/contracts/raw_customers.yaml ---
+  __|  _ \|  \   \\
+\__ \ (   |   | _ \\
+____/\___/___/_/  _\\ CLI v4.19.0
+Verifying contract 📜 quality/soda/contracts/raw_customers.yaml 🤞
+
+### Contract results for postgres_demo/demo/raw/customers
++----------+-------------------+-------------+-----------+---------------------------+
+| Column   | Check             | Threshold   | Outcome   | Diagnostics               |
++==========+===================+=============+===========+===========================+
+| email    | No missing values | level: fail | ✅ PASSED | missing_count: 0          |
+|          |                   | must be: 0  |           | missing_percent: 0.0      |
+|          |                   |             |           | check_rows_tested: 1000   |
+|          |                   |             |           | dataset_rows_tested: 1000 |
++----------+-------------------+-------------+-----------+---------------------------+
+# Summary:
+|----------------|---|----|
+| Checks         | 1 |    |
+| Passed         | 1 | ✅ |
+| Failed         | 0 | ✅ |
+| Warned         | 0 | ✅ |
+| Not Evaluated  | 0 | ✅ |
+| Excluded       | 0 | ✅ |
+| Runtime Errors | 0 | ✅ |
+
+
+--- quality/soda/contracts/raw_orders.yaml ---
+  __|  _ \|  \   \\
+\__ \ (   |   | _ \\
+____/\___/___/_/  _\\ CLI v4.19.0
+Found 4 columns in contract.
+Built 4 expected columns from contract.
+Verifying contract 📜 quality/soda/contracts/raw_orders.yaml 🤞
+Evaluating schema check
+Getting actual columns from measurement values.
+Found 4 actual columns.
+Starting to check for missing columns.
+Found 0 missing columns.
+Starting to check for extra columns.
+Found 0 extra columns.
+Starting to check for data type mismatches.
+Found 0 data type mismatches.
+Starting to check for columns out of order.
+Found False columns out of order.
+Schema check outcome: CheckOutcome.PASSED
+
+### Contract results for postgres_demo/demo/raw/orders
++-----------------+-----------------------------------+-------------------------------+-----------+---------------------------+
+| Column          | Check                             | Threshold                     | Outcome   | Diagnostics               |
++=================+===================================+===============================+===========+===========================+
+| [dataset-level] | Schema matches expected structure | level: fail                   | ✅ PASSED |                           |
+|                 |                                   | must be less than or equal: 0 |           |                           |
++-----------------+-----------------------------------+-------------------------------+-----------+---------------------------+
+| order_id        | No duplicate values               | level: fail                   | ✅ PASSED | duplicate_count: 0        |
+|                 |                                   | must be: 0                    |           | duplicate_percent: 0.0    |
+|                 |                                   |                               |           | check_rows_tested: 5000   |
+|                 |                                   |                               |           | missing_count: 0          |
+|                 |                                   |                               |           | dataset_rows_tested: 5000 |
++-----------------+-----------------------------------+-------------------------------+-----------+---------------------------+
+# Summary:
+|----------------|---|----|
+| Checks         | 2 |    |
+| Passed         | 2 | ✅ |
+| Failed         | 0 | ✅ |
+| Warned         | 0 | ✅ |
+| Not Evaluated  | 0 | ✅ |
+| Excluded       | 0 | ✅ |
+| Runtime Errors | 0 | ✅ |
+
+
+--- quality/soda/contracts/raw_order_items.yaml ---
+  __|  _ \|  \   \\
+\__ \ (   |   | _ \\
+____/\___/___/_/  _\\ CLI v4.19.0
+Verifying contract 📜 quality/soda/contracts/raw_order_items.yaml 🤞
+
+### Contract results for postgres_demo/demo/raw/order_items
++------------+-------------------+-------------+-----------+----------------------------+
+| Column     | Check             | Threshold   | Outcome   | Diagnostics                |
++============+===================+=============+===========+============================+
+| quantity   | No invalid values | level: fail | ✅ PASSED | invalid_count: 0           |
+|            |                   | must be: 0  |           | invalid_percent: 0.0       |
+|            |                   |             |           | check_rows_tested: 12561   |
+|            |                   |             |           | missing_count: 0           |
+|            |                   |             |           | dataset_rows_tested: 12561 |
++------------+-------------------+-------------+-----------+----------------------------+
+| unit_price | No invalid values | level: fail | ✅ PASSED | invalid_count: 0           |
+|            |                   | must be: 0  |           | invalid_percent: 0.0       |
+|            |                   |             |           | check_rows_tested: 12561   |
+|            |                   |             |           | missing_count: 0           |
+|            |                   |             |           | dataset_rows_tested: 12561 |
++------------+-------------------+-------------+-----------+----------------------------+
+# Summary:
+|----------------|---|----|
+| Checks         | 2 |    |
+| Passed         | 2 | ✅ |
+| Failed         | 0 | ✅ |
+| Warned         | 0 | ✅ |
+| Not Evaluated  | 0 | ✅ |
+| Excluded       | 0 | ✅ |
+| Runtime Errors | 0 | ✅ |
+
+
+Soda 結果: 全 contract 成功(exit 0)

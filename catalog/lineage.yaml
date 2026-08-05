@@ -1,0 +1,38 @@
+# C-3: リネージュワークフロー(ビュー定義 SQL の解析による自動リネージュ生成)
+# 実行: catalog/run_ingestion.py ingest catalog/lineage.yaml
+#   (DatabaseLineage ワークフローの実行コマンドも `metadata ingest` である。
+#    `metadata lineage` は単発 SQL 解析用の別コマンドなので注意。build-log.md 参照)
+# mart.customer_summary(ビュー)のリネージュは processViewLineage が定義 SQL から導出する。
+# mart.daily_sales(CTAS のテーブル)は定義 SQL が DB に残らないため対象外
+# → catalog/om_api.py register-lineage(Lineage API)で手動登録する(手段の違いのデモ)。
+source:
+  type: postgres-lineage
+  serviceName: demo_postgres          # ingest.yaml と同一のサービス名であること
+  serviceConnection:
+    config:
+      type: Postgres
+      username: ${DEMO_DB_USER}
+      authType:
+        password: ${DEMO_DB_PASSWORD}
+      hostPort: ${DEMO_DB_HOST}:${DEMO_DB_PORT}
+      database: ${DEMO_DB_NAME}
+  sourceConfig:
+    config:
+      type: DatabaseLineage
+      parsingTimeoutLimit: 300
+      processViewLineage: true        # ビュー定義からのリネージュ導出(既定 true。明示)
+      # クエリログ由来のリネージュは pg_stat_statements 拡張が必要(デモ DB には
+      # 未導入。C-1 の接続テストで GetQueries が failed になるのはこのため)。
+      # 本デモの対比は「ビュー解析 vs Lineage API 手動登録」なので無効化する。
+      processQueryLineage: false
+      overrideViewLineage: false
+sink:
+  type: metadata-rest
+  config: {}
+workflowConfig:
+  loggerLevel: INFO
+  openMetadataServerConfig:
+    hostPort: http://om-server:8585/api
+    authProvider: openmetadata
+    securityConfig:
+      jwtToken: ${OM_JWT}

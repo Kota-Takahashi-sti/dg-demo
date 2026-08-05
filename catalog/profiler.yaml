@@ -1,0 +1,36 @@
+# C-2: プロファイラワークフロー(行数・欠損率・分布などの統計取得)
+# 実行: catalog/run_ingestion.py profile catalog/profiler.yaml
+# 注意(1.13): 旧版にあった generateSampleData / profileSample はこのワークフローには
+# 存在しない。サンプルデータの格納は classify.yaml(AutoClassification)が担う
+# (build-log.md 調査記録参照)。
+source:
+  type: postgres
+  serviceName: demo_postgres
+  serviceConnection:
+    config:
+      type: Postgres
+      username: ${DEMO_DB_USER}
+      authType:
+        password: ${DEMO_DB_PASSWORD}
+      hostPort: ${DEMO_DB_HOST}:${DEMO_DB_PORT}
+      database: ${DEMO_DB_NAME}
+  sourceConfig:
+    config:
+      type: Profiler
+      computeTableMetrics: true
+      computeColumnMetrics: true
+      schemaFilterPattern:
+        includes: ["^raw$", "^staging$", "^mart$"]
+processor:
+  type: orm-profiler
+  config: {}
+sink:
+  type: metadata-rest
+  config: {}
+workflowConfig:
+  loggerLevel: INFO
+  openMetadataServerConfig:
+    hostPort: http://om-server:8585/api
+    authProvider: openmetadata
+    securityConfig:
+      jwtToken: ${OM_JWT}

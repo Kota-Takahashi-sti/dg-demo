@@ -1,0 +1,60 @@
+{
+  "downstreamEdges": [],
+  "entity": {
+    "deleted": false,
+    "description": "日次売上集計テーブル。staging.stg_orders を日付で集計して作成される(フェーズ4 のデータコントラクトの対象)。",
+    "displayName": "daily_sales",
+    "fullyQualifiedName": "demo_postgres.demo.mart.daily_sales",
+    "href": "http://localhost:8585/api/v1/tables/67f77477-3824-4afe-88ae-9ccbce19d846",
+    "id": "67f77477-3824-4afe-88ae-9ccbce19d846",
+    "name": "daily_sales",
+    "type": "table"
+  },
+  "nodes": [
+    {
+      "deleted": false,
+      "displayName": "stg_orders",
+      "fullyQualifiedName": "demo_postgres.demo.staging.stg_orders",
+      "href": "http://localhost:8585/api/v1/tables/f22901ed-1901-47b1-bd7d-9005a33fff2e",
+      "id": "f22901ed-1901-47b1-bd7d-9005a33fff2e",
+      "name": "stg_orders",
+      "type": "table"
+    }
+  ],
+  "upstreamEdges": [
+    {
+      "fromEntity": "f22901ed-1901-47b1-bd7d-9005a33fff2e",
+      "lineageDetails": {
+        "columnsLineage": [
+          {
+            "fromColumns": [
+              "demo_postgres.demo.staging.stg_orders.order_date"
+            ],
+            "toColumn": "demo_postgres.demo.mart.daily_sales.sales_date"
+          },
+          {
+            "fromColumns": [
+              "demo_postgres.demo.staging.stg_orders.order_id"
+            ],
+            "function": "count",
+            "toColumn": "demo_postgres.demo.mart.daily_sales.order_count"
+          },
+          {
+            "fromColumns": [
+              "demo_postgres.demo.staging.stg_orders.amount"
+            ],
+            "function": "sum",
+            "toColumn": "demo_postgres.demo.mart.daily_sales.total_amount"
+          }
+        ],
+        "createdAt": 1785915100465,
+        "createdBy": "admin",
+        "source": "Manual",
+        "sqlQuery": "CREATE TABLE mart.daily_sales AS\nSELECT\n    order_date              AS sales_date,\n    count(DISTINCT order_id) AS order_count,\n    sum(amount)             AS total_amount\nFROM staging.stg_orders\nGROUP BY order_date\nORDER BY order_date;",
+        "updatedAt": 1785915100465,
+        "updatedBy": "admin"
+      },
+      "toEntity": "67f77477-3824-4afe-88ae-9ccbce19d846"
+    }
+  ]
+}

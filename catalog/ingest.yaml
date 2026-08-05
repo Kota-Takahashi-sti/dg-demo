@@ -1,0 +1,34 @@
+# C-1: メタデータ取り込みワークフロー(Postgres → OpenMetadata)
+# 実行: catalog/run_ingestion.py ingest catalog/ingest.yaml
+#   (${...} は実行時に環境変数から解決される。OM_JWT は ingestion-bot の JWT で、
+#    run_ingestion.py が API から自動取得する。docs/guides/catalog.md 参照)
+# スキーマは公式 1.13 の databaseServiceMetadataPipeline に準拠(build-log.md 調査記録参照)
+source:
+  type: postgres
+  serviceName: demo_postgres          # カタログ上のサービス名(テーブル FQN の先頭になる)
+  serviceConnection:
+    config:
+      type: Postgres
+      username: ${DEMO_DB_USER}
+      authType:
+        password: ${DEMO_DB_PASSWORD}
+      hostPort: ${DEMO_DB_HOST}:${DEMO_DB_PORT}
+      database: ${DEMO_DB_NAME}
+  sourceConfig:
+    config:
+      type: DatabaseMetadata
+      includeTables: true
+      includeViews: true              # ビュー(mart.customer_summary)の定義 SQL も取り込む
+      markDeletedTables: true
+      schemaFilterPattern:
+        includes: ["^raw$", "^staging$", "^mart$"]
+sink:
+  type: metadata-rest
+  config: {}
+workflowConfig:
+  loggerLevel: INFO
+  openMetadataServerConfig:
+    hostPort: http://om-server:8585/api
+    authProvider: openmetadata
+    securityConfig:
+      jwtToken: ${OM_JWT}

@@ -1,0 +1,227 @@
+{
+  "changeDescription": {
+    "changeSummary": {},
+    "fieldsAdded": [
+      {
+        "name": "columns.email.tags",
+        "newValue": "[{\"tagFQN\":\"PersonalData.Personal\",\"name\":\"Personal\",\"description\":\"Data that can be used to directly or indirectly identify a person.\",\"source\":\"Classification\",\"labelType\":\"Manual\",\"state\":\"Confirmed\",\"appliedBy\":\"admin\"}]"
+      }
+    ],
+    "fieldsDeleted": [],
+    "fieldsUpdated": [],
+    "previousVersion": 0.1
+  },
+  "columns": [
+    {
+      "children": [],
+      "constraint": "NULL",
+      "dataLength": 1,
+      "dataType": "INT",
+      "dataTypeDisplay": "integer",
+      "fullyQualifiedName": "demo_postgres.demo.raw.customers.customer_id",
+      "name": "customer_id",
+      "profile": {
+        "distinctCount": 1000.0,
+        "distinctProportion": 1.0,
+        "firstQuartile": 250.75,
+        "interQuartileRange": 499.5,
+        "max": 1000,
+        "mean": 500.5,
+        "median": 500.5,
+        "min": 1,
+        "name": "customer_id",
+        "nonParametricSkew": 0.0,
+        "nullCount": 0.0,
+        "nullProportion": 0.0,
+        "stddev": 288.67499025721,
+        "sum": 500500.0,
+        "thirdQuartile": 750.25,
+        "timestamp": 1785914938792,
+        "uniqueCount": 1000.0,
+        "uniqueProportion": 1.0,
+        "valuesCount": 1000.0
+      },
+      "tags": []
+    },
+    {
+      "children": [],
+      "constraint": "NULL",
+      "dataLength": 100,
+      "dataType": "VARCHAR",
+      "dataTypeDisplay": "character varying(100)",
+      "fullyQualifiedName": "demo_postgres.demo.raw.customers.name",
+      "name": "name",
+      "profile": {
+        "distinctCount": 368.0,
+        "distinctProportion": 0.368,
+        "firstQuartile": 4.0,
+        "interQuartileRange": 1.0,
+        "max": 6,
+        "mean": 4.518,
+        "median": 5.0,
+        "min": 3,
+        "name": "name",
+        "nonParametricSkew": -0.7387669456893872,
+        "nullCount": 0.0,
+        "nullProportion": 0.0,
+        "stddev": 0.6524385028491191,
+        "sum": 4518.0,
+        "thirdQuartile": 5.0,
+        "timestamp": 1785914938792,
+        "uniqueCount": 79.0,
+        "uniqueProportion": 0.079,
+        "valuesCount": 1000.0
+      },
+      "tags": []
+    },
+    {
+      "children": [],
+      "constraint": "NULL",
+      "dataLength": 255,
+      "dataType": "VARCHAR",
+      "dataTypeDisplay": "character varying(255)",
+      "fullyQualifiedName": "demo_postgres.demo.raw.customers.email",
+      "name": "email",
+      "profile": {
+        "distinctCount": 1000.0,
+        "distinctProportion": 1.0,
+        "firstQuartile": 20.0,
+        "interQuartileRange": 0.0,
+        "max": 20,
+        "mean": 20.0,
+        "median": 20.0,
+        "min": 20,
+        "name": "email",
+        "nullCount": 0.0,
+        "nullProportion": 0.0,
+        "stddev": 0.0,
+        "sum": 20000.0,
+        "thirdQuartile": 20.0,
+        "timestamp": 1785914938792,
+        "uniqueCount": 1000.0,
+        "uniqueProportion": 1.0,
+        "valuesCount": 1000.0
+      },
+      "tags": [
+        {
+          "appliedAt": "2026-08-05T07:27:22.000942Z",
+          "appliedBy": "admin",
+          "description": "Data that can be used to directly or indirectly identify a person.",
+          "labelType": "Manual",
+          "name": "Personal",
+          "source": "Classification",
+          "state": "Confirmed",
+          "tagFQN": "PersonalData.Personal"
+        }
+      ]
+    },
+    {
+      "children": [],
+      "constraint": "NULL",
+      "dataLength": 10,
+      "dataType": "VARCHAR",
+      "dataTypeDisplay": "character varying(10)",
+      "fullyQualifiedName": "demo_postgres.demo.raw.customers.prefecture",
+      "name": "prefecture",
+      "profile": {
+        "distinctCount": 47.0,
+        "distinctProportion": 0.047,
+        "firstQuartile": 3.0,
+        "interQuartileRange": 0.0,
+        "max": 4,
+        "mean": 3.055,
+        "median": 3.0,
+        "min": 3,
+        "name": "prefecture",
+        "nonParametricSkew": 0.24124895481858266,
+        "nullCount": 0.0,
+        "nullProportion": 0.0,
+        "stddev": 0.22798026230355994,
+        "sum": 3055.0,
+        "thirdQuartile": 3.0,
+        "timestamp": 1785914938792,
+        "uniqueCount": 0.0,
+        "uniqueProportion": 0.0,
+        "valuesCount": 1000.0
+      },
+      "tags": []
+    },
+    {
+      "children": [],
+      "constraint": "NULL",
+      "dataLength": 1,
+      "dataType": "TIMESTAMP",
+      "dataTypeDisplay": "timestamp without time zone",
+      "fullyQualifiedName": "demo_postgres.demo.raw.customers.created_at",
+      "name": "created_at",
+      "profile": {
+        "distinctCount": 1000.0,
+        "distinctProportion": 1.0,
+        "max": "2025-12-31T16:12:21",
+        "min": "2024-01-01T03:18:33",
+        "name": "created_at",
+        "nullCount": 0.0,
+        "nullProportion": 0.0,
+        "timestamp": 1785914939158,
+        "uniqueCount": 1000.0,
+        "uniqueProportion": 1.0,
+        "valuesCount": 1000.0
+      },
+      "tags": []
+    }
+  ],
+  "database": {
+    "deleted": false,
+    "displayName": "demo",
+    "fullyQualifiedName": "demo_postgres.demo",
+    "id": "db4524a7-1ae1-4f43-ba60-92354c5d59ec",
+    "name": "demo",
+    "type": "database"
+  },
+  "databaseSchema": {
+    "deleted": false,
+    "displayName": "raw",
+    "fullyQualifiedName": "demo_postgres.demo.raw",
+    "id": "e8bb1461-6b4e-4f90-a702-f85011b3596d",
+    "name": "raw",
+    "type": "databaseSchema"
+  },
+  "deleted": false,
+  "entityStatus": "Unprocessed",
+  "fullyQualifiedName": "demo_postgres.demo.raw.customers",
+  "id": "0bd22e08-de8a-4374-974f-732315396143",
+  "incrementalChangeDescription": {
+    "changeSummary": {},
+    "fieldsAdded": [
+      {
+        "name": "columns.email.tags",
+        "newValue": "[{\"tagFQN\":\"PersonalData.Personal\",\"name\":\"Personal\",\"description\":\"Data that can be used to directly or indirectly identify a person.\",\"source\":\"Classification\",\"labelType\":\"Manual\",\"state\":\"Confirmed\",\"appliedBy\":\"admin\"}]"
+      }
+    ],
+    "fieldsDeleted": [],
+    "fieldsUpdated": [],
+    "previousVersion": 0.1
+  },
+  "name": "customers",
+  "processedLineage": false,
+  "profile": {
+    "columnCount": 5.0,
+    "profileSampleType": "PERCENTAGE",
+    "rowCount": 1000.0,
+    "sizeInByte": 90112.0,
+    "timestamp": 1785914932664
+  },
+  "serviceType": "Postgres",
+  "sourceHash": "19647d2e15debc11af7d1261e514c940",
+  "tableConstraints": [],
+  "tableType": "Regular",
+  "updatedAt": 1785914842858,
+  "updatedBy": "admin",
+  "version": 0.2,
+  "votes": {
+    "downVoters": [],
+    "downVotes": 0,
+    "upVoters": [],
+    "upVotes": 0
+  }
+}

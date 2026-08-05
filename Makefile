@@ -3,9 +3,11 @@
 SHELL := /bin/bash
 COMPOSE := docker compose
 
-.PHONY: help setup build-tools up-base up-lineage down-lineage down clean-db seed \
+.PHONY: help setup build-tools up-base up-lineage down-lineage up-catalog down-catalog \
+        down clean-db seed \
         demo-quality-soda demo-quality-soda-ng demo-quality-gx demo-quality-gx-ng \
-        demo-lineage demo-lineage-fail
+        demo-lineage demo-lineage-fail \
+        demo-catalog-ingest demo-catalog-profile demo-catalog-lineage demo-catalog-drift
 
 help: ## このヘルプを表示
 	@grep -E '^[a-zA-Z_-]+:.*## ' $(MAKEFILE_LIST) | awk -F ':.*## ' '{printf "  %-24s %s\n", $$1, $$2}'
@@ -26,11 +28,17 @@ up-lineage: ## Marquez 一式(profile: lineage)を起動
 down-lineage: ## Marquez 一式のみ停止(データは保持)
 	$(COMPOSE) --profile lineage down
 
-down: ## 全サービス停止(データは保持)
-	$(COMPOSE) --profile base --profile tools --profile lineage down
+up-catalog: ## OpenMetadata 一式(profile: catalog)を起動
+	$(COMPOSE) --profile catalog up -d --wait
 
-clean-db: ## 全サービス停止 + DB データ削除
-	$(COMPOSE) --profile base --profile tools --profile lineage down -v
+down-catalog: ## OpenMetadata 一式のみ停止(データは保持)
+	$(COMPOSE) --profile catalog down
+
+down: ## 全サービス停止(データは保持)
+	$(COMPOSE) --profile base --profile tools --profile lineage --profile catalog down
+
+clean-db: ## 全サービス停止 + DB データ削除(OpenMetadata のカタログ内容も消える)
+	$(COMPOSE) --profile base --profile tools --profile lineage --profile catalog down -v
 
 seed: ## クリーンデータを DB に投入(raw→staging→mart)
 	$(COMPOSE) --profile base up -d --wait postgres-demo
@@ -56,3 +64,16 @@ demo-lineage: ## B-1 パイプライン実行 → Marquez でリネージュ確�
 
 demo-lineage-fail: ## B-2 失敗 Run の追跡(FAIL イベント検知 → 非0 終了)
 	scenarios/demo_lineage_fail.sh
+
+# --- 領域C: データカタログ(OpenMetadata)---
+demo-catalog-ingest: ## C-1 メタデータ取り込み → カタログ閲覧(正常系・exit 0)
+	scenarios/demo_catalog_ingest.sh
+
+demo-catalog-profile: ## C-2 プロファイリング + サンプルデータ格納(正常系・exit 0)
+	scenarios/demo_catalog_profile.sh
+
+demo-catalog-lineage: ## C-3 リネージュ(SQL 解析の自動導出 + API 手動登録)(正常系・exit 0)
+	scenarios/demo_catalog_lineage.sh
+
+demo-catalog-drift: ## C-4 スキーマ変更(列削除)の検知(異常系・非0 終了)
+	scenarios/demo_catalog_drift.sh

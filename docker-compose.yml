@@ -4,6 +4,29 @@
 #   tools   : ツール実行用 CLI コンテナ(常駐せず `docker compose run` で都度実行)
 #   lineage : Marquez 一式(フェーズ2で追加)
 #   catalog : OpenMetadata 一式(フェーズ3で追加)
+# OpenMetadata の migrate ワンショットと server で共通の設定値。
+# 値は公式リリースアセット docker-compose-postgres.yml(1.13.3-release)の既定値に
+# 合わせ、ホスト名のみ本 compose のサービス名に置換(build-log.md 参照)。
+# DB ユーザー等は om-postgresql イメージの initdb が作成する固定値(デモ専用)。
+x-om-env: &om-env
+  DB_DRIVER_CLASS: org.postgresql.Driver
+  DB_SCHEME: postgresql
+  DB_PARAMS: allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+  DB_USER: openmetadata_user
+  DB_USER_PASSWORD: openmetadata_password
+  DB_HOST: om-postgresql
+  DB_PORT: 5432
+  OM_DATABASE: openmetadata_db
+  SEARCH_TYPE: elasticsearch
+  ELASTICSEARCH_HOST: om-elasticsearch
+  ELASTICSEARCH_PORT: 9200
+  ELASTICSEARCH_SCHEME: http
+  AUTHENTICATION_PROVIDER: basic
+  AUTHORIZER_ADMIN_PRINCIPALS: "[admin]"
+  # Airflow ingestion コンテナは不採用(plan.md §3.4)のため無効化(公式既定は true)
+  PIPELINE_SERVICE_CLIENT_ENABLED: "false"
+  OPENMETADATA_HEAP_OPTS: -Xmx1G -Xms1G
+
 services:
   postgres-demo:
     image: postgres:16
@@ -25,7 +48,7 @@ services:
   tools:
     build:
       context: docker/tools
-    image: dgd-tools:phase2
+    image: dgd-tools:phase3
     profiles: ["tools"]
     environment:
       DEMO_DB_HOST: ${DEMO_DB_HOST:-postgres-demo}
@@ -95,6 +118,83 @@ services:
     depends_on:
       - marquez-api
 
+  # --- catalog profile: OpenMetadata 一式(plan.md §3.4、フェーズ3)---
+  # 構成は公式リリースアセット docker-compose-postgres.yml(1.13.3-release)準拠。
+  # Airflow ingestion コンテナは不採用(取り込みは tools から metadata CLI で実行)。
+  # OM 内部の DB・Elasticsearch はホストへポート公開しない(衝突回避。デモで直接触らない)。
+  om-postgresql:
+    image: docker.getcollate.io/openmetadata/postgresql:1.13.3
+    profiles: ["catalog"]
+    command: "--work_mem=10MB"
+    environment:
+      # イメージ同梱の initdb が openmetadata_db と openmetadata_user を作成する
+      # (固定値・デモ専用。公式 compose の既定値そのまま)
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - om-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: psql -U postgres -tAc 'select 1' -d openmetadata_db
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+  om-elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.3.0
+    profiles: ["catalog"]
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
+      - xpack.security.enabled=false
+    volumes:
+      - om-es-data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: "curl -s http://localhost:9200/_cluster/health?pretty | grep status | grep -qE 'green|yellow' || exit 1"
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+  # スキーマ移行のワンショット(完了後に om-server が起動する。公式構成どおり)
+  om-migrate:
+    image: docker.getcollate.io/openmetadata/server:1.13.3
+    profiles: ["catalog"]
+    command: "./bootstrap/openmetadata-ops.sh migrate"
+    environment:
+      <<: *om-env
+      MIGRATION_LIMIT_PARAM: 1200
+    depends_on:
+      om-postgresql:
+        condition: service_healthy
+      om-elasticsearch:
+        condition: service_healthy
+
+  om-server:
+    image: docker.getcollate.io/openmetadata/server:1.13.3
+    profiles: ["catalog"]
+    restart: always
+    environment:
+      <<: *om-env
+    ports:
+      - "${OM_SERVER_HOST_PORT:-8585}:8585"
+      - "${OM_ADMIN_HOST_PORT:-8586}:8586"
+    depends_on:
+      om-postgresql:
+        condition: service_healthy
+      om-elasticsearch:
+        condition: service_healthy
+      om-migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      # test は公式 compose のまま。公式は interval 等未指定(Docker 既定 30s×3回)だが、
+      # 初回起動が遅くても `up --wait` が失敗しないよう回数と start_period を延長
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8586/healthcheck"]
+      interval: 15s
+      timeout: 10s
+      retries: 40
+      start_period: 30s
+
 volumes:
   demo-db-data:
   marquez-db-data:
+  om-db-data:
+  om-es-data:
