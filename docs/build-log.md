@@ -751,3 +751,74 @@
   - `datacontract test` を v2 契約で実 DB に当てて失敗させる方式のみで代替 —
     「実データに当てる前に契約同士の比較で破壊的変更を検知する」という
     CI ゲートのデモ意図(PR 時点でのブロック)が薄れるため、D-4 の主役にはしない。
+
+### 設計判断: D-3(データ違反)は mart への専用注入 SQL で再現(フェーズ4、2026-08-05)
+
+- **判断**: `contracts/sql/inject_violation.sql` で mart.daily_sales に直接
+  「重複日付・負の売上合計・NULL の注文数」を注入し、D-2 と同じ契約でテストして
+  違反 5 件(重複2・NULL2・負値1)を検知させる(固定日付を使うため決定的)。
+- **理由**: フェーズ1の汚染データ(`--inject all`)が daily_sales にどう伝播するかを
+  実測したところ、raw 層の違反(負の単価・重複注文など)は日次集計で薄まり、
+  daily_sales 上は違反として観測できなかった(365 行・重複なし・最小日次売上 544,110 円 > 0)。
+  この実測は「品質チェック(raw の粒度)と契約(提供テーブルの粒度)の守備範囲の違い」
+  としてガイドに記載する。
+- **不採用の代替案**:
+  - `--inject all` の汚染をそのまま使う — 上記のとおり daily_sales では違反にならない。
+  - generate.py に新しい注入種別(NULL 注文日等)を追加 — `--inject all` の挙動が変わり、
+    フェーズ1(A-2/A-4)の検収済み出力例・証跡と不整合になるため不可。
+  - 契約の閾値を締めて(例: 日次売上上限)違反を作る — 恣意的な閾値になり教材として不自然。
+
+### 実測: slaProperties.retention は datacontract test が実際に検査する(フェーズ4、2026-08-05)
+
+- `datacontract test` はスキーマ・品質だけでなく SLA(retention)も検査する
+  (チェック名: `Retention of daily_sales.sales_date < <秒数>`。最古行の経過秒数と比較)。
+- 合成データの日付範囲は 2025-07-01〜2026-06-30 固定のため、retention 1 年では
+  経過 34,592,479 秒 > 31,536,000 秒で失敗した。**retention は 3 年に設定**
+  (2028-06 まで決定的に合格)。それ以降に再検証する場合はデータ再生成が必要な旨を
+  ガイドの既知の制約に記載する。
+
+### 設計判断: CI の静的検証は actionlint 1.7.12(フェーズ4、2026-08-05)
+
+- **判断**: `.github/workflows/contract.yml` の静的検証に公式イメージ
+  `rhysd/actionlint:1.7.12`(2026-03-30 時点の最新安定、Docker Hub で確認)を
+  タグ固定で使用し、D-5 シナリオに組み込む。
+- **理由**: actionlint は GitHub Actions ワークフローの事実上標準のリンタで、
+  構文だけでなく expression(`${{ }}`)や runner ラベルも検査できる。
+- **不採用の代替案**: Python での YAML パースのみ — 構文木しか見ず Actions 固有の
+  誤りを検出できない。`act --list` のみ — パース可否しか分からない。
+
+### act によるワークフロー実行検証(フェーズ4、2026-08-05)
+
+- 手段: act v0.2.89(nektos/act、GitHub Releases のバイナリ)+ ランナーイメージ
+  catthehacker/ubuntu:act-22.04。作業リポジトリを汚さないよう、一時領域に clone し、
+  **clone 内にローカルの bare リポジトリ(./.act-origin.git)を作って origin に設定**、
+  main(契約 v1)と pr-breaking(daily_sales.yaml を v2 内容で上書き)のブランチ構成で
+  pull_request イベント(base.ref=main)を再現した。ワークフローの
+  `git fetch origin` がローカル bare に対して動くため、GitHub なしで
+  ベースブランチ取得ステップまで含めて検証できる。
+- 結果(証跡: verification/phase4/act-*.log):
+  - 破壊的 PR(pr-breaking)→ contract-gate: **fail(act exit 1)**。
+    check_breaking.py が 3 件検知して step が失敗 = PR ブロック動作を確認。
+  - 正常 PR(契約変更なし)→ contract-gate: 成功(act exit 0)。
+  - contract-test(postgres:16 サービスコンテナ + pipeline seed + `datacontract ci`):
+    成功(act exit 0)。17 チェック pass。act の services サポートで完走した。
+- 未検証: GitHub 上での実実行(本環境の既知の制約。ガイド §5 に明記)。
+
+### フェーズ4 検証結果(2026-08-05)
+
+| コマンド | 期待 | 実測 |
+|---|---|---|
+| make demo-contract-export(D-1) | exit 0 | exit 0(lint pass、export 5 形式保存) |
+| make demo-contract-test(D-2) | exit 0 | exit 0(17 チェック全 pass。スキーマ+品質+SLA) |
+| make demo-contract-violation(D-3) | 非0 | exit 1(make 経由 2)。failed 5 件(重複2・欠損2・負値1) |
+| make demo-contract-breaking(D-4) | 非0 | exit 1(make 経由 2)。[BREAKING] 3 件 + 非破壊 1 件 |
+| make demo-contract-ci(D-5) | exit 0 | exit 0(actionlint 指摘0、正常 PR 相当 0 / 破壊 PR 相当 非0、ci 17 pass) |
+| make demo-contract-precommit(D-6) | 非0 | exit 1(make 経由 2)。フックがコミットをブロック、git 状態は自動復元 |
+| 回帰: demo-quality-soda / demo-lineage | exit 0 | いずれも exit 0(tools 再ビルドなし。phase1/2 証跡は git checkout で復元) |
+| verify-verbatim(contract.md) | 全一致 | **12/12 VERBATIM** |
+
+- 検知系 3 本の端末出力(make の Error 表示込み)を terminal-demo-contract-*.log に保存。
+- リソース実測: 常駐なし。datacontract/cli:1.1.0(約 277MB)と rhysd/actionlint:1.7.12
+  (約 20MB)を実行時のみ起動。
+- 既知の制約: 合成データの日付固定(2025-07-01 起点)により、契約の retention(3 年)検査は
+  **2028-07 以降に実行すると失敗する**(ガイド §8 に対処方法を記載)。

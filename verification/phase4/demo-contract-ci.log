@@ -1,0 +1,95 @@
+# 実行日時: 2026-08-05 18:23:05 JST
+# コマンドログ: verification/phase4/demo-contract-ci.log
+
+=== (a) ワークフロー YAML の静的検証(actionlint 1.7.12)===
+actionlint: 問題は検出されませんでした(exit 0)
+
+=== (b) ワークフローと同一コマンドのローカル実行 ===
+--- デモ用 DB(profile: base)を起動 ---
+ Container claude-demo-data-governance-postgres-demo-1  Running
+ Container claude-demo-data-governance-postgres-demo-1  Waiting
+ Container claude-demo-data-governance-postgres-demo-1  Healthy
+--- クリーンデータ(コミット済み seed CSV)を投入 ---
+=== step: seed ===
+[sql] 01_create_raw.sql を実行
+[seed] raw.customers: 1000 行
+[seed] raw.products: 200 行
+[seed] raw.orders: 5000 行
+[seed] raw.order_items: 12561 行
+=== step: build_staging ===
+[sql] 02_staging.sql を実行
+[build_staging] staging.stg_orders: 11927 行
+=== step: build_mart ===
+[sql] 03_mart.sql を実行
+[build_mart] mart.daily_sales: 365 行
+[build_mart] mart.customer_summary(ビュー): 1000 行
+パイプライン完了
+
+--- job: contract-gate / step: 契約の構文検証(lint)---
+╭────────┬──────────────────────────────────────┬───────┬─────────╮
+│ Result │ Check                                │ Field │ Details │
+├────────┼──────────────────────────────────────┼───────┼─────────┤
+│ passed │ Data contract is syntactically valid │       │         │
+╰────────┴──────────────────────────────────────┴───────┴─────────╯
+🟢 data contract is valid. Run 1 checks. Took 0.317815 seconds.
+
+--- job: contract-gate / step: 破壊的変更の判定(正常な PR 相当: 契約変更なし)---
+変更前: contracts/daily_sales.yaml (version: 1.0.0)
+変更後: contracts/daily_sales.yaml (version: 1.0.0)
+
+
+判定: 破壊的変更なし(非破壊的変更 0 件)
+→ exit 0(このジョブは成功し、PR はブロックされない)
+
+--- job: contract-gate / step: 破壊的変更の判定(破壊的変更を含む PR 相当: v1 → v2)---
+変更前: contracts/daily_sales.yaml (version: 1.0.0)
+変更後: contracts/daily_sales.v2-breaking.yaml (version: 2.0.0)
+
+[BREAKING] 列削除: daily_sales.order_count
+[BREAKING] 型変更: daily_sales.total_amount logicalType 'number' → 'integer'
+[BREAKING] 型変更: daily_sales.total_amount physicalType 'numeric' → 'integer'
+[OK]       列追加(非破壊): daily_sales.cancelled_count
+
+判定: 破壊的変更 3 件を検知(非破壊的変更 1 件)
+
+→ 期待どおり非0 終了(このジョブは fail し、PR がブロックされる)
+
+--- job: contract-test / step: 契約テスト(datacontract ci)---
+Testing contracts/daily_sales.yaml
+╭────────┬────────────────────────────────────────────┬──────────────┬─────────╮
+│ Result │ Check                                      │ Field        │ Details │
+├────────┼────────────────────────────────────────────┼──────────────┼─────────┤
+│ passed │ Check that model daily_sales has row_count │              │         │
+│        │ > 300                                      │              │         │
+│ passed │ Check that field 'order_count' is present  │ order_count  │         │
+│ passed │ Check that field order_count has physical  │ order_count  │         │
+│        │ type bigint                                │              │         │
+│ passed │ Check that field order_count has no        │ order_count  │         │
+│        │ missing values                             │              │         │
+│ passed │ Check that field order_count has           │ order_count  │         │
+│        │ missing_count = 0                          │              │         │
+│ passed │ Check that field 'sales_date' is present   │ sales_date   │         │
+│ passed │ Check that field sales_date has physical   │ sales_date   │         │
+│        │ type date                                  │              │         │
+│ passed │ Check that field sales_date has no missing │ sales_date   │         │
+│        │ values                                     │              │         │
+│ passed │ Check that unique field sales_date has no  │ sales_date   │         │
+│        │ duplicate values                           │              │         │
+│ passed │ Check that field sales_date has            │ sales_date   │         │
+│        │ missing_count = 0                          │              │         │
+│ passed │ Check that field sales_date has            │ sales_date   │         │
+│        │ duplicate_count = 0                        │              │         │
+│ passed │ Retention of daily_sales.sales_date <      │ sales_date   │         │
+│        │ 94608000s                                  │              │         │
+│ passed │ Check that field 'total_amount' is present │ total_amount │         │
+│ passed │ Check that field total_amount has physical │ total_amount │         │
+│        │ type numeric                               │              │         │
+│ passed │ Check that field total_amount has no       │ total_amount │         │
+│        │ missing values                             │              │         │
+│ passed │ Check that field total_amount has          │ total_amount │         │
+│        │ missing_count = 0                          │              │         │
+│ passed │ 売上合計が負の日は存在しないこと(消費者向… │ total_amount │         │
+╰────────┴────────────────────────────────────────────┴──────────────┴─────────╯
+🟢 data contract is valid. Run 17 checks. Took 1.672234 seconds.
+
+CI 検証結果: (a) 静的検証 OK、(b) ローカル等価実行 OK(exit 0)

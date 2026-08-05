@@ -1,0 +1,104 @@
+scenarios/demo_contract_violation.sh
+# 実行日時: 2026-08-05 18:22:45 JST
+# コマンドログ: verification/phase4/demo-contract-violation.log
+--- デモ用 DB(profile: base)を起動 ---
+ Container claude-demo-data-governance-postgres-demo-1  Running
+ Container claude-demo-data-governance-postgres-demo-1  Waiting
+ Container claude-demo-data-governance-postgres-demo-1  Healthy
+--- クリーンデータ(コミット済み seed CSV)を投入 ---
+=== step: seed ===
+[sql] 01_create_raw.sql を実行
+[seed] raw.customers: 1000 行
+[seed] raw.products: 200 行
+[seed] raw.orders: 5000 行
+[seed] raw.order_items: 12561 行
+=== step: build_staging ===
+[sql] 02_staging.sql を実行
+[build_staging] staging.stg_orders: 11927 行
+=== step: build_mart ===
+[sql] 03_mart.sql を実行
+[build_mart] mart.daily_sales: 365 行
+[build_mart] mart.customer_summary(ビュー): 1000 行
+パイプライン完了
+
+--- 契約違反を注入(contracts/sql/inject_violation.sql)---
+    違反1: 重複日付 / 違反2: 負の売上合計 / 違反3: NULL の注文数
+INSERT 0 1
+UPDATE 1
+UPDATE 1
+
+=== D-2 と同じ契約でテスト(違反を検知するはず)===
+Testing contracts/daily_sales.yaml
+Written json test results to verification/phase4/test-results-violation.json
+Server: local (type=postgres, host=postgres-demo, port=5432, database=demo, 
+schema=mart)
+╭────────┬──────────────────────────┬──────────────┬───────────────────────────╮
+│ Result │ Check                    │ Field        │ Details                   │
+├────────┼──────────────────────────┼──────────────┼───────────────────────────┤
+│ failed │ Check that field         │ order_count  │ Actual                    │
+│        │ order_count has no       │              │ missing_count(order_coun… │
+│        │ missing values           │              │ was 1, expected = 0       │
+│ failed │ Check that field         │ order_count  │ Actual                    │
+│        │ order_count has          │              │ missing_count(order_coun… │
+│        │ missing_count = 0        │              │ was 1, expected = 0       │
+│ failed │ Check that unique field  │ sales_date   │ Actual                    │
+│        │ sales_date has no        │              │ duplicate_count(sales_da… │
+│        │ duplicate values         │              │ was 1, expected = 0       │
+│ failed │ Check that field         │ sales_date   │ Actual                    │
+│        │ sales_date has           │              │ duplicate_count(sales_da… │
+│        │ duplicate_count = 0      │              │ was 1, expected = 0       │
+│ failed │ 売上合計が負の日は存在 … │ total_amount │ Actual                    │
+│        │                          │              │ custom_sql(total_amount)  │
+│        │                          │              │ was 1, expected = 0       │
+│ passed │ Check that model         │              │                           │
+│        │ daily_sales has          │              │                           │
+│        │ row_count > 300          │              │                           │
+│ passed │ Check that field         │ order_count  │                           │
+│        │ 'order_count' is present │              │                           │
+│ passed │ Check that field         │ order_count  │                           │
+│        │ order_count has physical │              │                           │
+│        │ type bigint              │              │                           │
+│ passed │ Check that field         │ sales_date   │                           │
+│        │ 'sales_date' is present  │              │                           │
+│ passed │ Check that field         │ sales_date   │                           │
+│        │ sales_date has physical  │              │                           │
+│        │ type date                │              │                           │
+│ passed │ Check that field         │ sales_date   │                           │
+│        │ sales_date has no        │              │                           │
+│        │ missing values           │              │                           │
+│ passed │ Check that field         │ sales_date   │                           │
+│        │ sales_date has           │              │                           │
+│        │ missing_count = 0        │              │                           │
+│ passed │ Retention of             │ sales_date   │                           │
+│        │ daily_sales.sales_date < │              │                           │
+│        │ 94608000s                │              │                           │
+│ passed │ Check that field         │ total_amount │                           │
+│        │ 'total_amount' is        │              │                           │
+│        │ present                  │              │                           │
+│ passed │ Check that field         │ total_amount │                           │
+│        │ total_amount has         │              │                           │
+│        │ physical type numeric    │              │                           │
+│ passed │ Check that field         │ total_amount │                           │
+│        │ total_amount has no      │              │                           │
+│        │ missing values           │              │                           │
+│ passed │ Check that field         │ total_amount │                           │
+│        │ total_amount has         │              │                           │
+│        │ missing_count = 0        │              │                           │
+╰────────┴──────────────────────────┴──────────────┴───────────────────────────╯
+🔴 data contract is invalid, found the following errors:
+1) sales_date Check that unique field sales_date has no duplicate values: Actual
+duplicate_count(sales_date) was 1, expected = 0
+2) sales_date Check that field sales_date has duplicate_count = 0: Actual 
+duplicate_count(sales_date) was 1, expected = 0
+3) order_count Check that field order_count has no missing values: Actual 
+missing_count(order_count) was 1, expected = 0
+4) order_count Check that field order_count has missing_count = 0: Actual 
+missing_count(order_count) was 1, expected = 0
+5) total_amount 売上合計が負の日は存在しないこと(消費者向けの業務的な保証): 
+Actual custom_sql(total_amount) was 1, expected = 0
+
+[証跡] verification/phase4/test-results-violation.json(テスト結果の JSON)
+
+datacontract 結果: 契約違反を検知(exit 1)
+(mart.daily_sales は汚染されたままです。復旧するには make seed を実行してください)
+make: *** [Makefile:92: demo-contract-violation] Error 1

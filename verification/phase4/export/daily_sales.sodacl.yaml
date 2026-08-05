@@ -1,0 +1,57 @@
+checks for daily_sales:
+- schema:
+    fail:
+      when required column missing:
+      - sales_date
+    name: daily_sales__sales_date__field_is_present
+- schema:
+    fail:
+      when wrong column type:
+        sales_date: date
+    name: daily_sales__sales_date__field_type
+- missing_count(sales_date) = 0:
+    name: daily_sales__sales_date__field_required
+- duplicate_count(sales_date) = 0:
+    name: daily_sales__sales_date__field_unique
+- missing_count(sales_date) = 0:
+    name: daily_sales__sales_date__field_null_values
+- duplicate_count(sales_date) = 0:
+    name: daily_sales__sales_date__field_duplicate_values
+- schema:
+    fail:
+      when required column missing:
+      - order_count
+    name: daily_sales__order_count__field_is_present
+- schema:
+    fail:
+      when wrong column type:
+        order_count: bigint
+    name: daily_sales__order_count__field_type
+- missing_count(order_count) = 0:
+    name: daily_sales__order_count__field_required
+- missing_count(order_count) = 0:
+    name: daily_sales__order_count__field_null_values
+- schema:
+    fail:
+      when required column missing:
+      - total_amount
+    name: daily_sales__total_amount__field_is_present
+- schema:
+    fail:
+      when wrong column type:
+        total_amount: numeric
+    name: daily_sales__total_amount__field_type
+- missing_count(total_amount) = 0:
+    name: daily_sales__total_amount__field_required
+- missing_count(total_amount) = 0:
+    name: daily_sales__total_amount__field_null_values
+- daily_sales__total_amount__quality_sql_1 = 0:
+    daily_sales__total_amount__quality_sql_1 query: SELECT COUNT(*) FROM daily_sales
+      WHERE total_amount < 0
+    name: daily_sales__total_amount__quality_sql_1
+- row_count > 300:
+    name: daily_sales__row_count
+- daily_sales_servicelevel_retention < 94608000:
+    daily_sales_servicelevel_retention expression: TIMESTAMPDIFF(SECOND, MIN(sales_date),
+      CURRENT_TIMESTAMP)
+    name: servicelevel_retention

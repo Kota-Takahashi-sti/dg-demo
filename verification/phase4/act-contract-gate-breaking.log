@@ -1,0 +1,290 @@
+time="2026-08-05T18:14:40+09:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ] ⭐ Run Set up job
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ] 🚀  Start image=catthehacker/ubuntu:act-22.04
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   🐳  docker pull image=catthehacker/ubuntu:act-22.04 platform= username= forcePull=true
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   🐳  docker create image=catthehacker/ubuntu:act-22.04 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   🐳  docker run image=catthehacker/ubuntu:act-22.04 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ✅  Success - Set up job
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ] ⭐ Run Main actions/checkout@v4
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   🐳  docker cp src=/tmp/claude-1000/-home-ko-takahashi-claude-claude-demo-tmp-claude-demo-data-governance/688f0a9a-32bf-4b52-9987-b3db56c7801b/scratchpad/act-repo/. dst=/tmp/claude-1000/-home-ko-takahashi-claude-claude-demo-tmp-claude-demo-data-governance/688f0a9a-32bf-4b52-9987-b3db56c7801b/scratchpad/act-repo
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ✅  Success - Main actions/checkout@v4 [244.25109ms]
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ] ⭐ Run Main actions/setup-python@v5
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   🐳  docker cp src=/home/ko-takahashi/.cache/act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.18.1/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ❓  ::group::Installed versions
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Version 3.11 was not found in the local cache
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | (node:31) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Version 3.11 is available for downloading
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Download from "https://github.com/actions/python-versions/releases/download/3.11.15-27649667267/python-3.11.15-linux-22.04-x64.tar.gz"
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Extract downloaded archive
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /tmp/1ae9c741-54cd-4da7-8bc7-b5e8e21a8922 -f /tmp/538a3724-5db2-4723-b8bf-f9c021a8957a
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Execute installation script
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Check if Python hostedtoolcache folder exist...
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Creating Python hostedtoolcache folder...
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Create Python 3.11.15 folder
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Copy Python binaries to hostedtoolcache folder
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Upgrading pip...
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting pip
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 12.0 MB/s eta 0:00:00
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | 
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Installing collected packages: pip
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Attempting uninstall: pip
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Found existing installation: pip 24.0
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Uninstalling pip-24.0:
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Successfully uninstalled pip-24.0
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Successfully installed pip-26.2.1
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Create complete file
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Successfully set up CPython (3.11.15)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ❓  ::endgroup::
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ✅  Success - Main actions/setup-python@v5 [20.354196923s]
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.15/x64
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.15/x64
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.11.15/x64/lib
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.11.15/x64
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.15/x64
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ⚙  ::set-output:: python-version=3.11.15
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.11.15/x64/bin/python
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.15/x64
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.15/x64/bin
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ] ⭐ Run Main datacontract-cli をインストール(バージョン固定)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting datacontract-cli==1.1.0
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading datacontract_cli-1.1.0-py3-none-any.whl.metadata (29 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting typer<0.28,>=0.18.0 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading typer-0.27.1-py3-none-any.whl.metadata (16 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting click<9.0.0,>=8.1.0 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading click-8.4.2-py3-none-any.whl.metadata (2.6 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting pydantic<2.14.0,>=2.8.2 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading pydantic-2.13.4-py3-none-any.whl.metadata (109 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting pydantic-settings<3.0.0,>=2.5.0 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading pydantic_settings-2.14.2-py3-none-any.whl.metadata (3.4 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting pyyaml~=6.0.1 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting ruamel.yaml<0.20,>=0.17 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading ruamel_yaml-0.19.1-py3-none-any.whl.metadata (16 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting requests<2.35,>=2.31 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting truststore<1.0,>=0.10 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading truststore-0.10.4-py3-none-any.whl.metadata (4.4 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting fastjsonschema<2.23.0,>=2.19.1 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading fastjsonschema-2.22.1-py3-none-any.whl.metadata (2.1 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting jsonschema<5.0.0,>=4.23.0 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting pytz>=2024.1 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading pytz-2026.3.post1-py2.py3-none-any.whl.metadata (22 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting python-multipart<1.0.0,>=0.0.20 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting rich<16.0,>=13.7 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting sqlglot<31.0.0,>=26.6.0 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading sqlglot-30.15.0-py3-none-any.whl.metadata (25 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting python-dotenv<2.0.0,>=1.0.0 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading python_dotenv-1.2.2-py3-none-any.whl.metadata (27 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting boto3<2.0.0,>=1.34.41 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading boto3-1.43.64-py3-none-any.whl.metadata (6.6 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting Jinja2<4.0.0,>=3.1.5 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting jinja_partials<1.0.0,>=0.2.1 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading jinja_partials-0.3.2-py3-none-any.whl.metadata (8.8 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting datacontract-specification<2.0.0,>=1.2.3 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading datacontract_specification-1.2.3-py3-none-any.whl.metadata (3.2 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting open-data-contract-standard<4.0.0,>=3.1.2 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading open_data_contract_standard-3.1.2-py3-none-any.whl.metadata (3.0 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting deepdiff<10.0.0,>=6.0.0 (from datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading deepdiff-9.1.0-py3-none-any.whl.metadata (8.4 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting botocore<1.44.0,>=1.43.64 (from boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading botocore-1.43.64-py3-none-any.whl.metadata (5.6 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting jmespath<2.0.0,>=0.7.1 (from boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading jmespath-1.1.0-py3-none-any.whl.metadata (7.6 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting s3transfer<0.20.0,>=0.19.0 (from boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading s3transfer-0.19.2-py3-none-any.whl.metadata (1.7 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting python-dateutil<3.0.0,>=2.1 (from botocore<1.44.0,>=1.43.64->boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting urllib3!=2.2.0,<3,>=1.25.4 (from botocore<1.44.0,>=1.43.64->boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting cachebox<6,>=5.2 (from deepdiff<10.0.0,>=6.0.0->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading cachebox-5.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (27 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting orderly-set<6,>=5.5.0 (from deepdiff<10.0.0,>=6.0.0->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading orderly_set-5.5.0-py3-none-any.whl.metadata (6.6 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting MarkupSafe>=2.0 (from Jinja2<4.0.0,>=3.1.5->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting attrs>=22.2.0 (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting jsonschema-specifications>=2023.03.6 (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting referencing>=0.28.4 (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting rpds-py>=0.25.0 (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting annotated-types>=0.6.0 (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting pydantic-core==2.46.4 (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting typing-extensions>=4.14.1 (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting typing-inspection>=0.4.2 (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting six>=1.5 (from python-dateutil<3.0.0,>=2.1->botocore<1.44.0,>=1.43.64->boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting charset_normalizer<4,>=2 (from requests<2.35,>=2.31->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (41 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting idna<4,>=2.5 (from requests<2.35,>=2.31->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting certifi>=2023.5.7 (from requests<2.35,>=2.31->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting markdown-it-py>=2.2.0 (from rich<16.0,>=13.7->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting pygments<3.0.0,>=2.13.0 (from rich<16.0,>=13.7->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting shellingham>=1.3.0 (from typer<0.28,>=0.18.0->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting annotated-doc>=0.0.2 (from typer<0.28,>=0.18.0->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich<16.0,>=13.7->datacontract-cli==1.1.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading datacontract_cli-1.1.0-py3-none-any.whl (3.1 MB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.1/3.1 MB 25.7 MB/s  0:00:00
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading boto3-1.43.64-py3-none-any.whl (140 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading botocore-1.43.64-py3-none-any.whl (15.5 MB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.5/15.5 MB 21.3 MB/s  0:00:00
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading click-8.4.2-py3-none-any.whl (119 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading datacontract_specification-1.2.3-py3-none-any.whl (15 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading deepdiff-9.1.0-py3-none-any.whl (184 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading cachebox-5.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (395 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading fastjsonschema-2.22.1-py3-none-any.whl (26 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading jinja_partials-0.3.2-py3-none-any.whl (9.3 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading jmespath-1.1.0-py3-none-any.whl (20 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading open_data_contract_standard-3.1.2-py3-none-any.whl (17 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading orderly_set-5.5.0-py3-none-any.whl (13 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading pydantic-2.13.4-py3-none-any.whl (472 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 14.5 MB/s  0:00:00
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading pydantic_settings-2.14.2-py3-none-any.whl (61 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading python_dotenv-1.2.2-py3-none-any.whl (22 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 14.8 MB/s  0:00:00
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (221 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading idna-3.18-py3-none-any.whl (65 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading pygments-2.20.0-py3-none-any.whl (1.2 MB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 16.8 MB/s  0:00:00
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading ruamel_yaml-0.19.1-py3-none-any.whl (118 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading s3transfer-0.19.2-py3-none-any.whl (90 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading sqlglot-30.15.0-py3-none-any.whl (731 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 731.8/731.8 kB 15.0 MB/s  0:00:00
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading truststore-0.10.4-py3-none-any.whl (18 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading typer-0.27.1-py3-none-any.whl (122 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading pytz-2026.3.post1-py2.py3-none-any.whl (508 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Installing collected packages: pytz, urllib3, typing-extensions, truststore, sqlglot, six, shellingham, ruamel.yaml, rpds-py, pyyaml, python-multipart, python-dotenv, pygments, orderly-set, mdurl, MarkupSafe, jmespath, idna, fastjsonschema, click, charset_normalizer, certifi, cachebox, attrs, annotated-types, annotated-doc, typing-inspection, requests, referencing, python-dateutil, pydantic-core, markdown-it-py, Jinja2, deepdiff, rich, pydantic, jsonschema-specifications, jinja_partials, botocore, typer, s3transfer, pydantic-settings, open-data-contract-standard, jsonschema, datacontract-specification, boto3, datacontract-cli
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | 
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Successfully installed Jinja2-3.1.6 MarkupSafe-3.0.3 annotated-doc-0.0.5 annotated-types-0.8.0 attrs-26.1.0 boto3-1.43.64 botocore-1.43.64 cachebox-5.2.3 certifi-2026.7.22 charset_normalizer-3.4.9 click-8.4.2 datacontract-cli-1.1.0 datacontract-specification-1.2.3 deepdiff-9.1.0 fastjsonschema-2.22.1 idna-3.18 jinja_partials-0.3.2 jmespath-1.1.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 markdown-it-py-4.2.0 mdurl-0.1.2 open-data-contract-standard-3.1.2 orderly-set-5.5.0 pydantic-2.13.4 pydantic-core-2.46.4 pydantic-settings-2.14.2 pygments-2.20.0 python-dateutil-2.9.0.post0 python-dotenv-1.2.2 python-multipart-0.0.32 pytz-2026.3.post1 pyyaml-6.0.3 referencing-0.37.0 requests-2.34.2 rich-15.0.0 rpds-py-2026.6.3 ruamel.yaml-0.19.1 s3transfer-0.19.2 shellingham-1.5.4 six-1.17.0 sqlglot-30.15.0 truststore-0.10.4 typer-0.27.1 typing-extensions-4.16.0 typing-inspection-0.4.2 urllib3-2.7.0
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ✅  Success - Main datacontract-cli をインストール(バージョン固定) [16.660182525s]
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ] ⭐ Run Main 契約の構文検証(lint)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | ╭────────┬──────────────────────────────────────┬───────┬─────────╮
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Result │ Check                                │ Field │ Details │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | ├────────┼──────────────────────────────────────┼───────┼─────────┤
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ passed │ Data contract is syntactically valid │       │         │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | ╰────────┴──────────────────────────────────────┴───────┴─────────╯
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | 🟢 data contract is valid. Run 1 checks. Took 0.245181 seconds.
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ✅  Success - Main 契約の構文検証(lint) [1.330497831s]
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ] ⭐ Run Main ベースブランチ版の契約を取得
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | From ./.act-origin
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   |  * branch            main       -> FETCH_HEAD
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ✅  Success - Main ベースブランチ版の契約を取得 [115.830748ms]
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ] ⭐ Run Main 変更内容の表示(datacontract changelog は参考表示・常に exit 0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Summary
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | [ 1 Added ]  [ 4 Updated ]  [ 1 Removed ]
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | ╭─────────┬───────────────────────────────────────────────╮
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Change  │ Field                                         │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | ├─────────┼───────────────────────────────────────────────┤
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Updated │ description                                   │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Added   │ schema.daily_sales.properties.cancelled_count │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Removed │ schema.daily_sales.properties.order_count     │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Updated │ schema.daily_sales.properties.total_amount    │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Updated │ status                                        │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Updated │ version                                       │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | ╰─────────┴───────────────────────────────────────────────╯
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | 
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | Details
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | ╭─────────┬─────────────────────────────────────────────────────────────────────────┬────────────────────────────────┬────────────────────────────────╮
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Change  │ Path                                                                    │ Old Value                      │ New Value                      │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | ├─────────┼─────────────────────────────────────────────────────────────────────────┼────────────────────────────────┼────────────────────────────────┤
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Updated │ description.purpose                                                     │ 日次の売上金額と注文数を BI    │ 日次の売上金額を BI            │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │         │                                                                         │ ダッシュボード・経営レポート … │ ダッシュボード・経営レポート … │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │         │                                                                         │ 生産者はデータエンジニアリン … │ では格納効率のため金額を整数 … │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Updated │ description.usage                                                       │ 日次売上・注文数の推移の可視 … │ 日次売上の推移の可視化。sales… │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │         │                                                                         │ 単位の集計値としてそのまま利 … │ 単位の集計値としてそのまま利 … │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Added   │ schema.daily_sales.properties.cancelled_count                           │                                │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Added   │ schema.daily_sales.properties.cancelled_count.description               │                                │ その日のキャンセル注文数(v2  … │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Added   │ schema.daily_sales.properties.cancelled_count.logicalType               │                                │ integer                        │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Added   │ schema.daily_sales.properties.cancelled_count.physicalType              │                                │ bigint                         │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Added   │ schema.daily_sales.properties.cancelled_count.required                  │                                │ False                          │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Removed │ schema.daily_sales.properties.order_count                               │                                │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Removed │ schema.daily_sales.properties.order_count.description                   │ その日の注文数(order_id の di… │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │         │                                                                         │ カウント)                      │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Removed │ schema.daily_sales.properties.order_count.logicalType                   │ integer                        │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Removed │ schema.daily_sales.properties.order_count.physicalType                  │ bigint                         │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Removed │ schema.daily_sales.properties.order_count.quality                       │                                │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Removed │ schema.daily_sales.properties.order_count.quality.__pos_0__             │                                │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Removed │ schema.daily_sales.properties.order_count.quality.__pos_0__.description │ 注文数が NULL の行は存在しな … │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Removed │ schema.daily_sales.properties.order_count.quality.__pos_0__.id          │ order_count_no_nulls           │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Removed │ schema.daily_sales.properties.order_count.quality.__pos_0__.metric      │ nullValues                     │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Removed │ schema.daily_sales.properties.order_count.quality.__pos_0__.mustBe      │ 0                              │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Removed │ schema.daily_sales.properties.order_count.required                      │ True                           │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Updated │ schema.daily_sales.properties.total_amount.description                  │ その日の売上合計(quantity × u… │ その日の売上合計(v2 で整数円 … │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │         │                                                                         │ の合計)                        │                                │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Updated │ schema.daily_sales.properties.total_amount.logicalType                  │ number                         │ integer                        │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Updated │ schema.daily_sales.properties.total_amount.physicalType                 │ numeric                        │ integer                        │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Updated │ status                                                                  │ active                         │ proposed                       │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | │ Updated │ version                                                                 │ 1.0.0                          │ 2.0.0                          │
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | ╰─────────┴─────────────────────────────────────────────────────────────────────────┴────────────────────────────────┴────────────────────────────────╯
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ✅  Success - Main 変更内容の表示(datacontract changelog は参考表示・常に exit 0) [1.668674202s]
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ] ⭐ Run Main 破壊的変更の判定(検知したら fail = PR をブロック)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/6] user= workdir=
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | 変更前: /tmp/base_contract.yaml (version: 1.0.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | 変更後: contracts/daily_sales.yaml (version: 2.0.0)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | 
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | [BREAKING] 列削除: daily_sales.order_count
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | [BREAKING] 型変更: daily_sales.total_amount logicalType 'number' → 'integer'
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | [BREAKING] 型変更: daily_sales.total_amount physicalType 'numeric' → 'integer'
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | [OK]       列追加(非破壊): daily_sales.cancelled_count
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | 
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   | 判定: 破壊的変更 3 件を検知(非破壊的変更 1 件)
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ❌  Failure - Main 破壊的変更の判定(検知したら fail = PR をブロック) [177.164874ms]
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ] exitcode '1': failure
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ] ⭐ Run Complete job
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ]   ✅  Success - Complete job
+[data-contract-ci/契約の構文検証と破壊的変更ゲート                                ] 🏁  Job failed
+Error: Job '契約の構文検証と破壊的変更ゲート' failed

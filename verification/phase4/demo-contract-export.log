@@ -1,0 +1,33 @@
+# 実行日時: 2026-08-05 18:22:09 JST
+# コマンドログ: verification/phase4/demo-contract-export.log
+
+=== datacontract-cli 1.1.0: 契約の構文検証(lint)===
+╭────────┬──────────────────────────────────────┬───────┬─────────╮
+│ Result │ Check                                │ Field │ Details │
+├────────┼──────────────────────────────────────┼───────┼─────────┤
+│ passed │ Data contract is syntactically valid │       │         │
+╰────────┴──────────────────────────────────────┴───────┴─────────╯
+🟢 data contract is valid. Run 1 checks. Took 0.319554 seconds.
+
+=== 契約を利害関係者向けの形式に変換(export)===
+Written result to verification/phase4/export/daily_sales.html
+[証跡] verification/phase4/export/daily_sales.html(ブラウザで開ける契約仕様書)
+Written result to verification/phase4/export/daily_sales.mmd
+[証跡] verification/phase4/export/daily_sales.mmd(ER 図。以下に内容を表示)
+erDiagram
+	"**daily_sales**" {
+	sales_date🔑🔒 date
+	order_count integer
+	total_amount number
+}
+
+Written result to verification/phase4/export/daily_sales.md
+[証跡] verification/phase4/export/daily_sales.md(Markdown 形式の契約仕様書)
+
+=== 契約から品質チェック定義を導出(領域Aとのつながり)===
+Written result to verification/phase4/export/daily_sales.sodacl.yaml
+[証跡] verification/phase4/export/daily_sales.sodacl.yaml(SodaCL 形式。Soda Core 3.x 系の記法)
+Written result to verification/phase4/export/daily_sales.gx.json
+[証跡] verification/phase4/export/daily_sales.gx.json(Great Expectations の Expectation Suite)
+
+datacontract 結果: 契約の可視化 5 形式を保存(exit 0)

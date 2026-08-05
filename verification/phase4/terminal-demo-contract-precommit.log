@@ -1,0 +1,26 @@
+scenarios/demo_contract_precommit.sh
+# 実行日時: 2026-08-05 18:23:18 JST
+# コマンドログ: verification/phase4/demo-contract-precommit.log
+
+--- pre-commit フックを導入(make install-contract-hook と同じ内容)---
+導入先: .git/hooks/pre-commit
+
+--- 破壊的変更(v2)で契約を上書きし、コミットを試みる ---
+
+[contract-gate] contracts/daily_sales.yaml を HEAD 版と比較します
+変更前: .contract-gate.PwNTMI/old_daily_sales.yaml (version: 1.0.0)
+変更後: .contract-gate.PwNTMI/new_daily_sales.yaml (version: 2.0.0)
+
+[BREAKING] 列削除: daily_sales.order_count
+[BREAKING] 型変更: daily_sales.total_amount logicalType 'number' → 'integer'
+[BREAKING] 型変更: daily_sales.total_amount physicalType 'numeric' → 'integer'
+[OK]       列追加(非破壊): daily_sales.cancelled_count
+
+判定: 破壊的変更 3 件を検知(非破壊的変更 1 件)
+
+[contract-gate] 破壊的変更を検知したため、コミットをブロックしました。
+[contract-gate] 消費者と合意済みで進める場合のみ git commit --no-verify で回避できます。
+
+→ pre-commit フックが破壊的変更を検知し、コミットをブロックしました(検知成功)
+(契約ファイル・ステージ・フックは自動で元に戻します)
+make: *** [Makefile:101: demo-contract-precommit] Error 1

@@ -8,13 +8,34 @@
 | 1 | 基盤 + データ品質(Soda Core / GX) | 完了報告済み | 合格(フェーズ2指示により承認とみなす) |
 | 2 | リネージュ(OpenLineage / Marquez) | 完了報告済み | 合格(フェーズ3指示により承認とみなす) |
 | 3 | カタログ(OpenMetadata) | 完了報告済み | 合格(2026-08-05。main へマージ済み) |
-| 4 | コントラクト(datacontract-cli / CI) | 未着手 | - |
+| 4 | コントラクト(datacontract-cli / CI) | 完了報告済み | - |
 | 5 | ドキュメント統合・通し検証 | 未着手 | - |
 
 状態: 未着手 / 作業中 / 完了報告済み / 差し戻し対応中
 検収: - / 合格 / 差し戻し
 
 ## 現在のフェーズの詳細タスク
+
+フェーズ4(2026-08-05 完了報告。ブランチ: phase4):
+- [x] 公式ドキュメント調査(datacontract-cli **1.1.0**(2026-08-04 リリース)を採用、
+      ODCS v3.1.0。1.0.17 → 1.1.0 の差分確認・シェルレス化の影響検証。build-log.md 参照)
+- [x] compose に contract profile(公式イメージ datacontract/cli:1.1.0、都度実行、
+      uid は .env の DC_UID/DC_GID(既定 1000))。**tools イメージの再ビルドなし**
+      (判定スクリプトはイメージ同梱 Python で実行)
+- [x] contracts/(daily_sales.yaml v1 / daily_sales.v2-breaking.yaml /
+      check_breaking.py(自作破壊的変更判定)/ sql/inject_violation.sql / hooks/pre-commit)
+- [x] シナリオ 6 本 + Make ターゲット(D-1 export / D-2 test / D-3 violation /
+      D-4 breaking / D-5 ci / D-6 precommit + install-contract-hook)
+- [x] .github/workflows/contract.yml(contract-gate + contract-test の 2 ジョブ)。
+      検証: (a) actionlint 1.7.12 指摘0、(b) 同一コマンドのローカル実行、
+      (c) act v0.2.89 で 3 ケース実行(破壊的 PR → gate fail / 正常 PR → 成功 /
+      contract-test(postgres サービス込み)→ 成功)。GitHub 上の実実行のみ未検証(既知の制約)
+- [x] 全デモ動作確認(D-1/D-2/D-5 exit 0、D-3/D-4/D-6 非0)+ 品質・リネージュ回帰 exit 0。
+      証跡 verification/phase4/(ログ6 + 端末ログ6 + act 3 + JSON 2 + changelog + export 5)
+- [x] docs/guides/contract.md(手順・CI 確認ポイントと検証範囲・長所短所(品質/カタログとの
+      守備範囲の違い、D-3 の「raw 汚染は集計で薄まる」実測を含む)・トラブルシュート。
+      出力例の機械検証 **12/12 VERBATIM**)
+- [x] PROGRESS.md / build-log.md 更新・完了報告
 
 フェーズ3(2026-08-05 完了報告。ブランチ: phase3):
 - [x] 公式ドキュメント調査(OM 1.13.3 リリースアセット compose、openmetadata-ingestion
@@ -87,8 +108,8 @@
 
 ## 次にやること(セッション再開時はここから)
 
-- **フェーズ3 検収合格(2026-08-05)。フェーズ4 の指示待ち。**
-- フェーズ4(コントラクト: datacontract-cli 1.0.17 / ODCS v3.1.0)。
-  contracts/(v1・v2-breaking)、test/export/changelog + 自作 breaking 判定、
-  .github/workflows/contract.yml(静的検証 + ローカル等価実行。plan.md §4 領域D・R1・R8)。
+- **フェーズ4 完了報告済み(2026-08-05。ブランチ: phase4)。検収待ち。**
+- 検収合格後: phase4 を main へマージ → フェーズ5(ドキュメント統合・通し検証)の指示待ち。
+- 差し戻しの場合: 指摘対応後に demo 再実行 + verify-verbatim 再実行
+  (build-log.md「フェーズ4 検証結果」参照)。
 

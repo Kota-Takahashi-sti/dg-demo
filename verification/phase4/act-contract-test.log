@@ -1,0 +1,232 @@
+time="2026-08-05T18:18:25+09:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] ⭐ Run Set up job
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] 🚀  Start image=catthehacker/ubuntu:act-22.04
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker pull image=postgres:16 platform= username= forcePull=true
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker pull image=catthehacker/ubuntu:act-22.04 platform= username= forcePull=true
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] Cleaning up services for job 実データベースへの契約テスト(datacontract ci)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] Cleaning up network for job 実データベースへの契約テスト(datacontract ci), and network name is: act-data-contract-ci--------datacontract-ci-73af6a2be6a88dd7cbfbe0d314711ac7e257f26213164d3610bce854ac9c352d-contract-test-network
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker pull image=postgres:16 platform= username= forcePull=false
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker create image=postgres:16 platform= entrypoint=[] cmd=[] network="act-data-contract-ci--------datacontract-ci-73af6a2be6a88dd7cbfbe0d314711ac7e257f26213164d3610bce854ac9c352d-contract-test-network"
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker run image=postgres:16 platform= entrypoint=[] cmd=[] network="act-data-contract-ci--------datacontract-ci-73af6a2be6a88dd7cbfbe0d314711ac7e257f26213164d3610bce854ac9c352d-contract-test-network"
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker create image=catthehacker/ubuntu:act-22.04 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker run image=catthehacker/ubuntu:act-22.04 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] container health of b54696cf3e0126085b764ff85403eb5c459d9bdd7125a70ea7d53547cdc283ee (postgres:16) is starting
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] container health of b54696cf3e0126085b764ff85403eb5c459d9bdd7125a70ea7d53547cdc283ee (postgres:16) is starting
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] container health of b54696cf3e0126085b764ff85403eb5c459d9bdd7125a70ea7d53547cdc283ee (postgres:16) is starting
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] container health of b54696cf3e0126085b764ff85403eb5c459d9bdd7125a70ea7d53547cdc283ee (postgres:16) is healthy
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ✅  Success - Set up job
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v5
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] ⭐ Run Main actions/checkout@v4
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker cp src=/tmp/claude-1000/-home-ko-takahashi-claude-claude-demo-tmp-claude-demo-data-governance/688f0a9a-32bf-4b52-9987-b3db56c7801b/scratchpad/act-repo/. dst=/tmp/claude-1000/-home-ko-takahashi-claude-claude-demo-tmp-claude-demo-data-governance/688f0a9a-32bf-4b52-9987-b3db56c7801b/scratchpad/act-repo
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ✅  Success - Main actions/checkout@v4 [179.096804ms]
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] ⭐ Run Main actions/setup-python@v5
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker cp src=/home/ko-takahashi/.cache/act/actions-setup-python@v5/ dst=/var/run/act/actions/actions-setup-python@v5/
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.18.1/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/setup/index.js] user= workdir=
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ❓  ::group::Installed versions
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | (node:30) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Successfully set up CPython (3.11.15)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ❓  ::endgroup::
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ❓ add-matcher /run/act/actions/actions-setup-python@v5/.github/python.json
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ✅  Success - Main actions/setup-python@v5 [653.592616ms]
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.15/x64
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.15/x64
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.11.15/x64
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.11.15/x64/lib
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.11.15/x64
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ⚙  ::set-output:: python-version=3.11.15
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.11.15/x64/bin/python
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.15/x64
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.11.15/x64/bin
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] ⭐ Run Main 依存をインストール(バージョン固定)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: datacontract-cli==1.1.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli[postgres]==1.1.0) (1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Collecting psycopg2-binary==2.9.10
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |   Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: typer<0.28,>=0.18.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (0.27.1)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: click<9.0.0,>=8.1.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (8.4.2)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: pydantic<2.14.0,>=2.8.2 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (2.13.4)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: pydantic-settings<3.0.0,>=2.5.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (2.14.2)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: pyyaml~=6.0.1 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (6.0.3)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: ruamel.yaml<0.20,>=0.17 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (0.19.1)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: requests<2.35,>=2.31 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (2.34.2)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: truststore<1.0,>=0.10 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (0.10.4)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: fastjsonschema<2.23.0,>=2.19.1 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (2.22.1)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: jsonschema<5.0.0,>=4.23.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (4.26.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: pytz>=2024.1 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (2026.3.post1)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: python-multipart<1.0.0,>=0.0.20 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (0.0.32)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: rich<16.0,>=13.7 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (15.0.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: sqlglot<31.0.0,>=26.6.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (30.15.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: python-dotenv<2.0.0,>=1.0.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (1.2.2)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: boto3<2.0.0,>=1.34.41 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (1.43.64)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: Jinja2<4.0.0,>=3.1.5 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (3.1.6)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: jinja_partials<1.0.0,>=0.2.1 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (0.3.2)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: datacontract-specification<2.0.0,>=1.2.3 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (1.2.3)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: open-data-contract-standard<4.0.0,>=3.1.2 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (3.1.2)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: deepdiff<10.0.0,>=6.0.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (9.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Collecting ibis-framework<13.0.0,>=10.0.0 (from ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |   Downloading ibis_framework-12.0.0-py3-none-any.whl.metadata (21 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Collecting psycopg<4.0,>=3.1 (from psycopg[binary]<4.0,>=3.1; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |   Downloading psycopg-3.3.4-py3-none-any.whl.metadata (4.3 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Collecting packaging<27.0,>=21.3 (from datacontract-cli[postgres]==1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: botocore<1.44.0,>=1.43.64 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (1.43.64)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: jmespath<2.0.0,>=0.7.1 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: s3transfer<0.20.0,>=0.19.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (0.19.2)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from botocore<1.44.0,>=1.43.64->boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (2.9.0.post0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: urllib3!=2.2.0,<3,>=1.25.4 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from botocore<1.44.0,>=1.43.64->boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (2.7.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: cachebox<6,>=5.2 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from deepdiff<10.0.0,>=6.0.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (5.2.3)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: orderly-set<6,>=5.5.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from deepdiff<10.0.0,>=6.0.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (5.5.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Collecting atpublic>=2.3 (from ibis-framework<13.0.0,>=10.0.0->ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |   Downloading atpublic-7.0.0-py3-none-any.whl.metadata (2.0 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Collecting parsy>=2 (from ibis-framework<13.0.0,>=10.0.0->ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |   Downloading parsy-2.2-py3-none-any.whl.metadata (3.7 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Collecting toolz>=0.11 (from ibis-framework<13.0.0,>=10.0.0->ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |   Downloading toolz-1.1.0-py3-none-any.whl.metadata (5.1 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: typing-extensions>=4.3.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from ibis-framework<13.0.0,>=10.0.0->ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0) (4.16.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Collecting tzdata>=2022.7 (from ibis-framework<13.0.0,>=10.0.0->ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |   Downloading tzdata-2026.3-py2.py3-none-any.whl.metadata (1.4 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Collecting numpy<3,>=1.23.2 (from ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |   Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Collecting pandas<4,>=1.5.3 (from ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |   Downloading pandas-3.0.5-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (79 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Collecting pyarrow-hotfix>=0.4 (from ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |   Downloading pyarrow_hotfix-0.7-py3-none-any.whl.metadata (3.6 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Collecting pyarrow>=10.0.1 (from ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |   Downloading pyarrow-25.0.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: MarkupSafe>=2.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from Jinja2<4.0.0,>=3.1.5->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (3.0.3)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: attrs>=22.2.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (26.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (2025.9.1)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: referencing>=0.28.4 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (0.37.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: rpds-py>=0.25.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (2026.6.3)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Collecting psycopg-binary==3.3.4 (from psycopg[binary]<4.0,>=3.1; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |   Downloading psycopg_binary-3.3.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.7 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: annotated-types>=0.6.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (0.8.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: pydantic-core==2.46.4 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (2.46.4)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: typing-inspection>=0.4.2 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (0.4.2)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: six>=1.5 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from python-dateutil<3.0.0,>=2.1->botocore<1.44.0,>=1.43.64->boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (1.17.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: charset_normalizer<4,>=2 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from requests<2.35,>=2.31->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (3.4.9)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: idna<4,>=2.5 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from requests<2.35,>=2.31->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (3.18)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: certifi>=2023.5.7 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from requests<2.35,>=2.31->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (2026.7.22)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: markdown-it-py>=2.2.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from rich<16.0,>=13.7->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (4.2.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from rich<16.0,>=13.7->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (2.20.0)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: shellingham>=1.3.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from typer<0.28,>=0.18.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (1.5.4)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: annotated-doc>=0.0.2 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from typer<0.28,>=0.18.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (0.0.5)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Requirement already satisfied: mdurl~=0.1 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from markdown-it-py>=2.2.0->rich<16.0,>=13.7->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0) (0.1.2)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 20.8 MB/s  0:00:00
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Downloading ibis_framework-12.0.0-py3-none-any.whl (2.1 MB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 20.9 MB/s  0:00:00
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 22.8 MB/s  0:00:00
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Downloading packaging-26.3-py3-none-any.whl (129 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Downloading pandas-3.0.5-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (11.3 MB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.3/11.3 MB 22.2 MB/s  0:00:00
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Downloading psycopg-3.3.4-py3-none-any.whl (213 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Downloading psycopg_binary-3.3.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.2 MB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 22.1 MB/s  0:00:00
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Downloading atpublic-7.0.0-py3-none-any.whl (6.4 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Downloading parsy-2.2-py3-none-any.whl (9.5 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Downloading pyarrow-25.0.0-cp311-cp311-manylinux_2_28_x86_64.whl (50.1 MB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   |    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 50.1/50.1 MB 19.7 MB/s  0:00:02
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Downloading pyarrow_hotfix-0.7-py3-none-any.whl (7.9 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Downloading toolz-1.1.0-py3-none-any.whl (58 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Downloading tzdata-2026.3-py2.py3-none-any.whl (348 kB)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Installing collected packages: tzdata, toolz, pyarrow-hotfix, pyarrow, psycopg2-binary, psycopg-binary, psycopg, parsy, packaging, numpy, atpublic, pandas, ibis-framework
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | 
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Successfully installed atpublic-7.0.0 ibis-framework-12.0.0 numpy-2.4.6 packaging-26.3 pandas-3.0.5 parsy-2.2 psycopg-3.3.4 psycopg-binary-3.3.4 psycopg2-binary-2.9.10 pyarrow-25.0.0 pyarrow-hotfix-0.7 toolz-1.1.0 tzdata-2026.3
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ✅  Success - Main 依存をインストール(バージョン固定) [24.882109035s]
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] ⭐ Run Main サンプルデータを構築(raw→staging→mart)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | === step: seed ===
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | [sql] 01_create_raw.sql を実行
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | [seed] raw.customers: 1000 行
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | [seed] raw.products: 200 行
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | [seed] raw.orders: 5000 行
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | [seed] raw.order_items: 12561 行
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | === step: build_staging ===
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | [sql] 02_staging.sql を実行
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | [build_staging] staging.stg_orders: 11927 行
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | === step: build_mart ===
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | [sql] 03_mart.sql を実行
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | [build_mart] mart.daily_sales: 365 行
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | [build_mart] mart.customer_summary(ビュー): 1000 行
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | パイプライン完了
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ✅  Success - Main サンプルデータを構築(raw→staging→mart) [361.157734ms]
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] ⭐ Run Main 契約テスト(datacontract ci、違反でジョブが fail)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | Testing contracts/daily_sales.yaml
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | ╭────────┬────────────────────────────────────────────┬──────────────┬─────────╮
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ Result │ Check                                      │ Field        │ Details │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | ├────────┼────────────────────────────────────────────┼──────────────┼─────────┤
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that model daily_sales has row_count │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │        │ > 300                                      │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that field 'order_count' is present  │ order_count  │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that field order_count has physical  │ order_count  │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │        │ type bigint                                │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that field order_count has no        │ order_count  │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │        │ missing values                             │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that field order_count has           │ order_count  │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │        │ missing_count = 0                          │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that field 'sales_date' is present   │ sales_date   │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that field sales_date has physical   │ sales_date   │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │        │ type date                                  │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that field sales_date has no missing │ sales_date   │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │        │ values                                     │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that unique field sales_date has no  │ sales_date   │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │        │ duplicate values                           │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that field sales_date has            │ sales_date   │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │        │ missing_count = 0                          │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that field sales_date has            │ sales_date   │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │        │ duplicate_count = 0                        │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Retention of daily_sales.sales_date <      │ sales_date   │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │        │ 94608000s                                  │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that field 'total_amount' is present │ total_amount │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that field total_amount has physical │ total_amount │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │        │ type numeric                               │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that field total_amount has no       │ total_amount │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │        │ missing values                             │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ Check that field total_amount has          │ total_amount │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │        │ missing_count = 0                          │              │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | │ passed │ 売上合計が負の日は存在しないこと(消費者向… │ total_amount │         │
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | ╰────────┴────────────────────────────────────────────┴──────────────┴─────────╯
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | 🟢 data contract is valid. Run 17 checks. Took 1.68997 seconds.
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ✅  Success - Main 契約テスト(datacontract ci、違反でジョブが fail) [3.164880277s]
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ⚙  Summary - ## Data Contract CI: contracts/daily_sales.yaml
+
+**Result: 🟢 passed** | 17 checks | 17 passed | 0 failed | 0 warnings | 0 errors | 1.7s
+
+| Result | Check | Field | Details |
+|--------|-------|-------|---------|
+| passed | Check that model daily_sales has row_count > 300 |  |  |
+| passed | Check that field 'order_count' is present | order_count |  |
+| passed | Check that field order_count has physical type bigint | order_count |  |
+| passed | Check that field order_count has no missing values | order_count |  |
+| passed | Check that field order_count has missing_count = 0 | order_count |  |
+| passed | Check that field 'sales_date' is present | sales_date |  |
+| passed | Check that field sales_date has physical type date | sales_date |  |
+| passed | Check that field sales_date has no missing values | sales_date |  |
+| passed | Check that unique field sales_date has no duplicate values | sales_date |  |
+| passed | Check that field sales_date has missing_count = 0 | sales_date |  |
+| passed | Check that field sales_date has duplicate_count = 0 | sales_date |  |
+| passed | Retention of daily_sales.sales_date < 94608000s | sales_date |  |
+| passed | Check that field 'total_amount' is present | total_amount |  |
+| passed | Check that field total_amount has physical type numeric | total_amount |  |
+| passed | Check that field total_amount has no missing values | total_amount |  |
+| passed | Check that field total_amount has missing_count = 0 | total_amount |  |
+| passed | 売上合計が負の日は存在しないこと(消費者向けの業務的な保証) | total_amount |  |
+
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] ⭐ Run Post actions/setup-python@v5
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   🐳  docker exec cmd=[/opt/acttoolcache/node/24.18.1/x64/bin/node /var/run/act/actions/actions-setup-python@v5/dist/cache-save/index.js] user= workdir=
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | (node:89) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   | (Use `node --trace-deprecation ...` to show where the warning was created)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ✅  Success - Post actions/setup-python@v5 [247.396913ms]
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] ⭐ Run Complete job
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] Cleaning up container for job 実データベースへの契約テスト(datacontract ci)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] Cleaning up services for job 実データベースへの契約テスト(datacontract ci)
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] Cleaning up network for job 実データベースへの契約テスト(datacontract ci), and network name is: act-data-contract-ci--------datacontract-ci-73af6a2be6a88dd7cbfbe0d314711ac7e257f26213164d3610bce854ac9c352d-contract-test-network
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ]   ✅  Success - Complete job
+[data-contract-ci/実データベースへの契約テスト(datacontract ci)                            ] 🏁  Job succeeded

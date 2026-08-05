@@ -1,0 +1,48 @@
+{
+  "name": "daily_sales.1.0.0",
+  "expectations": [
+    {
+      "type": "expect_table_columns_to_match_ordered_list",
+      "kwargs": {
+        "column_list": [
+          "sales_date",
+          "order_count",
+          "total_amount"
+        ]
+      },
+      "meta": {}
+    },
+    {
+      "type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "sales_date",
+        "type_": "date"
+      },
+      "meta": {}
+    },
+    {
+      "type": "expect_column_values_to_be_unique",
+      "kwargs": {
+        "column": "sales_date"
+      },
+      "meta": {}
+    },
+    {
+      "type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "order_count",
+        "type_": "bigint"
+      },
+      "meta": {}
+    },
+    {
+      "type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "total_amount",
+        "type_": "numeric"
+      },
+      "meta": {}
+    }
+  ],
+  "meta": {}
+}
