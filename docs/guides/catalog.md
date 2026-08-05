@@ -77,7 +77,7 @@ $ make up-catalog
 om-server の順に healthcheck を待ちながら起動します。
 
 - **初回起動の実測時間: まっさらな状態から約 3〜6 分**(検証環境での複数回の実測は
-  186〜360 秒。`verification/phase3/resource-usage.log` 参照。イメージ pull が未了の
+  186〜366 秒。`verification/phase3/resource-usage.log` 参照。イメージ pull が未了の
   場合はさらにかかります)。2 回目以降は移行が省略され短くなります。
 - 起動完了後のメモリ実測(検証環境): om-server 約 1.0 GiB、om-elasticsearch 約 1.8 GiB、
   om-postgresql 約 0.15 GiB(合計約 2.9 GiB)。`verification/phase3/resource-usage.log` 参照。
@@ -202,23 +202,24 @@ $ make demo-catalog-profile
 プロファイラ(C-2a)が行数・欠損率・最小最大などの統計を計算し、
 自動分類ワークフロー(C-2b)が各テーブルのサンプル行を格納します。
 
-プロファイラの要約出力(実測。108 レコード = 9 オブジェクト × テーブル+各列の統計):
+プロファイラの要約出力(実測。タイムスタンプ・所要時間は実行ごとに変わります。
+108 レコード = 9 オブジェクト × テーブル+各列の統計):
 
 ```text
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Workflow Profiler Summary:
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Processed records: 108
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Updated records: 0
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Warnings: 0
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Errors: 0
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Success %: 100.0
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Workflow OpenMetadata Summary:
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Processed records: 6
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Updated records: 0
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Warnings: 0
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Errors: 0
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Success %: 100.0
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Workflow Success %: 100.0
-[2026-08-05 07:29:32] INFO     {metadata.Utils:logger:222} - Workflow finished in time: 41s 233.007ms
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Workflow Profiler Summary:
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Processed records: 108
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Updated records: 0
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Warnings: 0
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Errors: 0
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Success %: 100.0
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Workflow OpenMetadata Summary:
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Processed records: 6
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Updated records: 0
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Warnings: 0
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Errors: 0
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Success %: 100.0
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Workflow Success %: 100.0
+[2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Workflow finished in time: 35s 088.794ms
 ```
 
 成功の目印(画面の最後):
@@ -228,7 +229,8 @@ $ make demo-catalog-profile
 ```
 
 証跡として保存した API レスポンス(`verification/phase3/api-profile-customers.json`)には
-行数・列統計が入っています(抜粋):
+行数・列統計が入っています(抜粋。`timestamp` はプロファイル取得時刻のため実行ごとに
+変わります):
 
 ```json
   "profile": {
@@ -236,7 +238,7 @@ $ make demo-catalog-profile
     "profileSampleType": "PERCENTAGE",
     "rowCount": 1000.0,
     "sizeInByte": 90112.0,
-    "timestamp": 1785914932664
+    "timestamp": 1785917690731
   },
 ```
 
@@ -412,6 +414,11 @@ $ make demo-catalog-ingest   # カタログへ再反映
 | api-drift-versions-before.json / -after.json | C-4 前後のバージョン履歴 |
 | resource-usage.log | 起動時間・メモリ実測 |
 | ui/*.png | UI スクリーンショット(各節の「実測」参照) |
+
+このほか、フェーズ3 構築時の回帰確認(品質・リネージュ領域のデモが tools イメージ
+更新後も動くことの確認)で取得した demo-quality-*.log / demo-lineage.log /
+clean-db.log / down-lineage.log も同じディレクトリに置いています(本ガイドの
+手順からは生成されません)。
 
 ## 8. トラブルシューティング(カタログ領域)
 

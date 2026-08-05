@@ -3,12 +3,12 @@
     "changeSummary": {
       "description": {
         "changeSource": "Manual",
-        "changedAt": 1785914845459,
+        "changedAt": 1785916717852,
         "changedBy": "admin"
       },
       "owners": {
         "changeSource": "Manual",
-        "changedAt": 1785914845459,
+        "changedAt": 1785916717852,
         "changedBy": "admin"
       }
     },
@@ -19,7 +19,7 @@
       },
       {
         "name": "owners",
-        "newValue": "[{\"id\":\"a5705758-86e9-408e-9802-15f3325d74ff\",\"type\":\"user\",\"name\":\"admin\",\"fullyQualifiedName\":\"admin\",\"displayName\":\"admin\",\"deleted\":false}]"
+        "newValue": "[{\"id\":\"4702aab5-f047-44d5-a416-b24d34e29507\",\"type\":\"user\",\"name\":\"admin\",\"fullyQualifiedName\":\"admin\",\"displayName\":\"admin\",\"deleted\":false}]"
       },
       {
         "name": "columns.total_amount.tags",
@@ -47,7 +47,7 @@
         "name": "sales_date",
         "nullCount": 0.0,
         "nullProportion": 0.0,
-        "timestamp": 1785914942277,
+        "timestamp": 1785917698970,
         "uniqueCount": 365.0,
         "uniqueProportion": 1.0,
         "valuesCount": 365.0
@@ -78,7 +78,7 @@
         "stddev": 3.7368858701806094,
         "sum": 4742.0,
         "thirdQuartile": 15.0,
-        "timestamp": 1785914942631,
+        "timestamp": 1785917698970,
         "uniqueCount": 2.0,
         "uniqueProportion": 0.005479452054794521,
         "valuesCount": 365.0
@@ -109,14 +109,14 @@
         "stddev": 885683.7927372,
         "sum": 965916840.0,
         "thirdQuartile": 3197360.0,
-        "timestamp": 1785914942631,
+        "timestamp": 1785917699313,
         "uniqueCount": 365.0,
         "uniqueProportion": 1.0,
         "valuesCount": 365.0
       },
       "tags": [
         {
-          "appliedAt": "2026-08-05T07:27:25.000527Z",
+          "appliedAt": "2026-08-05T07:58:37.000953Z",
           "appliedBy": "admin",
           "description": "税抜の受注金額合計。キャンセル済み注文(status&#61;cancelled)は含まない。",
           "displayName": "売上金額",
@@ -133,7 +133,7 @@
     "deleted": false,
     "displayName": "demo",
     "fullyQualifiedName": "demo_postgres.demo",
-    "id": "db4524a7-1ae1-4f43-ba60-92354c5d59ec",
+    "id": "9dda2e84-99e4-43f0-9b75-0e7f0cf2a26e",
     "name": "demo",
     "type": "database"
   },
@@ -141,7 +141,7 @@
     "deleted": false,
     "displayName": "mart",
     "fullyQualifiedName": "demo_postgres.demo.mart",
-    "id": "4ef504e0-091a-4194-9f57-1b61c68cdb36",
+    "id": "6bb948e3-b45c-42ec-b53a-2f7eb9e6e8c0",
     "name": "mart",
     "type": "databaseSchema"
   },
@@ -149,17 +149,17 @@
   "description": "日次売上集計テーブル。staging.stg_orders を日付で集計して作成される(フェーズ4 のデータコントラクトの対象)。",
   "entityStatus": "Unprocessed",
   "fullyQualifiedName": "demo_postgres.demo.mart.daily_sales",
-  "id": "67f77477-3824-4afe-88ae-9ccbce19d846",
+  "id": "629601f0-0282-4bf7-983d-f3b36293a1c1",
   "incrementalChangeDescription": {
     "changeSummary": {
       "description": {
         "changeSource": "Manual",
-        "changedAt": 1785914842001,
+        "changedAt": 1785916712551,
         "changedBy": "admin"
       },
       "owners": {
         "changeSource": "Manual",
-        "changedAt": 1785914842001,
+        "changedAt": 1785916712551,
         "changedBy": "admin"
       }
     },
@@ -180,13 +180,13 @@
     "profileSampleType": "PERCENTAGE",
     "rowCount": 365.0,
     "sizeInByte": 40960.0,
-    "timestamp": 1785914939486
+    "timestamp": 1785917696082
   },
   "serviceType": "Postgres",
   "sourceHash": "1ae8ed80920829097d6a999f35c3dd82",
   "tableConstraints": [],
   "tableType": "Regular",
-  "updatedAt": 1785914845459,
+  "updatedAt": 1785916717852,
   "updatedBy": "admin",
   "version": 0.2,
   "votes": {

@@ -26,6 +26,6 @@ save_om_api verification/phase3/api-profile-customers.json profile demo_postgres
 save_om_api verification/phase3/api-profile-daily-sales.json profile demo_postgres.demo.mart.daily_sales
 
 echo
-echo "OpenMetadata UI: 各テーブルの Profiler & Data Quality タブと Sample Data タブで"
+echo "OpenMetadata UI: 各テーブルの Data Observability タブと Sample Data タブで"
 echo "行数・欠損率・分布とサンプル行を確認できます。"
 echo "プロファイリングデモ結果: 成功(exit 0)"

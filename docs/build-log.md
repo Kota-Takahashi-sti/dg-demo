@@ -671,3 +671,21 @@
   ログ保存先が verification/phase1・phase2 固定のため検収済み証跡が上書きされる。
   今回は git checkout で復元し、回帰の証跡は verification/phase3/ にコピーを保存した
   (仕様としては「再実行すればログが再生成される」挙動であり検収時も同様)。
+
+### 検収シミュレーション(acceptance-checker)と事前対応(フェーズ3、2026-08-05)
+
+- 完了報告前に acceptance-checker エージェントで検収を模擬: make clean-db 後、
+  docs/guides/catalog.md の手順のみで §3→C-1→C-2→C-3→C-4 を再現。
+  **判定: 合格**(ガイド外の操作ゼロ、成功の目印すべて一致、C-4 非0、
+  ERROR は pg_stat_statements のみ、UI の主張は API と整合)。
+- 指摘された軽微な改善点に事前対応:
+  1. §4.2 の出力例 2 ブロック(プロファイラ要約・profile JSON)に
+     「タイムスタンプ・所要時間・timestamp は実行ごとに変わる」注記を追加
+     (§4.1 には既存。フェーズ1差し戻しと同類型のため予防対応)。
+  2. C-2 シナリオ末尾の UI 案内文言を実 UI に合わせ修正
+     (「Profiler & Data Quality タブ」→「Data Observability タブ」)。
+     C-2 を再実行してログ・API 証跡を再生成し、ガイド §4.2 の出力例を貼り直し。
+  3. §7 に「本ガイドの手順からは生成されない補助ログ(回帰確認の証跡)」の説明を追加。
+  4. 起動時間の実測レンジに検収シミュレーション時の 366 秒を追加
+     (ガイド・resource-usage.log とも 186〜366 秒に更新)。
+- 対応後に verify-verbatim を再実行: **10/10 VERBATIM**。

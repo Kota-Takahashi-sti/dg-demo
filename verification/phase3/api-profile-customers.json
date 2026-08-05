@@ -15,11 +15,13 @@
     {
       "children": [],
       "constraint": "NULL",
+      "customMetrics": [],
       "dataLength": 1,
       "dataType": "INT",
       "dataTypeDisplay": "integer",
       "fullyQualifiedName": "demo_postgres.demo.raw.customers.customer_id",
       "name": "customer_id",
+      "ordinalPosition": 1,
       "profile": {
         "distinctCount": 1000.0,
         "distinctProportion": 1.0,
@@ -36,7 +38,7 @@
         "stddev": 288.67499025721,
         "sum": 500500.0,
         "thirdQuartile": 750.25,
-        "timestamp": 1785914938792,
+        "timestamp": 1785917695618,
         "uniqueCount": 1000.0,
         "uniqueProportion": 1.0,
         "valuesCount": 1000.0
@@ -46,11 +48,13 @@
     {
       "children": [],
       "constraint": "NULL",
+      "customMetrics": [],
       "dataLength": 100,
       "dataType": "VARCHAR",
       "dataTypeDisplay": "character varying(100)",
       "fullyQualifiedName": "demo_postgres.demo.raw.customers.name",
       "name": "name",
+      "ordinalPosition": 2,
       "profile": {
         "distinctCount": 368.0,
         "distinctProportion": 0.368,
@@ -67,7 +71,7 @@
         "stddev": 0.6524385028491191,
         "sum": 4518.0,
         "thirdQuartile": 5.0,
-        "timestamp": 1785914938792,
+        "timestamp": 1785917695618,
         "uniqueCount": 79.0,
         "uniqueProportion": 0.079,
         "valuesCount": 1000.0
@@ -77,11 +81,13 @@
     {
       "children": [],
       "constraint": "NULL",
+      "customMetrics": [],
       "dataLength": 255,
       "dataType": "VARCHAR",
       "dataTypeDisplay": "character varying(255)",
       "fullyQualifiedName": "demo_postgres.demo.raw.customers.email",
       "name": "email",
+      "ordinalPosition": 3,
       "profile": {
         "distinctCount": 1000.0,
         "distinctProportion": 1.0,
@@ -97,14 +103,14 @@
         "stddev": 0.0,
         "sum": 20000.0,
         "thirdQuartile": 20.0,
-        "timestamp": 1785914938792,
+        "timestamp": 1785917695619,
         "uniqueCount": 1000.0,
         "uniqueProportion": 1.0,
         "valuesCount": 1000.0
       },
       "tags": [
         {
-          "appliedAt": "2026-08-05T07:27:22.000942Z",
+          "appliedAt": "2026-08-05T07:58:34.000021Z",
           "appliedBy": "admin",
           "description": "Data that can be used to directly or indirectly identify a person.",
           "labelType": "Manual",
@@ -123,6 +129,7 @@
       "dataTypeDisplay": "character varying(10)",
       "fullyQualifiedName": "demo_postgres.demo.raw.customers.prefecture",
       "name": "prefecture",
+      "ordinalPosition": 4,
       "profile": {
         "distinctCount": 47.0,
         "distinctProportion": 0.047,
@@ -139,7 +146,7 @@
         "stddev": 0.22798026230355994,
         "sum": 3055.0,
         "thirdQuartile": 3.0,
-        "timestamp": 1785914938792,
+        "timestamp": 1785917695620,
         "uniqueCount": 0.0,
         "uniqueProportion": 0.0,
         "valuesCount": 1000.0
@@ -149,11 +156,13 @@
     {
       "children": [],
       "constraint": "NULL",
+      "customMetrics": [],
       "dataLength": 1,
       "dataType": "TIMESTAMP",
       "dataTypeDisplay": "timestamp without time zone",
       "fullyQualifiedName": "demo_postgres.demo.raw.customers.created_at",
       "name": "created_at",
+      "ordinalPosition": 5,
       "profile": {
         "distinctCount": 1000.0,
         "distinctProportion": 1.0,
@@ -162,7 +171,7 @@
         "name": "created_at",
         "nullCount": 0.0,
         "nullProportion": 0.0,
-        "timestamp": 1785914939158,
+        "timestamp": 1785917695918,
         "uniqueCount": 1000.0,
         "uniqueProportion": 1.0,
         "valuesCount": 1000.0
@@ -174,7 +183,7 @@
     "deleted": false,
     "displayName": "demo",
     "fullyQualifiedName": "demo_postgres.demo",
-    "id": "db4524a7-1ae1-4f43-ba60-92354c5d59ec",
+    "id": "9dda2e84-99e4-43f0-9b75-0e7f0cf2a26e",
     "name": "demo",
     "type": "database"
   },
@@ -182,25 +191,25 @@
     "deleted": false,
     "displayName": "raw",
     "fullyQualifiedName": "demo_postgres.demo.raw",
-    "id": "e8bb1461-6b4e-4f90-a702-f85011b3596d",
+    "id": "090eb149-f590-4715-90f5-bcd699a92638",
     "name": "raw",
     "type": "databaseSchema"
   },
   "deleted": false,
   "entityStatus": "Unprocessed",
   "fullyQualifiedName": "demo_postgres.demo.raw.customers",
-  "id": "0bd22e08-de8a-4374-974f-732315396143",
+  "id": "f6ca985b-9fc3-46e9-9f30-837aad5d5b6d",
   "incrementalChangeDescription": {
     "changeSummary": {},
     "fieldsAdded": [
       {
-        "name": "columns.email.tags",
-        "newValue": "[{\"tagFQN\":\"PersonalData.Personal\",\"name\":\"Personal\",\"description\":\"Data that can be used to directly or indirectly identify a person.\",\"source\":\"Classification\",\"labelType\":\"Manual\",\"state\":\"Confirmed\",\"appliedBy\":\"admin\"}]"
+        "name": "columns",
+        "newValue": "[{\"name\":\"prefecture\",\"dataType\":\"VARCHAR\",\"dataLength\":10,\"dataTypeDisplay\":\"character varying(10)\",\"fullyQualifiedName\":\"demo_postgres.demo.raw.customers.prefecture\",\"tags\":[],\"constraint\":\"NULL\",\"ordinalPosition\":4,\"children\":[]}]"
       }
     ],
     "fieldsDeleted": [],
     "fieldsUpdated": [],
-    "previousVersion": 0.1
+    "previousVersion": 1.2
   },
   "name": "customers",
   "processedLineage": false,
@@ -209,13 +218,13 @@
     "profileSampleType": "PERCENTAGE",
     "rowCount": 1000.0,
     "sizeInByte": 90112.0,
-    "timestamp": 1785914932664
+    "timestamp": 1785917690731
   },
   "serviceType": "Postgres",
   "sourceHash": "19647d2e15debc11af7d1261e514c940",
   "tableConstraints": [],
   "tableType": "Regular",
-  "updatedAt": 1785914842858,
+  "updatedAt": 1785916713909,
   "updatedBy": "admin",
   "version": 0.2,
   "votes": {
