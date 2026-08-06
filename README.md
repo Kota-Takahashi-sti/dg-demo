@@ -7,10 +7,10 @@
 
 | 領域 | 製品 | ガイド | デモ |
 |---|---|---|---|
-| A. データ品質 | Soda Core 4.19.0 / Great Expectations 1.19.1(比較) | [docs/guides/quality.md](docs/guides/quality.md) | A-1〜A-4 |
-| B. データリネージュ | OpenLineage 1.52.0 + Marquez 0.51.1 | [docs/guides/lineage.md](docs/guides/lineage.md) | B-1〜B-2 |
-| C. データカタログ | OpenMetadata 1.13.3 | [docs/guides/catalog.md](docs/guides/catalog.md) | C-1〜C-4 |
-| D. データコントラクト | datacontract-cli 1.1.0(ODCS v3.1.0)+ GitHub Actions | [docs/guides/contract.md](docs/guides/contract.md) | D-1〜D-6 |
+| A. データ品質 | Soda Core 4.19.0 / Great Expectations 1.19.1(比較) | [docs/guides/A-quality.md](docs/guides/A-quality.md) | A-1〜A-4 |
+| B. データリネージュ | OpenLineage 1.52.0 + Marquez 0.51.1 | [docs/guides/B-lineage.md](docs/guides/B-lineage.md) | B-1〜B-2 |
+| C. データカタログ | OpenMetadata 1.13.3 | [docs/guides/C-catalog.md](docs/guides/C-catalog.md) | C-1〜C-4 |
+| D. データコントラクト | datacontract-cli 1.1.0(ODCS v3.1.0)+ GitHub Actions | [docs/guides/D-contract.md](docs/guides/D-contract.md) | D-1〜D-6 |
 
 商用 SaaS(Soda Cloud / GX Cloud 等)には一切接続しません。
 サンプルデータはすべて合成データで、実在の個人情報は含みません。

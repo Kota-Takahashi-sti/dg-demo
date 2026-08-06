@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # データコントラクトの破壊的変更ゲート(pre-commit フック)
-# GitHub Actions が使えない環境向けの代替(docs/guides/contract.md 参照)。
+# GitHub Actions が使えない環境向けの代替(docs/guides/D-contract.md 参照)。
 # ステージされた contracts/*.yaml を HEAD 版と比較し、破壊的変更があれば
 # コミットをブロックする。導入方法: make install-contract-hook
 set -euo pipefail
