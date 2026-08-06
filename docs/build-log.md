@@ -1023,3 +1023,118 @@ build-log 全体をレビューし(記録ルール4観点)、以下の記録漏�
 - 反映: README「既知の制約」#5 を解消済みに更新、D-contract.md §5「どこまで
   検証済みか」に (d) GitHub 上での実実行の行と結果表を追加。
   証跡: verification/phase5/96-github-actions-run.log(ジョブログ全文 1,055 行)。
+
+## public 公開に向けたレビュー(2026-08-06)
+
+### 機密情報スキャン(2026-08-06)
+
+- 手段: サブエージェントによる作業ツリー + **git 履歴全体**のスキャン
+  (追跡ファイル 211 件、全 21 コミット、**全 295 blob** を `git cat-file` で総当たり)。
+  JWT(`eyJ...`)・AWS/Google/GitHub/Slack/OpenAI 等のトークン・秘密鍵・
+  接続文字列・高エントロピー文字列のパターン照合。バイナリ 25 件も `strings` 経由で照合。
+- 結果: **シークレットの検出ゼロ**。特に OpenMetadata の ingestion-bot JWT は
+  ログに一切漏れていない(実行時に API 取得 → 環境変数で渡す設計が有効に機能)。
+  git 履歴上ファイル削除は一度も発生しておらず(`--diff-filter=D` が 0 件)、
+  「コミットして後で消した」形跡もなし。`.env` は一度も追跡されていない。
+  GitHub Actions ログの `GITHUB_TOKEN` は GitHub 側で `***` にマスク済みを確認。
+- デモ用固定値(`demo_password`、`marquez`、`openmetadata_password`、`admin` 等)は
+  すべて「ローカルデモ専用」と明記済み・公式既定値であり、意図的な公開設計として維持。
+- スクリーンショット 14 枚は OCR 未実施のため目視確認: ビューポート撮影で
+  ブラウザのタブ・ブックマーク等の写り込みなし。表示データも合成データのみ
+  (氏名は機械生成、メールは RFC 2606 予約ドメイン `example.com`)。
+- public 特有の観点として GitHub Actions のフォーク PR 経由の攻撃可能性も確認:
+  `pull_request_target` 不使用・`secrets.*` 参照 0 件・`${{ }}` 式 0 件のため
+  スクリプトインジェクションの余地なし。
+- 残る露出情報(シークレットではないが public 化で第三者が参照可能):
+  コミット作者の会社メールアドレス、`verification/phase4/act-*.log` 3 行と
+  `verification/phase5/90-cleanup-verification.log` 1 行のローカル絶対パス
+  (`/home/<user>/...`)、CLAUDE.md と .claude/(開発プロセスの公開)。
+  いずれも発注者判断で許容とした。
+
+### public 公開に向けたライセンス適合性調査(2026-08-06)
+
+- 調査日: 2026-08-06 / 参照URL:
+  elastic.co/licensing/elastic-license、
+  github.com/open-metadata/OpenMetadata/blob/main/ingestion/LICENSE、
+  apache.org/licenses/LICENSE-2.0、
+  openfontlicense.org/open-font-license-official-text/、
+  linuxfoundation.org/legal/trademark-usage、
+  docs.github.com/en/site-policy/github-terms/github-terms-of-service (D.5)
+- 結論: 条件付きで public 公開可。ブロッカーは LICENSE ファイル不在のみ。
+- 判定(第三者著作物):
+  - `docker-compose.yml` = OpenMetadata 公式 docker-compose-postgres.yml
+    (1.13.3-release、`# Copyright 2021 Collate` + Apache-2.0 ヘッダ付き)の**派生**。
+    Apache-2.0 §4(a)(b)(c) が未充足だった。
+  - `verification/phase1/gx_data_docs/static/fonts/HKGrotesk/*.otf`(10 件)=
+    SIL OFL 1.1 の**同梱**。条件 2(コピーごとに著作権表示とライセンスを含める)未充足。
+    GX 本体リポジトリの同ディレクトリにもライセンスファイルは無く、その状態を複製していた。
+  - `verification/phase1/gx_data_docs/static/images/` = GX ロゴ等の**同梱**。
+    Apache-2.0 §6 は商標を許諾しないが "describing the origin of the Work" の
+    例外範囲内と判断(GX の出力物の一部として原形のまま存在し、本プロジェクトの
+    ブランディングに流用していないため)。GX の商標ポリシーは公開文書を発見できず**未確認**。
+  - Soda Core(ELv2)/ openmetadata-ingestion(Collate CL 1.0)/ Elasticsearch(ELv2)は
+    requirements・compose での**参照のみ**でバイナリ・ソースの同梱なし
+    → 配布時義務は不発生(利用者が pip/docker pull 時に配布元から直接ライセンスを受ける)。
+  - 契約 YAML(ODCS v3.1.0 準拠)、Soda/GX/OL/OM の設定・スクリプトは**自作**。
+- ELv2 の 3 制限(マネージドサービス提供 / ライセンスキー回避 / 表示削除)いずれも
+  **抵触なし**。Collate CL の Excluded Purpose(Collate 製品と競合する SaaS 提供)にも
+  **該当なし**。
+- Marquez / OpenMetadata の UI スクリーンショットは LF 商標ポリシーの fair use
+  (true factual statements)の範囲。推奨・提携の示唆なし → **対応不要**。
+
+### 設計判断: リポジトリのライセンスは Apache-2.0(2026-08-06)
+
+- **判断**: `LICENSE` に Apache License 2.0 の公式全文を配置
+  (apache.org から取得、md5 3b83ef96387f14655fc854ddc3c6bd57 で正規版を確認)。
+  APPENDIX の著作権表記は発注者の指示により**プレースホルダのまま**
+  (`Copyright [yyyy] [name of copyright owner]`)とした。
+- **理由**: (1) 実行可能なコード(Makefile / Python / compose)を含むため
+  ドキュメント向けライセンスは不適、(2) 派生元の OpenMetadata 公式 compose が
+  Apache-2.0 のため同一にすると §4 の条件充足が単純になる、
+  (3) 特許条項・商標条項を持ち企業内での配布・fork で受け手の懸念が少ない。
+- **不採用の代替案**: MIT — 最短だが特許条項がなく、Apache-2.0 §4 の帰属義務は
+  別途手当てが必要。CC0 — 権利放棄でコードを含む本件に不適、かつ第三者著作物が
+  混在する部分に CC0 を主張できない。
+
+### 問題: OFL 条件2 が未充足のまま第三者フォントを再配布していた(2026-08-06)
+
+- **現象**: `verification/phase1/gx_data_docs/static/fonts/HKGrotesk/` の
+  `.otf` 10 件が、ライセンス文の同梱なしでコミットされていた(GX の Data Docs 生成物を
+  そのまま証跡保存したため)。SIL OFL 1.1 の条件 2 は「コピーごとに著作権表示と
+  ライセンス文を含める(スタンドアロンのテキスト / ヘッダ / 機械可読メタデータのいずれか)」を
+  要求する。
+- **調査**: フォントバイナリの name テーブルを `strings -e b` で確認したところ、
+  **著作権表示は埋め込まれているがライセンス全文は埋め込まれていない**ことを実測
+  (`PERMISSION & CONDITIONS` / `TERMINATION` / `DISCLAIMER` の各文字列が 0 件)。
+  よって機械可読メタデータによる条件 2 の充足は成立せず、対応が必要と確定した。
+- **解決**: 同ディレクトリに `OFL.txt` を追加。著作権表示は**フォント自身の
+  埋め込みメタデータから転記**した一次情報を使用:
+  `Copyright (c) 2015, Alfredo Marco Pradil (<http://behance.net/pradil |
+  ammpradil@gmail.com>), with Reserved Font Name HK Grotesk.`
+  (Cyrillic は Stefan Peev)。ライセンス本文は openfontlicense.org の公式テキスト。
+  なお当初の調査報告にあった連絡先 `hello@hanken.co` はフォント実体の表記と異なったため、
+  **フォント埋め込みの表記を正とした**。
+- 証跡の「無加工原則」との関係: 削除は行わず**追加のみ**(OFL.txt 1 ファイル)。
+  Data Docs の表示・内容には影響しない。
+
+### 対応: Apache-2.0 §4 の帰属表示(docker-compose.yml、2026-08-06)
+
+- `docker-compose.yml` 冒頭に帰属表示ブロックを追加:
+  原著作権表示(`Copyright 2021 Collate` + Apache-2.0 の URL。§4(c))、
+  派生物である旨と**原典からの主な変更点 5 項目**(§4(b) の変更告知)、
+  および catalog profile 以外は自作物である旨。
+- 既存コメント(派生元への言及)は残し、上書きせず追記した。
+- 追加後に `docker compose --profile ... config --quiet` で構文検証(exit 0)、
+  サービス一覧 9 件が変化していないことを確認。
+
+### 対応: README のライセンス節の再構成(2026-08-06)
+
+- 「ライセンス・バージョン一覧」を「ライセンス」に改め、次を明記:
+  - 自作物は Apache-2.0(LICENSE へのリンク)
+  - **`verification/` 配下は第三者の生成物・著作物を含み、それぞれ元のライセンスに従う**
+    (GX Data Docs = Apache-2.0、HK Grotesk = SIL OFL 1.1(OFL.txt へのリンク)、
+    ロゴ = GX の商標、UI スクリーンショット = 各製品の商標)
+  - `docker-compose.yml` の catalog profile は Collate の派生物である旨
+  - **各製品のバイナリ・ソースは同梱しておらず pip / docker pull で取得する構成**である旨
+    (ELv2 / Collate CL に対する誤解を先回りで防ぐため)
+- バージョン一覧表に HK Grotesk 1.045(SIL OFL 1.1)の行を追加。
