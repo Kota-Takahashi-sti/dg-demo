@@ -200,7 +200,7 @@ UI を持たない領域の成果物: GX の Data Docs は `quality/gx/output/da
 | 2 | Marquez のイメージは amd64 のみ提供 | Apple Silicon ではエミュレーション動作(compose で `platform` 明示済み) |
 | 3 | macOS でポート 5000 が AirPlay と衝突しうる | `.env` の `MARQUEZ_API_HOST_PORT` を変更(リネージュガイド §7) |
 | 4 | 検知系デモの make 終了コードは 2 | シナリオ自体は exit 1(上記「実行結果の見方」) |
-| 5 | GitHub Actions ワークフローの GitHub 上での実実行は未検証 | actionlint 静的検証 + act ローカル実行 + 同一コマンドのローカル実行で代替検証済み(コントラクトガイド §5) |
+| 5 | ~~GitHub Actions ワークフローの GitHub 上での実実行は未検証~~ → **解消済み**(2026-08-06) | 構築時は actionlint 静的検証 + act ローカル実行で代替検証していたが、PR #2 で GitHub 上の実実行に成功(contract-gate / contract-test とも success)。詳細はコントラクトガイド §5 |
 | 6 | 契約の retention(3 年)検査は 2028-07 以降に実行すると失敗する | 合成データの日付が固定(2025-07-01 起点)のため(コントラクトガイド §8 に対処方法) |
 | 7 | デモ実行でコミット済みの検収証跡が上書きされる | `git restore verification/` で復元(上記「実行結果の見方」) |
 | 8 | OpenMetadata と Marquez は接続しない | OM の OpenLineage コネクタは Kafka/Kinesis 経由のみ(BETA)のため。思想の違いの教材として扱う(カタログガイド §5) |

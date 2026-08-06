@@ -9,7 +9,7 @@
 | 2 | リネージュ(OpenLineage / Marquez) | 完了報告済み | 合格(フェーズ3指示により承認とみなす) |
 | 3 | カタログ(OpenMetadata) | 完了報告済み | 合格(2026-08-05。main へマージ済み) |
 | 4 | コントラクト(datacontract-cli / CI) | 完了報告済み | 合格(2026-08-06。main へマージ済み) |
-| 5 | ドキュメント統合・通し検証 | 完了報告済み | - |
+| 5 | ドキュメント統合・通し検証 | 完了 | 合格(2026-08-06。main へマージ済み) |
 
 状態: 未着手 / 作業中 / 完了報告済み / 差し戻し対応中
 検収: - / 合格 / 差し戻し
@@ -32,7 +32,14 @@
       README に反映して再検証合格。証跡 90-cleanup-verification*.log)
 - [x] verify-verbatim 最終実行(quality 8/8・lineage 6/6・catalog 7/7(SKIP 3)・
       contract 12/12 = 33/33 VERBATIM。証跡 95-verify-verbatim-final.log)
-- [x] PROGRESS.md 更新・最終報告
+- [x] PROGRESS.md 更新・最終報告 → **発注者検収 合格(2026-08-06)**
+- [x] 追加対応: ガイドのリネーム(A-quality / B-lineage / C-catalog / D-contract)に
+      伴う参照更新(README 導線・スキル実行例・ソース内コメント/出力)。
+      verify-verbatim 33/33 で再確認
+- [x] **既知の制約の解消**: PR #2 で GitHub Actions の実実行に成功
+      (contract-gate 24 秒 / contract-test 47 秒、いずれも success。17 チェック pass)。
+      README「既知の制約」#5 と D-contract.md §5 を更新。
+      証跡 verification/phase5/96-github-actions-run.log(ジョブログ全文)
 
 フェーズ4(2026-08-05 完了報告。ブランチ: phase4):
 - [x] 公式ドキュメント調査(datacontract-cli **1.1.0**(2026-08-04 リリース)を採用、
@@ -126,10 +133,14 @@
 
 ## 次にやること(セッション再開時はここから)
 
-- **フェーズ5 完了報告済み(2026-08-06。ブランチ: phase5)。発注者の最終検収待ち。**
-- 検収合格後: phase5 ブランチを main へマージ。
-- 発注者の最終検収手順(想定): まっさらな環境で
-  (1) README「環境構築」→ (2) 各ガイドの順でデモ実行(A→B→C→D 推奨)→
-  (3) README「後片付け」で完全削除を確認。現在の環境は後片付け検証により
-  すべて削除済み(再開時は `make setup` から)。
+- **全フェーズ(0〜5)完了・検収合格(2026-08-06)。本プロジェクトの当初スコープは
+  すべて完了しました。** phase5 は main へマージ済み。
+- 環境の状態: 後片付け検証によりコンテナ・ボリューム・ネットワーク・生成物は
+  すべて削除済み。再度動かす場合は README「環境構築」の `make setup` から。
+- 将来の課題(スコープ外・着手指示があれば):
+  - `actions/checkout@v4` / `actions/setup-python@v5` が Node.js 20 非推奨の
+    warning を出す(2026-08-06 の実実行で判明)。将来のメジャー更新が必要。
+  - 契約の retention(3 年)検査は 2028-07 以降に失敗する(合成データの日付固定)。
+    対処方法は D-contract.md §8 に記載済み。
+  - arm64(Apple Silicon)実機での検証は未実施(検証環境が amd64/WSL2 のため)。
 

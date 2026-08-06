@@ -449,7 +449,20 @@ GitHub 上での確認ポイント:
 | (a) actionlint 1.7.12 による静的検証 | D-5 で毎回実行 | 指摘 0 件 |
 | (b) ワークフローと同一コマンドのローカル実行 | D-5 で毎回実行 | 正常系 exit 0 / 破壊系 非0 を確認 |
 | (c) act(GitHub Actions のローカル実行ツール)による実行 | 構築時に実施(2026-08-05) | 下記 3 ケースすべて期待どおり |
-| GitHub 上での実実行 | **未実施** | 本環境から GitHub Actions を実行できないため(既知の制約) |
+| (d) GitHub 上での実実行 | **実施済み**(2026-08-06、PR #2) | contract-gate / contract-test とも **success**(下記) |
+
+**(d) GitHub 上での実実行の結果**(2026-08-06。証跡:
+`verification/phase5/96-github-actions-run.log` にジョブログ全文を保存):
+
+| ジョブ | 所要 | 結果 |
+|---|---|---|
+| 契約の構文検証と破壊的変更ゲート(contract-gate) | 24 秒 | success。`datacontract lint` が `🟢 data contract is valid. Run 1 checks.`、`check_breaking.py` は破壊的変更なしと判定 |
+| 実データベースへの契約テスト(contract-test) | 47 秒 | success。postgres:16 サービスコンテナ + seed 投入 + `datacontract ci` で `🟢 data contract is valid. Run 17 checks.` |
+
+ローカル(act)での検証と同じ結果が GitHub 上でも再現されました。なお実行時に
+`actions/checkout@v4` と `actions/setup-python@v5` について
+「Node.js 20 は非推奨(Node.js 24 で強制実行)」の warning が出ますが、
+ジョブは正常に完了します(将来 v5 / v6 系への更新が必要になります)。
 
 act v0.2.89 + ランナーイメージ catthehacker/ubuntu:act-22.04 による構築時検証の内訳
 (証跡は `verification/phase4/act-*.log`。作業リポジトリを汚さないよう、
