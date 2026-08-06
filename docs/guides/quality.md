@@ -14,7 +14,7 @@
 | 項目 | 要件 |
 |---|---|
 | OS | Linux / macOS(Apple Silicon 可)/ Windows(WSL2) |
-| 必須ソフトウェア | Docker Engine + Docker Compose v2(検証環境: Docker 28.1.1 / Compose v2.35.1) |
+| 必須ソフトウェア | Docker Desktop または Docker Engine + Compose v2(検証環境: Docker 28.1.1 / Compose v2.35.1) |
 | CPU アーキテクチャ | amd64 / arm64 両対応(本領域で使うイメージはすべてマルチアーチ) |
 | メモリ | 本領域は軽量。DB(postgres:16)実測 約 35 MiB + ツール実行時 約 0.5 GiB |
 | ネットワーク | 初回のみイメージ取得・pip インストールでインターネット接続が必要 |
@@ -38,7 +38,7 @@ $ make setup
 
 1. `.env` がなければ `.env.example` からコピーして作成する
    (**中身はすべてローカルデモ専用の設定値**です。実運用の値は入れないでください)。
-2. ツール実行用 Docker イメージ(`dgd-tools:phase2`)をビルドする。
+2. ツール実行用 Docker イメージ(`dgd-tools:phase3`)をビルドする。
    Python 3.11 上に Soda Core と GX(および他領域のツール)を venv 分離で
    インストールします(数分かかります)。
 
@@ -102,6 +102,8 @@ $ make clean-db  # 停止 + データ削除
 > 補足(exit 0 / exit 1 とは): コマンドの終了コードのことで、0 が正常終了、
 > 0 以外がエラー終了を意味します。検知シナリオは「違反を検知したらエラー終了する」
 > 設計のため、exit 1 とそれを受けた make の `Error 1` 表示が正解の状態です。
+> なお、シナリオの exit 1 を受けた **make コマンド自体の終了コードは 2** になります
+> (make の仕様)。スクリプトから `$?` で判定する場合はご注意ください。
 
 ### 4.1 Soda Core 正常系(A-1)
 
@@ -344,3 +346,7 @@ make: *** [Makefile:44: demo-quality-gx-ng] Error 1
 $ make down      # コンテナ停止(データ保持)
 $ make clean-db  # コンテナ停止 + DB データ削除
 ```
+
+実行時生成物(`quality/gx/output/`、`data/seed/csv-injected/` など)や Docker イメージ
+まで含めた完全な後片付けの手順は、[README.md](../../README.md) の「後片付け」を
+参照してください。

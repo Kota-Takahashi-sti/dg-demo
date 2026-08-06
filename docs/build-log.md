@@ -830,3 +830,84 @@
 - 検収時のデモ再実行で verification/phase4/ のログが再生成されたが、ガイドの出力例と
   逐語一致する正準証跡はコミット済み版のため、再生成分(実行日時・所要秒数違いの同内容)は
   破棄してコミット済み版を維持した(フェーズ3 と同じ扱い)。
+
+## フェーズ5: ドキュメント統合・通し検証(2026-08-06)
+
+### ガイド4本の整合性監査と修正(フェーズ5、2026-08-06)
+
+- 手段: サブエージェントによる全ガイド + Makefile + compose の通読監査
+  (「まっさらな状態から迷わず実施できるか」の観点)。
+- 判明した誤り・不整合と対応:
+  - quality.md §2 の tools イメージ名が `dgd-tools:phase2` のまま(実体は
+    `dgd-tools:phase3`)→ 修正。
+  - catalog.md §6 の Marquez メモリ比較「実測約 1 GiB 弱の 3 倍前後」が
+    lineage.md の実測(約 0.35 GiB)と不整合 → 実測値ベース(8 倍前後)に修正。
+  - catalog.md / contract.md の前提「フェーズ1 のセットアップ」が読者には
+    辿れない参照(フェーズ↔ガイドの対応表がどこにもない)→
+    「共通セットアップ(make setup。README 参照)」に統一。手動
+    `cp .env.example .env` の提示も廃止(setup が内包するため)。
+  - Docker 要件の表記ゆれ(quality / lineage のみ「Docker Engine + Docker
+    Compose v2」)→ 4 本とも「Docker Desktop または Docker Engine + Compose v2」に統一。
+  - 検知系デモで make 自体の終了コードが 2 になる旨が contract.md にしかない →
+    quality.md §4.0 / lineage.md §4.0 にも追記。
+  - どのガイドにもない操作: リポジトリ取得(git clone)、Docker バージョン確認、
+    全体の完全な後片付け(生成物・イメージ削除)→ README.md(新設)に集約し、
+    各ガイド §片付け から README へ導線を追加。
+
+### 設計判断: 全体導線は README.md 新設に集約、完全後片付けの make ターゲットは追加しない(フェーズ5、2026-08-06)
+
+- **判断**: 共通セットアップ(clone → Docker 確認 → make setup)・シナリオ一覧・
+  ポート一覧・ライセンス一覧・既知の制約・3 段階の後片付けを README.md に集約。
+  完全後片付け(生成物 rm + git restore + docker rmi)は README にコマンド列で
+  記載し、新しい make ターゲットは追加しない。
+- **理由**: フェーズ5 のスコープは「新機能を追加しない。既存の成果物の統合と検証のみ」。
+  ドキュメントへのコマンド記載はスコープ内、Makefile への機能追加はスコープ外と判断。
+- **不採用の代替案**: `make clean-all` ターゲットの追加 — 利便性は上がるが
+  スコープ外の変更(Makefile 変更)になるため不採用。`git restore verification/` を
+  含む破壊的操作を単一コマンドに束ねると誤操作リスクもある。
+
+### ライセンス一覧の確認(2026-08-06)
+
+- 調査日: 2026-08-06 / 確認方法: リポジトリ既録(plan.md §1・build-log)+
+  未記録分を公式一次情報で確認(doc-researcher エージェント)。
+- 未記録分の確認結果: psycopg2-binary 2.9.10 = LGPL with exceptions
+  (pypi.org/pypi/psycopg2-binary/2.9.10/json)、Elasticsearch 9.3.0 公式イメージ =
+  Elastic License 2.0(バイナリ配布。elastic.co/pricing/faq/licensing)、
+  act = MIT / actions/checkout = MIT / actions/setup-python = MIT /
+  rhysd/actionlint = MIT / catthehacker/docker_images = MIT
+  (いずれも api.github.com の license エンドポイント)、
+  PostgreSQL = PostgreSQL License(postgresql.org/about/licence)、
+  Python 3.11 = PSF-2.0(docs.python.org/3.11/license.html)。
+- 一覧表は README.md「ライセンス・バージョン一覧」に掲載。既録との食い違いなし
+  (plan.md §1 の datacontract-cli 1.0.17 表記はフェーズ0 時点の記録であり、
+  1.1.0 への更新判断は本ログ「datacontract-cli バージョン調査(2026-08-05)」に記録済み)。
+
+### 記録の最終確認で判明した不足の補完(フェーズ5、2026-08-06)
+
+build-log 全体をレビューし(記録ルール4観点)、以下の記録漏れを補完する
+(いずれも当時実施済みの事実の補記であり、記録の書き直しはしない):
+
+- **フェーズ1・フェーズ2 の検収合否**: いずれも合格。フェーズ1 は 2026-08-04 の
+  フェーズ2 指示の発出、フェーズ2 は 2026-08-05 のフェーズ3 指示の発出をもって
+  承認とみなした(PROGRESS.md のフェーズ表に記録済み。本ログへの明記が漏れていた)。
+- **GX `add_table_asset` の schema 指定方法**(フェーズ1 の「実装時に確認・記録」の
+  宣言に対する結果): `schema_name` 引数が存在し、`quality/gx/run_checks.py` で
+  `schema_name="raw"` を指定して動作確認済み(フェーズ1 検証結果の生ログが証跡)。
+- **D-6 pre-commit フックの設計記録**(フェーズ4 分の補記):
+  - **判断**: 素の git hook(`contracts/hooks/pre-commit`、bash)として実装し、
+    `make install-contract-hook` で `.git/hooks/` へ導入する方式。
+    ステージされた変更(M)の `contracts/*.yaml` について HEAD 版と index 版を
+    一時ディレクトリへ書き出し、既存の `contracts/check_breaking.py` を
+    datacontract コンテナの Python で実行して比較、破壊的なら exit 1 で
+    コミットをブロックする。一時ディレクトリは trap で常に削除。
+    回避手段(消費者と合意済みの場合)として `git commit --no-verify` を案内。
+  - **理由**: CI(GitHub Actions)と同一の判定スクリプトを再利用でき、
+    「PR ゲートと同じ判定をコミット時点でも受けられる」ことが一目で分かるため。
+    新規追加ファイルは比較対象の HEAD 版がないため対象外(仕様)。
+  - **不採用の代替案**: pre-commit フレームワーク(Python パッケージ)の導入 —
+    依存とセットアップ手順が増えるため不採用。フックスクリプト内での
+    YAML 解析の自作 — check_breaking.py と判定が二重化するため不採用。
+- **act 一式の入手元・ライセンスの補記**(フェーズ4 の act 検証で使用):
+  act v0.2.89 = nektos/act の GitHub Releases バイナリ(MIT)、ランナーイメージ
+  catthehacker/ubuntu:act-22.04 = act 公式 README 推奨の medium イメージ(MIT)。
+  ライセンス確認は 2026-08-06(上記「ライセンス一覧の確認」参照)。

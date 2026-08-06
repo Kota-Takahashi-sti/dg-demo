@@ -23,9 +23,9 @@
 - ライセンス注記: OpenMetadata サーバは Apache-2.0、取り込みライブラリ
   openmetadata-ingestion は **Collate Community License 1.0**(ソース公開・無料利用可、
   OSI 認定外)です。本デモは無料利用の範囲で使用します。
-- フェーズ1 のセットアップ(`cp .env.example .env` と `make setup`)が済んでいること。
-  フェーズ3 で取り込み用ライブラリが追加されたため、フェーズ1・2 の時点で
-  セットアップ済みの場合も `make build-tools` で tools イメージを更新してください。
+- 共通セットアップ(`make setup`。[README.md](../../README.md) の「環境構築」参照)が
+  済んでいること。過去に古い tools イメージ(`dgd-tools:phase1` / `phase2`)で
+  セットアップした場合は `make build-tools` で tools イメージを更新してください。
 
 ## 2. この領域の登場人物(初学者向けの整理)
 
@@ -68,8 +68,7 @@ admin ログイン → ingestion-bot の JWT 取得 → YAML の `${OM_JWT}` へ
 ## 3. 環境構築
 
 ```console
-$ cp .env.example .env   # 済みならスキップ
-$ make setup             # 済みで、フェーズ1・2から更新した場合は make build-tools
+$ make setup             # 共通セットアップ(.env 作成 + tools イメージビルド)。済みならスキップ
 $ make up-catalog
 ```
 
@@ -392,7 +391,8 @@ $ make demo-catalog-ingest   # カタログへ再反映
 **短所**:
 
 - **重い**。サーバ + 専用 DB + Elasticsearch で実測約 2.9 GiB(公式要件 6 GiB 割当)。
-  Marquez 一式(実測約 1 GiB 弱)の 3 倍前後で、初回起動も約 3 分かかる。
+  Marquez 一式(実測約 0.35 GiB。リネージュガイド §1)の 8 倍前後で、
+  初回起動も約 3 分かかる。
 - 概念数が多い(サービス/データベース/スキーマ/テーブル、ワークフロー 4 種、
   ボット認証など)。動かすまでの理解コストは Marquez より高い。
 - 取り込みは**スナップショット**であり、データ側の変更は再取り込みまで反映されない。
@@ -452,3 +452,6 @@ $ make down-catalog   # OpenMetadata のみ停止(カタログの内容は保持
 $ make down           # 全プロファイル停止(データは保持)
 $ make clean-db       # 全停止 + ボリューム削除(カタログの内容・デモ DB とも初期化)
 ```
+
+Docker イメージまで含めた完全な後片付けの手順は、[README.md](../../README.md) の
+「後片付け」を参照してください。
