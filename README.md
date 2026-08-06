@@ -74,7 +74,7 @@ Docker Compose の profile で領域ごとに起動・停止します(全製品�
 
 ```console
 $ git clone <このリポジトリの URL>
-$ cd claude-demo-data-governance
+$ cd <クローンで作成したディレクトリ>
 ```
 
 ZIP 取得でもほとんどのデモは動きますが、**D-6(pre-commit フック)だけは
