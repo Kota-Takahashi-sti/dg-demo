@@ -1000,3 +1000,26 @@ build-log 全体をレビューし(記録ルール4観点)、以下の記録漏�
   verification/ の生ログは当時のファイル名のまま(歴史的記録のため書き換えない)。
 - verify-verbatim を新ファイル名で再実行: 8/8・6/6・7/7(SKIP 3)・12/12 =
   33/33 VERBATIM で全一致を確認。
+
+### 既知の制約の解消: GitHub Actions の実実行検証(フェーズ5 追記、2026-08-06)
+
+- 経緯: ガイドのリネーム追随 PR(#2)が `contracts/` と
+  `.github/workflows/contract.yml`(いずれもコメント・参照のみの変更)に触れたため、
+  フェーズ4 で構築した contract CI が **GitHub 上で初めて実際にトリガーされた**。
+  本環境から GitHub Actions を実行できないという制約(plan.md R1、CLAUDE.md の
+  「環境上の既知の制約」)により、これまで未検証だった部分。
+- 結果: Run 31073541292(event: pull_request / headSha: 9cc14ed / conclusion: success)
+  - contract-gate「契約の構文検証と破壊的変更ゲート」: **pass(24 秒)**。
+    `datacontract lint` が `🟢 data contract is valid. Run 1 checks.`、
+    `check_breaking.py` は破壊的変更なしと判定。
+  - contract-test「実データベースへの契約テスト(datacontract ci)」: **pass(47 秒)**。
+    postgres:16 サービスコンテナ + seed 投入 + `datacontract ci` で
+    `🟢 data contract is valid. Run 17 checks. Took 1.014696 seconds.`
+  - **act によるローカル検証(フェーズ4)と同一の結果が GitHub 上でも再現**された。
+    ワークフローの `git fetch origin` によるベースブランチ取得も実 GitHub 上で動作。
+- 新たに判明した点(将来対応が必要): `actions/checkout@v4` と
+  `actions/setup-python@v5` について「Node.js 20 は非推奨(Node.js 24 で強制実行)」の
+  warning が出る(ジョブ自体は正常完了)。ガイド §5 に明記した。
+- 反映: README「既知の制約」#5 を解消済みに更新、D-contract.md §5「どこまで
+  検証済みか」に (d) GitHub 上での実実行の行と結果表を追加。
+  証跡: verification/phase5/96-github-actions-run.log(ジョブログ全文 1,055 行)。

@@ -1,0 +1,1055 @@
+=== GitHub Actions 実実行の証跡(フェーズ5 追記。取得日: 2026-08-06 14:35:51 JST)===
+PR: https://github.com/Kota-Takahashi-sti/dg-demo/pull/2
+Run: https://github.com/Kota-Takahashi-sti/dg-demo/actions/runs/31073541292
+event: pull_request / headSha: 9cc14ed5e20fd89f9a6df8560adcc71ca80993fa / conclusion: success
+
+--- gh pr checks 2 ---
+契約の構文検証と破壊的変更ゲート	pass	24s	https://github.com/Kota-Takahashi-sti/dg-demo/actions/runs/31073541292/job/92526368965	
+実データベースへの契約テスト(datacontract ci)	pass	47s	https://github.com/Kota-Takahashi-sti/dg-demo/actions/runs/31073541292/job/92526368999	
+
+--- ジョブ一覧 ---
+契約の構文検証と破壊的変更ゲート	success	2026-08-06T05:14:32Z → 2026-08-06T05:14:56Z
+実データベースへの契約テスト(datacontract ci)	success	2026-08-06T05:14:38Z → 2026-08-06T05:15:25Z
+
+--- ジョブログ全文 ---
+契約の構文検証と破壊的変更ゲート	Set up job	﻿2026-08-06T05:14:33.2648762Z Current runner version: '2.336.0'
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2686906Z ##[group]Runner Image Provisioner
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2688074Z Hosted Compute Agent
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2688825Z Version: 20260707.563
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2689893Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2690885Z Build Date: 2026-07-07T19:33:50Z
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2691742Z Worker ID: {da153914-ab77-44be-babc-1106b420ca37}
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2692772Z Azure Region: westcentralus
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2693558Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2695939Z ##[group]Operating System
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2696832Z Ubuntu
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2697502Z 24.04.4
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2698185Z LTS
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2698820Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2699752Z ##[group]Runner Image
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2700669Z Image: ubuntu-24.04
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2701437Z Version: 20260720.247.2
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2702867Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260720.247/images/ubuntu/Ubuntu2404-Readme.md
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2705151Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260720.247
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2706447Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2708004Z ##[group]GITHUB_TOKEN Permissions
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2711097Z Contents: read
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2711904Z Metadata: read
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2712707Z Packages: read
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2713488Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2716272Z Secret source: Actions
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.2717956Z Prepare workflow directory
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.3168687Z Prepare all required actions
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.3239260Z Getting action download info
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:33.6984341Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:34.3954220Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+契約の構文検証と破壊的変更ゲート	Set up job	2026-08-06T05:14:34.6553007Z Complete job name: 契約の構文検証と破壊的変更ゲート
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	﻿2026-08-06T05:14:34.7377566Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7388116Z ##[group]Run actions/checkout@v4
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7389747Z with:
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7390884Z   repository: Kota-Takahashi-sti/dg-demo
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7399055Z   token: ***
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7400128Z   ssh-strict: true
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7401149Z   ssh-user: git
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7402110Z   persist-credentials: true
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7403145Z   clean: true
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7404420Z   sparse-checkout-cone-mode: true
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7405579Z   fetch-depth: 1
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7406525Z   fetch-tags: false
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7407508Z   show-progress: true
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7408502Z   lfs: false
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7409523Z   submodules: false
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7410682Z   set-safe-directory: true
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7411814Z   allow-unsafe-pr-checkout: false
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.7413207Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8689149Z Syncing repository: Kota-Takahashi-sti/dg-demo
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8694253Z ##[group]Getting Git version info
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8696360Z Working directory is '/home/runner/work/dg-demo/dg-demo'
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8699270Z [command]/usr/bin/git version
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8717800Z git version 2.54.0
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8722911Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8738875Z Temporarily overriding HOME='/home/runner/work/_temp/6e38a691-616d-4b07-9eda-5a488a54f7b7' before making global git config changes
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8743665Z Adding repository directory to the temporary git global config as a safe directory
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8747374Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dg-demo/dg-demo
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8805351Z Deleting the contents of '/home/runner/work/dg-demo/dg-demo'
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8808979Z ##[group]Initializing the repository
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8811817Z [command]/usr/bin/git init /home/runner/work/dg-demo/dg-demo
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8921688Z hint: Using 'master' as the name for the initial branch. This default branch name
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8935628Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8939813Z hint: to use in all of your new repositories, which will suppress this warning,
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8942436Z hint: call:
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8943945Z hint:
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8945739Z hint: 	git config --global init.defaultBranch <name>
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8947861Z hint:
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8950036Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8952954Z hint: 'development'. The just-created branch can be renamed via this command:
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8955383Z hint:
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8956867Z hint: 	git branch -m <name>
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8958425Z hint:
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8960824Z hint: Disable this message with "git config set advice.defaultBranchName false"
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8964084Z Initialized empty Git repository in /home/runner/work/dg-demo/dg-demo/.git/
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.8969501Z [command]/usr/bin/git remote add origin https://github.com/Kota-Takahashi-sti/dg-demo
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.9008686Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.9011885Z ##[group]Disabling automatic garbage collection
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.9014640Z [command]/usr/bin/git config --local gc.auto 0
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.9112302Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.9121871Z ##[group]Setting up auth
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.9133559Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.9202354Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.9614098Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.9668336Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.9941302Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:34.9976835Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:35.0172718Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:35.0209113Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:35.0212730Z ##[group]Fetching the repository
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:35.0220004Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +1a0d77437f767f5d9100b0181f718ac994146005:refs/remotes/pull/2/merge
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.3594478Z From https://github.com/Kota-Takahashi-sti/dg-demo
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.3596622Z  * [new ref]         1a0d77437f767f5d9100b0181f718ac994146005 -> pull/2/merge
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.3625091Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.3626427Z ##[group]Determining the checkout info
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.3627564Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.3801067Z [command]/usr/bin/git sparse-checkout disable
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.3804014Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.3806303Z ##[group]Checking out the ref
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.3807278Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/2/merge
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4290430Z Note: switching to 'refs/remotes/pull/2/merge'.
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4307874Z 
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4309183Z You are in 'detached HEAD' state. You can look around, make experimental
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4310992Z changes and commit them, and you can discard any commits you make in this
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4312226Z state without impacting any branches by switching back to a branch.
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4313852Z 
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4314507Z If you want to create a new branch to retain commits you create, you may
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4322719Z do so (now or later) by using -c with the switch command. Example:
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4329511Z 
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4330088Z   git switch -c <new-branch-name>
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4330373Z 
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4330588Z Or undo this operation with:
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4330804Z 
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4331111Z   git switch -
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4331710Z 
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4338953Z Turn off this advice by setting config variable advice.detachedHead to false
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4340266Z 
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4346510Z HEAD is now at 1a0d774 Merge 9cc14ed5e20fd89f9a6df8560adcc71ca80993fa into 4c61f2402715e178ad0ccaf39ea130c1de2f6389
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4351743Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4353284Z [command]/usr/bin/git log -1 --format=%H
+契約の構文検証と破壊的変更ゲート	Run actions/checkout@v4	2026-08-06T05:14:36.4372368Z 1a0d77437f767f5d9100b0181f718ac994146005
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	﻿2026-08-06T05:14:36.4655253Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.4657058Z ##[group]Run actions/setup-python@v5
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.4657500Z with:
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.4657869Z   python-version: 3.11
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.4658239Z   check-latest: false
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.4661116Z   token: ***
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.4661492Z   update-environment: true
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.4661929Z   allow-prereleases: false
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.4662321Z   freethreaded: false
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.4662653Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.6017423Z ##[group]Installed versions
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.6141000Z (node:2130) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.6193381Z (Use `node --trace-deprecation ...` to show where the warning was created)
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.6194526Z Successfully set up CPython (3.11.15)
+契約の構文検証と破壊的変更ゲート	Run actions/setup-python@v5	2026-08-06T05:14:36.6220712Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	﻿2026-08-06T05:14:36.6421099Z ##[group]Run pip install "datacontract-cli==1.1.0"
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:36.6421934Z [36;1mpip install "datacontract-cli==1.1.0"[0m
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:36.6481726Z shell: /usr/bin/bash -e {0}
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:36.6482292Z env:
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:36.6482963Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:36.6483771Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:36.6484620Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:36.6485362Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:36.6486083Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:36.6486833Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:36.6487468Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:37.8881557Z Collecting datacontract-cli==1.1.0
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:38.0221289Z   Downloading datacontract_cli-1.1.0-py3-none-any.whl.metadata (29 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:38.4622456Z Collecting typer<0.28,>=0.18.0 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:38.4817426Z   Downloading typer-0.27.1-py3-none-any.whl.metadata (16 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:39.1809289Z Collecting click<9.0.0,>=8.1.0 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:39.2007545Z   Downloading click-8.4.2-py3-none-any.whl.metadata (2.6 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:40.0255223Z Collecting pydantic<2.14.0,>=2.8.2 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:40.0449188Z   Downloading pydantic-2.13.4-py3-none-any.whl.metadata (109 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:40.8949003Z Collecting pydantic-settings<3.0.0,>=2.5.0 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:40.9147728Z   Downloading pydantic_settings-2.14.2-py3-none-any.whl.metadata (3.4 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.0451040Z Collecting pyyaml~=6.0.1 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.0638304Z   Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.1902232Z Collecting ruamel.yaml<0.20,>=0.17 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.2097010Z   Downloading ruamel_yaml-0.19.1-py3-none-any.whl.metadata (16 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.2481019Z Collecting requests<2.35,>=2.31 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.2673300Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.2971040Z Collecting truststore<1.0,>=0.10 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.3159780Z   Downloading truststore-0.10.4-py3-none-any.whl.metadata (4.4 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.3454266Z Collecting fastjsonschema<2.23.0,>=2.19.1 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.3643728Z   Downloading fastjsonschema-2.22.1-py3-none-any.whl.metadata (2.1 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.3996404Z Collecting jsonschema<5.0.0,>=4.23.0 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.4191059Z   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.4645947Z Collecting pytz>=2024.1 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.4839962Z   Downloading pytz-2026.3.post1-py2.py3-none-any.whl.metadata (22 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.5146288Z Collecting python-multipart<1.0.0,>=0.0.20 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.5341275Z   Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.5753464Z Collecting rich<16.0,>=13.7 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.5946829Z   Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.6791771Z Collecting sqlglot<31.0.0,>=26.6.0 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.7009143Z   Downloading sqlglot-30.15.0-py3-none-any.whl.metadata (25 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.7376970Z Collecting python-dotenv<2.0.0,>=1.0.0 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.7580412Z   Downloading python_dotenv-1.2.2-py3-none-any.whl.metadata (27 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.9671770Z Collecting boto3<2.0.0,>=1.34.41 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:42.9864043Z   Downloading boto3-1.43.65-py3-none-any.whl.metadata (6.6 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.0170687Z Collecting Jinja2<4.0.0,>=3.1.5 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.0364997Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.1019322Z Collecting jinja_partials<1.0.0,>=0.2.1 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.1230862Z   Downloading jinja_partials-0.3.2-py3-none-any.whl.metadata (8.8 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.1869721Z Collecting datacontract-specification<2.0.0,>=1.2.3 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.2075590Z   Downloading datacontract_specification-1.2.3-py3-none-any.whl.metadata (3.2 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.2763915Z Collecting open-data-contract-standard<4.0.0,>=3.1.2 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.2962273Z   Downloading open_data_contract_standard-3.1.2-py3-none-any.whl.metadata (3.0 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.3301286Z Collecting deepdiff<10.0.0,>=6.0.0 (from datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.3511201Z   Downloading deepdiff-9.1.0-py3-none-any.whl.metadata (8.4 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.5674690Z Collecting botocore<1.44.0,>=1.43.65 (from boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.5866658Z   Downloading botocore-1.43.65-py3-none-any.whl.metadata (5.6 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.6161038Z Collecting jmespath<2.0.0,>=0.7.1 (from boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.6360459Z   Downloading jmespath-1.1.0-py3-none-any.whl.metadata (7.6 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.6675114Z Collecting s3transfer<0.20.0,>=0.19.0 (from boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.6870020Z   Downloading s3transfer-0.19.2-py3-none-any.whl.metadata (1.7 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.7165746Z Collecting python-dateutil<3.0.0,>=2.1 (from botocore<1.44.0,>=1.43.65->boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.7356381Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.7720881Z Collecting urllib3!=2.2.0,<3,>=1.25.4 (from botocore<1.44.0,>=1.43.65->boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:43.7950954Z   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.0063152Z Collecting cachebox<6,>=5.2 (from deepdiff<10.0.0,>=6.0.0->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.0426505Z   Downloading cachebox-5.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (27 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.0742338Z Collecting orderly-set<6,>=5.5.0 (from deepdiff<10.0.0,>=6.0.0->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.0935014Z   Downloading orderly_set-5.5.0-py3-none-any.whl.metadata (6.6 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.1503063Z Collecting MarkupSafe>=2.0 (from Jinja2<4.0.0,>=3.1.5->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.1695354Z   Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.2001177Z Collecting attrs>=22.2.0 (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.2206137Z   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.2496407Z Collecting jsonschema-specifications>=2023.03.6 (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.3033967Z   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.3377958Z Collecting referencing>=0.28.4 (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.3570632Z   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.5685599Z Collecting rpds-py>=0.25.0 (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.5882428Z   Downloading rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.6180681Z Collecting annotated-types>=0.6.0 (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:44.6381078Z   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.2223606Z Collecting pydantic-core==2.46.4 (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.2413348Z   Downloading pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.2728087Z Collecting typing-extensions>=4.14.1 (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.2920465Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.3204642Z Collecting typing-inspection>=0.4.2 (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.3399894Z   Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.3824354Z Collecting six>=1.5 (from python-dateutil<3.0.0,>=2.1->botocore<1.44.0,>=1.43.65->boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.4017184Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.5000136Z Collecting charset_normalizer<4,>=2 (from requests<2.35,>=2.31->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.5177887Z   Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (41 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.5504291Z Collecting idna<4,>=2.5 (from requests<2.35,>=2.31->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.5701150Z   Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.6048989Z Collecting certifi>=2023.5.7 (from requests<2.35,>=2.31->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.6243076Z   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.6562485Z Collecting markdown-it-py>=2.2.0 (from rich<16.0,>=13.7->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.6753164Z   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.7111156Z Collecting pygments<3.0.0,>=2.13.0 (from rich<16.0,>=13.7->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.7307023Z   Downloading pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.7829935Z Collecting shellingham>=1.3.0 (from typer<0.28,>=0.18.0->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.8020917Z   Downloading shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.8315257Z Collecting annotated-doc>=0.0.2 (from typer<0.28,>=0.18.0->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.8506858Z   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.8825198Z Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich<16.0,>=13.7->datacontract-cli==1.1.0)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.9019037Z   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:45.9328010Z Downloading datacontract_cli-1.1.0-py3-none-any.whl (3.1 MB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.0958314Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.1/3.1 MB 22.9 MB/s  0:00:00
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.1140758Z Downloading boto3-1.43.65-py3-none-any.whl (140 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.1370317Z Downloading botocore-1.43.65-py3-none-any.whl (15.5 MB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.3911812Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.5/15.5 MB 60.9 MB/s  0:00:00
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.4102104Z Downloading click-8.4.2-py3-none-any.whl (119 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.4346708Z Downloading datacontract_specification-1.2.3-py3-none-any.whl (15 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.4565958Z Downloading deepdiff-9.1.0-py3-none-any.whl (184 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.4831418Z Downloading cachebox-5.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (395 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.5085181Z Downloading fastjsonschema-2.22.1-py3-none-any.whl (26 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.5318810Z Downloading jinja_partials-0.3.2-py3-none-any.whl (9.3 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.5545841Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.5785982Z Downloading jmespath-1.1.0-py3-none-any.whl (20 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.6015832Z Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.6255461Z Downloading open_data_contract_standard-3.1.2-py3-none-any.whl (17 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.6480824Z Downloading orderly_set-5.5.0-py3-none-any.whl (13 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.6702970Z Downloading pydantic-2.13.4-py3-none-any.whl (472 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.6981420Z Downloading pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.7294434Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 66.0 MB/s  0:00:00
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.7485417Z Downloading pydantic_settings-2.14.2-py3-none-any.whl (61 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.7723265Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.7960090Z Downloading python_dotenv-1.2.2-py3-none-any.whl (22 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.8181915Z Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.8406846Z Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.8550181Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 44.5 MB/s  0:00:00
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.8740233Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.8968843Z Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (221 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.9210020Z Downloading idna-3.18-py3-none-any.whl (65 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.9437920Z Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.9682505Z Downloading pygments-2.20.0-py3-none-any.whl (1.2 MB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:46.9875823Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 58.7 MB/s  0:00:00
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.0067460Z Downloading ruamel_yaml-0.19.1-py3-none-any.whl (118 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.0295166Z Downloading s3transfer-0.19.2-py3-none-any.whl (90 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.0524483Z Downloading sqlglot-30.15.0-py3-none-any.whl (731 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.0667983Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 731.8/731.8 kB 40.6 MB/s  0:00:00
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.0860151Z Downloading truststore-0.10.4-py3-none-any.whl (18 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.1077793Z Downloading typer-0.27.1-py3-none-any.whl (122 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.1314747Z Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.1553841Z Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.1779078Z Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.2004761Z Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.2225703Z Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.2465587Z Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.2700339Z Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.2926083Z Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.3153295Z Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.3378984Z Downloading pytz-2026.3.post1-py2.py3-none-any.whl (508 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.3650126Z Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.3873241Z Downloading rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.4139016Z Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.4357628Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.4576937Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.4807095Z Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:47.6157211Z Installing collected packages: pytz, urllib3, typing-extensions, truststore, sqlglot, six, shellingham, ruamel.yaml, rpds-py, pyyaml, python-multipart, python-dotenv, pygments, orderly-set, mdurl, MarkupSafe, jmespath, idna, fastjsonschema, click, charset_normalizer, certifi, cachebox, attrs, annotated-types, annotated-doc, typing-inspection, requests, referencing, python-dateutil, pydantic-core, markdown-it-py, Jinja2, deepdiff, rich, pydantic, jsonschema-specifications, jinja_partials, botocore, typer, s3transfer, pydantic-settings, open-data-contract-standard, jsonschema, datacontract-specification, boto3, datacontract-cli
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:50.8290011Z 
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:50.8309893Z 
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:50.8314602Z Successfully installed Jinja2-3.1.6 MarkupSafe-3.0.3 annotated-doc-0.0.5 annotated-types-0.8.0 attrs-26.1.0 boto3-1.43.65 botocore-1.43.65 cachebox-5.2.3 certifi-2026.7.22 charset_normalizer-3.4.9 click-8.4.2 datacontract-cli-1.1.0 datacontract-specification-1.2.3 deepdiff-9.1.0 fastjsonschema-2.22.1 idna-3.18 jinja_partials-0.3.2 jmespath-1.1.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 markdown-it-py-4.2.0 mdurl-0.1.2 open-data-contract-standard-3.1.2 orderly-set-5.5.0 pydantic-2.13.4 pydantic-core-2.46.4 pydantic-settings-2.14.2 pygments-2.20.0 python-dateutil-2.9.0.post0 python-dotenv-1.2.2 python-multipart-0.0.32 pytz-2026.3.post1 pyyaml-6.0.3 referencing-0.37.0 requests-2.34.2 rich-15.0.0 rpds-py-2026.6.3 ruamel.yaml-0.19.1 s3transfer-0.19.2 shellingham-1.5.4 six-1.17.0 sqlglot-30.15.0 truststore-0.10.4 typer-0.27.1 typing-extensions-4.16.0 typing-inspection-0.4.2 urllib3-2.7.0
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:50.8319546Z [notice] A new release of pip is available: 26.1.2 -> 26.2.1
+契約の構文検証と破壊的変更ゲート	datacontract-cli をインストール(バージョン固定)	2026-08-06T05:14:50.8320098Z [notice] To update, run: pip install --upgrade pip
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	﻿2026-08-06T05:14:51.0151937Z ##[group]Run datacontract lint contracts/daily_sales.yaml
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.0152756Z [36;1mdatacontract lint contracts/daily_sales.yaml[0m
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.0185986Z shell: /usr/bin/bash -e {0}
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.0186451Z env:
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.0186823Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.0187312Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.0187809Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.0188266Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.0188685Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.0189276Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.0189884Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.7394874Z ╭────────┬──────────────────────────────────────┬───────┬─────────╮
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.7396208Z │ Result │ Check                                │ Field │ Details │
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.7397704Z ├────────┼──────────────────────────────────────┼───────┼─────────┤
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.7399049Z │ passed │ Data contract is syntactically valid │       │         │
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.7400557Z ╰────────┴──────────────────────────────────────┴───────┴─────────╯
+契約の構文検証と破壊的変更ゲート	契約の構文検証(lint)	2026-08-06T05:14:51.7401939Z 🟢 data contract is valid. Run 1 checks. Took 0.152352 seconds.
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	﻿2026-08-06T05:14:51.8293969Z ##[group]Run git fetch --no-tags --depth=1 origin "main"
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:51.8294504Z [36;1mgit fetch --no-tags --depth=1 origin "main"[0m
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:51.8295027Z [36;1mgit show "origin/main:contracts/daily_sales.yaml" > /tmp/base_contract.yaml[0m
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:51.8323681Z shell: /usr/bin/bash -e {0}
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:51.8324040Z env:
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:51.8324453Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:51.8324965Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:51.8325425Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:51.8325893Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:51.8326325Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:51.8326764Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:51.8327180Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:52.3183615Z From https://github.com/Kota-Takahashi-sti/dg-demo
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:52.3184531Z  * branch            main       -> FETCH_HEAD
+契約の構文検証と破壊的変更ゲート	ベースブランチ版の契約を取得	2026-08-06T05:14:52.3185108Z  * [new branch]      main       -> origin/main
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	﻿2026-08-06T05:14:52.3280409Z ##[group]Run datacontract changelog /tmp/base_contract.yaml contracts/daily_sales.yaml
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:52.3281538Z [36;1mdatacontract changelog /tmp/base_contract.yaml contracts/daily_sales.yaml[0m
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:52.3311325Z shell: /usr/bin/bash -e {0}
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:52.3311732Z env:
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:52.3312088Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:52.3312589Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:52.3313060Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:52.3313478Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:52.3313949Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:52.3314368Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:52.3314746Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:53.1234369Z Details
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:53.1244688Z ╭────────┬──────┬───────────┬───────────╮
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:53.1245693Z │ Change │ Path │ Old Value │ New Value │
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:53.1246931Z ├────────┼──────┼───────────┼───────────┤
+契約の構文検証と破壊的変更ゲート	変更内容の表示(datacontract changelog は参考表示・常に exit 0)	2026-08-06T05:14:53.1248240Z ╰────────┴──────┴───────────┴───────────╯
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	﻿2026-08-06T05:14:53.2372002Z ##[group]Run python contracts/check_breaking.py /tmp/base_contract.yaml contracts/daily_sales.yaml
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2373134Z [36;1mpython contracts/check_breaking.py /tmp/base_contract.yaml contracts/daily_sales.yaml[0m
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2414734Z shell: /usr/bin/bash -e {0}
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2415210Z env:
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2415828Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2416582Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2417350Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2418077Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2418743Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2420065Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2420693Z ##[endgroup]
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2868851Z 変更前: /tmp/base_contract.yaml (version: 1.0.0)
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2870056Z 変更後: contracts/daily_sales.yaml (version: 1.0.0)
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2871078Z 
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2871282Z 
+契約の構文検証と破壊的変更ゲート	破壊的変更の判定(検知したら fail = PR をブロック)	2026-08-06T05:14:53.2871705Z 判定: 破壊的変更なし(非破壊的変更 0 件)
+契約の構文検証と破壊的変更ゲート	Post Run actions/setup-python@v5	﻿2026-08-06T05:14:53.3006000Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+契約の構文検証と破壊的変更ゲート	Post Run actions/setup-python@v5	2026-08-06T05:14:53.3007128Z Post job cleanup.
+契約の構文検証と破壊的変更ゲート	Post Run actions/setup-python@v5	2026-08-06T05:14:53.4231177Z (node:2191) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+契約の構文検証と破壊的変更ゲート	Post Run actions/setup-python@v5	2026-08-06T05:14:53.4232663Z (Use `node --trace-deprecation ...` to show where the warning was created)
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	﻿2026-08-06T05:14:53.4481346Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.4483249Z Post job cleanup.
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.5478403Z [command]/usr/bin/git version
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.5540867Z git version 2.54.0
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.5590939Z Temporarily overriding HOME='/home/runner/work/_temp/6b242984-1885-444f-a419-04e2a30e3db5' before making global git config changes
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.5597030Z Adding repository directory to the temporary git global config as a safe directory
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.5598527Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dg-demo/dg-demo
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.5660856Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.5730215Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.6055630Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.6072257Z http.https://github.com/.extraheader
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.6091889Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.6145208Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.6481480Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+契約の構文検証と破壊的変更ゲート	Post Run actions/checkout@v4	2026-08-06T05:14:53.6561655Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+契約の構文検証と破壊的変更ゲート	Complete job	﻿2026-08-06T05:14:53.7137169Z Cleaning up orphan processes
+契約の構文検証と破壊的変更ゲート	Complete job	2026-08-06T05:14:53.7345661Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+実データベースへの契約テスト(datacontract ci)	Set up job	﻿2026-08-06T05:14:39.9828981Z Current runner version: '2.336.0'
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9867988Z ##[group]Runner Image Provisioner
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9869316Z Hosted Compute Agent
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9870334Z Version: 20260707.563
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9871336Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9872453Z Build Date: 2026-07-07T19:33:50Z
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9873596Z Worker ID: {50334507-9121-403c-b4d8-cee48b3f4fb8}
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9874771Z Azure Region: eastus2
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9876011Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9878044Z ##[group]Operating System
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9879040Z Ubuntu
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9879991Z 24.04.4
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9880914Z LTS
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9881829Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9882734Z ##[group]Runner Image
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9883681Z Image: ubuntu-24.04
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9884664Z Version: 20260720.247.2
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9886659Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260720.247/images/ubuntu/Ubuntu2404-Readme.md
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9889613Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260720.247
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9891129Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9893059Z ##[group]GITHUB_TOKEN Permissions
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9896316Z Contents: read
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9897443Z Metadata: read
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9898306Z Packages: read
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9899750Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9903126Z Secret source: Actions
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:39.9904833Z Prepare workflow directory
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:40.0513538Z Prepare all required actions
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:40.0580675Z Getting action download info
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:40.2684268Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:40.5665005Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+実データベースへの契約テスト(datacontract ci)	Set up job	2026-08-06T05:14:40.7601389Z Complete job name: 実データベースへの契約テスト(datacontract ci)
+実データベースへの契約テスト(datacontract ci)	Initialize containers	﻿2026-08-06T05:14:40.8100391Z ##[group]Checking docker version
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:40.8113577Z ##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:40.8939645Z '1.48'
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:40.8959819Z Docker daemon API version: '1.48'
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:40.8961074Z ##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:40.9271252Z '1.48'
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:40.9284153Z Docker client API version: '1.48'
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:40.9289991Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:40.9293137Z ##[group]Clean up resources from previous jobs
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:40.9299334Z ##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=dd54ac"
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:40.9502803Z ##[command]/usr/bin/docker network prune --force --filter "label=dd54ac"
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:40.9654633Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:40.9655538Z ##[group]Create local container network
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:40.9665777Z ##[command]/usr/bin/docker network create --label dd54ac github_network_1a0b038873ba4fb391ab5cb4024b5450
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.0625939Z c7756de17b648d7daa244fad78b48e11d628dbd2b113e81c7d8b90034954dfeb
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.0636750Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.0670032Z ##[group]Starting postgres service container
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.0704953Z ##[command]/usr/bin/docker pull postgres:16
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.4406551Z 16: Pulling from library/postgres
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5297438Z 26c307b5e35a: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5299327Z bc896de4a313: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5301053Z 21b1510e6796: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5302904Z 1d943b076b0f: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5304881Z c66dedc53722: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5307712Z 6a61619bdfd1: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5309174Z 0a30060dfa56: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5310911Z 10e14a8b4766: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5312234Z 24ae71c6470d: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5313896Z 572343b36a41: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5315472Z bc0701afb397: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5317326Z d015a9a5b43f: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5319395Z 5724f2481726: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5321150Z 5d59b154e183: Pulling fs layer
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5322816Z 1d943b076b0f: Waiting
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5324498Z 24ae71c6470d: Waiting
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5326072Z 572343b36a41: Waiting
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5327799Z bc0701afb397: Waiting
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5329004Z c66dedc53722: Waiting
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5330681Z 6a61619bdfd1: Waiting
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5332022Z 0a30060dfa56: Waiting
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5333597Z 10e14a8b4766: Waiting
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5334805Z d015a9a5b43f: Waiting
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5336585Z 5724f2481726: Waiting
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.5338063Z 5d59b154e183: Waiting
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.6014041Z bc896de4a313: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.6016156Z bc896de4a313: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.6684416Z 21b1510e6796: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.6689050Z 21b1510e6796: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.6994202Z 1d943b076b0f: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.7006120Z 1d943b076b0f: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.7401433Z 26c307b5e35a: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.7402688Z 26c307b5e35a: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.8125381Z 0a30060dfa56: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.8130470Z 0a30060dfa56: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.8154645Z 6a61619bdfd1: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.8160030Z 6a61619bdfd1: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.8647328Z 10e14a8b4766: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.8649805Z 10e14a8b4766: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.8652999Z c66dedc53722: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.8660163Z c66dedc53722: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.9501861Z bc0701afb397: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.9509733Z bc0701afb397: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.9531443Z 572343b36a41: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:41.9533759Z 572343b36a41: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:42.0223750Z d015a9a5b43f: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:42.0235806Z d015a9a5b43f: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:42.0254059Z 5724f2481726: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:42.0277534Z 5724f2481726: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:42.2157336Z 5d59b154e183: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:42.2187041Z 5d59b154e183: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:42.6230949Z 24ae71c6470d: Verifying Checksum
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:42.6241389Z 24ae71c6470d: Download complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:43.6137702Z 26c307b5e35a: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:46.1644019Z bc896de4a313: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:46.3812163Z 21b1510e6796: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:46.4363514Z 1d943b076b0f: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:46.8093937Z c66dedc53722: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:46.8917329Z 6a61619bdfd1: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:46.9012374Z 0a30060dfa56: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:46.9136528Z 10e14a8b4766: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.4023899Z 24ae71c6470d: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.4219998Z 572343b36a41: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.4379020Z bc0701afb397: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.4516172Z d015a9a5b43f: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.4604114Z 5724f2481726: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.4717723Z 5d59b154e183: Pull complete
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.4759167Z Digest: sha256:95206741a5b214807675e14165369d05b93a9cf692223b616d07cca227e74b0b
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.4776871Z Status: Downloaded newer image for postgres:16
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.4779397Z docker.io/library/postgres:16
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.4875914Z ##[command]/usr/bin/docker create --name fe6f179e67a141499d0fe8dc86aef83e_postgres16_3c8ba3 --label dd54ac --network github_network_1a0b038873ba4fb391ab5cb4024b5450 --network-alias postgres -p 5432:5432 --health-cmd "pg_isready -U demo -d demo" --health-interval 5s --health-timeout 3s --health-retries 10 -e "POSTGRES_USER=demo" -e "POSTGRES_PASSWORD=demo_password" -e "POSTGRES_DB=demo" -e GITHUB_ACTIONS=true -e CI=true postgres:16
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.5165056Z 32b08b039708f632ad4a92a5fb027db15c2e9de657b44abdbb3b81d80dbd2cb4
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.5190414Z ##[command]/usr/bin/docker start 32b08b039708f632ad4a92a5fb027db15c2e9de657b44abdbb3b81d80dbd2cb4
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.7798269Z 32b08b039708f632ad4a92a5fb027db15c2e9de657b44abdbb3b81d80dbd2cb4
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.7830218Z ##[command]/usr/bin/docker ps --all --filter id=32b08b039708f632ad4a92a5fb027db15c2e9de657b44abdbb3b81d80dbd2cb4 --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.8019033Z 32b08b039708f632ad4a92a5fb027db15c2e9de657b44abdbb3b81d80dbd2cb4 Up Less than a second (health: starting)
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.8046118Z ##[command]/usr/bin/docker port 32b08b039708f632ad4a92a5fb027db15c2e9de657b44abdbb3b81d80dbd2cb4
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.8230868Z 5432/tcp -> 0.0.0.0:5432
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.8248635Z 5432/tcp -> [::]:5432
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.8318119Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.8332291Z ##[group]Waiting for all services to be ready
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.8349526Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" 32b08b039708f632ad4a92a5fb027db15c2e9de657b44abdbb3b81d80dbd2cb4
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.8571202Z starting
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:51.8609906Z postgres service is starting, waiting 2 seconds before checking again.
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:53.8614654Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" 32b08b039708f632ad4a92a5fb027db15c2e9de657b44abdbb3b81d80dbd2cb4
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:53.8752106Z starting
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:53.8765640Z postgres service is starting, waiting 3 seconds before checking again.
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:57.5135002Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" 32b08b039708f632ad4a92a5fb027db15c2e9de657b44abdbb3b81d80dbd2cb4
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:57.5311318Z healthy
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:57.5330536Z postgres service is healthy.
+実データベースへの契約テスト(datacontract ci)	Initialize containers	2026-08-06T05:14:57.5331327Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	﻿2026-08-06T05:14:57.5697132Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5704645Z ##[group]Run actions/checkout@v4
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5705685Z with:
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5705956Z   repository: Kota-Takahashi-sti/dg-demo
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5709068Z   token: ***
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5709306Z   ssh-strict: true
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5709540Z   ssh-user: git
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5709777Z   persist-credentials: true
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5710037Z   clean: true
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5710270Z   sparse-checkout-cone-mode: true
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5710544Z   fetch-depth: 1
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5710764Z   fetch-tags: false
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5711005Z   show-progress: true
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5711237Z   lfs: false
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5711448Z   submodules: false
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5711735Z   set-safe-directory: true
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5712015Z   allow-unsafe-pr-checkout: false
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5712595Z env:
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5712814Z   DEMO_DB_HOST: localhost
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5713074Z   DEMO_DB_PORT: 5432
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5713303Z   DEMO_DB_USER: demo
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5713537Z   DEMO_DB_PASSWORD: demo_password
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5713796Z   DEMO_DB_NAME: demo
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5714038Z   DATACONTRACT_POSTGRES_HOST: localhost
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5714351Z   DATACONTRACT_POSTGRES_USERNAME: demo
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5714672Z   DATACONTRACT_POSTGRES_PASSWORD: demo_password
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.5714977Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.6999977Z Syncing repository: Kota-Takahashi-sti/dg-demo
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7001881Z ##[group]Getting Git version info
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7002625Z Working directory is '/home/runner/work/dg-demo/dg-demo'
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7003544Z [command]/usr/bin/git version
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7087372Z git version 2.54.0
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7146178Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7169383Z Temporarily overriding HOME='/home/runner/work/_temp/26931043-ca3e-4534-b251-862b0824958e' before making global git config changes
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7171141Z Adding repository directory to the temporary git global config as a safe directory
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7172352Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dg-demo/dg-demo
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7246784Z Deleting the contents of '/home/runner/work/dg-demo/dg-demo'
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7248206Z ##[group]Initializing the repository
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7248990Z [command]/usr/bin/git init /home/runner/work/dg-demo/dg-demo
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7370742Z hint: Using 'master' as the name for the initial branch. This default branch name
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7391566Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7416090Z hint: to use in all of your new repositories, which will suppress this warning,
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7422274Z hint: call:
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7442219Z hint:
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7467744Z hint: 	git config --global init.defaultBranch <name>
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7495581Z hint:
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7506222Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7507539Z hint: 'development'. The just-created branch can be renamed via this command:
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7510351Z hint:
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7510973Z hint: 	git branch -m <name>
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7511577Z hint:
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7512318Z hint: Disable this message with "git config set advice.defaultBranchName false"
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7513410Z Initialized empty Git repository in /home/runner/work/dg-demo/dg-demo/.git/
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7516238Z [command]/usr/bin/git remote add origin https://github.com/Kota-Takahashi-sti/dg-demo
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7518264Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7519079Z ##[group]Disabling automatic garbage collection
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7519831Z [command]/usr/bin/git config --local gc.auto 0
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7560856Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7561730Z ##[group]Setting up auth
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7562582Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.7623209Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.8136388Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.8196611Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.8562108Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.8638419Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.9045418Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.9100210Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.9100974Z ##[group]Fetching the repository
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:57.9119595Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +1a0d77437f767f5d9100b0181f718ac994146005:refs/remotes/pull/2/merge
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.3773564Z From https://github.com/Kota-Takahashi-sti/dg-demo
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.3774867Z  * [new ref]         1a0d77437f767f5d9100b0181f718ac994146005 -> pull/2/merge
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.3812963Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.3813868Z ##[group]Determining the checkout info
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.3816443Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.3824597Z [command]/usr/bin/git sparse-checkout disable
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.3888805Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.3938466Z ##[group]Checking out the ref
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.3941350Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/2/merge
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4431109Z Note: switching to 'refs/remotes/pull/2/merge'.
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4435914Z 
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4436576Z You are in 'detached HEAD' state. You can look around, make experimental
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4437570Z changes and commit them, and you can discard any commits you make in this
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4438512Z state without impacting any branches by switching back to a branch.
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4439152Z 
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4439636Z If you want to create a new branch to retain commits you create, you may
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4440535Z do so (now or later) by using -c with the switch command. Example:
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4441118Z 
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4441453Z   git switch -c <new-branch-name>
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4441903Z 
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4442222Z Or undo this operation with:
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4453237Z 
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4453636Z   git switch -
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4454044Z 
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4454548Z Turn off this advice by setting config variable advice.detachedHead to false
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4455460Z 
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4457430Z HEAD is now at 1a0d774 Merge 9cc14ed5e20fd89f9a6df8560adcc71ca80993fa into 4c61f2402715e178ad0ccaf39ea130c1de2f6389
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4459929Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4516101Z [command]/usr/bin/git log -1 --format=%H
+実データベースへの契約テスト(datacontract ci)	Run actions/checkout@v4	2026-08-06T05:14:58.4541660Z 1a0d77437f767f5d9100b0181f718ac994146005
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	﻿2026-08-06T05:14:58.4824840Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4826627Z ##[group]Run actions/setup-python@v5
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4826912Z with:
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4827137Z   python-version: 3.11
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4827390Z   check-latest: false
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4830335Z   token: ***
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4830568Z   update-environment: true
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4830836Z   allow-prereleases: false
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4831104Z   freethreaded: false
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4831334Z env:
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4831555Z   DEMO_DB_HOST: localhost
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4831797Z   DEMO_DB_PORT: 5432
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4832023Z   DEMO_DB_USER: demo
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4832257Z   DEMO_DB_PASSWORD: demo_password
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4832527Z   DEMO_DB_NAME: demo
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4832818Z   DATACONTRACT_POSTGRES_HOST: localhost
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4833131Z   DATACONTRACT_POSTGRES_USERNAME: demo
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4833454Z   DATACONTRACT_POSTGRES_PASSWORD: demo_password
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.4833764Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.6222608Z ##[group]Installed versions
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.6305997Z (node:2395) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.6307705Z (Use `node --trace-deprecation ...` to show where the warning was created)
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.6308378Z Successfully set up CPython (3.11.15)
+実データベースへの契約テスト(datacontract ci)	Run actions/setup-python@v5	2026-08-06T05:14:58.6309866Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	﻿2026-08-06T05:14:58.6534209Z ##[group]Run pip install "datacontract-cli[postgres]==1.1.0" "psycopg2-binary==2.9.10"
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6535582Z [36;1mpip install "datacontract-cli[postgres]==1.1.0" "psycopg2-binary==2.9.10"[0m
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6623617Z shell: /usr/bin/bash -e {0}
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6624041Z env:
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6624364Z   DEMO_DB_HOST: localhost
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6624753Z   DEMO_DB_PORT: 5432
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6625098Z   DEMO_DB_USER: demo
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6625717Z   DEMO_DB_PASSWORD: demo_password
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6626131Z   DEMO_DB_NAME: demo
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6626506Z   DATACONTRACT_POSTGRES_HOST: localhost
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6626992Z   DATACONTRACT_POSTGRES_USERNAME: demo
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6627495Z   DATACONTRACT_POSTGRES_PASSWORD: demo_password
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6628098Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6628832Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6629557Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6630527Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6631179Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6631842Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:58.6632414Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:59.6175730Z Collecting datacontract-cli==1.1.0 (from datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:59.6903708Z   Downloading datacontract_cli-1.1.0-py3-none-any.whl.metadata (29 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:59.7811699Z Collecting psycopg2-binary==2.9.10
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:59.7884722Z   Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:59.8142451Z Collecting typer<0.28,>=0.18.0 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:59.8222818Z   Downloading typer-0.27.1-py3-none-any.whl.metadata (16 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:59.8476228Z Collecting click<9.0.0,>=8.1.0 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:59.8554094Z   Downloading click-8.4.2-py3-none-any.whl.metadata (2.6 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:59.9625008Z Collecting pydantic<2.14.0,>=2.8.2 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:14:59.9700707Z   Downloading pydantic-2.13.4-py3-none-any.whl.metadata (109 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.0006877Z Collecting pydantic-settings<3.0.0,>=2.5.0 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.0083388Z   Downloading pydantic_settings-2.14.2-py3-none-any.whl.metadata (3.4 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.0421281Z Collecting pyyaml~=6.0.1 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.0500875Z   Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.1507534Z Collecting ruamel.yaml<0.20,>=0.17 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.1585564Z   Downloading ruamel_yaml-0.19.1-py3-none-any.whl.metadata (16 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.1818990Z Collecting requests<2.35,>=2.31 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.1897841Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.2076704Z Collecting truststore<1.0,>=0.10 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.2147310Z   Downloading truststore-0.10.4-py3-none-any.whl.metadata (4.4 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.2310196Z Collecting fastjsonschema<2.23.0,>=2.19.1 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.2390669Z   Downloading fastjsonschema-2.22.1-py3-none-any.whl.metadata (2.1 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.2605897Z Collecting jsonschema<5.0.0,>=4.23.0 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.2680474Z   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.3020912Z Collecting pytz>=2024.1 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.3106172Z   Downloading pytz-2026.3.post1-py2.py3-none-any.whl.metadata (22 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.3276406Z Collecting python-multipart<1.0.0,>=0.0.20 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.3378483Z   Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.3660945Z Collecting rich<16.0,>=13.7 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.3735003Z   Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.4657358Z Collecting sqlglot<31.0.0,>=26.6.0 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.4747205Z   Downloading sqlglot-30.15.0-py3-none-any.whl.metadata (25 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.4943672Z Collecting python-dotenv<2.0.0,>=1.0.0 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.5017926Z   Downloading python_dotenv-1.2.2-py3-none-any.whl.metadata (27 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.6837057Z Collecting boto3<2.0.0,>=1.34.41 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.6910819Z   Downloading boto3-1.43.65-py3-none-any.whl.metadata (6.6 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.7083436Z Collecting Jinja2<4.0.0,>=3.1.5 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.7154186Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.7326893Z Collecting jinja_partials<1.0.0,>=0.2.1 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.7401513Z   Downloading jinja_partials-0.3.2-py3-none-any.whl.metadata (8.8 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.7560563Z Collecting datacontract-specification<2.0.0,>=1.2.3 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.7684221Z   Downloading datacontract_specification-1.2.3-py3-none-any.whl.metadata (3.2 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.7848291Z Collecting open-data-contract-standard<4.0.0,>=3.1.2 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.7953159Z   Downloading open_data_contract_standard-3.1.2-py3-none-any.whl.metadata (3.0 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.8163460Z Collecting deepdiff<10.0.0,>=6.0.0 (from datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.8251602Z   Downloading deepdiff-9.1.0-py3-none-any.whl.metadata (8.4 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.8586082Z Collecting ibis-framework<13.0.0,>=10.0.0 (from ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.8735125Z   Downloading ibis_framework-12.0.0-py3-none-any.whl.metadata (21 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.9088193Z Collecting psycopg<4.0,>=3.1 (from psycopg[binary]<4.0,>=3.1; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.9161784Z   Downloading psycopg-3.3.4-py3-none-any.whl.metadata (4.3 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.9365716Z Collecting packaging<27.0,>=21.3 (from datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:00.9438537Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.1630697Z Collecting botocore<1.44.0,>=1.43.65 (from boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.1707336Z   Downloading botocore-1.43.65-py3-none-any.whl.metadata (5.6 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.1861070Z Collecting jmespath<2.0.0,>=0.7.1 (from boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.1942892Z   Downloading jmespath-1.1.0-py3-none-any.whl.metadata (7.6 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.2124184Z Collecting s3transfer<0.20.0,>=0.19.0 (from boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.2200038Z   Downloading s3transfer-0.19.2-py3-none-any.whl.metadata (1.7 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.2372563Z Collecting python-dateutil<3.0.0,>=2.1 (from botocore<1.44.0,>=1.43.65->boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.2444201Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.2666074Z Collecting urllib3!=2.2.0,<3,>=1.25.4 (from botocore<1.44.0,>=1.43.65->boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.2738927Z   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.5410821Z Collecting cachebox<6,>=5.2 (from deepdiff<10.0.0,>=6.0.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.5485564Z   Downloading cachebox-5.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (27 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.5648627Z Collecting orderly-set<6,>=5.5.0 (from deepdiff<10.0.0,>=6.0.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.5721254Z   Downloading orderly_set-5.5.0-py3-none-any.whl.metadata (6.6 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.5900741Z Collecting atpublic>=2.3 (from ibis-framework<13.0.0,>=10.0.0->ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.5974643Z   Downloading atpublic-7.0.0-py3-none-any.whl.metadata (2.0 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.6108380Z Collecting parsy>=2 (from ibis-framework<13.0.0,>=10.0.0->ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.6193814Z   Downloading parsy-2.2-py3-none-any.whl.metadata (3.7 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.6446284Z Collecting toolz>=0.11 (from ibis-framework<13.0.0,>=10.0.0->ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.6517910Z   Downloading toolz-1.1.0-py3-none-any.whl.metadata (5.1 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.6696340Z Collecting typing-extensions>=4.3.0 (from ibis-framework<13.0.0,>=10.0.0->ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.6770250Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.6937094Z Collecting tzdata>=2022.7 (from ibis-framework<13.0.0,>=10.0.0->ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.7014832Z   Downloading tzdata-2026.3-py2.py3-none-any.whl.metadata (1.4 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.8799735Z Collecting numpy<3,>=1.23.2 (from ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:01.8896448Z   Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.0055047Z Collecting pandas<4,>=1.5.3 (from ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.0154975Z   Downloading pandas-3.0.5-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (79 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.0550591Z Collecting pyarrow-hotfix>=0.4 (from ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.0621399Z   Downloading pyarrow_hotfix-0.7-py3-none-any.whl.metadata (3.6 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.1729525Z Collecting pyarrow>=10.0.1 (from ibis-framework[postgres]<13.0.0,>=10.0.0; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.1802894Z   Downloading pyarrow-25.0.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.2286954Z Collecting MarkupSafe>=2.0 (from Jinja2<4.0.0,>=3.1.5->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.2360782Z   Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.2531078Z Collecting attrs>=22.2.0 (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.2606436Z   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.2758714Z Collecting jsonschema-specifications>=2023.03.6 (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.2830177Z   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.3034026Z Collecting referencing>=0.28.4 (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.3105796Z   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.5249136Z Collecting rpds-py>=0.25.0 (from jsonschema<5.0.0,>=4.23.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.5324726Z   Downloading rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.7246521Z Collecting psycopg-binary==3.3.4 (from psycopg[binary]<4.0,>=3.1; extra == "postgres"->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.7344045Z   Downloading psycopg_binary-3.3.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.7 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.7506605Z Collecting annotated-types>=0.6.0 (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:02.7574881Z   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.3536816Z Collecting pydantic-core==2.46.4 (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.3611735Z   Downloading pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.3752431Z Collecting typing-inspection>=0.4.2 (from pydantic<2.14.0,>=2.8.2->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.3837269Z   Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.4049060Z Collecting six>=1.5 (from python-dateutil<3.0.0,>=2.1->botocore<1.44.0,>=1.43.65->boto3<2.0.0,>=1.34.41->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.4121992Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.5037081Z Collecting charset_normalizer<4,>=2 (from requests<2.35,>=2.31->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.5118201Z   Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (41 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.5312913Z Collecting idna<4,>=2.5 (from requests<2.35,>=2.31->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.5384697Z   Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.5591567Z Collecting certifi>=2023.5.7 (from requests<2.35,>=2.31->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.5664198Z   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.5844155Z Collecting markdown-it-py>=2.2.0 (from rich<16.0,>=13.7->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.5923704Z   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.6133441Z Collecting pygments<3.0.0,>=2.13.0 (from rich<16.0,>=13.7->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.6208058Z   Downloading pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.6546506Z Collecting shellingham>=1.3.0 (from typer<0.28,>=0.18.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.6617382Z   Downloading shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.6767637Z Collecting annotated-doc>=0.0.2 (from typer<0.28,>=0.18.0->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.6842780Z   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.7035472Z Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich<16.0,>=13.7->datacontract-cli==1.1.0->datacontract-cli[postgres]==1.1.0)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.7104884Z   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.7320876Z Downloading datacontract_cli-1.1.0-py3-none-any.whl (3.1 MB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.8779522Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.1/3.1 MB 23.5 MB/s  0:00:00
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.8883018Z Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.9511917Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 50.2 MB/s  0:00:00
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.9584422Z Downloading boto3-1.43.65-py3-none-any.whl (140 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:03.9682415Z Downloading botocore-1.43.65-py3-none-any.whl (15.5 MB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.1077552Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.5/15.5 MB 112.8 MB/s  0:00:00
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.1152049Z Downloading click-8.4.2-py3-none-any.whl (119 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.1249156Z Downloading datacontract_specification-1.2.3-py3-none-any.whl (15 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.1339060Z Downloading deepdiff-9.1.0-py3-none-any.whl (184 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.1436859Z Downloading cachebox-5.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (395 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.1553811Z Downloading fastjsonschema-2.22.1-py3-none-any.whl (26 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.1668214Z Downloading ibis_framework-12.0.0-py3-none-any.whl (2.1 MB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.1806548Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 167.9 MB/s  0:00:00
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.1888913Z Downloading jinja_partials-0.3.2-py3-none-any.whl (9.3 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.1975085Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.2070528Z Downloading jmespath-1.1.0-py3-none-any.whl (20 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.2160406Z Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.2259023Z Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.3017701Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 227.8 MB/s  0:00:00
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.3102930Z Downloading open_data_contract_standard-3.1.2-py3-none-any.whl (17 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.3192922Z Downloading orderly_set-5.5.0-py3-none-any.whl (13 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.3280100Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.3374698Z Downloading pandas-3.0.5-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (11.3 MB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.3787737Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.3/11.3 MB 290.4 MB/s  0:00:00
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.3862507Z Downloading psycopg-3.3.4-py3-none-any.whl (213 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.3958388Z Downloading psycopg_binary-3.3.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.2 MB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.4752762Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 64.2 MB/s  0:00:00
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.4845381Z Downloading pydantic-2.13.4-py3-none-any.whl (472 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.4949232Z Downloading pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.5049654Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 299.4 MB/s  0:00:00
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.5122772Z Downloading pydantic_settings-2.14.2-py3-none-any.whl (61 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.5222003Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.5315501Z Downloading python_dotenv-1.2.2-py3-none-any.whl (22 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.5409257Z Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.5502102Z Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.5554673Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 184.0 MB/s  0:00:00
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.5626399Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.5718357Z Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (221 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.5810627Z Downloading idna-3.18-py3-none-any.whl (65 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.5900443Z Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.5998125Z Downloading pygments-2.20.0-py3-none-any.whl (1.2 MB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.6064059Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 235.1 MB/s  0:00:00
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.6139473Z Downloading ruamel_yaml-0.19.1-py3-none-any.whl (118 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.6234190Z Downloading s3transfer-0.19.2-py3-none-any.whl (90 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.6368305Z Downloading sqlglot-30.15.0-py3-none-any.whl (731 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.6392776Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 731.8/731.8 kB 139.1 MB/s  0:00:00
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.6597775Z Downloading truststore-0.10.4-py3-none-any.whl (18 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.6708385Z Downloading typer-0.27.1-py3-none-any.whl (122 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.6803230Z Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.6920357Z Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.7012870Z Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.7107782Z Downloading atpublic-7.0.0-py3-none-any.whl (6.4 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.7200299Z Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.7297909Z Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.7415555Z Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.7521937Z Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.7613448Z Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.7701688Z Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.7791710Z Downloading parsy-2.2-py3-none-any.whl (9.5 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.7884011Z Downloading pyarrow-25.0.0-cp311-cp311-manylinux_2_28_x86_64.whl (50.1 MB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.9495148Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 50.1/50.1 MB 318.9 MB/s  0:00:00
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.9635128Z Downloading pyarrow_hotfix-0.7-py3-none-any.whl (7.9 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.9727497Z Downloading pytz-2026.3.post1-py2.py3-none-any.whl (508 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.9830990Z Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:04.9921988Z Downloading rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:05.0015600Z Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:05.0102121Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:05.0189390Z Downloading toolz-1.1.0-py3-none-any.whl (58 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:05.0279918Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:05.0374042Z Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:05.0455069Z Downloading tzdata-2026.3-py2.py3-none-any.whl (348 kB)
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:05.3348314Z Installing collected packages: pytz, urllib3, tzdata, typing-extensions, truststore, toolz, sqlglot, six, shellingham, ruamel.yaml, rpds-py, pyyaml, python-multipart, python-dotenv, pygments, pyarrow-hotfix, pyarrow, psycopg2-binary, psycopg-binary, parsy, packaging, orderly-set, numpy, mdurl, MarkupSafe, jmespath, idna, fastjsonschema, click, charset_normalizer, certifi, cachebox, attrs, atpublic, annotated-types, annotated-doc, typing-inspection, requests, referencing, python-dateutil, pydantic-core, psycopg, markdown-it-py, Jinja2, deepdiff, rich, pydantic, pandas, jsonschema-specifications, jinja_partials, ibis-framework, botocore, typer, s3transfer, pydantic-settings, open-data-contract-standard, jsonschema, datacontract-specification, boto3, datacontract-cli
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:18.7079409Z 
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:18.7110637Z Successfully installed Jinja2-3.1.6 MarkupSafe-3.0.3 annotated-doc-0.0.5 annotated-types-0.8.0 atpublic-7.0.0 attrs-26.1.0 boto3-1.43.65 botocore-1.43.65 cachebox-5.2.3 certifi-2026.7.22 charset_normalizer-3.4.9 click-8.4.2 datacontract-cli-1.1.0 datacontract-specification-1.2.3 deepdiff-9.1.0 fastjsonschema-2.22.1 ibis-framework-12.0.0 idna-3.18 jinja_partials-0.3.2 jmespath-1.1.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 markdown-it-py-4.2.0 mdurl-0.1.2 numpy-2.4.6 open-data-contract-standard-3.1.2 orderly-set-5.5.0 packaging-26.3 pandas-3.0.5 parsy-2.2 psycopg-3.3.4 psycopg-binary-3.3.4 psycopg2-binary-2.9.10 pyarrow-25.0.0 pyarrow-hotfix-0.7 pydantic-2.13.4 pydantic-core-2.46.4 pydantic-settings-2.14.2 pygments-2.20.0 python-dateutil-2.9.0.post0 python-dotenv-1.2.2 python-multipart-0.0.32 pytz-2026.3.post1 pyyaml-6.0.3 referencing-0.37.0 requests-2.34.2 rich-15.0.0 rpds-py-2026.6.3 ruamel.yaml-0.19.1 s3transfer-0.19.2 shellingham-1.5.4 six-1.17.0 sqlglot-30.15.0 toolz-1.1.0 truststore-0.10.4 typer-0.27.1 typing-extensions-4.16.0 typing-inspection-0.4.2 tzdata-2026.3 urllib3-2.7.0
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:18.7122524Z 
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:18.7126219Z [notice] A new release of pip is available: 26.1.2 -> 26.2.1
+実データベースへの契約テスト(datacontract ci)	依存をインストール(バージョン固定)	2026-08-06T05:15:18.7127033Z [notice] To update, run: pip install --upgrade pip
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	﻿2026-08-06T05:15:18.9911483Z ##[group]Run python pipeline/run_pipeline.py --data-dir data/seed/csv
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9912272Z [36;1mpython pipeline/run_pipeline.py --data-dir data/seed/csv[0m
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9961899Z shell: /usr/bin/bash -e {0}
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9962191Z env:
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9962421Z   DEMO_DB_HOST: localhost
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9962688Z   DEMO_DB_PORT: 5432
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9962919Z   DEMO_DB_USER: demo
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9963157Z   DEMO_DB_PASSWORD: demo_password
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9963426Z   DEMO_DB_NAME: demo
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9963674Z   DATACONTRACT_POSTGRES_HOST: localhost
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9963991Z   DATACONTRACT_POSTGRES_USERNAME: demo
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9964321Z   DATACONTRACT_POSTGRES_PASSWORD: demo_password
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9964712Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9965360Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9965868Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9966332Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9966746Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9967155Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:18.9967513Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1246473Z === step: seed ===
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1247624Z [sql] 01_create_raw.sql を実行
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1248253Z [seed] raw.customers: 1000 行
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1248794Z [seed] raw.products: 200 行
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1249317Z [seed] raw.orders: 5000 行
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1249808Z [seed] raw.order_items: 12561 行
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1250346Z === step: build_staging ===
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1250855Z [sql] 02_staging.sql を実行
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1251410Z [build_staging] staging.stg_orders: 11927 行
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1252006Z === step: build_mart ===
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1252571Z [sql] 03_mart.sql を実行
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1253097Z [build_mart] mart.daily_sales: 365 行
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1253841Z [build_mart] mart.customer_summary(ビュー): 1000 行
+実データベースへの契約テスト(datacontract ci)	サンプルデータを構築(raw→staging→mart)	2026-08-06T05:15:19.1254569Z パイプライン完了
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	﻿2026-08-06T05:15:19.1364009Z ##[group]Run datacontract ci contracts/daily_sales.yaml --server local
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1364571Z [36;1mdatacontract ci contracts/daily_sales.yaml --server local[0m
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1413708Z shell: /usr/bin/bash -e {0}
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1413988Z env:
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1414213Z   DEMO_DB_HOST: localhost
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1414473Z   DEMO_DB_PORT: 5432
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1414716Z   DEMO_DB_USER: demo
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1414962Z   DEMO_DB_PASSWORD: demo_password
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1415473Z   DEMO_DB_NAME: demo
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1415736Z   DATACONTRACT_POSTGRES_HOST: localhost
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1416048Z   DATACONTRACT_POSTGRES_USERNAME: demo
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1416377Z   DATACONTRACT_POSTGRES_PASSWORD: demo_password
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1416767Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1417231Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1417899Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1418343Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1418752Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1419157Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.1419503Z ##[endgroup]
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:19.8065127Z Testing contracts/daily_sales.yaml
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8376865Z ╭────────┬────────────────────────────────────────────┬──────────────┬─────────╮
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8403120Z │ Result │ Check                                      │ Field        │ Details │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8425921Z ├────────┼────────────────────────────────────────────┼──────────────┼─────────┤
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8445885Z │ passed │ Check that model daily_sales has row_count │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8496083Z │        │ > 300                                      │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8506360Z │ passed │ Check that field 'order_count' is present  │ order_count  │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8526262Z │ passed │ Check that field order_count has physical  │ order_count  │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8546636Z │        │ type bigint                                │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8562454Z │ passed │ Check that field order_count has no        │ order_count  │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8575851Z │        │ missing values                             │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8606417Z │ passed │ Check that field order_count has           │ order_count  │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8630473Z │        │ missing_count = 0                          │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8646017Z │ passed │ Check that field 'sales_date' is present   │ sales_date   │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8664001Z │ passed │ Check that field sales_date has physical   │ sales_date   │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8681805Z │        │ type date                                  │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8705934Z │ passed │ Check that field sales_date has no missing │ sales_date   │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8706891Z │        │ values                                     │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8725934Z │ passed │ Check that unique field sales_date has no  │ sales_date   │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8746001Z │        │ duplicate values                           │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8765913Z │ passed │ Check that field sales_date has            │ sales_date   │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8771551Z │        │ missing_count = 0                          │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8784288Z │ passed │ Check that field sales_date has            │ sales_date   │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8805895Z │        │ duplicate_count = 0                        │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8826082Z │ passed │ Retention of daily_sales.sales_date <      │ sales_date   │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8847440Z │        │ 94608000s                                  │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8876053Z │ passed │ Check that field 'total_amount' is present │ total_amount │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8877157Z │ passed │ Check that field total_amount has physical │ total_amount │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8895915Z │        │ type numeric                               │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8915973Z │ passed │ Check that field total_amount has no       │ total_amount │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8935825Z │        │ missing values                             │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8936752Z │ passed │ Check that field total_amount has          │ total_amount │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8955903Z │        │ missing_count = 0                          │              │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8956759Z │ passed │ 売上合計が負の日は存在しないこと(消費者向… │ total_amount │         │
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8958133Z ╰────────┴────────────────────────────────────────────┴──────────────┴─────────╯
+実データベースへの契約テスト(datacontract ci)	契約テスト(datacontract ci、違反でジョブが fail)	2026-08-06T05:15:20.8958982Z 🟢 data contract is valid. Run 17 checks. Took 1.014696 seconds.
+実データベースへの契約テスト(datacontract ci)	Post Run actions/setup-python@v5	﻿2026-08-06T05:15:21.1243088Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+実データベースへの契約テスト(datacontract ci)	Post Run actions/setup-python@v5	2026-08-06T05:15:21.1244369Z Post job cleanup.
+実データベースへの契約テスト(datacontract ci)	Post Run actions/setup-python@v5	2026-08-06T05:15:21.2508530Z (node:2542) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+実データベースへの契約テスト(datacontract ci)	Post Run actions/setup-python@v5	2026-08-06T05:15:21.2510077Z (Use `node --trace-deprecation ...` to show where the warning was created)
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	﻿2026-08-06T05:15:21.2771025Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.2773161Z Post job cleanup.
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.3835936Z [command]/usr/bin/git version
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.3896910Z git version 2.54.0
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.4029225Z Temporarily overriding HOME='/home/runner/work/_temp/1f5efd7a-67e5-4469-90fa-3965c7cd46c9' before making global git config changes
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.4041867Z Adding repository directory to the temporary git global config as a safe directory
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.4056223Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/dg-demo/dg-demo
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.4077201Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.4079611Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.4448747Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.4497531Z http.https://github.com/.extraheader
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.4523699Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.4584534Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.4978402Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+実データベースへの契約テスト(datacontract ci)	Post Run actions/checkout@v4	2026-08-06T05:15:21.5038194Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+実データベースへの契約テスト(datacontract ci)	Stop containers	﻿2026-08-06T05:15:21.5535962Z Print service container logs: fe6f179e67a141499d0fe8dc86aef83e_postgres16_3c8ba3
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5540836Z ##[command]/usr/bin/docker logs --details 32b08b039708f632ad4a92a5fb027db15c2e9de657b44abdbb3b81d80dbd2cb4
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5686012Z  initdb: warning: enabling "trust" authentication for local connections
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5687680Z  initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5688841Z  The files belonging to this database system will be owned by user "postgres".
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5689528Z  This user must also own the server process.
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5690102Z  
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5691174Z  2026-08-06 05:14:52.817 UTC [1] LOG:  starting PostgreSQL 16.14 (Debian 16.14-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5692679Z  The database cluster will be initialized with locale "en_US.utf8".
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5693639Z  2026-08-06 05:14:52.817 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5694801Z  The default database encoding has accordingly been set to "UTF8".
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5696488Z  2026-08-06 05:14:52.818 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5697553Z  The default text search configuration will be set to "english".
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5698748Z  2026-08-06 05:14:52.818 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5699858Z  
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5700638Z  2026-08-06 05:14:52.823 UTC [63] LOG:  database system was shut down at 2026-08-06 05:14:52 UTC
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5701860Z  Data page checksums are disabled.
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5702870Z  2026-08-06 05:14:52.827 UTC [1] LOG:  database system is ready to accept connections
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5704147Z  
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5704778Z  fixing permissions on existing directory /var/lib/postgresql/data ... ok
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5705777Z  creating subdirectories ... ok
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5706456Z  selecting dynamic shared memory implementation ... posix
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5721887Z  selecting default max_connections ... 100
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5722561Z  selecting default shared_buffers ... 128MB
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5723074Z  selecting default time zone ... Etc/UTC
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5723514Z  creating configuration files ... ok
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5723947Z  running bootstrap script ... ok
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5724429Z  performing post-bootstrap initialization ... ok
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5724941Z  syncing data to disk ... ok
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5725471Z  
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5725741Z  
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5726112Z  Success. You can now start the database server using:
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5726595Z  
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5726971Z      pg_ctl -D /var/lib/postgresql/data -l logfile start
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5727463Z  
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5728478Z  waiting for server to start....2026-08-06 05:14:52.505 UTC [47] LOG:  starting PostgreSQL 16.14 (Debian 16.14-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5729868Z  2026-08-06 05:14:52.505 UTC [47] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5730768Z  2026-08-06 05:14:52.508 UTC [50] LOG:  database system was shut down at 2026-08-06 05:14:52 UTC
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5731589Z  2026-08-06 05:14:52.512 UTC [47] LOG:  database system is ready to accept connections
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5732062Z   done
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5732264Z  server started
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5732490Z  CREATE DATABASE
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5732700Z  
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5732883Z  
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5733227Z  /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5733638Z  
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5734028Z  waiting for server to shut down...2026-08-06 05:14:52.693 UTC [47] LOG:  received fast shutdown request
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5734594Z  .2026-08-06 05:14:52.694 UTC [47] LOG:  aborting any active transactions
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5735881Z  2026-08-06 05:14:52.697 UTC [47] LOG:  background worker "logical replication launcher" (PID 53) exited with exit code 1
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5736701Z  2026-08-06 05:14:52.698 UTC [48] LOG:  shutting down
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5737107Z  2026-08-06 05:14:52.698 UTC [48] LOG:  checkpoint starting: shutdown immediate
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5738205Z  2026-08-06 05:14:52.713 UTC [48] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.013 s, sync=0.002 s, total=0.016 s; sync files=301, longest=0.001 s, average=0.001 s; distance=4273 kB, estimate=4273 kB; lsn=0/191F0E0, redo lsn=0/191F0E0
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5739253Z  2026-08-06 05:14:52.720 UTC [47] LOG:  database system is shut down
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5739590Z   done
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5739820Z  server stopped
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5740035Z  
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5740287Z  PostgreSQL init process complete; ready for start up.
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5740615Z  
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5746847Z Stop and remove container: fe6f179e67a141499d0fe8dc86aef83e_postgres16_3c8ba3
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:21.5751383Z ##[command]/usr/bin/docker rm --force 32b08b039708f632ad4a92a5fb027db15c2e9de657b44abdbb3b81d80dbd2cb4
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:23.8672328Z 32b08b039708f632ad4a92a5fb027db15c2e9de657b44abdbb3b81d80dbd2cb4
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:23.8691814Z Remove container network: github_network_1a0b038873ba4fb391ab5cb4024b5450
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:23.8696716Z ##[command]/usr/bin/docker network rm github_network_1a0b038873ba4fb391ab5cb4024b5450
+実データベースへの契約テスト(datacontract ci)	Stop containers	2026-08-06T05:15:23.9452497Z github_network_1a0b038873ba4fb391ab5cb4024b5450
+実データベースへの契約テスト(datacontract ci)	Complete job	﻿2026-08-06T05:15:23.9523647Z Cleaning up orphan processes
+実データベースへの契約テスト(datacontract ci)	Complete job	2026-08-06T05:15:23.9831011Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
