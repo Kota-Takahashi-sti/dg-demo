@@ -12,8 +12,8 @@
 ## 1. 前提条件
 
 - Docker Desktop または Docker Engine + Compose v2(検証環境: Docker 28.1.1 / Compose v2.35.1)
-- フェーズ1 のセットアップ(`cp .env.example .env` と `make setup`)が済んでいること。
-  **この領域のための追加ビルドは不要**です(datacontract-cli は公式 Docker イメージ
+- 共通セットアップ(`make setup`。[README.md](../../README.md) の「環境構築」参照)が
+  済んでいること。**この領域のための追加ビルドは不要**です(datacontract-cli は公式 Docker イメージ
   `datacontract/cli:1.1.0` をそのまま使います。初回実行時に自動で pull されます。約 277 MB)。
 - D-5 では GitHub Actions ワークフローの静的検証に `rhysd/actionlint:1.7.12`(約 20 MB)も
   初回に自動 pull されます。
@@ -65,7 +65,7 @@
 ## 3. 環境構築
 
 ```console
-$ cp .env.example .env   # 済みならスキップ
+$ make setup             # 共通セットアップ(.env 作成 + tools イメージビルド)。済みならスキップ
 $ make up-base           # デモ用 DB(postgres-demo)を起動
 ```
 
@@ -553,3 +553,6 @@ $ make clean-db  # データも含めて削除する場合
 contract 領域に常駐サービスはないため、postgres-demo を止めれば終了です。
 pre-commit フックを試した場合で不要になったら `rm .git/hooks/pre-commit` で解除できます
 (D-6 のデモは自動で解除まで行うため、通常は残りません)。
+
+Docker イメージまで含めた完全な後片付けの手順は、[README.md](../../README.md) の
+「後片付け」を参照してください。

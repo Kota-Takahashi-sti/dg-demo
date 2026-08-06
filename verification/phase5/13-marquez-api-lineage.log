@@ -1,0 +1,1017 @@
+{
+  "graph": [
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:31.728554Z",
+        "description": null,
+        "fields": [],
+        "id": {
+          "name": "data/seed/csv/customers.csv",
+          "namespace": "file"
+        },
+        "lastLifecycleState": "",
+        "lastModifiedAt": null,
+        "name": "data/seed/csv/customers.csv",
+        "namespace": "file",
+        "physicalName": "data/seed/csv/customers.csv",
+        "sourceName": "default",
+        "tags": [],
+        "type": "DB_TABLE",
+        "updatedAt": "2026-08-06T02:32:32.588521Z"
+      },
+      "id": "dataset:file:data/seed/csv/customers.csv",
+      "inEdges": [],
+      "outEdges": [
+        {
+          "destination": "job:demo_pipeline:run_pipeline.seed",
+          "origin": "dataset:file:data/seed/csv/customers.csv"
+        }
+      ],
+      "type": "DATASET"
+    },
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:31.728554Z",
+        "description": null,
+        "fields": [],
+        "id": {
+          "name": "data/seed/csv/order_items.csv",
+          "namespace": "file"
+        },
+        "lastLifecycleState": "",
+        "lastModifiedAt": null,
+        "name": "data/seed/csv/order_items.csv",
+        "namespace": "file",
+        "physicalName": "data/seed/csv/order_items.csv",
+        "sourceName": "default",
+        "tags": [],
+        "type": "DB_TABLE",
+        "updatedAt": "2026-08-06T02:32:32.588521Z"
+      },
+      "id": "dataset:file:data/seed/csv/order_items.csv",
+      "inEdges": [],
+      "outEdges": [
+        {
+          "destination": "job:demo_pipeline:run_pipeline.seed",
+          "origin": "dataset:file:data/seed/csv/order_items.csv"
+        }
+      ],
+      "type": "DATASET"
+    },
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:31.728554Z",
+        "description": null,
+        "fields": [],
+        "id": {
+          "name": "data/seed/csv/orders.csv",
+          "namespace": "file"
+        },
+        "lastLifecycleState": "",
+        "lastModifiedAt": null,
+        "name": "data/seed/csv/orders.csv",
+        "namespace": "file",
+        "physicalName": "data/seed/csv/orders.csv",
+        "sourceName": "default",
+        "tags": [],
+        "type": "DB_TABLE",
+        "updatedAt": "2026-08-06T02:32:32.588521Z"
+      },
+      "id": "dataset:file:data/seed/csv/orders.csv",
+      "inEdges": [],
+      "outEdges": [
+        {
+          "destination": "job:demo_pipeline:run_pipeline.seed",
+          "origin": "dataset:file:data/seed/csv/orders.csv"
+        }
+      ],
+      "type": "DATASET"
+    },
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:31.728554Z",
+        "description": null,
+        "fields": [],
+        "id": {
+          "name": "data/seed/csv/products.csv",
+          "namespace": "file"
+        },
+        "lastLifecycleState": "",
+        "lastModifiedAt": null,
+        "name": "data/seed/csv/products.csv",
+        "namespace": "file",
+        "physicalName": "data/seed/csv/products.csv",
+        "sourceName": "default",
+        "tags": [],
+        "type": "DB_TABLE",
+        "updatedAt": "2026-08-06T02:32:32.588521Z"
+      },
+      "id": "dataset:file:data/seed/csv/products.csv",
+      "inEdges": [],
+      "outEdges": [
+        {
+          "destination": "job:demo_pipeline:run_pipeline.seed",
+          "origin": "dataset:file:data/seed/csv/products.csv"
+        }
+      ],
+      "type": "DATASET"
+    },
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:35.079121Z",
+        "description": null,
+        "fields": [
+          {
+            "description": null,
+            "name": "customer_id",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "total_orders",
+            "tags": [],
+            "type": "bigint"
+          },
+          {
+            "description": null,
+            "name": "total_amount",
+            "tags": [],
+            "type": "numeric"
+          },
+          {
+            "description": null,
+            "name": "last_order_date",
+            "tags": [],
+            "type": "date"
+          }
+        ],
+        "id": {
+          "name": "demo.mart.customer_summary",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        "lastLifecycleState": "",
+        "lastModifiedAt": null,
+        "name": "demo.mart.customer_summary",
+        "namespace": "postgres://postgres-demo:5432",
+        "physicalName": "demo.mart.customer_summary",
+        "sourceName": "default",
+        "tags": [],
+        "type": "DB_TABLE",
+        "updatedAt": "2026-08-06T02:32:35.796395Z"
+      },
+      "id": "dataset:postgres://postgres-demo:5432:demo.mart.customer_summary",
+      "inEdges": [
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.mart.customer_summary",
+          "origin": "job:demo_pipeline:run_pipeline.build_mart"
+        }
+      ],
+      "outEdges": [],
+      "type": "DATASET"
+    },
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:35.079121Z",
+        "description": null,
+        "fields": [
+          {
+            "description": null,
+            "name": "sales_date",
+            "tags": [],
+            "type": "date"
+          },
+          {
+            "description": null,
+            "name": "order_count",
+            "tags": [],
+            "type": "bigint"
+          },
+          {
+            "description": null,
+            "name": "total_amount",
+            "tags": [],
+            "type": "numeric"
+          }
+        ],
+        "id": {
+          "name": "demo.mart.daily_sales",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        "lastLifecycleState": "",
+        "lastModifiedAt": null,
+        "name": "demo.mart.daily_sales",
+        "namespace": "postgres://postgres-demo:5432",
+        "physicalName": "demo.mart.daily_sales",
+        "sourceName": "default",
+        "tags": [],
+        "type": "DB_TABLE",
+        "updatedAt": "2026-08-06T02:32:35.791880Z"
+      },
+      "id": "dataset:postgres://postgres-demo:5432:demo.mart.daily_sales",
+      "inEdges": [
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.mart.daily_sales",
+          "origin": "job:demo_pipeline:run_pipeline.build_mart"
+        }
+      ],
+      "outEdges": [],
+      "type": "DATASET"
+    },
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:32.588521Z",
+        "description": null,
+        "fields": [
+          {
+            "description": null,
+            "name": "customer_id",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "name",
+            "tags": [],
+            "type": "varchar"
+          },
+          {
+            "description": null,
+            "name": "email",
+            "tags": [],
+            "type": "varchar"
+          },
+          {
+            "description": null,
+            "name": "prefecture",
+            "tags": [],
+            "type": "varchar"
+          },
+          {
+            "description": null,
+            "name": "created_at",
+            "tags": [],
+            "type": "timestamp"
+          }
+        ],
+        "id": {
+          "name": "demo.raw.customers",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        "lastLifecycleState": "",
+        "lastModifiedAt": null,
+        "name": "demo.raw.customers",
+        "namespace": "postgres://postgres-demo:5432",
+        "physicalName": "demo.raw.customers",
+        "sourceName": "default",
+        "tags": [],
+        "type": "DB_TABLE",
+        "updatedAt": "2026-08-06T02:32:35.079121Z"
+      },
+      "id": "dataset:postgres://postgres-demo:5432:demo.raw.customers",
+      "inEdges": [
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.raw.customers",
+          "origin": "job:demo_pipeline:run_pipeline.seed"
+        }
+      ],
+      "outEdges": [
+        {
+          "destination": "job:demo_pipeline:run_pipeline.build_mart",
+          "origin": "dataset:postgres://postgres-demo:5432:demo.raw.customers"
+        }
+      ],
+      "type": "DATASET"
+    },
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:32.588521Z",
+        "description": null,
+        "fields": [
+          {
+            "description": null,
+            "name": "order_item_id",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "order_id",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "product_id",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "quantity",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "unit_price",
+            "tags": [],
+            "type": "numeric"
+          }
+        ],
+        "id": {
+          "name": "demo.raw.order_items",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        "lastLifecycleState": "",
+        "lastModifiedAt": null,
+        "name": "demo.raw.order_items",
+        "namespace": "postgres://postgres-demo:5432",
+        "physicalName": "demo.raw.order_items",
+        "sourceName": "default",
+        "tags": [],
+        "type": "DB_TABLE",
+        "updatedAt": "2026-08-06T02:32:34.098274Z"
+      },
+      "id": "dataset:postgres://postgres-demo:5432:demo.raw.order_items",
+      "inEdges": [
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.raw.order_items",
+          "origin": "job:demo_pipeline:run_pipeline.seed"
+        }
+      ],
+      "outEdges": [
+        {
+          "destination": "job:demo_pipeline:run_pipeline.build_staging",
+          "origin": "dataset:postgres://postgres-demo:5432:demo.raw.order_items"
+        }
+      ],
+      "type": "DATASET"
+    },
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:32.588521Z",
+        "description": null,
+        "fields": [
+          {
+            "description": null,
+            "name": "order_id",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "customer_id",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "order_date",
+            "tags": [],
+            "type": "date"
+          },
+          {
+            "description": null,
+            "name": "status",
+            "tags": [],
+            "type": "varchar"
+          }
+        ],
+        "id": {
+          "name": "demo.raw.orders",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        "lastLifecycleState": "",
+        "lastModifiedAt": null,
+        "name": "demo.raw.orders",
+        "namespace": "postgres://postgres-demo:5432",
+        "physicalName": "demo.raw.orders",
+        "sourceName": "default",
+        "tags": [],
+        "type": "DB_TABLE",
+        "updatedAt": "2026-08-06T02:32:34.098274Z"
+      },
+      "id": "dataset:postgres://postgres-demo:5432:demo.raw.orders",
+      "inEdges": [
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.raw.orders",
+          "origin": "job:demo_pipeline:run_pipeline.seed"
+        }
+      ],
+      "outEdges": [
+        {
+          "destination": "job:demo_pipeline:run_pipeline.build_staging",
+          "origin": "dataset:postgres://postgres-demo:5432:demo.raw.orders"
+        }
+      ],
+      "type": "DATASET"
+    },
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:32.588521Z",
+        "description": null,
+        "fields": [
+          {
+            "description": null,
+            "name": "product_id",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "name",
+            "tags": [],
+            "type": "varchar"
+          },
+          {
+            "description": null,
+            "name": "category",
+            "tags": [],
+            "type": "varchar"
+          },
+          {
+            "description": null,
+            "name": "price",
+            "tags": [],
+            "type": "numeric"
+          }
+        ],
+        "id": {
+          "name": "demo.raw.products",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        "lastLifecycleState": "",
+        "lastModifiedAt": null,
+        "name": "demo.raw.products",
+        "namespace": "postgres://postgres-demo:5432",
+        "physicalName": "demo.raw.products",
+        "sourceName": "default",
+        "tags": [],
+        "type": "DB_TABLE",
+        "updatedAt": "2026-08-06T02:32:34.098274Z"
+      },
+      "id": "dataset:postgres://postgres-demo:5432:demo.raw.products",
+      "inEdges": [
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.raw.products",
+          "origin": "job:demo_pipeline:run_pipeline.seed"
+        }
+      ],
+      "outEdges": [
+        {
+          "destination": "job:demo_pipeline:run_pipeline.build_staging",
+          "origin": "dataset:postgres://postgres-demo:5432:demo.raw.products"
+        }
+      ],
+      "type": "DATASET"
+    },
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:34.098274Z",
+        "description": null,
+        "fields": [
+          {
+            "description": null,
+            "name": "order_item_id",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "order_id",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "customer_id",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "order_date",
+            "tags": [],
+            "type": "date"
+          },
+          {
+            "description": null,
+            "name": "status",
+            "tags": [],
+            "type": "varchar"
+          },
+          {
+            "description": null,
+            "name": "product_id",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "product_name",
+            "tags": [],
+            "type": "varchar"
+          },
+          {
+            "description": null,
+            "name": "category",
+            "tags": [],
+            "type": "varchar"
+          },
+          {
+            "description": null,
+            "name": "quantity",
+            "tags": [],
+            "type": "integer"
+          },
+          {
+            "description": null,
+            "name": "unit_price",
+            "tags": [],
+            "type": "numeric"
+          },
+          {
+            "description": null,
+            "name": "amount",
+            "tags": [],
+            "type": "numeric"
+          }
+        ],
+        "id": {
+          "name": "demo.staging.stg_orders",
+          "namespace": "postgres://postgres-demo:5432"
+        },
+        "lastLifecycleState": "",
+        "lastModifiedAt": null,
+        "name": "demo.staging.stg_orders",
+        "namespace": "postgres://postgres-demo:5432",
+        "physicalName": "demo.staging.stg_orders",
+        "sourceName": "default",
+        "tags": [],
+        "type": "DB_TABLE",
+        "updatedAt": "2026-08-06T02:32:35.079121Z"
+      },
+      "id": "dataset:postgres://postgres-demo:5432:demo.staging.stg_orders",
+      "inEdges": [
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.staging.stg_orders",
+          "origin": "job:demo_pipeline:run_pipeline.build_staging"
+        }
+      ],
+      "outEdges": [
+        {
+          "destination": "job:demo_pipeline:run_pipeline.build_mart",
+          "origin": "dataset:postgres://postgres-demo:5432:demo.staging.stg_orders"
+        }
+      ],
+      "type": "DATASET"
+    },
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:34.694227Z",
+        "currentRunUuid": "019fd4ea-5485-7e6b-8dfa-1a4380ca2664",
+        "description": null,
+        "id": {
+          "name": "run_pipeline.build_mart",
+          "namespace": "demo_pipeline"
+        },
+        "inputs": [
+          {
+            "name": "demo.staging.stg_orders",
+            "namespace": "postgres://postgres-demo:5432"
+          },
+          {
+            "name": "demo.raw.customers",
+            "namespace": "postgres://postgres-demo:5432"
+          }
+        ],
+        "latestRun": {
+          "args": {},
+          "createdAt": "2026-08-06T02:32:34.694227Z",
+          "durationMs": 385,
+          "endedAt": "2026-08-06T02:32:35.079121Z",
+          "facets": {
+            "tags": {
+              "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+              "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+              "tags": [
+                {
+                  "key": "openlineage_client_version",
+                  "source": "OPENLINEAGE_CLIENT",
+                  "value": "1.52.0"
+                }
+              ]
+            }
+          },
+          "id": "019fd4ea-5485-7e6b-8dfa-1a4380ca2664",
+          "inputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.customers",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "c9985046-7d1f-375f-be54-1e854f8de5a2"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.staging.stg_orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "ae8e0109-fde9-3e5c-9485-a3760bbc0793"
+              },
+              "facets": {}
+            }
+          ],
+          "jobVersion": {
+            "name": "run_pipeline.build_mart",
+            "namespace": "demo_pipeline",
+            "version": "e75bd430-fdd5-3006-975c-85e2f07a7672"
+          },
+          "nominalEndTime": null,
+          "nominalStartTime": null,
+          "outputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.mart.daily_sales",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "2c7264e6-cf1a-3903-80f4-5067de94e65b"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.mart.customer_summary",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "38ad3e62-0ea0-34af-82d3-62e5387d603c"
+              },
+              "facets": {}
+            }
+          ],
+          "startedAt": "2026-08-06T02:32:34.694227Z",
+          "state": "COMPLETED",
+          "updatedAt": "2026-08-06T02:32:35.079121Z"
+        },
+        "location": null,
+        "name": "run_pipeline.build_mart",
+        "namespace": "demo_pipeline",
+        "outputs": [
+          {
+            "name": "demo.mart.daily_sales",
+            "namespace": "postgres://postgres-demo:5432"
+          },
+          {
+            "name": "demo.mart.customer_summary",
+            "namespace": "postgres://postgres-demo:5432"
+          }
+        ],
+        "parentJobName": null,
+        "parentJobUuid": null,
+        "simpleName": "run_pipeline.build_mart",
+        "type": "BATCH",
+        "updatedAt": "2026-08-06T02:32:35.079121Z"
+      },
+      "id": "job:demo_pipeline:run_pipeline.build_mart",
+      "inEdges": [
+        {
+          "destination": "job:demo_pipeline:run_pipeline.build_mart",
+          "origin": "dataset:postgres://postgres-demo:5432:demo.raw.customers"
+        },
+        {
+          "destination": "job:demo_pipeline:run_pipeline.build_mart",
+          "origin": "dataset:postgres://postgres-demo:5432:demo.staging.stg_orders"
+        }
+      ],
+      "outEdges": [
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.mart.customer_summary",
+          "origin": "job:demo_pipeline:run_pipeline.build_mart"
+        },
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.mart.daily_sales",
+          "origin": "job:demo_pipeline:run_pipeline.build_mart"
+        }
+      ],
+      "type": "JOB"
+    },
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:33.632361Z",
+        "currentRunUuid": "019fd4ea-505f-78cd-bb36-f5e1227feee9",
+        "description": null,
+        "id": {
+          "name": "run_pipeline.build_staging",
+          "namespace": "demo_pipeline"
+        },
+        "inputs": [
+          {
+            "name": "demo.raw.products",
+            "namespace": "postgres://postgres-demo:5432"
+          },
+          {
+            "name": "demo.raw.orders",
+            "namespace": "postgres://postgres-demo:5432"
+          },
+          {
+            "name": "demo.raw.order_items",
+            "namespace": "postgres://postgres-demo:5432"
+          }
+        ],
+        "latestRun": {
+          "args": {},
+          "createdAt": "2026-08-06T02:32:33.632361Z",
+          "durationMs": 466,
+          "endedAt": "2026-08-06T02:32:34.098274Z",
+          "facets": {
+            "tags": {
+              "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+              "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+              "tags": [
+                {
+                  "key": "openlineage_client_version",
+                  "source": "OPENLINEAGE_CLIENT",
+                  "value": "1.52.0"
+                }
+              ]
+            }
+          },
+          "id": "019fd4ea-505f-78cd-bb36-f5e1227feee9",
+          "inputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.products",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "d827d4b5-ced9-3044-a3b4-7731e55aaa2c"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "9af224c8-f253-3fb0-a9ca-cceb0ebc922c"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.order_items",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "0ebde49f-9ed3-3e38-9b88-dcb0195bd644"
+              },
+              "facets": {}
+            }
+          ],
+          "jobVersion": {
+            "name": "run_pipeline.build_staging",
+            "namespace": "demo_pipeline",
+            "version": "be1ea9b9-3ad2-3b56-a4bd-c4d781534083"
+          },
+          "nominalEndTime": null,
+          "nominalStartTime": null,
+          "outputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.staging.stg_orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "ae8e0109-fde9-3e5c-9485-a3760bbc0793"
+              },
+              "facets": {}
+            }
+          ],
+          "startedAt": "2026-08-06T02:32:33.632361Z",
+          "state": "COMPLETED",
+          "updatedAt": "2026-08-06T02:32:34.098274Z"
+        },
+        "location": null,
+        "name": "run_pipeline.build_staging",
+        "namespace": "demo_pipeline",
+        "outputs": [
+          {
+            "name": "demo.staging.stg_orders",
+            "namespace": "postgres://postgres-demo:5432"
+          }
+        ],
+        "parentJobName": null,
+        "parentJobUuid": null,
+        "simpleName": "run_pipeline.build_staging",
+        "type": "BATCH",
+        "updatedAt": "2026-08-06T02:32:34.098274Z"
+      },
+      "id": "job:demo_pipeline:run_pipeline.build_staging",
+      "inEdges": [
+        {
+          "destination": "job:demo_pipeline:run_pipeline.build_staging",
+          "origin": "dataset:postgres://postgres-demo:5432:demo.raw.order_items"
+        },
+        {
+          "destination": "job:demo_pipeline:run_pipeline.build_staging",
+          "origin": "dataset:postgres://postgres-demo:5432:demo.raw.orders"
+        },
+        {
+          "destination": "job:demo_pipeline:run_pipeline.build_staging",
+          "origin": "dataset:postgres://postgres-demo:5432:demo.raw.products"
+        }
+      ],
+      "outEdges": [
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.staging.stg_orders",
+          "origin": "job:demo_pipeline:run_pipeline.build_staging"
+        }
+      ],
+      "type": "JOB"
+    },
+    {
+      "data": {
+        "createdAt": "2026-08-06T02:32:31.728554Z",
+        "currentRunUuid": "019fd4ea-48f0-7433-a09c-bbba5ff2de76",
+        "description": null,
+        "id": {
+          "name": "run_pipeline.seed",
+          "namespace": "demo_pipeline"
+        },
+        "inputs": [
+          {
+            "name": "data/seed/csv/orders.csv",
+            "namespace": "file"
+          },
+          {
+            "name": "data/seed/csv/order_items.csv",
+            "namespace": "file"
+          },
+          {
+            "name": "data/seed/csv/products.csv",
+            "namespace": "file"
+          },
+          {
+            "name": "data/seed/csv/customers.csv",
+            "namespace": "file"
+          }
+        ],
+        "latestRun": {
+          "args": {},
+          "createdAt": "2026-08-06T02:32:31.728554Z",
+          "durationMs": 860,
+          "endedAt": "2026-08-06T02:32:32.588521Z",
+          "facets": {
+            "tags": {
+              "_producer": "https://github.com/OpenLineage/OpenLineage/tree/1.52.0/client/python",
+              "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/TagsRunFacet.json#/$defs/TagsRunFacet",
+              "tags": [
+                {
+                  "key": "openlineage_client_version",
+                  "source": "OPENLINEAGE_CLIENT",
+                  "value": "1.52.0"
+                }
+              ]
+            }
+          },
+          "id": "019fd4ea-48f0-7433-a09c-bbba5ff2de76",
+          "inputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/customers.csv",
+                "namespace": "file",
+                "version": "4813d046-54d1-33d5-a1cb-4530ac848fd6"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/products.csv",
+                "namespace": "file",
+                "version": "3e13d8d3-eaec-3088-9e27-9badc464f935"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/orders.csv",
+                "namespace": "file",
+                "version": "2065a312-7098-38c8-bb57-2005a53a4799"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "data/seed/csv/order_items.csv",
+                "namespace": "file",
+                "version": "2ae85015-0424-36af-a6cb-19eb2bbc03be"
+              },
+              "facets": {}
+            }
+          ],
+          "jobVersion": {
+            "name": "run_pipeline.seed",
+            "namespace": "demo_pipeline",
+            "version": "f44f87bb-d4b6-3f74-ad91-3204cc523f66"
+          },
+          "nominalEndTime": null,
+          "nominalStartTime": null,
+          "outputDatasetVersions": [
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.customers",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "c9985046-7d1f-375f-be54-1e854f8de5a2"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.products",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "d827d4b5-ced9-3044-a3b4-7731e55aaa2c"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.orders",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "9af224c8-f253-3fb0-a9ca-cceb0ebc922c"
+              },
+              "facets": {}
+            },
+            {
+              "datasetVersionId": {
+                "name": "demo.raw.order_items",
+                "namespace": "postgres://postgres-demo:5432",
+                "version": "0ebde49f-9ed3-3e38-9b88-dcb0195bd644"
+              },
+              "facets": {}
+            }
+          ],
+          "startedAt": "2026-08-06T02:32:31.728554Z",
+          "state": "COMPLETED",
+          "updatedAt": "2026-08-06T02:32:32.588521Z"
+        },
+        "location": null,
+        "name": "run_pipeline.seed",
+        "namespace": "demo_pipeline",
+        "outputs": [
+          {
+            "name": "demo.raw.customers",
+            "namespace": "postgres://postgres-demo:5432"
+          },
+          {
+            "name": "demo.raw.products",
+            "namespace": "postgres://postgres-demo:5432"
+          },
+          {
+            "name": "demo.raw.orders",
+            "namespace": "postgres://postgres-demo:5432"
+          },
+          {
+            "name": "demo.raw.order_items",
+            "namespace": "postgres://postgres-demo:5432"
+          }
+        ],
+        "parentJobName": null,
+        "parentJobUuid": null,
+        "simpleName": "run_pipeline.seed",
+        "type": "BATCH",
+        "updatedAt": "2026-08-06T02:32:32.588521Z"
+      },
+      "id": "job:demo_pipeline:run_pipeline.seed",
+      "inEdges": [
+        {
+          "destination": "job:demo_pipeline:run_pipeline.seed",
+          "origin": "dataset:file:data/seed/csv/customers.csv"
+        },
+        {
+          "destination": "job:demo_pipeline:run_pipeline.seed",
+          "origin": "dataset:file:data/seed/csv/order_items.csv"
+        },
+        {
+          "destination": "job:demo_pipeline:run_pipeline.seed",
+          "origin": "dataset:file:data/seed/csv/orders.csv"
+        },
+        {
+          "destination": "job:demo_pipeline:run_pipeline.seed",
+          "origin": "dataset:file:data/seed/csv/products.csv"
+        }
+      ],
+      "outEdges": [
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.raw.customers",
+          "origin": "job:demo_pipeline:run_pipeline.seed"
+        },
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.raw.order_items",
+          "origin": "job:demo_pipeline:run_pipeline.seed"
+        },
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.raw.orders",
+          "origin": "job:demo_pipeline:run_pipeline.seed"
+        },
+        {
+          "destination": "dataset:postgres://postgres-demo:5432:demo.raw.products",
+          "origin": "job:demo_pipeline:run_pipeline.seed"
+        }
+      ],
+      "type": "JOB"
+    }
+  ]
+}
+exit=0

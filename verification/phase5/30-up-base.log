@@ -1,0 +1,5 @@
+docker compose --profile base up -d --wait postgres-demo
+ Container claude-demo-data-governance-postgres-demo-1  Running
+ Container claude-demo-data-governance-postgres-demo-1  Waiting
+ Container claude-demo-data-governance-postgres-demo-1  Healthy
+exit=0

@@ -1,0 +1,241 @@
+scenarios/demo_catalog_profile.sh
+# 実行日時: 2026-08-06 13:24:25 JST
+# コマンドログ: verification/phase3/demo-catalog-profile.log
+--- デモ用 DB(profile: base)を起動 ---
+ Container claude-demo-data-governance-postgres-demo-1  Running
+ Container claude-demo-data-governance-postgres-demo-1  Waiting
+ Container claude-demo-data-governance-postgres-demo-1  Healthy
+--- クリーンデータ(コミット済み seed CSV)を投入 ---
+=== step: seed ===
+[sql] 01_create_raw.sql を実行
+[seed] raw.customers: 1000 行
+[seed] raw.products: 200 行
+[seed] raw.orders: 5000 行
+[seed] raw.order_items: 12561 行
+=== step: build_staging ===
+[sql] 02_staging.sql を実行
+[build_staging] staging.stg_orders: 11927 行
+=== step: build_mart ===
+[sql] 03_mart.sql を実行
+[build_mart] mart.daily_sales: 365 行
+[build_mart] mart.customer_summary(ビュー): 1000 行
+パイプライン完了
+--- OpenMetadata 一式(profile: catalog)を起動 ---
+ Container claude-demo-data-governance-om-elasticsearch-1  Running
+ Container claude-demo-data-governance-om-postgresql-1  Running
+ Container claude-demo-data-governance-om-migrate-1  Created
+ Container claude-demo-data-governance-om-server-1  Running
+ Container claude-demo-data-governance-om-postgresql-1  Waiting
+ Container claude-demo-data-governance-om-elasticsearch-1  Waiting
+ Container claude-demo-data-governance-om-elasticsearch-1  Healthy
+ Container claude-demo-data-governance-om-postgresql-1  Healthy
+ Container claude-demo-data-governance-om-migrate-1  Starting
+ Container claude-demo-data-governance-om-migrate-1  Started
+ Container claude-demo-data-governance-om-migrate-1  Waiting
+ Container claude-demo-data-governance-om-postgresql-1  Waiting
+ Container claude-demo-data-governance-om-elasticsearch-1  Waiting
+ Container claude-demo-data-governance-om-postgresql-1  Healthy
+ Container claude-demo-data-governance-om-elasticsearch-1  Healthy
+ Container claude-demo-data-governance-om-migrate-1  Exited
+ Container claude-demo-data-governance-om-server-1  Waiting
+ Container claude-demo-data-governance-om-postgresql-1  Waiting
+ Container claude-demo-data-governance-om-elasticsearch-1  Waiting
+ Container claude-demo-data-governance-om-migrate-1  Waiting
+ Container claude-demo-data-governance-om-server-1  Healthy
+ Container claude-demo-data-governance-om-migrate-1  Exited
+ Container claude-demo-data-governance-om-postgresql-1  Healthy
+ Container claude-demo-data-governance-om-elasticsearch-1  Healthy
+--- OpenMetadata サーバの起動を待機 ---
+OpenMetadata サーバは応答しています(http://om-server:8585, 1 回目で成功)
+(起動所要: 46 秒。初回はイメージ展開と DB 移行でさらにかかる)
+
+=== 前提: メタデータ取り込み(C-1 未実行でも単体で動くよう再実行)===
+実行: metadata ingest -c catalog/ingest.yaml(解決済み設定で実行)
+/opt/venv/catalog/lib/python3.11/site-packages/pydantic/_internal/_fields.py:198: UserWarning: Field name "schema" in "PostgresStoredProcedure" shadows an attribute in parent "BaseModel"
+  warnings.warn(
+[2026-08-06 04:25:32] INFO     {metadata.OMetaAPI:server_mixin:97} - OpenMetadata client running with Server version [1.13.3] and Client version [1.13.3.0]
+[2026-08-06 04:25:32] WARNING  {metadata.Utils:utils:527} - Neither 'total_exec_time' nor 'total_time' found in pg_stat_statements. Defaulting to 'total_exec_time'.
+[2026-08-06 04:25:33] INFO     {metadata.Metadata:test_connections:204} - Running CheckAccess...
+[2026-08-06 04:25:33] INFO     {metadata.Metadata:test_connections:204} - Running GetDatabases...
+[2026-08-06 04:25:33] INFO     {metadata.Metadata:test_connections:204} - Running GetSchemas...
+[2026-08-06 04:25:33] INFO     {metadata.Metadata:test_connections:204} - Running GetTables...
+[2026-08-06 04:25:33] INFO     {metadata.Metadata:test_connections:204} - Running GetViews...
+[2026-08-06 04:25:33] INFO     {metadata.Metadata:test_connections:204} - Running GetTags...
+[2026-08-06 04:25:33] INFO     {metadata.Metadata:test_connections:204} - Running GetQueries...
+[2026-08-06 04:25:33] ERROR    {metadata.Metadata:test_connections:215} - GetQueries-(psycopg2.errors.UndefinedTable) relation "pg_stat_statements" does not exist
+LINE 9:         pg_stat_statements s
+                ^
+
+[SQL: /* {"app": "OpenMetadata", "version": "1.13.3.0"} */
+
+      SELECT
+        u.usename,
+        d.datname database_name,
+        s.query query_text,
+        s.total_exec_time duration
+      FROM
+        pg_stat_statements s
+        JOIN pg_catalog.pg_database d ON s.dbid = d.oid
+        JOIN pg_catalog.pg_user u ON s.userid = u.usesysid
+        LIMIT 1
+    ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+[2026-08-06 04:25:33] INFO     {metadata.Metadata:test_connections:204} - Running GetColumnMetadata...
+[2026-08-06 04:25:33] INFO     {metadata.Metadata:test_connections:204} - Running GetTableComments...
+[2026-08-06 04:25:33] INFO     {metadata.Metadata:test_connections:204} - Running GetInformationSchemaColumns...
+[2026-08-06 04:25:33] INFO     {metadata.Metadata:test_connections:229} - Test connection results:
+[2026-08-06 04:25:33] INFO     {metadata.Metadata:test_connections:230} - lastUpdatedAt=None status=<StatusType.Running: 'Running'> steps=[TestConnectionStepResult(name='CheckAccess', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetDatabases', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetSchemas', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetTables', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetViews', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetTags', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetQueries', mandatory=False, passed=False, message='Failed to fetch queries, please validate if postgres instance has pg_stat_statements extension installed and the user has at least select privileges for pg_stat_statements table.', errorLog='(psycopg2.errors.UndefinedTable) relation "pg_stat_statements" does not exist\nLINE 9:         pg_stat_statements s\n                ^\n\n[SQL: /* {"app": "OpenMetadata", "version": "1.13.3.0"} */\n\n      SELECT\n        u.usename,\n        d.datname database_name,\n        s.query query_text,\n        s.total_exec_time duration\n      FROM\n        pg_stat_statements s\n        JOIN pg_catalog.pg_database d ON s.dbid = d.oid\n        JOIN pg_catalog.pg_user u ON s.userid = u.usesysid\n        LIMIT 1\n    ]\n(Background on this error at: https://sqlalche.me/e/20/f405)'), TestConnectionStepResult(name='GetColumnMetadata', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetTableComments', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetInformationSchemaColumns', mandatory=False, passed=True, message=None, errorLog=None)]
+[2026-08-06 04:25:33] WARNING  {metadata.Metadata:test_connections:243} - You might be missing metadata in: GetQueries due to Failed to fetch queries, please validate if postgres instance has pg_stat_statements extension installed and the user has at least select privileges for pg_stat_statements table.
+[2026-08-06 04:25:33] INFO     {metadata.Ingestion:common_db_source:151} - Ingesting from database: demo
+[2026-08-06 04:25:34] INFO     {metadata.Ingestion:database_service:804} - Mark Deleted Tables set to True. Processing database [demo]
+[2026-08-06 04:25:34] INFO     {metadata.Ingestion:database_service:825} - Mark Deleted Stored Procedures Processing database [demo]
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Workflow Postgres Summary:
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Processed records: 0
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Updated records: 0
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Warnings: 0
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Filtered: 2
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Errors: 0
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Success %: 100.0
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Workflow OpenMetadata Summary:
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Processed records: 0
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Updated records: 0
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Warnings: 0
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Errors: 0
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Success %: 100.0
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Workflow Success %: 100.0
+[2026-08-06 04:25:34] INFO     {metadata.Utils:logger:222} - Workflow finished in time: 1s 580.766ms
+
+=== C-2a: プロファイラ(metadata profile / 行数・欠損率などの統計)===
+実行: metadata profile -c catalog/profiler.yaml(解決済み設定で実行)
+/opt/venv/catalog/lib/python3.11/site-packages/pydantic/_internal/_fields.py:198: UserWarning: Field name "schema" in "PostgresStoredProcedure" shadows an attribute in parent "BaseModel"
+  warnings.warn(
+[2026-08-06 04:25:49] INFO     {metadata.OMetaAPI:server_mixin:97} - OpenMetadata client running with Server version [1.13.3] and Client version [1.13.3.0]
+[2026-08-06 04:25:50] WARNING  {metadata.Utils:utils:527} - Neither 'total_exec_time' nor 'total_time' found in pg_stat_statements. Defaulting to 'total_exec_time'.
+[2026-08-06 04:25:50] INFO     {metadata.Metadata:test_connections:204} - Running CheckAccess...
+[2026-08-06 04:25:50] INFO     {metadata.Metadata:test_connections:204} - Running GetDatabases...
+[2026-08-06 04:25:50] INFO     {metadata.Metadata:test_connections:204} - Running GetSchemas...
+[2026-08-06 04:25:50] INFO     {metadata.Metadata:test_connections:204} - Running GetTables...
+[2026-08-06 04:25:50] INFO     {metadata.Metadata:test_connections:204} - Running GetViews...
+[2026-08-06 04:25:50] INFO     {metadata.Metadata:test_connections:204} - Running GetTags...
+[2026-08-06 04:25:50] INFO     {metadata.Metadata:test_connections:204} - Running GetQueries...
+[2026-08-06 04:25:50] ERROR    {metadata.Metadata:test_connections:215} - GetQueries-(psycopg2.errors.UndefinedTable) relation "pg_stat_statements" does not exist
+LINE 9:         pg_stat_statements s
+                ^
+
+[SQL: /* {"app": "OpenMetadata", "version": "1.13.3.0"} */
+
+      SELECT
+        u.usename,
+        d.datname database_name,
+        s.query query_text,
+        s.total_exec_time duration
+      FROM
+        pg_stat_statements s
+        JOIN pg_catalog.pg_database d ON s.dbid = d.oid
+        JOIN pg_catalog.pg_user u ON s.userid = u.usesysid
+        LIMIT 1
+    ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+[2026-08-06 04:25:50] INFO     {metadata.Metadata:test_connections:204} - Running GetColumnMetadata...
+[2026-08-06 04:25:50] INFO     {metadata.Metadata:test_connections:204} - Running GetTableComments...
+[2026-08-06 04:25:50] INFO     {metadata.Metadata:test_connections:204} - Running GetInformationSchemaColumns...
+[2026-08-06 04:25:50] INFO     {metadata.Metadata:test_connections:229} - Test connection results:
+[2026-08-06 04:25:50] INFO     {metadata.Metadata:test_connections:230} - lastUpdatedAt=None status=<StatusType.Running: 'Running'> steps=[TestConnectionStepResult(name='CheckAccess', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetDatabases', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetSchemas', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetTables', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetViews', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetTags', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetQueries', mandatory=False, passed=False, message='Failed to fetch queries, please validate if postgres instance has pg_stat_statements extension installed and the user has at least select privileges for pg_stat_statements table.', errorLog='(psycopg2.errors.UndefinedTable) relation "pg_stat_statements" does not exist\nLINE 9:         pg_stat_statements s\n                ^\n\n[SQL: /* {"app": "OpenMetadata", "version": "1.13.3.0"} */\n\n      SELECT\n        u.usename,\n        d.datname database_name,\n        s.query query_text,\n        s.total_exec_time duration\n      FROM\n        pg_stat_statements s\n        JOIN pg_catalog.pg_database d ON s.dbid = d.oid\n        JOIN pg_catalog.pg_user u ON s.userid = u.usesysid\n        LIMIT 1\n    ]\n(Background on this error at: https://sqlalche.me/e/20/f405)'), TestConnectionStepResult(name='GetColumnMetadata', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetTableComments', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetInformationSchemaColumns', mandatory=False, passed=True, message=None, errorLog=None)]
+[2026-08-06 04:25:50] WARNING  {metadata.Metadata:test_connections:243} - You might be missing metadata in: GetQueries due to Failed to fetch queries, please validate if postgres instance has pg_stat_statements extension installed and the user has at least select privileges for pg_stat_statements table.
+[2026-08-06 04:25:50] INFO     {metadata.Profiler:metadata:87} - Starting profiler for service demo_postgres:postgres
+[2026-08-06 04:25:50] WARNING  {metadata.Profiler:system:161} - No implementation found for postgresql
+[2026-08-06 04:25:57] WARNING  {metadata.Profiler:system:161} - No implementation found for postgresql
+[2026-08-06 04:26:00] WARNING  {metadata.Profiler:system:161} - No implementation found for postgresql
+[2026-08-06 04:26:04] WARNING  {metadata.Profiler:system:161} - No implementation found for postgresql
+[2026-08-06 04:26:08] WARNING  {metadata.Profiler:system:161} - No implementation found for postgresql
+[2026-08-06 04:26:12] WARNING  {metadata.Profiler:system:161} - No implementation found for postgresql
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Workflow OpenMetadata Service Summary:
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Processed records: 6
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Updated records: 0
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Warnings: 0
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Filtered: 1
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Errors: 0
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Success %: 100.0
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Workflow Profiler Summary:
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Processed records: 108
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Updated records: 0
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Warnings: 0
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Errors: 0
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Success %: 100.0
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Workflow OpenMetadata Summary:
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Processed records: 6
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Updated records: 0
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Warnings: 0
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Errors: 0
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Success %: 100.0
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Workflow Success %: 100.0
+[2026-08-06 04:26:22] INFO     {metadata.Utils:logger:222} - Workflow finished in time: 32s 783.723ms
+
+=== C-2b: 自動分類 + サンプルデータ格納(metadata classify)===
+実行: metadata classify -c catalog/classify.yaml(解決済み設定で実行)
+/opt/venv/catalog/lib/python3.11/site-packages/pydantic/_internal/_fields.py:198: UserWarning: Field name "schema" in "PostgresStoredProcedure" shadows an attribute in parent "BaseModel"
+  warnings.warn(
+[2026-08-06 04:26:52] INFO     {metadata.OMetaAPI:server_mixin:97} - OpenMetadata client running with Server version [1.13.3] and Client version [1.13.3.0]
+[2026-08-06 04:26:52] WARNING  {metadata.Utils:utils:527} - Neither 'total_exec_time' nor 'total_time' found in pg_stat_statements. Defaulting to 'total_exec_time'.
+[2026-08-06 04:26:52] INFO     {metadata.Metadata:test_connections:204} - Running CheckAccess...
+[2026-08-06 04:26:52] INFO     {metadata.Metadata:test_connections:204} - Running GetDatabases...
+[2026-08-06 04:26:52] INFO     {metadata.Metadata:test_connections:204} - Running GetSchemas...
+[2026-08-06 04:26:52] INFO     {metadata.Metadata:test_connections:204} - Running GetTables...
+[2026-08-06 04:26:52] INFO     {metadata.Metadata:test_connections:204} - Running GetViews...
+[2026-08-06 04:26:52] INFO     {metadata.Metadata:test_connections:204} - Running GetTags...
+[2026-08-06 04:26:52] INFO     {metadata.Metadata:test_connections:204} - Running GetQueries...
+[2026-08-06 04:26:52] ERROR    {metadata.Metadata:test_connections:215} - GetQueries-(psycopg2.errors.UndefinedTable) relation "pg_stat_statements" does not exist
+LINE 9:         pg_stat_statements s
+                ^
+
+[SQL: /* {"app": "OpenMetadata", "version": "1.13.3.0"} */
+
+      SELECT
+        u.usename,
+        d.datname database_name,
+        s.query query_text,
+        s.total_exec_time duration
+      FROM
+        pg_stat_statements s
+        JOIN pg_catalog.pg_database d ON s.dbid = d.oid
+        JOIN pg_catalog.pg_user u ON s.userid = u.usesysid
+        LIMIT 1
+    ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+[2026-08-06 04:26:52] INFO     {metadata.Metadata:test_connections:204} - Running GetColumnMetadata...
+[2026-08-06 04:26:52] INFO     {metadata.Metadata:test_connections:204} - Running GetTableComments...
+[2026-08-06 04:26:52] INFO     {metadata.Metadata:test_connections:204} - Running GetInformationSchemaColumns...
+[2026-08-06 04:26:52] INFO     {metadata.Metadata:test_connections:229} - Test connection results:
+[2026-08-06 04:26:52] INFO     {metadata.Metadata:test_connections:230} - lastUpdatedAt=None status=<StatusType.Running: 'Running'> steps=[TestConnectionStepResult(name='CheckAccess', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetDatabases', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetSchemas', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetTables', mandatory=True, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetViews', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetTags', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetQueries', mandatory=False, passed=False, message='Failed to fetch queries, please validate if postgres instance has pg_stat_statements extension installed and the user has at least select privileges for pg_stat_statements table.', errorLog='(psycopg2.errors.UndefinedTable) relation "pg_stat_statements" does not exist\nLINE 9:         pg_stat_statements s\n                ^\n\n[SQL: /* {"app": "OpenMetadata", "version": "1.13.3.0"} */\n\n      SELECT\n        u.usename,\n        d.datname database_name,\n        s.query query_text,\n        s.total_exec_time duration\n      FROM\n        pg_stat_statements s\n        JOIN pg_catalog.pg_database d ON s.dbid = d.oid\n        JOIN pg_catalog.pg_user u ON s.userid = u.usesysid\n        LIMIT 1\n    ]\n(Background on this error at: https://sqlalche.me/e/20/f405)'), TestConnectionStepResult(name='GetColumnMetadata', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetTableComments', mandatory=False, passed=True, message=None, errorLog=None), TestConnectionStepResult(name='GetInformationSchemaColumns', mandatory=False, passed=True, message=None, errorLog=None)]
+[2026-08-06 04:26:52] WARNING  {metadata.Metadata:test_connections:243} - You might be missing metadata in: GetQueries due to Failed to fetch queries, please validate if postgres instance has pg_stat_statements extension installed and the user has at least select privileges for pg_stat_statements table.
+[2026-08-06 04:26:53] INFO     {metadata.Profiler:metadata:87} - Starting profiler for service demo_postgres:postgres
+[2026-08-06 04:26:53] INFO     {metadata.Profiler:processor:108} - Sampler processor initialized with service_type=ServiceType.Database, source_config_type=DatabaseServiceAutoClassificationPipeline, interface_type=postgres
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Workflow OpenMetadata Service Summary:
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Processed records: 7
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Updated records: 0
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Warnings: 0
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Errors: 0
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Success %: 100.0
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Workflow Sampler Summary:
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Processed records: 7
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Updated records: 0
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Warnings: 0
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Errors: 0
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Success %: 100.0
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Workflow OpenMetadata Summary:
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Processed records: 7
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Updated records: 0
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Warnings: 0
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Errors: 0
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Success %: 100.0
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Workflow Success %: 100.0
+[2026-08-06 04:26:55] INFO     {metadata.Utils:logger:222} - Workflow finished in time: 2s 548.867ms
+
+=== 証跡: プロファイル結果を API から保存 ===
+[証跡] verification/phase3/api-profile-customers.json(om_api.py profile demo_postgres.demo.raw.customers)
+[証跡] verification/phase3/api-profile-daily-sales.json(om_api.py profile demo_postgres.demo.mart.daily_sales)
+
+OpenMetadata UI: 各テーブルの Data Observability タブと Sample Data タブで
+行数・欠損率・分布とサンプル行を確認できます。
+プロファイリングデモ結果: 成功(exit 0)
+exit=0

@@ -17,7 +17,7 @@
 | 項目 | 要件 |
 |---|---|
 | OS | Linux / macOS / Windows(WSL2) |
-| 必須ソフトウェア | Docker Engine + Docker Compose v2(検証環境: Docker 28.1.1 / Compose v2.35.1) |
+| 必須ソフトウェア | Docker Desktop または Docker Engine + Compose v2(検証環境: Docker 28.1.1 / Compose v2.35.1) |
 | CPU アーキテクチャ | **Marquez のイメージは amd64 のみ提供**。Apple Silicon(arm64)ではエミュレーションで動作します(compose に `platform: linux/amd64` 指定済み。起動が遅くなることがあります) |
 | メモリ | lineage 一式の実測(アイドル時): marquez-api 約 253 MiB + marquez-db 約 75 MiB + marquez-web 約 23 MiB ≒ **約 0.35 GiB**(+ デモ用 DB 約 35 MiB) |
 | ポート | ホスト側で 5000(API)/ 5001(API 管理)/ 3000(Web UI)を使用。競合時は `.env` で変更可能(→ §7) |
@@ -62,8 +62,8 @@ pipeline/run_pipeline.py --openlineage
 
 ## 3. 環境構築
 
-リポジトリのルートで以下を実行します(フェーズ1 実施済みなら `make setup` の再実行だけで
-lineage 用の venv が追加ビルドされます)。
+リポジトリのルートで以下を実行します(全領域共通のセットアップです。
+[README.md](../../README.md) の「環境構築」で実施済みならスキップできます)。
 
 ```console
 $ make setup
@@ -104,7 +104,8 @@ $ grep MARQUEZ_WEB_HOST_PORT .env || echo "未設定(既定の 3000)"
 | `make demo-lineage-fail` | 異常系: 失敗した実行が FAILED として追跡できる | `リネージュ異常系デモ結果: 失敗 Run を検知(exit 1)` のあとに make の `Error 1` |
 
 異常系デモは「パイプラインの失敗を Marquez が正しく記録したこと」を確認して
-**エラー終了するのが正解**です(検知の証明としてコマンド全体は非 0 で終わります)。
+**エラー終了するのが正解**です(検知の証明としてコマンド全体は非 0 で終わります。
+シナリオの exit 1 を受けた make 自体の終了コードは 2 になります — make の仕様)。
 
 ### 4.1 B-1 正常系: パイプライン実行 → リネージュ収集
 
@@ -230,11 +231,13 @@ SQL(03_mart.sql)の内容がそのまま構造化されています。
 **この facet はパイプライン側が自己申告したものです**(SQL を解析して自動生成された
 ものではありません)。この点は後述の長所短所に直結します。
 
-自分で API を叩いて確認することもできます:
+自分で API を叩いて確認することもできます(columnLineage facet は**データセット照会
+(`dataset`)のレスポンス**に含まれます。リネージュグラフ照会(`lineage`)は
+ノードのつながりを返すもので、この facet は含まれません):
 
 ```console
 $ docker compose --profile tools run --rm -T tools \
-    /opt/venv/lineage/bin/python lineage/marquez_api.py lineage demo.mart.daily_sales
+    /opt/venv/lineage/bin/python lineage/marquez_api.py dataset demo.mart.daily_sales
 ```
 
 ### 4.2 B-2 異常系: パイプライン失敗の追跡
@@ -400,3 +403,6 @@ $ make down-lineage   # Marquez のみ停止(リネージュは保持)
 $ make down           # すべて停止(データ保持)
 $ make clean-db       # すべて停止 + データ削除
 ```
+
+Docker イメージまで含めた完全な後片付けの手順は、[README.md](../../README.md) の
+「後片付け」を参照してください。

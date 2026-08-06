@@ -1,0 +1,53 @@
+=== フェーズ5 最終 VERBATIM 検証(ガイド修正後・正準証跡復元後。実行日: 2026-08-06 13:52:03 JST)===
+docs/guides/quality.md: 8 ブロックを検証(対象言語: json,plain,text、証跡ファイル 19 件)
+  #1 L117 [plain] ### Contract results for postgres_demo/demo/raw/ … OK(完全一致)→ verification/phase1/demo-quality-soda.log
+  #2 L131 [plain] Soda 結果: 全 contract 成功(exit 0) … OK(完全一致)→ verification/phase1/demo-quality-soda.log
+  #3 L147 [plain] | email    | No missing values | level: fail | ❌ … OK(完全一致)→ verification/phase1/demo-quality-soda-ng.log
+  #4 L155 [plain] Soda 結果: 品質違反を検知(exit 1) … OK(完全一致)→ verification/phase1/terminal-demo-quality-soda-ng.log
+  #5 L171 [json]                     "expectation_type": "expect_ … OK(完全一致)→ verification/phase1/demo-quality-gx.log
+  #6 L189 [plain] GX チェック結果: 全チェック成功 … OK(完全一致)→ verification/phase1/demo-quality-gx.log
+  #7 L208 [json]                     "expectation_type": "expect_ … OK(完全一致)→ verification/phase1/demo-quality-gx-ng.log
+  #8 L263 [plain] GX 結果: 品質違反を検知(exit 1) … OK(完全一致)→ verification/phase1/terminal-demo-quality-gx-ng.log
+
+結果: 8/8 VERBATIM
+quality exit=0
+docs/guides/lineage.md: 6 ブロックを検証(対象言語: json,text、証跡ファイル 12 件)
+  #1 L122 [text] === クリーンデータでパイプライン実行(OpenLineage イベント発行あり)=== … OK(完全一致)→ verification/phase2/terminal-demo-lineage.log
+  #2 L148 [text] リネージュデモ結果: 全ステップ COMPLETE(exit 0) … OK(完全一致)→ verification/phase2/demo-lineage.log
+  #3 L193 [json]         "total_amount": { … OK(完全一致)→ verification/phase2/api-dataset-daily-sales.json
+  #4 L255 [text] === step: build_mart === … OK(完全一致)→ verification/phase2/demo-lineage-fail.log
+  #5 L268 [text] === 検知結果: 最新 Run の状態 === … OK(完全一致)→ verification/phase2/terminal-demo-lineage-fail.log
+  #6 L293 [json]         "errorMessage": { … OK(完全一致)→ verification/phase2/api-runs-build-mart.json
+
+結果: 6/6 VERBATIM
+lineage exit=0
+docs/guides/catalog.md: 10 ブロックを検証(対象言語: json,text、証跡ファイル 19 件)
+  #1 L138 [text] [2026-08-05 07:27:12] INFO     {metadata.Utils:l … SKIP(マーカー指定)
+  #2 L160 [text] === 手入力メタデータの付与(説明・オーナー・タグ・用語集。API 経由)=== … OK(完全一致)→ verification/phase3/demo-catalog-ingest.log
+  #3 L174 [text] カタログ取り込みデモ結果: 成功(exit 0) … OK(完全一致)→ verification/phase3/demo-catalog-ingest.log
+  #4 L209 [text] [2026-08-05 08:15:25] INFO     {metadata.Utils:l … SKIP(マーカー指定)
+  #5 L228 [text] プロファイリングデモ結果: 成功(exit 0) … OK(完全一致)→ verification/phase3/demo-catalog-profile.log
+  #6 L237 [json]   "profile": { … SKIP(マーカー指定)
+  #7 L277 [text] === C-3b: CTAS テーブルのリネージュを Lineage API で手動登録 === … OK(完全一致)→ verification/phase3/demo-catalog-lineage.log
+  #8 L288 [text] リネージュデモ結果: 成功(exit 0) … OK(完全一致)→ verification/phase3/demo-catalog-lineage.log
+  #9 L319 [text] テーブル: demo_postgres.demo.raw.customers … OK(完全一致)→ verification/phase3/demo-catalog-drift.log
+  #10 L328 [text] スキーマ変更検知デモ結果: 破壊的変更を検知(非0 終了) … OK(完全一致)→ verification/phase3/demo-catalog-drift.log
+
+結果: 7/7 VERBATIM(SKIP 3)
+catalog exit=0
+docs/guides/contract.md: 12 ブロックを検証(対象言語: json,text、証跡ファイル 23 件)
+  #1 L84 [text] (mart.daily_sales は汚染されたままです。復旧するには make seed を実 … OK(完全一致)→ verification/phase4/terminal-demo-contract-violation.log
+  #2 L104 [text] === datacontract-cli 1.1.0: 契約の構文検証(lint)=== … OK(完全一致)→ verification/phase4/demo-contract-export.log
+  #3 L159 [text] === datacontract test(契約を実 DB へ検証: スキーマ + 品質 + S … OK(完全一致)→ verification/phase4/demo-contract-test.log
+  #4 L174 [text] │ passed │ Check that field 'total_amount' is pr … OK(完全一致)→ verification/phase4/demo-contract-test.log
+  #5 L218 [text] --- 契約違反を注入(contracts/sql/inject_violation.sql)- … OK(完全一致)→ verification/phase4/demo-contract-violation.log
+  #6 L226 [text] 🔴 data contract is invalid, found the following  … OK(完全一致)→ verification/phase4/demo-contract-violation.log
+  #7 L272 [text] === 2) datacontract changelog による差分表示(参考表示・常に ex … OK(完全一致)→ verification/phase4/demo-contract-breaking.log
+  #8 L291 [text] === 3) 自作判定スクリプトによる破壊的変更の判定 === … OK(完全一致)→ verification/phase4/demo-contract-breaking.log
+  #9 L333 [text] === (a) ワークフロー YAML の静的検証(actionlint 1.7.12)=== … OK(完全一致)→ verification/phase4/demo-contract-ci.log
+  #10 L338 [text] --- job: contract-gate / step: 破壊的変更の判定(破壊的変更を含む … OK(完全一致)→ verification/phase4/demo-contract-ci.log
+  #11 L356 [text] 🟢 data contract is valid. Run 17 checks. Took 1. … OK(完全一致)→ verification/phase4/demo-contract-ci.log
+  #12 L390 [text] --- pre-commit フックを導入(make install-contract-hook … OK(完全一致)→ verification/phase4/demo-contract-precommit.log
+
+結果: 12/12 VERBATIM
+contract exit=0

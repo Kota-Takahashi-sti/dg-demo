@@ -1,0 +1,83 @@
+=== フェーズ5 後片付け検証: README.md「後片付け」の手順をそのまま実行(実行日: 2026-08-06 13:48:27 JST)===
+
+--- [段階1] 停止のみ: make down ---
+docker compose --profile base --profile tools --profile lineage --profile catalog --profile contract down
+ Container claude-demo-data-governance-postgres-demo-1  Stopping
+ Container claude-demo-data-governance-postgres-demo-1  Stopped
+ Container claude-demo-data-governance-postgres-demo-1  Removing
+ Container claude-demo-data-governance-postgres-demo-1  Removed
+ Network claude-demo-data-governance_default  Removing
+ Network claude-demo-data-governance_default  Removed
+exit=0
+
+--- [段階2] コンテナ・ネットワーク・ボリュームの削除: make clean-db ---
+docker compose --profile base --profile tools --profile lineage --profile catalog --profile contract down -v
+ Volume claude-demo-data-governance_demo-db-data  Removing
+ Volume claude-demo-data-governance_om-db-data  Removing
+ Volume claude-demo-data-governance_marquez-db-data  Removing
+ Volume claude-demo-data-governance_om-es-data  Removing
+ Volume claude-demo-data-governance_demo-db-data  Removed
+ Volume claude-demo-data-governance_om-db-data  Removed
+ Volume claude-demo-data-governance_marquez-db-data  Removed
+ Volume claude-demo-data-governance_om-es-data  Removed
+exit=0
+
+--- [段階3] 完全な後片付け ---
+$ docker compose --profile tools run --rm -T tools rm -rf data/seed/csv-injected quality/gx/output
+ Network claude-demo-data-governance_default  Creating
+ Network claude-demo-data-governance_default  Created
+exit=0
+$ rm -f .env
+exit=0
+$ rm -f .git/hooks/pre-commit
+exit=0
+$ git restore verification/
+exit=0
+
+$ docker rmi <README 記載の 11 イメージ>
+Untagged: dgd-tools:phase3
+Untagged: docker.getcollate.io/openmetadata/server:1.13.3
+Untagged: docker.getcollate.io/openmetadata/server@sha256:997d666b01f674fc4d587f034759c826082ea7666cd7bc0e6db8fdbb707df010
+Untagged: docker.getcollate.io/openmetadata/postgresql:1.13.3
+Untagged: docker.getcollate.io/openmetadata/postgresql@sha256:4b225b4fcc810983c5e4578c690477688beaa587457310a5f4c615700334e321
+Untagged: docker.elastic.co/elasticsearch/elasticsearch:9.3.0
+Untagged: docker.elastic.co/elasticsearch/elasticsearch@sha256:4f6bdcb742e892539c6ac49b0dd3e4e182e90218546e8c6a22db378c344acb60
+Untagged: datacontract/cli:1.1.0
+Untagged: datacontract/cli@sha256:f7fa02d649f4992dd8297bb428ece7403d688e881cf4a386673e250cb678657b
+Untagged: rhysd/actionlint:1.7.12
+Untagged: rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+Untagged: postgres:16
+Untagged: postgres@sha256:95206741a5b214807675e14165369d05b93a9cf692223b616d07cca227e74b0b
+Untagged: postgres:14
+Untagged: postgres@sha256:2f439458ab6a57a925825ae14f9d06910e4fe4a41c8d4a0ae06397e65b707e1b
+Error response from daemon: conflict: unable to remove repository reference "marquezproject/marquez:0.51.1" (must force) - container 487d48226486 is using its referenced image 6e5817ed7c57
+Error response from daemon: conflict: unable to remove repository reference "marquezproject/marquez-web:0.51.1" (must force) - container e7b6920b0779 is using its referenced image 612ae316da06
+Error response from daemon: No such image: python:3.11-slim
+rmi exit=1(非0 は他プロジェクトのコンテナが参照するイメージの削除失敗によるもの。README に記載の想定内動作)
+
+--- [確認] README 記載の削除確認コマンド ---
+$ docker ps -a --filter name=claude-demo-data-governance
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+$ docker volume ls --filter name=claude-demo-data-governance
+DRIVER    VOLUME NAME
+$ docker network ls --filter name=claude-demo-data-governance
+NETWORK ID     NAME                                  DRIVER    SCOPE
+8b1d21b3b911   claude-demo-data-governance_default   bridge    local
+$ ls data/seed/csv-injected quality/gx/output .env
+ls: cannot access 'data/seed/csv-injected': No such file or directory
+ls: cannot access 'quality/gx/output': No such file or directory
+ls: cannot access '.env': No such file or directory
+ls exit=2(非0 = すべて存在しない = 正しく削除済み)
+
+--- [確認] 残存イメージ(本プロジェクト関連) ---
+marquezproject/marquez-web:0.50.0
+marquezproject/marquez-web:0.51.1
+marquezproject/marquez:0.50.0
+marquezproject/marquez:0.51.1
+
+--- [確認] git 作業ツリーの状態(verification/ の証跡がコミット時点に復元されていること) ---
+?? verification/phase5/
+(何も表示されなければ verification/phase1〜4 は復元済み。phase5 は未コミットの新規証跡のため untracked で正しい)
+→ tracked ファイルの変更なし(復元確認 OK)
+
+=== 後片付け検証完了 ===

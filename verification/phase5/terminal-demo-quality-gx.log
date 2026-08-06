@@ -1,0 +1,219 @@
+scenarios/demo_quality_gx.sh clean
+# 実行日時: 2026-08-06 11:29:27 JST
+# コマンドログ: verification/phase1/demo-quality-gx.log
+--- デモ用 DB(profile: base)を起動 ---
+ Container claude-demo-data-governance-postgres-demo-1  Running
+ Container claude-demo-data-governance-postgres-demo-1  Waiting
+ Container claude-demo-data-governance-postgres-demo-1  Healthy
+--- クリーンデータ(コミット済み seed CSV)を投入 ---
+=== step: seed ===
+[sql] 01_create_raw.sql を実行
+[seed] raw.customers: 1000 行
+[seed] raw.products: 200 行
+[seed] raw.orders: 5000 行
+[seed] raw.order_items: 12561 行
+=== step: build_staging ===
+[sql] 02_staging.sql を実行
+[build_staging] staging.stg_orders: 11927 行
+=== step: build_mart ===
+[sql] 03_mart.sql を実行
+[build_mart] mart.daily_sales: 365 行
+[build_mart] mart.customer_summary(ビュー): 1000 行
+パイプライン完了
+
+=== Great Expectations 1.19.1: checkpoint 実行(4チェック)===
+{
+    "success": true,
+    "statistics": {
+        "evaluated_validations": 3,
+        "success_percent": 100.0,
+        "successful_validations": 3,
+        "unsuccessful_validations": 0
+    },
+    "validation_results": [
+        {
+            "success": true,
+            "statistics": {
+                "evaluated_expectations": 1,
+                "successful_expectations": 1,
+                "unsuccessful_expectations": 0,
+                "success_percent": 100.0
+            },
+            "expectations": [
+                {
+                    "expectation_type": "expect_column_values_to_not_be_null",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.customers",
+                        "column": "email"
+                    },
+                    "result": {
+                        "element_count": 1000,
+                        "unexpected_count": 0,
+                        "unexpected_percent": 0.0,
+                        "partial_unexpected_list": [],
+                        "partial_unexpected_counts": []
+                    }
+                }
+            ],
+            "result_url": null
+        },
+        {
+            "success": true,
+            "statistics": {
+                "evaluated_expectations": 6,
+                "successful_expectations": 6,
+                "unsuccessful_expectations": 0,
+                "success_percent": 100.0
+            },
+            "expectations": [
+                {
+                    "expectation_type": "expect_column_values_to_be_unique",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.orders",
+                        "column": "order_id"
+                    },
+                    "result": {
+                        "element_count": 5000,
+                        "unexpected_count": 0,
+                        "unexpected_percent": 0.0,
+                        "partial_unexpected_list": [],
+                        "missing_count": 0,
+                        "missing_percent": 0.0,
+                        "unexpected_percent_total": 0.0,
+                        "unexpected_percent_nonmissing": 0.0,
+                        "partial_unexpected_counts": []
+                    }
+                },
+                {
+                    "expectation_type": "expect_column_values_to_be_of_type",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.orders",
+                        "column": "order_id",
+                        "type_": "INTEGER"
+                    },
+                    "result": {
+                        "observed_value": "INTEGER"
+                    }
+                },
+                {
+                    "expectation_type": "expect_table_columns_to_match_ordered_list",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.orders",
+                        "column_list": [
+                            "order_id",
+                            "customer_id",
+                            "order_date",
+                            "status"
+                        ]
+                    },
+                    "result": {
+                        "observed_value": [
+                            "order_id",
+                            "customer_id",
+                            "order_date",
+                            "status"
+                        ]
+                    }
+                },
+                {
+                    "expectation_type": "expect_column_values_to_be_of_type",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.orders",
+                        "column": "customer_id",
+                        "type_": "INTEGER"
+                    },
+                    "result": {
+                        "observed_value": "INTEGER"
+                    }
+                },
+                {
+                    "expectation_type": "expect_column_values_to_be_of_type",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.orders",
+                        "column": "order_date",
+                        "type_": "DATE"
+                    },
+                    "result": {
+                        "observed_value": "DATE"
+                    }
+                },
+                {
+                    "expectation_type": "expect_column_values_to_be_of_type",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.orders",
+                        "column": "status",
+                        "type_": "VARCHAR(20)"
+                    },
+                    "result": {
+                        "observed_value": "VARCHAR(20)"
+                    }
+                }
+            ],
+            "result_url": null
+        },
+        {
+            "success": true,
+            "statistics": {
+                "evaluated_expectations": 2,
+                "successful_expectations": 2,
+                "unsuccessful_expectations": 0,
+                "success_percent": 100.0
+            },
+            "expectations": [
+                {
+                    "expectation_type": "expect_column_values_to_be_between",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.order_items",
+                        "column": "quantity",
+                        "min_value": 1.0
+                    },
+                    "result": {
+                        "element_count": 12561,
+                        "unexpected_count": 0,
+                        "unexpected_percent": 0.0,
+                        "partial_unexpected_list": [],
+                        "missing_count": 0,
+                        "missing_percent": 0.0,
+                        "unexpected_percent_total": 0.0,
+                        "unexpected_percent_nonmissing": 0.0,
+                        "partial_unexpected_counts": []
+                    }
+                },
+                {
+                    "expectation_type": "expect_column_values_to_be_between",
+                    "success": true,
+                    "kwargs": {
+                        "batch_id": "postgres_demo-raw.order_items",
+                        "column": "unit_price",
+                        "min_value": 0.0,
+                        "max_value": 100000.0
+                    },
+                    "result": {
+                        "element_count": 12561,
+                        "unexpected_count": 0,
+                        "unexpected_percent": 0.0,
+                        "partial_unexpected_list": [],
+                        "missing_count": 0,
+                        "missing_percent": 0.0,
+                        "unexpected_percent_total": 0.0,
+                        "unexpected_percent_nonmissing": 0.0,
+                        "partial_unexpected_counts": []
+                    }
+                }
+            ],
+            "result_url": null
+        }
+    ]
+}
+
+GX チェック結果: 全チェック成功
+GX 結果: 全チェック成功(exit 0)
+exit=0

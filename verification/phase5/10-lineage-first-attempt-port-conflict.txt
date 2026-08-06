@@ -1,0 +1,8 @@
+# B-1(make demo-lineage)初回実行の失敗記録(2026-08-06 11:31 JST 頃)
+# 成功した再実行で terminal-demo-lineage.log を上書きしたため、初回の末尾抜粋をここに保存。
+ Container claude-demo-data-governance-marquez-web-1  Starting
+Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint claude-demo-data-governance-marquez-web-1 (998a6b49d84a70b16d8f47227d63634b209c97405e443849d2fba4d55fcbe58b): Bind for 0.0.0.0:3000 failed: port is already allocated
+make: *** [Makefile:66: demo-lineage] Error 1
+exit=2
+# 占有者: 本プロジェクト外のコンテナ obs-lab-control-plane(0.0.0.0:3000->30300/tcp)
+# 対処: lineage.md §7 の記載どおり .env に 3 変数を追記 → make down-lineage && make up-lineage → B-1 再実行で成功

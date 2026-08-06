@@ -1,0 +1,20 @@
+docker compose --profile catalog down
+ Container claude-demo-data-governance-om-server-1  Stopping
+ Container claude-demo-data-governance-om-server-1  Stopped
+ Container claude-demo-data-governance-om-server-1  Removing
+ Container claude-demo-data-governance-om-server-1  Removed
+ Container claude-demo-data-governance-om-migrate-1  Stopping
+ Container claude-demo-data-governance-om-migrate-1  Stopped
+ Container claude-demo-data-governance-om-migrate-1  Removing
+ Container claude-demo-data-governance-om-migrate-1  Removed
+ Container claude-demo-data-governance-om-postgresql-1  Stopping
+ Container claude-demo-data-governance-om-elasticsearch-1  Stopping
+ Container claude-demo-data-governance-om-postgresql-1  Stopped
+ Container claude-demo-data-governance-om-postgresql-1  Removing
+ Container claude-demo-data-governance-om-postgresql-1  Removed
+ Container claude-demo-data-governance-om-elasticsearch-1  Stopped
+ Container claude-demo-data-governance-om-elasticsearch-1  Removing
+ Container claude-demo-data-governance-om-elasticsearch-1  Removed
+ Network claude-demo-data-governance_default  Removing
+ Network claude-demo-data-governance_default  Resource is still in use
+exit=0

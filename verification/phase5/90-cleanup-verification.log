@@ -1,0 +1,77 @@
+=== フェーズ5 後片付け検証(最終版): README.md「後片付け」の手順をそのまま実行(実行日: 2026-08-06 13:51:32 JST)===
+注: 1 回目の実行(90-cleanup-verification-attempt1.log)で「compose run 経由の生成物削除では
+    ネットワークが再作成され残存する」問題を発見し、README を docker run 方式に修正した上での再検証。
+
+--- [検証開始時の状態] 削除対象が存在すること ---
+claude-demo-data-governance-postgres-demo-1	Up About a minute (healthy)
+claude-demo-data-governance_demo-db-data
+claude-demo-data-governance_default
+-rw-r--r-- 1 ko-takahashi ko-takahashi 1646 Aug  6 13:49 .env
+drwxr-xr-x 2 root         root         4096 Aug  6 13:50 data/seed/csv-injected
+drwxr-xr-x 3 root         root         4096 Aug  6 13:50 quality/gx/output
+
+--- [段階1] 停止のみ: make down ---
+docker compose --profile base --profile tools --profile lineage --profile catalog --profile contract down
+ Container claude-demo-data-governance-postgres-demo-1  Stopping
+ Container claude-demo-data-governance-postgres-demo-1  Stopped
+ Container claude-demo-data-governance-postgres-demo-1  Removing
+ Container claude-demo-data-governance-postgres-demo-1  Removed
+ Network claude-demo-data-governance_default  Removing
+ Network claude-demo-data-governance_default  Removed
+exit=0
+
+--- [段階2] コンテナ・ネットワーク・ボリュームの削除: make clean-db ---
+docker compose --profile base --profile tools --profile lineage --profile catalog --profile contract down -v
+ Volume claude-demo-data-governance_demo-db-data  Removing
+ Volume claude-demo-data-governance_demo-db-data  Removed
+exit=0
+
+--- [段階3] 完全な後片付け ---
+$ docker run --rm -v "$(pwd)":/workspace dgd-tools:phase3 rm -rf /workspace/data/seed/csv-injected /workspace/quality/gx/output
+exit=0
+$ rm -f .env
+exit=0
+$ rm -f .git/hooks/pre-commit
+exit=0
+$ git restore verification/
+exit=0
+
+$ docker rmi <README 記載の 11 イメージ>
+Untagged: dgd-tools:phase3
+Untagged: postgres:16
+Untagged: postgres@sha256:95206741a5b214807675e14165369d05b93a9cf692223b616d07cca227e74b0b
+Error response from daemon: conflict: unable to remove repository reference "marquezproject/marquez:0.51.1" (must force) - container 487d48226486 is using its referenced image 6e5817ed7c57
+Error response from daemon: conflict: unable to remove repository reference "marquezproject/marquez-web:0.51.1" (must force) - container e7b6920b0779 is using its referenced image 612ae316da06
+Error response from daemon: No such image: docker.getcollate.io/openmetadata/server:1.13.3
+Error response from daemon: No such image: docker.getcollate.io/openmetadata/postgresql:1.13.3
+Error response from daemon: No such image: docker.elastic.co/elasticsearch/elasticsearch:9.3.0
+Error response from daemon: No such image: datacontract/cli:1.1.0
+Error response from daemon: No such image: rhysd/actionlint:1.7.12
+Error response from daemon: No such image: postgres:14
+Error response from daemon: No such image: python:3.11-slim
+rmi exit=1(非0 の原因は下記 Error 行のとおり。他プロジェクトのコンテナが参照するイメージと、通し検証時に削除済みで pull されなかったイメージ。README に記載の想定内動作)
+
+--- [確認] README 記載の削除確認コマンド ---
+$ docker ps -a --filter name=claude-demo-data-governance
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+$ docker volume ls --filter name=claude-demo-data-governance
+DRIVER    VOLUME NAME
+$ docker network ls --filter name=claude-demo-data-governance
+NETWORK ID   NAME      DRIVER    SCOPE
+$ ls data/seed/csv-injected quality/gx/output .env
+ls: cannot access 'data/seed/csv-injected': No such file or directory
+ls: cannot access 'quality/gx/output': No such file or directory
+ls: cannot access '.env': No such file or directory
+ls exit=2(非0 = すべて存在しない = 正しく削除済み)
+
+--- [確認] 残存イメージ(本プロジェクト関連) ---
+marquezproject/marquez-web:0.51.1
+marquezproject/marquez:0.51.1
+(上記は marquez 0.51.1 の 2 件のみが期待値: 他プロジェクトの停止コンテナが参照しており削除不可)
+
+--- [確認] git 作業ツリー(tracked な証跡の復元確認) ---
+→ OK: tracked ファイルの変更なし(phase1〜4 の証跡はコミット時点に復元済み)
+?? verification/phase5/
+(phase5/ は本フェーズの新規証跡のため untracked で正しい)
+
+=== 後片付け検証(最終版)完了: コンテナ・ボリューム・ネットワーク・生成ファイルの完全削除を確認 ===

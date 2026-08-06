@@ -1,0 +1,244 @@
+=== フェーズ5 通し検証: 事前クリーンアップ(実行日: 2026-08-06 11:17:47 JST)===
+
+--- [1] クリーンアップ前の状態 ---
+$ docker ps -a --filter name=claude-demo-data-governance
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                    PORTS                                           NAMES
+669a286c9440   postgres:16   "docker-entrypoint.s…"   28 minutes ago   Up 28 minutes (healthy)   0.0.0.0:15432->5432/tcp, [::]:15432->5432/tcp   claude-demo-data-governance-postgres-demo-1
+
+$ docker volume ls --filter name=claude-demo-data-governance
+DRIVER    VOLUME NAME
+local     claude-demo-data-governance_demo-db-data
+
+$ docker images(本プロジェクト関連)
+datacontract/cli:1.0.13
+datacontract/cli:1.0.17
+datacontract/cli:1.1.0
+dgd-tools:phase1
+dgd-tools:phase2
+dgd-tools:phase3
+docker.elastic.co/elasticsearch/elasticsearch:9.3.0
+docker.getcollate.io/openmetadata/postgresql:1.13.3
+docker.getcollate.io/openmetadata/server:1.13.3
+marquezproject/marquez-web:0.50.0
+marquezproject/marquez-web:0.51.1
+marquezproject/marquez:0.50.0
+marquezproject/marquez:0.51.1
+postgres:14
+postgres:16
+python:3.11-slim
+rhysd/actionlint:1.7.12
+
+--- [2] make clean-db(全コンテナ・ネットワーク・ボリューム削除) ---
+docker compose --profile base --profile tools --profile lineage --profile catalog --profile contract down -v
+ Container claude-demo-data-governance-postgres-demo-1  Stopping
+ Container claude-demo-data-governance-postgres-demo-1  Stopped
+ Container claude-demo-data-governance-postgres-demo-1  Removing
+ Container claude-demo-data-governance-postgres-demo-1  Removed
+ Volume claude-demo-data-governance_demo-db-data  Removing
+ Network claude-demo-data-governance_default  Removing
+ Volume claude-demo-data-governance_demo-db-data  Removed
+ Network claude-demo-data-governance_default  Removed
+exit code: 0
+
+--- [3] 生成物・設定ファイルの削除 ---
+$ rm -rf data/seed/csv-injected quality/gx/output && rm -f .env
+rm: cannot remove 'data/seed/csv-injected/order_items.csv': Permission denied
+rm: cannot remove 'data/seed/csv-injected/customers.csv': Permission denied
+rm: cannot remove 'data/seed/csv-injected/products.csv': Permission denied
+rm: cannot remove 'data/seed/csv-injected/orders.csv': Permission denied
+rm: cannot remove 'quality/gx/output/last_result.json': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/index.html': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_orders_suite/__none__/20260804T075619.060748Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_orders_suite/__none__/20260804T075542.675017Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_orders_suite/__none__/20260804T081213.967983Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_orders_suite/__none__/20260804T074404.568818Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_orders_suite/__none__/20260804T081228.709481Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_orders_suite/__none__/20260804T075601.063428Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_orders_suite/__none__/20260804T075748.292701Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_orders_suite/__none__/20260804T074328.784588Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_orders_suite/__none__/20260805T064607.548936Z/postgres_demo-raw.orders.html': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_orders_suite/__none__/20260804T074204.195046Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_order_items_suite/__none__/20260804T075619.060748Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_order_items_suite/__none__/20260804T075542.675017Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_order_items_suite/__none__/20260804T081213.967983Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_order_items_suite/__none__/20260804T074404.568818Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_order_items_suite/__none__/20260804T081228.709481Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_order_items_suite/__none__/20260804T075601.063428Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_order_items_suite/__none__/20260804T075748.292701Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_order_items_suite/__none__/20260804T074328.784588Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_order_items_suite/__none__/20260805T064607.548936Z/postgres_demo-raw.order_items.html': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_order_items_suite/__none__/20260804T074204.195046Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_customers_suite/__none__/20260804T075619.060748Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_customers_suite/__none__/20260804T075542.675017Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_customers_suite/__none__/20260804T081213.967983Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_customers_suite/__none__/20260804T074404.568818Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_customers_suite/__none__/20260804T081228.709481Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_customers_suite/__none__/20260804T075601.063428Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_customers_suite/__none__/20260804T075748.292701Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_customers_suite/__none__/20260804T074328.784588Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_customers_suite/__none__/20260805T064607.548936Z/postgres_demo-raw.customers.html': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/validations/raw_customers_suite/__none__/20260804T074204.195046Z': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/images/glossary_scroller.gif': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/images/validation_failed_unexpected_values.gif': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/images/favicon.ico': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/images/short-logo.png': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/images/logo-long.png': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/images/iterative-dev-loop.png': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/images/short-logo-vector.svg': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/images/logo-long-vector.svg': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/fonts/HKGrotesk/HKGrotesk-LightItalic.otf': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/fonts/HKGrotesk/HKGrotesk-MediumItalic.otf': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/fonts/HKGrotesk/HKGrotesk-SemiBold.otf': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/fonts/HKGrotesk/HKGrotesk-Bold.otf': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/fonts/HKGrotesk/HKGrotesk-Light.otf': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/fonts/HKGrotesk/HKGrotesk-SemiBoldItalic.otf': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/fonts/HKGrotesk/HKGrotesk-Medium.otf': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/fonts/HKGrotesk/HKGrotesk-Italic.otf': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/fonts/HKGrotesk/HKGrotesk-Regular.otf': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/fonts/HKGrotesk/HKGrotesk-BoldItalic.otf': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/styles/data_docs_custom_styles_template.css': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/static/styles/data_docs_default_styles.css': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/expectations/raw_order_items_suite.html': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/expectations/raw_customers_suite.html': Permission denied
+rm: cannot remove 'quality/gx/output/data_docs/expectations/raw_orders_suite.html': Permission denied
+csv
+csv-injected
+generate.py
+output
+run_checks.py
+ls: cannot access '.env': No such file or directory
+(.env なし)
+
+--- [4] Docker イメージの削除 ---
+$ docker rmi dgd-tools:phase3
+Untagged: dgd-tools:phase3
+Deleted: sha256:8e19f5a69349d777744f43d38f1549dc39714da6aa8726581094230aaed8550e
+$ docker rmi dgd-tools:phase2
+Untagged: dgd-tools:phase2
+Deleted: sha256:598f0a1a62b1cfebc709f097e870ef8a1e2d2ee2f648c351b3eda06710479806
+$ docker rmi dgd-tools:phase1
+Untagged: dgd-tools:phase1
+Deleted: sha256:3ee42a90bbde7c5f24613450fc9aa265dc3e974708ad244212ab909dad19f072
+$ docker rmi marquezproject/marquez:0.51.1
+Error response from daemon: conflict: unable to remove repository reference "marquezproject/marquez:0.51.1" (must force) - container 487d48226486 is using its referenced image 6e5817ed7c57
+(削除失敗: 他プロジェクトのコンテナが参照している等。通し検証には影響しない)
+$ docker rmi marquezproject/marquez-web:0.51.1
+Error response from daemon: conflict: unable to remove repository reference "marquezproject/marquez-web:0.51.1" (must force) - container e7b6920b0779 is using its referenced image 612ae316da06
+(削除失敗: 他プロジェクトのコンテナが参照している等。通し検証には影響しない)
+$ docker rmi docker.getcollate.io/openmetadata/server:1.13.3
+Untagged: docker.getcollate.io/openmetadata/server:1.13.3
+Untagged: docker.getcollate.io/openmetadata/server@sha256:997d666b01f674fc4d587f034759c826082ea7666cd7bc0e6db8fdbb707df010
+Deleted: sha256:a14f3aae1de6357179fb6f0b007b7f227a1cd32e7690c8ef4dcb987cbb066043
+Deleted: sha256:45a1b23048e150e1cd8c894abf10d1a261cbe3a5ec056d12249bb7014eba4309
+Deleted: sha256:8b30a2279f35321343ee719d1d8085f6e9ea0d13ff03930acda5e932166da353
+Deleted: sha256:e3862bca70b88a6158c901bec4190f5b0b0a990223cd924c78fb9c3fe6407374
+Deleted: sha256:b49cafea033a8f47acfc9c170c32000b71997bceee48e0688846cbee331599f6
+$ docker rmi docker.getcollate.io/openmetadata/postgresql:1.13.3
+Untagged: docker.getcollate.io/openmetadata/postgresql:1.13.3
+Untagged: docker.getcollate.io/openmetadata/postgresql@sha256:4b225b4fcc810983c5e4578c690477688beaa587457310a5f4c615700334e321
+Deleted: sha256:877c4b6536c5c83a2f49628b6309e70da5f2e305799a4ff257d7facab587a07f
+Deleted: sha256:47624eb6dbd5d650e32d98eac8053b57588b30a4c0e2df53a1d6cf58062a1aa5
+Deleted: sha256:d357e077c1fa44651dff0b2f9d0dec84d0d9816ad8e14a416d42a782e558f305
+Deleted: sha256:042a1aac9540489361d6aea22dd3f780a289e31bb03b353774230a0a1de649de
+Deleted: sha256:7051260f1aba0b79e9dbd3e7c84211cf450b87b79043523c509d3bc823d1d71f
+Deleted: sha256:f3adf7cdb85963917fe1d55df5f66e751c303857e7ab4fcf00d6c188536f7c4f
+Deleted: sha256:d5010b3705798de700c52418d54c36b85be430656fba72069bf2cf0970d977f3
+Deleted: sha256:acd9c9c04e0e6f9115f9ee602135b9c08e0a4ea37c135a7a30267243870b35cc
+Deleted: sha256:b57884087591bf22102d28342371d1f121d21a8e4aa8269a48c6bd1693a40c81
+Deleted: sha256:e9a3e895782fc79e52fac423f7f7676c360e806a79f83cec898617b48a5d4965
+Deleted: sha256:f3e069ffb483a900b8b549d9b5d31c61ff03cd32b3e1b7ae5025350bec3e75de
+Deleted: sha256:75c11abf6ed874207cf31fa5ae02e18c8f8c2133072a7e3e14ed5dd8cdcba46a
+Deleted: sha256:c2472df8020f3450b984b257841a90ef454e66c1f16acaeb700915a6d12b1899
+Deleted: sha256:3bb927acfa73e60c565e1d9b02166aba5260c75863fe12beb4ee1ec5de19c4cb
+Deleted: sha256:bdf86a1575c16eb9066514860d0342f1a865cf5aca17e77ab581ec1b594a7ed2
+Deleted: sha256:2cb14fdb55aec8fa607874923f53031eb452105f7350fb039093e347aae22169
+Deleted: sha256:b4fce323616a04cbf17ddd20406c2500412cf426c34de4a3494259f8b15ba508
+$ docker rmi docker.elastic.co/elasticsearch/elasticsearch:9.3.0
+Untagged: docker.elastic.co/elasticsearch/elasticsearch:9.3.0
+Untagged: docker.elastic.co/elasticsearch/elasticsearch@sha256:4f6bdcb742e892539c6ac49b0dd3e4e182e90218546e8c6a22db378c344acb60
+Deleted: sha256:85c8bc05c759f0e89cfc927d2fa183cf95a89c91a90954e3524bcf9a03f1a32e
+Deleted: sha256:b454cbe143486c8f6af323eeb549592507b753851e0c9ea6e09c932c04fd3991
+Deleted: sha256:9710127d9aa8356643bc40765042ec6e7a6377ac9adf79f73181225826c55e29
+Deleted: sha256:98f9b415fb938fd51373208c9abe8e95b497e157095ed9c7e104af60544175fa
+Deleted: sha256:7315e910649bf1a161e503466cf01b01c360d97b3ac8a9402521a85de8815128
+Deleted: sha256:f46be915f502e7f59985314c74f35aaf439f286030cbbe057aaaacaf9910fe30
+Deleted: sha256:a17d095ad27e47810476736def26a7a68f72030fe16d6a9ab17e62c7c10059da
+Deleted: sha256:19bbb90640fe58fca5898163a758038276443283fc6f3460e1574791920ec58f
+Deleted: sha256:64d9f9525c0f93507269e95cc7447b80bd33ac143be6a24dc1d40e991ab66b23
+Deleted: sha256:3ecde06baf18df375ce8b6b9ac0722a961ce7566608a96c4b0006c371213916b
+Deleted: sha256:34007b7154ee55740e57c0fc458ca9bdeb090438e8be44b5a751a6e18a87eca2
+$ docker rmi datacontract/cli:1.1.0
+Untagged: datacontract/cli:1.1.0
+Untagged: datacontract/cli@sha256:f7fa02d649f4992dd8297bb428ece7403d688e881cf4a386673e250cb678657b
+Deleted: sha256:ca93ff0dc760844d30c3148ef105afd32a78efaa002a3686bc545f02d09b75c8
+Deleted: sha256:3dc4f49efd9242ccf2b59198e4ecbb3b19429fd835c95aa8f59a62865a4eabb9
+Deleted: sha256:a5fc6a1b6709001d08f48fc24fdc069868d6650eac34b05596a4f2cb8a3b0a5b
+Deleted: sha256:2ab2d525a9c47069182c62c612a0f09f75a3e7eafaa2f3add2b78310a5c28451
+Deleted: sha256:f28f373c722ce6e68468cc1e143449e8bad92e5983cb6b9e623326490e3bf6f3
+Deleted: sha256:040ffbc5992d51a6890af6a5bc0985fe1f55ba63e9705b130153e0b52a70ab3f
+Deleted: sha256:dfab23d51f99297846878ec66a1e2689d0d74b6218376c26805b58e6069a00c2
+Deleted: sha256:d681844854cfcdbe047297e43e4644484ec37f1dfc04ecc21795ed4c66cc2941
+$ docker rmi rhysd/actionlint:1.7.12
+Untagged: rhysd/actionlint:1.7.12
+Untagged: rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+Deleted: sha256:7ef0d156288b43c3bd5ee96bac787a28aae53275e88e4f9476a64bc0c19195c9
+Deleted: sha256:e315c273c8d7edfa45dc6b4a9a4a8bf1a53b99065c363ca83bdeec9623bce5d8
+Deleted: sha256:3fbfac92501b1f0c827b17a9fa2701049a92d1482aea8bcbbec7e34c66e725b7
+Deleted: sha256:32663f0e2e52c37e04b93817c4a09110bd0e0f60e7a3e350311d79e5f4306352
+Deleted: sha256:989e799e634906e94dc9a5ee2ee26fc92ad260522990f26e707861a5f52bf64e
+$ docker rmi postgres:16
+Untagged: postgres:16
+Untagged: postgres@sha256:95206741a5b214807675e14165369d05b93a9cf692223b616d07cca227e74b0b
+Deleted: sha256:8a4b045886180c64f518ca6a4b0791b15fb997f3b3b619bd5ee141914668db55
+Deleted: sha256:c7711f919dd4f9e16712bec1e2cd3a74cf916869523fcb477025b526fecbe741
+Deleted: sha256:9221929018c192aa87e38971008f637898d277b687e1204b7d38665f9e3931d0
+Deleted: sha256:79c8396cd09c7de92fcd47b6930f218240e57201714909105bcea0c5bbcbde3c
+Deleted: sha256:2b37a164877f56e396d73be746e97398b83547d9c66f9865aecf2c2f3ffa9b3b
+Deleted: sha256:1ad663cece7fb112231063c7a72f08ebc711b8b6e9237e21832f5bf294dde7ba
+Deleted: sha256:2e011b2bd4d06a6254621941b9d6409f1c8bdc9ce3391fc69346d1df525c36be
+Deleted: sha256:ef6be310b3162f22220efa0016f03a2ddf169d5685b3f018016d770d530279d0
+Deleted: sha256:388d30e62bed02c651fa8075c411bcbe9bc7aecc28f336167e8ee5d4cb452fbf
+Deleted: sha256:a4bcc2ce4c7d768cc7eb3ad02f881a42c419082ac7111549fb4df636adfcd863
+Deleted: sha256:2d2bf2e70feb6483480424c94d7bdb675ea93a20fe45f1768b7cd62b01c4891c
+Deleted: sha256:9ea4caa0264ce6aeefb6f08a35eeffa0940f06ded7817fe4a605ee2e8314e087
+Deleted: sha256:cbfe605b6792b5ab51d2cda60ba918b7d1d3ea0213fb677bea22c85e2fcb3f23
+Deleted: sha256:b5f09514d7502486c25209b56bb1f678a0abf2edf76ab0558f85418a4feb38d7
+Deleted: sha256:6f94328331290cbd81edab450664d42da7b64c191416c9346cd5d28c84f76035
+$ docker rmi postgres:14
+Untagged: postgres:14
+Untagged: postgres@sha256:caf49e3b10d377aa2cfee478591d623808527beb27125d38797b418013f72d81
+Deleted: sha256:b7a8f15ade55b28eac94a8781c7d635fe8ff518954011c140ad70ab2df57490d
+Deleted: sha256:53fbd0cfe61916ddbe25fd609ae15ab55854d3985aeb93a10b977c594afccb6e
+Deleted: sha256:bb36cf4050fc9564430d56ad32ef6bf2a7decba2c32abba47c98f4dddcd77311
+Deleted: sha256:fe4efe823bba04846d7b0ba5b98eabe12fb4334e2526be980643ce6b6fd98b0d
+Deleted: sha256:e1ff6a44199263646c4107543b05ce4f210a2be2a9498f5a16e1ac8cb62fb050
+Deleted: sha256:2b12e03127cbfc9e0060abac1640a38ebbac4b3bd064de4779076bdcecb3673d
+Deleted: sha256:b9ad8ecb87e3ac009579216404bfbebaaeb8bf5fffa2b6d23224ac46fc6d6853
+Deleted: sha256:fe0856f2ccecc4e4d5af376ff9b628f593e75ad3c25959a3856178c10153e0a7
+Deleted: sha256:3c091d67a4dbcccf96943dfd28bbff85328b06291af1a316ca5ca8004f373707
+Deleted: sha256:b66d882ec3e0cd269619a0b4fe66cd88dd07ca3282e51df7fafd48f5b7f8c302
+Deleted: sha256:1d8ef9d2cf26b4b86dc63379734ce61e5c11028062dac4bbb9e03ace17383987
+Deleted: sha256:521eaf7fc41aa27f184a6e75e1548702d8fb0d00f593031e5398e81e2f2c97cf
+Deleted: sha256:37f5d7842750011b3b93f7e8f4278768fee66726b5096a8cc3e7f79878e0eb39
+Deleted: sha256:db3907c923916d718261e341dd9c64df6665f00da30983b3c8aacbc219903c63
+$ docker rmi python:3.11-slim
+Untagged: python:3.11-slim
+Untagged: python@sha256:db3ff2e1800a8581e2c48a27c3995339d47bdf046da21c7627accd3d51053a93
+Deleted: sha256:1c03896dbf0ef4a2b86f1462395249e810c589e25d8c0b002faabc38aa144686
+
+--- [5] クリーンアップ後の状態 ---
+$ docker ps -a --filter name=claude-demo-data-governance
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+$ docker volume ls --filter name=claude-demo-data-governance
+DRIVER    VOLUME NAME
+$ docker network ls --filter name=claude-demo-data-governance
+NETWORK ID   NAME      DRIVER    SCOPE
+$ docker images(本プロジェクト関連・残存分)
+datacontract/cli:1.0.13
+datacontract/cli:1.0.17
+marquezproject/marquez-web:0.50.0
+marquezproject/marquez-web:0.51.1
+marquezproject/marquez:0.50.0
+marquezproject/marquez:0.51.1
+
+=== 事前クリーンアップ完了 ===
