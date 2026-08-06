@@ -158,10 +158,38 @@ UI を持たない領域の成果物: GX の Data Docs は `quality/gx/output/da
 契約の仕様書 HTML は D-1 実行後の `verification/phase4/export/daily_sales.html` を
 ブラウザで開いて確認します。
 
-## ライセンス・バージョン一覧
+## ライセンス
 
-採用した全製品・主要依存関係の一覧です(バージョンはすべてピン留め。
-調査記録は [docs/plan.md](docs/plan.md) §1 と [docs/build-log.md](docs/build-log.md) を参照)。
+### 本リポジトリのライセンス
+
+本リポジトリの**自作物**(Makefile、`docker-compose.yml`、`pipeline/`、`quality/`、
+`lineage/`、`catalog/`、`contracts/`、`scenarios/`、`data/seed/`、`docs/`、
+`.github/workflows/` 等)は **Apache License 2.0** です。全文は [LICENSE](LICENSE) を
+参照してください。
+
+適用範囲には次の例外があります。
+
+- **`verification/` 配下の証跡は第三者の生成物・著作物を含みます**。それぞれ元の
+  ライセンスに従います。具体的には:
+  - `verification/phase1/gx_data_docs/` — Great Expectations が生成した Data Docs
+    (Apache-2.0)。同梱の **HK Grotesk フォント**(`static/fonts/HKGrotesk/`)は
+    **SIL Open Font License 1.1**(ライセンス文は同ディレクトリの
+    [OFL.txt](verification/phase1/gx_data_docs/static/fonts/HKGrotesk/OFL.txt))、
+    同梱のロゴ画像は Great Expectations の商標です。
+  - `verification/phase2/ui/`、`verification/phase3/ui/` — Marquez / OpenMetadata の
+    UI スクリーンショット。各製品の画面の記録であり、商標は各権利者に帰属します。
+- **`docker-compose.yml` の catalog profile** は OpenMetadata 公式リリースアセット
+  (Copyright 2021 Collate、Apache-2.0)の派生物です。帰属表示と変更点は
+  同ファイル冒頭のコメントに記載しています。
+
+### 採用製品のライセンス・バージョン一覧
+
+**本リポジトリは各製品のバイナリ・ソースコードを同梱していません。**
+`pip install` / `docker pull` で各配布元から取得する構成のため、利用者は各製品の
+ライセンスを配布元から直接受けることになります(下表は採用バージョンの記録です)。
+
+バージョンはすべてピン留めしています。調査記録は [docs/plan.md](docs/plan.md) §1 と
+[docs/build-log.md](docs/build-log.md) を参照してください。
 
 | 領域 | 製品/コンポーネント | 採用バージョン | ライセンス |
 |---|---|---|---|
@@ -183,6 +211,7 @@ UI を持たない領域の成果物: GX の Data Docs は `quality/gx/output/da
 | 共通 | PostgreSQL(Marquez 用) | 14 | PostgreSQL License |
 | 共通 | Python ベースイメージ(tools) | 3.11-slim | PSF-2.0(同梱 Debian パッケージは各自のライセンス) |
 | 共通 | psycopg2-binary(pip) | 2.9.10 | LGPL with exceptions |
+| 証跡 | HK Grotesk(GX Data Docs 同梱フォント) | 1.045 | SIL Open Font License 1.1 |
 
 ※ = OSI 認定外のライセンス。いずれもソース公開・無料利用可能で、本デモの
 ローカル利用の範囲では制約になりません。要点:
@@ -283,6 +312,7 @@ $ ls data/seed/csv-injected quality/gx/output .env
 
 ```
 ├── README.md               # 本ファイル(入口)
+├── LICENSE                 # Apache License 2.0(自作物に適用。適用範囲は「ライセンス」参照)
 ├── Makefile                # 全デモの単一コマンド入口(make help で一覧)
 ├── docker-compose.yml      # profiles: base / tools / lineage / catalog / contract
 ├── .env.example            # デモ用設定値(make setup が .env にコピー)

@@ -5,6 +5,30 @@
 #   lineage : Marquez 一式(フェーズ2で追加)
 #   catalog : OpenMetadata 一式(フェーズ3で追加)
 #   contract: datacontract-cli 公式イメージ(常駐せず `run` で都度実行。フェーズ4で追加)
+#
+# ---------------------------------------------------------------------------
+# 帰属表示(Apache License 2.0 §4)
+#
+# 本ファイルの catalog profile(x-om-env / om-postgresql / om-elasticsearch /
+# om-migrate / om-server)は、OpenMetadata 公式リリースアセット
+# docker-compose-postgres.yml (1.13.3-release) を基にした派生物です。
+#
+#   Copyright 2021 Collate
+#   Licensed under the Apache License, Version 2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# 原典からの主な変更点(Apache-2.0 §4(b) の変更告知):
+#   - Airflow ingestion コンテナ(openmetadata_ingestion)を削除し、
+#     PIPELINE_SERVICE_CLIENT_ENABLED を false に変更(取り込みは tools から CLI 実行)
+#   - サービス名を本 compose の命名(om-*)に変更し、接続先ホスト名を追随
+#   - 内部 DB / Elasticsearch のホストへのポート公開を削除(衝突回避)
+#   - om-server の healthcheck に interval / retries / start_period を追加
+#   - profiles / volumes を本デモの構成に合わせて再定義
+# 変更の判断理由は docs/build-log.md「設計判断: catalog profile の compose 構成」を参照。
+#
+# 本ファイルのうち上記以外の部分(base / tools / lineage / contract profile)は
+# 本リポジトリの自作物で、リポジトリの LICENSE(Apache-2.0)に従います。
+# ---------------------------------------------------------------------------
 # OpenMetadata の migrate ワンショットと server で共通の設定値。
 # 値は公式リリースアセット docker-compose-postgres.yml(1.13.3-release)の既定値に
 # 合わせ、ホスト名のみ本 compose のサービス名に置換(build-log.md 参照)。
