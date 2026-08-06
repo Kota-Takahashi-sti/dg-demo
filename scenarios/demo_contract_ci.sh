@@ -5,7 +5,7 @@
 #     (a) actionlint 1.7.12 によるワークフロー YAML の静的検証
 #     (b) ワークフローの各ステップと同一コマンドのローカル実行
 #         (正常な PR 相当は exit 0、破壊的変更の PR 相当は非0 = ブロック動作を確認)
-#   (c) act によるローカル実行の結果は docs/guides/contract.md と build-log.md に記載。
+#   (c) act によるローカル実行の結果は docs/guides/D-contract.md と build-log.md に記載。
 source "$(dirname "${BASH_SOURCE[0]}")/common.sh"
 
 setup_log "verification/phase4/demo-contract-ci.log"

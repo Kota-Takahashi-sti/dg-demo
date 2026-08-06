@@ -8,7 +8,7 @@
 # 注意: 本デモの開発環境では GitHub Actions を実行できない(CLAUDE.md「環境上の既知の制約」)。
 # このワークフローは (a) actionlint 1.7.12 による静的検証、(b) 同一コマンドのローカル実行
 # (make demo-contract-ci)、(c) act によるローカル実行、で検証した。
-# 検証できた範囲・できなかった範囲は docs/guides/contract.md と docs/build-log.md に明記している。
+# 検証できた範囲・できなかった範囲は docs/guides/D-contract.md と docs/build-log.md に明記している。
 name: data-contract-ci
 
 on:

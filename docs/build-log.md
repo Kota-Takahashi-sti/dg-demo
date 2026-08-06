@@ -984,3 +984,19 @@ build-log 全体をレビューし(記録ルール4観点)、以下の記録漏�
 
 - 証跡: verification/phase5/(通し 16 本 + セットアップ・確認ログ + findings.md +
   後片付け 2 本 + VERBATIM 2 本)
+
+### ガイドファイル名の変更に伴う参照更新(フェーズ5 追記、2026-08-06)
+
+- 発注者がガイド 4 本のファイル名に領域プレフィックスを付与
+  (quality.md → A-quality.md、lineage.md → B-lineage.md、catalog.md → C-catalog.md、
+  contract.md → D-contract.md。コミット cb837f8)。
+- 追随として、利用者が現在たどる参照のみ新ファイル名に更新:
+  README の導線リンク 4 件、verify-verbatim スキルの実行例 2 件、
+  ソース内の案内コメント・出力(scenarios/demo_contract_ci.sh、
+  scenarios/demo_catalog_lineage.sh の echo、catalog/ingest.yaml、
+  contracts/daily_sales.yaml、.github/workflows/contract.yml、
+  contracts/hooks/pre-commit)。
+- **方針**: build-log.md・docs/plan.md・PROGRESS.md の過去フェーズ記録と
+  verification/ の生ログは当時のファイル名のまま(歴史的記録のため書き換えない)。
+- verify-verbatim を新ファイル名で再実行: 8/8・6/6・7/7(SKIP 3)・12/12 =
+  33/33 VERBATIM で全一致を確認。

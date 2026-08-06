@@ -1,6 +1,6 @@
 # mart.daily_sales のデータコントラクト(ODCS v3.1.0 / datacontract-cli 1.1.0 で検証)
 # 「生産者(データエンジニアリング)と消費者(経営企画)の合意」を 1 ファイルで表す:
-#   スキーマ + 品質 + SLA + 責任者。品質チェック定義(Soda/GX)との違いは docs/guides/contract.md 参照。
+#   スキーマ + 品質 + SLA + 責任者。品質チェック定義(Soda/GX)との違いは docs/guides/D-contract.md 参照。
 apiVersion: v3.1.0
 kind: DataContract
 id: dgd-demo-mart-daily-sales
@@ -103,7 +103,7 @@ slaProperties:
     element: daily_sales.sales_date
   # retention は datacontract test が実際に検査する(最古データの経過秒数 < retention)。
   # 合成データの日付範囲は 2025-07-01 起点で固定のため、3 年なら 2028-06 まで合格する
-  # (それ以降に検証する場合はデータの再生成が必要。docs/guides/contract.md 参照)。
+  # (それ以降に検証する場合はデータの再生成が必要。docs/guides/D-contract.md 参照)。
   - property: retention
     description: データは 3 年を超えて保持しない(最古行の経過時間として検査される)
     value: 3

@@ -20,8 +20,8 @@ python3 ${CLAUDE_SKILL_DIR}/scripts/verify_verbatim.py <ガイド.md> <証跡デ
 実績のある呼び出し例(いずれも全ブロック一致を確認済み):
 
 ```
-python3 ${CLAUDE_SKILL_DIR}/scripts/verify_verbatim.py docs/guides/lineage.md verification/phase2
-python3 ${CLAUDE_SKILL_DIR}/scripts/verify_verbatim.py docs/guides/quality.md verification/phase1 --langs plain,text,json
+python3 ${CLAUDE_SKILL_DIR}/scripts/verify_verbatim.py docs/guides/B-lineage.md verification/phase2
+python3 ${CLAUDE_SKILL_DIR}/scripts/verify_verbatim.py docs/guides/A-quality.md verification/phase1 --langs plain,text,json
 ```
 
 ## ガイド執筆の規約(フェーズ2以降)

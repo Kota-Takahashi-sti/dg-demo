@@ -32,5 +32,5 @@ save_om_api verification/phase3/api-lineage-daily-sales.json lineage demo_postgr
 echo
 echo "OpenMetadata UI: 各テーブルの Lineage タブでグラフを確認できます。"
 echo "Marquez(フェーズ2)との違い: パイプラインを一度も実行せずにリネージュが得られる一方、"
-echo "Run(実行履歴・成功/失敗)の概念はありません。詳細は docs/guides/catalog.md 参照。"
+echo "Run(実行履歴・成功/失敗)の概念はありません。詳細は docs/guides/C-catalog.md 参照。"
 echo "リネージュデモ結果: 成功(exit 0)"
