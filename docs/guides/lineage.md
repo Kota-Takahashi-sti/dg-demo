@@ -231,11 +231,13 @@ SQL(03_mart.sql)の内容がそのまま構造化されています。
 **この facet はパイプライン側が自己申告したものです**(SQL を解析して自動生成された
 ものではありません)。この点は後述の長所短所に直結します。
 
-自分で API を叩いて確認することもできます:
+自分で API を叩いて確認することもできます(columnLineage facet は**データセット照会
+(`dataset`)のレスポンス**に含まれます。リネージュグラフ照会(`lineage`)は
+ノードのつながりを返すもので、この facet は含まれません):
 
 ```console
 $ docker compose --profile tools run --rm -T tools \
-    /opt/venv/lineage/bin/python lineage/marquez_api.py lineage demo.mart.daily_sales
+    /opt/venv/lineage/bin/python lineage/marquez_api.py dataset demo.mart.daily_sales
 ```
 
 ### 4.2 B-2 異常系: パイプライン失敗の追跡

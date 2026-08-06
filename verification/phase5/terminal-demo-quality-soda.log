@@ -1,0 +1,360 @@
+scenarios/demo_quality_soda.sh clean
+# 実行日時: 2026-08-06 11:28:01 JST
+# コマンドログ: verification/phase1/demo-quality-soda.log
+--- デモ用 DB(profile: base)を起動 ---
+ postgres-demo Pulling 
+ 26c307b5e35a Already exists 
+ bc896de4a313 Pulling fs layer 
+ 21b1510e6796 Pulling fs layer 
+ 1d943b076b0f Pulling fs layer 
+ c66dedc53722 Pulling fs layer 
+ 6a61619bdfd1 Pulling fs layer 
+ 0a30060dfa56 Pulling fs layer 
+ 10e14a8b4766 Pulling fs layer 
+ 24ae71c6470d Pulling fs layer 
+ 572343b36a41 Pulling fs layer 
+ c66dedc53722 Waiting 
+ 6a61619bdfd1 Waiting 
+ 0a30060dfa56 Waiting 
+ 10e14a8b4766 Waiting 
+ 24ae71c6470d Waiting 
+ 572343b36a41 Waiting 
+ bc0701afb397 Pulling fs layer 
+ d015a9a5b43f Pulling fs layer 
+ 5724f2481726 Pulling fs layer 
+ 5d59b154e183 Pulling fs layer 
+ 5724f2481726 Waiting 
+ 5d59b154e183 Waiting 
+ d015a9a5b43f Waiting 
+ bc0701afb397 Waiting 
+ bc896de4a313 Download complete 
+ bc896de4a313 Extracting [==================================================>]   1.17kB/1.17kB
+ bc896de4a313 Extracting [==================================================>]   1.17kB/1.17kB
+ 1d943b076b0f Downloading [>                                                  ]  15.79kB/1.257MB
+ 21b1510e6796 Downloading [>                                                  ]  65.54kB/6.443MB
+ bc896de4a313 Pull complete 
+ 1d943b076b0f Verifying Checksum 
+ 1d943b076b0f Download complete 
+ 21b1510e6796 Downloading [==========>                                        ]  1.337MB/6.443MB
+ 21b1510e6796 Downloading [============================>                      ]  3.684MB/6.443MB
+ 21b1510e6796 Downloading [=====================================>             ]  4.779MB/6.443MB
+ 21b1510e6796 Downloading [================================================>  ]  6.198MB/6.443MB
+ 21b1510e6796 Verifying Checksum 
+ 21b1510e6796 Download complete 
+ 21b1510e6796 Extracting [>                                                  ]  65.54kB/6.443MB
+ 21b1510e6796 Extracting [===================>                               ]   2.49MB/6.443MB
+ 21b1510e6796 Extracting [============================================>      ]  5.702MB/6.443MB
+ 21b1510e6796 Extracting [==================================================>]  6.443MB/6.443MB
+ c66dedc53722 Downloading [>                                                  ]  97.71kB/8.204MB
+ c66dedc53722 Downloading [=============>                                     ]  2.162MB/8.204MB
+ 21b1510e6796 Pull complete 
+ 1d943b076b0f Extracting [=>                                                 ]  32.77kB/1.257MB
+ c66dedc53722 Downloading [==========================================>        ]  6.979MB/8.204MB
+ c66dedc53722 Verifying Checksum 
+ c66dedc53722 Download complete 
+ 1d943b076b0f Extracting [==================================================>]  1.257MB/1.257MB
+ 1d943b076b0f Pull complete 
+ c66dedc53722 Extracting [>                                                  ]   98.3kB/8.204MB
+ 0a30060dfa56 Download complete 
+ c66dedc53722 Extracting [========>                                          ]  1.475MB/8.204MB
+ c66dedc53722 Extracting [=================>                                 ]  2.949MB/8.204MB
+ c66dedc53722 Extracting [====================>                              ]  3.441MB/8.204MB
+ c66dedc53722 Extracting [=========================>                         ]  4.227MB/8.204MB
+ c66dedc53722 Extracting [=============================>                     ]  4.817MB/8.204MB
+ 10e14a8b4766 Downloading [==================================================>]  3.144kB/3.144kB
+ 10e14a8b4766 Verifying Checksum 
+ 10e14a8b4766 Download complete 
+ c66dedc53722 Extracting [===================================>               ]  5.898MB/8.204MB
+ 24ae71c6470d Downloading [>                                                  ]  535.9kB/113.2MB
+ c66dedc53722 Extracting [======================================>            ]  6.291MB/8.204MB
+ 24ae71c6470d Downloading [=>                                                 ]  3.221MB/113.2MB
+ c66dedc53722 Extracting [========================================>          ]  6.685MB/8.204MB
+ 6a61619bdfd1 Downloading [>                                                  ]  15.79kB/1.312MB
+ 24ae71c6470d Downloading [===>                                               ]  7.542MB/113.2MB
+ c66dedc53722 Extracting [===========================================>       ]  7.078MB/8.204MB
+ 6a61619bdfd1 Downloading [=========>                                         ]  261.5kB/1.312MB
+ 24ae71c6470d Downloading [=====>                                             ]  13.45MB/113.2MB
+ c66dedc53722 Extracting [===============================================>   ]  7.864MB/8.204MB
+ c66dedc53722 Extracting [==================================================>]  8.204MB/8.204MB
+ 6a61619bdfd1 Downloading [=============================================>     ]  1.195MB/1.312MB
+ 6a61619bdfd1 Verifying Checksum 
+ 6a61619bdfd1 Download complete 
+ 24ae71c6470d Downloading [=======>                                           ]  17.77MB/113.2MB
+ c66dedc53722 Pull complete 
+ 6a61619bdfd1 Extracting [=>                                                 ]  32.77kB/1.312MB
+ 572343b36a41 Downloading [=================>                                 ]  3.502kB/10.07kB
+ 572343b36a41 Downloading [==================================================>]  10.07kB/10.07kB
+ 572343b36a41 Verifying Checksum 
+ 572343b36a41 Download complete 
+ 24ae71c6470d Downloading [=========>                                         ]  22.63MB/113.2MB
+ 6a61619bdfd1 Extracting [================================================>  ]  1.278MB/1.312MB
+ 6a61619bdfd1 Extracting [==================================================>]  1.312MB/1.312MB
+ 24ae71c6470d Downloading [============>                                      ]  29.09MB/113.2MB
+ 24ae71c6470d Downloading [==============>                                    ]  33.37MB/113.2MB
+ 6a61619bdfd1 Pull complete 
+ 0a30060dfa56 Extracting [==================================================>]     116B/116B
+ 0a30060dfa56 Extracting [==================================================>]     116B/116B
+ 0a30060dfa56 Pull complete 
+ 24ae71c6470d Downloading [================>                                  ]  37.68MB/113.2MB
+ 10e14a8b4766 Extracting [==================================================>]  3.144kB/3.144kB
+ 10e14a8b4766 Extracting [==================================================>]  3.144kB/3.144kB
+ 10e14a8b4766 Pull complete 
+ 24ae71c6470d Downloading [==================>                                ]  42.51MB/113.2MB
+ 24ae71c6470d Downloading [=====================>                             ]  47.92MB/113.2MB
+ 24ae71c6470d Downloading [========================>                          ]  54.35MB/113.2MB
+ bc0701afb397 Downloading [==================================================>]     128B/128B
+ bc0701afb397 Verifying Checksum 
+ bc0701afb397 Download complete 
+ d015a9a5b43f Downloading [==================================================>]     168B/168B
+ d015a9a5b43f Verifying Checksum 
+ d015a9a5b43f Download complete 
+ 24ae71c6470d Downloading [==========================>                        ]  59.18MB/113.2MB
+ 24ae71c6470d Downloading [===========================>                       ]  62.94MB/113.2MB
+ 24ae71c6470d Downloading [==============================>                    ]  68.86MB/113.2MB
+ 24ae71c6470d Downloading [=================================>                 ]  75.34MB/113.2MB
+ 24ae71c6470d Downloading [===================================>               ]  79.62MB/113.2MB
+ 24ae71c6470d Downloading [=====================================>             ]  85.51MB/113.2MB
+ 5d59b154e183 Downloading [==================================================>]     184B/184B
+ 5d59b154e183 Verifying Checksum 
+ 5d59b154e183 Download complete 
+ 24ae71c6470d Downloading [=======================================>           ]  89.83MB/113.2MB
+ 5724f2481726 Downloading [============================>                      ]  3.533kB/6.108kB
+ 5724f2481726 Downloading [==================================================>]  6.108kB/6.108kB
+ 5724f2481726 Verifying Checksum 
+ 5724f2481726 Download complete 
+ 24ae71c6470d Downloading [==========================================>        ]  95.76MB/113.2MB
+ 24ae71c6470d Downloading [============================================>      ]  101.7MB/113.2MB
+ 24ae71c6470d Downloading [==============================================>    ]  104.9MB/113.2MB
+ 24ae71c6470d Downloading [================================================>  ]  110.8MB/113.2MB
+ 24ae71c6470d Verifying Checksum 
+ 24ae71c6470d Download complete 
+ 24ae71c6470d Extracting [>                                                  ]  557.1kB/113.2MB
+ 24ae71c6470d Extracting [>                                                  ]  1.114MB/113.2MB
+ 24ae71c6470d Extracting [=>                                                 ]  2.785MB/113.2MB
+ 24ae71c6470d Extracting [==>                                                ]  5.014MB/113.2MB
+ 24ae71c6470d Extracting [==>                                                ]  6.685MB/113.2MB
+ 24ae71c6470d Extracting [===>                                               ]  7.799MB/113.2MB
+ 24ae71c6470d Extracting [===>                                               ]  8.356MB/113.2MB
+ 24ae71c6470d Extracting [===>                                               ]  8.913MB/113.2MB
+ 24ae71c6470d Extracting [====>                                              ]  10.03MB/113.2MB
+ 24ae71c6470d Extracting [====>                                              ]  11.14MB/113.2MB
+ 24ae71c6470d Extracting [=====>                                             ]  12.26MB/113.2MB
+ 24ae71c6470d Extracting [=====>                                             ]  13.37MB/113.2MB
+ 24ae71c6470d Extracting [======>                                            ]  14.48MB/113.2MB
+ 24ae71c6470d Extracting [======>                                            ]   15.6MB/113.2MB
+ 24ae71c6470d Extracting [=======>                                           ]  16.71MB/113.2MB
+ 24ae71c6470d Extracting [=======>                                           ]  17.83MB/113.2MB
+ 24ae71c6470d Extracting [========>                                          ]   19.5MB/113.2MB
+ 24ae71c6470d Extracting [=========>                                         ]  20.61MB/113.2MB
+ 24ae71c6470d Extracting [=========>                                         ]  21.73MB/113.2MB
+ 24ae71c6470d Extracting [==========>                                        ]  22.84MB/113.2MB
+ 24ae71c6470d Extracting [==========>                                        ]  24.51MB/113.2MB
+ 24ae71c6470d Extracting [===========>                                       ]  26.18MB/113.2MB
+ 24ae71c6470d Extracting [============>                                      ]  28.41MB/113.2MB
+ 24ae71c6470d Extracting [=============>                                     ]  30.64MB/113.2MB
+ 24ae71c6470d Extracting [==============>                                    ]  32.87MB/113.2MB
+ 24ae71c6470d Extracting [===============>                                   ]  35.09MB/113.2MB
+ 24ae71c6470d Extracting [================>                                  ]  37.32MB/113.2MB
+ 24ae71c6470d Extracting [=================>                                 ]  39.55MB/113.2MB
+ 24ae71c6470d Extracting [==================>                                ]  41.78MB/113.2MB
+ 24ae71c6470d Extracting [===================>                               ]  44.01MB/113.2MB
+ 24ae71c6470d Extracting [====================>                              ]  46.24MB/113.2MB
+ 24ae71c6470d Extracting [=====================>                             ]  48.46MB/113.2MB
+ 24ae71c6470d Extracting [======================>                            ]  50.69MB/113.2MB
+ 24ae71c6470d Extracting [=======================>                           ]  52.92MB/113.2MB
+ 24ae71c6470d Extracting [=======================>                           ]  54.03MB/113.2MB
+ 24ae71c6470d Extracting [========================>                          ]  55.15MB/113.2MB
+ 24ae71c6470d Extracting [=========================>                         ]  56.82MB/113.2MB
+ 24ae71c6470d Extracting [=========================>                         ]  58.49MB/113.2MB
+ 24ae71c6470d Extracting [==========================>                        ]   59.6MB/113.2MB
+ 24ae71c6470d Extracting [===========================>                       ]  61.28MB/113.2MB
+ 24ae71c6470d Extracting [===========================>                       ]  62.39MB/113.2MB
+ 24ae71c6470d Extracting [============================>                      ]  64.06MB/113.2MB
+ 24ae71c6470d Extracting [=============================>                     ]  66.85MB/113.2MB
+ 24ae71c6470d Extracting [==============================>                    ]  69.63MB/113.2MB
+ 24ae71c6470d Extracting [===============================>                   ]  72.42MB/113.2MB
+ 24ae71c6470d Extracting [================================>                  ]  74.09MB/113.2MB
+ 24ae71c6470d Extracting [=================================>                 ]  76.32MB/113.2MB
+ 24ae71c6470d Extracting [==================================>                ]  78.54MB/113.2MB
+ 24ae71c6470d Extracting [===================================>               ]  80.77MB/113.2MB
+ 24ae71c6470d Extracting [====================================>              ]     83MB/113.2MB
+ 24ae71c6470d Extracting [=====================================>             ]  85.23MB/113.2MB
+ 24ae71c6470d Extracting [======================================>            ]  87.46MB/113.2MB
+ 24ae71c6470d Extracting [=======================================>           ]  89.69MB/113.2MB
+ 24ae71c6470d Extracting [========================================>          ]  91.91MB/113.2MB
+ 24ae71c6470d Extracting [=========================================>         ]  94.14MB/113.2MB
+ 24ae71c6470d Extracting [==========================================>        ]  95.26MB/113.2MB
+ 24ae71c6470d Extracting [==========================================>        ]  95.81MB/113.2MB
+ 24ae71c6470d Extracting [==========================================>        ]  96.37MB/113.2MB
+ 24ae71c6470d Extracting [==========================================>        ]  96.93MB/113.2MB
+ 24ae71c6470d Extracting [===========================================>       ]   98.6MB/113.2MB
+ 24ae71c6470d Extracting [============================================>      ]  99.71MB/113.2MB
+ 24ae71c6470d Extracting [============================================>      ]  100.3MB/113.2MB
+ 24ae71c6470d Extracting [============================================>      ]  100.8MB/113.2MB
+ 24ae71c6470d Extracting [=============================================>     ]  101.9MB/113.2MB
+ 24ae71c6470d Extracting [=============================================>     ]  103.1MB/113.2MB
+ 24ae71c6470d Extracting [==============================================>    ]  104.2MB/113.2MB
+ 24ae71c6470d Extracting [==============================================>    ]  105.3MB/113.2MB
+ 24ae71c6470d Extracting [===============================================>   ]  106.4MB/113.2MB
+ 24ae71c6470d Extracting [===============================================>   ]    107MB/113.2MB
+ 24ae71c6470d Extracting [===============================================>   ]  107.5MB/113.2MB
+ 24ae71c6470d Extracting [===============================================>   ]  108.1MB/113.2MB
+ 24ae71c6470d Extracting [===============================================>   ]  108.6MB/113.2MB
+ 24ae71c6470d Extracting [================================================>  ]  109.2MB/113.2MB
+ 24ae71c6470d Extracting [================================================>  ]  109.7MB/113.2MB
+ 24ae71c6470d Extracting [================================================>  ]  110.3MB/113.2MB
+ 24ae71c6470d Extracting [=================================================> ]  111.4MB/113.2MB
+ 24ae71c6470d Extracting [=================================================> ]    112MB/113.2MB
+ 24ae71c6470d Extracting [=================================================> ]  112.5MB/113.2MB
+ 24ae71c6470d Extracting [=================================================> ]  113.1MB/113.2MB
+ 24ae71c6470d Extracting [==================================================>]  113.2MB/113.2MB
+ 24ae71c6470d Pull complete 
+ 572343b36a41 Extracting [==================================================>]  10.07kB/10.07kB
+ 572343b36a41 Extracting [==================================================>]  10.07kB/10.07kB
+ 572343b36a41 Pull complete 
+ bc0701afb397 Extracting [==================================================>]     128B/128B
+ bc0701afb397 Extracting [==================================================>]     128B/128B
+ bc0701afb397 Pull complete 
+ d015a9a5b43f Extracting [==================================================>]     168B/168B
+ d015a9a5b43f Extracting [==================================================>]     168B/168B
+ d015a9a5b43f Pull complete 
+ 5724f2481726 Extracting [==================================================>]  6.108kB/6.108kB
+ 5724f2481726 Extracting [==================================================>]  6.108kB/6.108kB
+ 5724f2481726 Pull complete 
+ 5d59b154e183 Extracting [==================================================>]     184B/184B
+ 5d59b154e183 Extracting [==================================================>]     184B/184B
+ 5d59b154e183 Pull complete 
+ postgres-demo Pulled 
+ Network claude-demo-data-governance_default  Creating
+ Network claude-demo-data-governance_default  Created
+ Volume "claude-demo-data-governance_demo-db-data"  Creating
+ Volume "claude-demo-data-governance_demo-db-data"  Created
+ Container claude-demo-data-governance-postgres-demo-1  Creating
+ Container claude-demo-data-governance-postgres-demo-1  Created
+ Container claude-demo-data-governance-postgres-demo-1  Starting
+ Container claude-demo-data-governance-postgres-demo-1  Started
+ Container claude-demo-data-governance-postgres-demo-1  Waiting
+ Container claude-demo-data-governance-postgres-demo-1  Healthy
+--- クリーンデータ(コミット済み seed CSV)を投入 ---
+=== step: seed ===
+[sql] 01_create_raw.sql を実行
+[seed] raw.customers: 1000 行
+[seed] raw.products: 200 行
+[seed] raw.orders: 5000 行
+[seed] raw.order_items: 12561 行
+=== step: build_staging ===
+[sql] 02_staging.sql を実行
+[build_staging] staging.stg_orders: 11927 行
+=== step: build_mart ===
+[sql] 03_mart.sql を実行
+[build_mart] mart.daily_sales: 365 行
+[build_mart] mart.customer_summary(ビュー): 1000 行
+パイプライン完了
+
+=== Soda Core 4.19.0: contract verify(4チェック / 3 contract)===
+
+--- quality/soda/contracts/raw_customers.yaml ---
+  __|  _ \|  \   \\
+\__ \ (   |   | _ \\
+____/\___/___/_/  _\\ CLI v4.19.0
+Verifying contract 📜 quality/soda/contracts/raw_customers.yaml 🤞
+
+### Contract results for postgres_demo/demo/raw/customers
++----------+-------------------+-------------+-----------+---------------------------+
+| Column   | Check             | Threshold   | Outcome   | Diagnostics               |
++==========+===================+=============+===========+===========================+
+| email    | No missing values | level: fail | ✅ PASSED | missing_count: 0          |
+|          |                   | must be: 0  |           | missing_percent: 0.0      |
+|          |                   |             |           | check_rows_tested: 1000   |
+|          |                   |             |           | dataset_rows_tested: 1000 |
++----------+-------------------+-------------+-----------+---------------------------+
+# Summary:
+|----------------|---|----|
+| Checks         | 1 |    |
+| Passed         | 1 | ✅ |
+| Failed         | 0 | ✅ |
+| Warned         | 0 | ✅ |
+| Not Evaluated  | 0 | ✅ |
+| Excluded       | 0 | ✅ |
+| Runtime Errors | 0 | ✅ |
+
+
+--- quality/soda/contracts/raw_orders.yaml ---
+  __|  _ \|  \   \\
+\__ \ (   |   | _ \\
+____/\___/___/_/  _\\ CLI v4.19.0
+Found 4 columns in contract.
+Built 4 expected columns from contract.
+Verifying contract 📜 quality/soda/contracts/raw_orders.yaml 🤞
+Evaluating schema check
+Getting actual columns from measurement values.
+Found 4 actual columns.
+Starting to check for missing columns.
+Found 0 missing columns.
+Starting to check for extra columns.
+Found 0 extra columns.
+Starting to check for data type mismatches.
+Found 0 data type mismatches.
+Starting to check for columns out of order.
+Found False columns out of order.
+Schema check outcome: CheckOutcome.PASSED
+
+### Contract results for postgres_demo/demo/raw/orders
++-----------------+-----------------------------------+-------------------------------+-----------+---------------------------+
+| Column          | Check                             | Threshold                     | Outcome   | Diagnostics               |
++=================+===================================+===============================+===========+===========================+
+| [dataset-level] | Schema matches expected structure | level: fail                   | ✅ PASSED |                           |
+|                 |                                   | must be less than or equal: 0 |           |                           |
++-----------------+-----------------------------------+-------------------------------+-----------+---------------------------+
+| order_id        | No duplicate values               | level: fail                   | ✅ PASSED | duplicate_count: 0        |
+|                 |                                   | must be: 0                    |           | duplicate_percent: 0.0    |
+|                 |                                   |                               |           | check_rows_tested: 5000   |
+|                 |                                   |                               |           | missing_count: 0          |
+|                 |                                   |                               |           | dataset_rows_tested: 5000 |
++-----------------+-----------------------------------+-------------------------------+-----------+---------------------------+
+# Summary:
+|----------------|---|----|
+| Checks         | 2 |    |
+| Passed         | 2 | ✅ |
+| Failed         | 0 | ✅ |
+| Warned         | 0 | ✅ |
+| Not Evaluated  | 0 | ✅ |
+| Excluded       | 0 | ✅ |
+| Runtime Errors | 0 | ✅ |
+
+
+--- quality/soda/contracts/raw_order_items.yaml ---
+  __|  _ \|  \   \\
+\__ \ (   |   | _ \\
+____/\___/___/_/  _\\ CLI v4.19.0
+Verifying contract 📜 quality/soda/contracts/raw_order_items.yaml 🤞
+
+### Contract results for postgres_demo/demo/raw/order_items
++------------+-------------------+-------------+-----------+----------------------------+
+| Column     | Check             | Threshold   | Outcome   | Diagnostics                |
++============+===================+=============+===========+============================+
+| quantity   | No invalid values | level: fail | ✅ PASSED | invalid_count: 0           |
+|            |                   | must be: 0  |           | invalid_percent: 0.0       |
+|            |                   |             |           | check_rows_tested: 12561   |
+|            |                   |             |           | missing_count: 0           |
+|            |                   |             |           | dataset_rows_tested: 12561 |
++------------+-------------------+-------------+-----------+----------------------------+
+| unit_price | No invalid values | level: fail | ✅ PASSED | invalid_count: 0           |
+|            |                   | must be: 0  |           | invalid_percent: 0.0       |
+|            |                   |             |           | check_rows_tested: 12561   |
+|            |                   |             |           | missing_count: 0           |
+|            |                   |             |           | dataset_rows_tested: 12561 |
++------------+-------------------+-------------+-----------+----------------------------+
+# Summary:
+|----------------|---|----|
+| Checks         | 2 |    |
+| Passed         | 2 | ✅ |
+| Failed         | 0 | ✅ |
+| Warned         | 0 | ✅ |
+| Not Evaluated  | 0 | ✅ |
+| Excluded       | 0 | ✅ |
+| Runtime Errors | 0 | ✅ |
+
+
+Soda 結果: 全 contract 成功(exit 0)
+exit=0

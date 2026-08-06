@@ -239,11 +239,16 @@ $ make clean-db
 
 ### 完全な後片付け(生成物・イメージも削除)
 
-`make clean-db` に加えて、以下を実行します。
+`make clean-db` に加えて、以下を**この順に**実行します(生成物の削除は
+tools イメージを使うため、イメージ削除より先に行ってください)。
 
 ```console
 # 実行時に生成されたファイルを削除
-$ rm -rf data/seed/csv-injected quality/gx/output
+#(Linux / WSL2 ではコンテナ(root)が生成したファイルのためホストの rm では
+#  Permission denied になります。tools イメージ経由で削除します。
+#  sudo rm -rf でも構いません。macOS の Docker Desktop では通常 rm -rf で消せます)
+$ docker run --rm -v "$(pwd)":/workspace dgd-tools:phase3 \
+    rm -rf /workspace/data/seed/csv-injected /workspace/quality/gx/output
 $ rm -f .env
 $ rm -f .git/hooks/pre-commit          # make install-contract-hook を使った場合のみ
 
@@ -260,15 +265,18 @@ $ docker rmi dgd-tools:phase3 \
     postgres:16 postgres:14 python:3.11-slim
 ```
 
-- `postgres:16` / `postgres:14` / `python:3.11-slim` は他のプロジェクトでも
-  使われがちな汎用イメージです。他で使用中の場合は削除に失敗しますが、
-  そのまま残して問題ありません。
-- 削除確認は次のコマンドで行えます(何も表示されなければ完全に消えています):
+- 他のプロジェクトのコンテナ(停止中を含む)が参照しているイメージは削除に
+  失敗します(`conflict: unable to remove repository reference`)。その場合は
+  そのまま残して問題ありません。`postgres:16` / `postgres:14` /
+  `python:3.11-slim` などの汎用イメージで起きやすい事象です。
+- 削除確認は次のコマンドで行えます(docker 系は一覧に何も出なければ、
+  ls は「No such file or directory」になれば完全に消えています):
 
 ```console
 $ docker ps -a --filter name=claude-demo-data-governance
 $ docker volume ls --filter name=claude-demo-data-governance
 $ docker network ls --filter name=claude-demo-data-governance
+$ ls data/seed/csv-injected quality/gx/output .env
 ```
 
 ## リポジトリ構成

@@ -1,0 +1,21 @@
+docker compose --profile base up -d --wait postgres-demo
+ Container claude-demo-data-governance-postgres-demo-1  Running
+ Container claude-demo-data-governance-postgres-demo-1  Waiting
+ Container claude-demo-data-governance-postgres-demo-1  Healthy
+docker compose --profile tools run --rm -T tools \
+	/opt/venv/quality/bin/python pipeline/run_pipeline.py --data-dir data/seed/csv
+=== step: seed ===
+[sql] 01_create_raw.sql を実行
+[seed] raw.customers: 1000 行
+[seed] raw.products: 200 行
+[seed] raw.orders: 5000 行
+[seed] raw.order_items: 12561 行
+=== step: build_staging ===
+[sql] 02_staging.sql を実行
+[build_staging] staging.stg_orders: 11927 行
+=== step: build_mart ===
+[sql] 03_mart.sql を実行
+[build_mart] mart.daily_sales: 365 行
+[build_mart] mart.customer_summary(ビュー): 1000 行
+パイプライン完了
+exit=0

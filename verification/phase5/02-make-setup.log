@@ -1,0 +1,1143 @@
+.env を作成しました(デモ用設定値)
+docker compose --profile tools build tools
+Compose can now delegate builds to bake for better performance.
+ To do so, set COMPOSE_BAKE=true.
+#0 building with "default" instance using docker driver
+
+#1 [tools internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.04kB done
+#1 DONE 0.0s
+
+#2 [tools internal] load metadata for docker.io/library/python:3.11-slim
+#2 DONE 2.0s
+
+#3 [tools internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [tools internal] load build context
+#4 transferring context: 570B done
+#4 DONE 0.0s
+
+#5 [tools 1/9] FROM docker.io/library/python:3.11-slim@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7
+#5 resolve docker.io/library/python:3.11-slim@sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7 0.0s done
+#5 sha256:26c307b5e35a59ce911f5fde5b9458120ec8734e831ea2da5649a9ad14abfd3d 0B / 29.78MB 0.1s
+#5 sha256:2835c55197170c643a531e330159e6c5c215f044e97d1cde2ee1f3056c5ad840 0B / 1.29MB 0.1s
+#5 sha256:bbaff5426d0f7209ef9826582b46945e0e6851829b308e906c9c05874cf70915 0B / 14.45MB 0.1s
+#5 sha256:94c50be2dc994b873b55bc123e95e6dbade08095b3dfd790f51c34de3f08cbb7 10.37kB / 10.37kB done
+#5 sha256:78b39ef14d8e2b4d71f8dc304f1328c37df95fe0ef99477c2ae6bd3d03784553 1.75kB / 1.75kB done
+#5 sha256:245f9d32fabaec22e749aa5cfef79996088135e9d4410f4e7ebe133c2be98132 5.48kB / 5.48kB done
+#5 sha256:26c307b5e35a59ce911f5fde5b9458120ec8734e831ea2da5649a9ad14abfd3d 4.19MB / 29.78MB 0.4s
+#5 sha256:26c307b5e35a59ce911f5fde5b9458120ec8734e831ea2da5649a9ad14abfd3d 9.44MB / 29.78MB 0.5s
+#5 sha256:26c307b5e35a59ce911f5fde5b9458120ec8734e831ea2da5649a9ad14abfd3d 13.63MB / 29.78MB 0.6s
+#5 sha256:bbaff5426d0f7209ef9826582b46945e0e6851829b308e906c9c05874cf70915 1.05MB / 14.45MB 0.6s
+#5 sha256:26c307b5e35a59ce911f5fde5b9458120ec8734e831ea2da5649a9ad14abfd3d 17.83MB / 29.78MB 0.7s
+#5 sha256:bbaff5426d0f7209ef9826582b46945e0e6851829b308e906c9c05874cf70915 3.15MB / 14.45MB 0.7s
+#5 sha256:26c307b5e35a59ce911f5fde5b9458120ec8734e831ea2da5649a9ad14abfd3d 24.12MB / 29.78MB 0.9s
+#5 sha256:bbaff5426d0f7209ef9826582b46945e0e6851829b308e906c9c05874cf70915 6.29MB / 14.45MB 0.9s
+#5 sha256:26c307b5e35a59ce911f5fde5b9458120ec8734e831ea2da5649a9ad14abfd3d 29.78MB / 29.78MB 1.1s done
+#5 sha256:2835c55197170c643a531e330159e6c5c215f044e97d1cde2ee1f3056c5ad840 1.29MB / 1.29MB 1.0s done
+#5 sha256:bbaff5426d0f7209ef9826582b46945e0e6851829b308e906c9c05874cf70915 11.53MB / 14.45MB 1.1s
+#5 sha256:0fc9203b193a8869d7e8cdb9754932db059f4a0d5b9812b000b47d1f5d0b4488 0B / 249B 1.1s
+#5 sha256:bbaff5426d0f7209ef9826582b46945e0e6851829b308e906c9c05874cf70915 14.45MB / 14.45MB 1.2s done
+#5 sha256:0fc9203b193a8869d7e8cdb9754932db059f4a0d5b9812b000b47d1f5d0b4488 249B / 249B 1.2s done
+#5 extracting sha256:26c307b5e35a59ce911f5fde5b9458120ec8734e831ea2da5649a9ad14abfd3d
+#5 extracting sha256:26c307b5e35a59ce911f5fde5b9458120ec8734e831ea2da5649a9ad14abfd3d 3.5s done
+#5 extracting sha256:2835c55197170c643a531e330159e6c5c215f044e97d1cde2ee1f3056c5ad840
+#5 extracting sha256:2835c55197170c643a531e330159e6c5c215f044e97d1cde2ee1f3056c5ad840 0.3s done
+#5 extracting sha256:bbaff5426d0f7209ef9826582b46945e0e6851829b308e906c9c05874cf70915
+#5 extracting sha256:bbaff5426d0f7209ef9826582b46945e0e6851829b308e906c9c05874cf70915 2.7s done
+#5 extracting sha256:0fc9203b193a8869d7e8cdb9754932db059f4a0d5b9812b000b47d1f5d0b4488
+#5 extracting sha256:0fc9203b193a8869d7e8cdb9754932db059f4a0d5b9812b000b47d1f5d0b4488 done
+#5 DONE 8.2s
+
+#6 [tools 2/9] RUN apt-get update     && apt-get install -y --no-install-recommends libpq5     && rm -rf /var/lib/apt/lists/*
+#6 1.256 Hit:1 http://deb.debian.org/debian trixie InRelease
+#6 1.261 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+#6 1.291 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+#6 1.313 Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9673 kB]
+#6 1.699 Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [4412 B]
+#6 1.724 Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [232 kB]
+#6 3.096 Fetched 10000 kB in 2s (5198 kB/s)
+#6 3.096 Reading package lists...
+#6 4.101 Reading package lists...
+#6 4.974 Building dependency tree...
+#6 5.327 Reading state information...
+#6 5.661 The following additional packages will be installed:
+#6 5.661   libcom-err2 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3
+#6 5.663   libkrb5support0 libldap2 libsasl2-2 libsasl2-modules-db
+#6 5.664 Suggested packages:
+#6 5.664   krb5-doc krb5-user
+#6 5.664 Recommended packages:
+#6 5.664   krb5-locales libldap-common libsasl2-modules
+#6 5.801 The following NEW packages will be installed:
+#6 5.801   libcom-err2 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3
+#6 5.803   libkrb5support0 libldap2 libpq5 libsasl2-2 libsasl2-modules-db
+#6 5.912 0 upgraded, 10 newly installed, 0 to remove and 0 not upgraded.
+#6 5.912 Need to get 1114 kB of archives.
+#6 5.912 After this operation, 3994 kB of additional disk space will be used.
+#6 5.912 Get:1 http://deb.debian.org/debian trixie/main amd64 libcom-err2 amd64 1.47.2-3+b11 [25.0 kB]
+#6 5.930 Get:2 http://deb.debian.org/debian trixie/main amd64 libkrb5support0 amd64 1.21.3-5+deb13u1 [33.1 kB]
+#6 5.940 Get:3 http://deb.debian.org/debian trixie/main amd64 libk5crypto3 amd64 1.21.3-5+deb13u1 [81.2 kB]
+#6 5.955 Get:4 http://deb.debian.org/debian trixie/main amd64 libkeyutils1 amd64 1.6.3-6 [9456 B]
+#6 5.969 Get:5 http://deb.debian.org/debian trixie/main amd64 libkrb5-3 amd64 1.21.3-5+deb13u1 [326 kB]
+#6 5.990 Get:6 http://deb.debian.org/debian trixie/main amd64 libgssapi-krb5-2 amd64 1.21.3-5+deb13u1 [138 kB]
+#6 5.997 Get:7 http://deb.debian.org/debian trixie/main amd64 libsasl2-modules-db amd64 2.1.28+dfsg1-9 [19.8 kB]
+#6 5.998 Get:8 http://deb.debian.org/debian trixie/main amd64 libsasl2-2 amd64 2.1.28+dfsg1-9 [57.5 kB]
+#6 6.000 Get:9 http://deb.debian.org/debian trixie/main amd64 libldap2 amd64 2.6.10+dfsg-1 [194 kB]
+#6 6.024 Get:10 http://deb.debian.org/debian trixie/main amd64 libpq5 amd64 17.10-0+deb13u1 [230 kB]
+#6 6.275 debconf: unable to initialize frontend: Dialog
+#6 6.275 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#6 6.275 debconf: falling back to frontend: Readline
+#6 6.276 debconf: unable to initialize frontend: Readline
+#6 6.276 debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.40.1 /usr/local/share/perl/5.40.1 /usr/lib/x86_64-linux-gnu/perl5/5.40 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.40 /usr/share/perl/5.40 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8, <STDIN> line 10.)
+#6 6.276 debconf: falling back to frontend: Teletype
+#6 6.283 debconf: unable to initialize frontend: Teletype
+#6 6.283 debconf: (This frontend requires a controlling tty.)
+#6 6.283 debconf: falling back to frontend: Noninteractive
+#6 7.500 Fetched 1114 kB in 0s (4898 kB/s)
+#6 7.532 Selecting previously unselected package libcom-err2:amd64.
+#6 7.532 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5645 files and directories currently installed.)
+#6 7.538 Preparing to unpack .../0-libcom-err2_1.47.2-3+b11_amd64.deb ...
+#6 7.548 Unpacking libcom-err2:amd64 (1.47.2-3+b11) ...
+#6 7.632 Selecting previously unselected package libkrb5support0:amd64.
+#6 7.634 Preparing to unpack .../1-libkrb5support0_1.21.3-5+deb13u1_amd64.deb ...
+#6 7.643 Unpacking libkrb5support0:amd64 (1.21.3-5+deb13u1) ...
+#6 7.731 Selecting previously unselected package libk5crypto3:amd64.
+#6 7.731 Preparing to unpack .../2-libk5crypto3_1.21.3-5+deb13u1_amd64.deb ...
+#6 7.740 Unpacking libk5crypto3:amd64 (1.21.3-5+deb13u1) ...
+#6 7.805 Selecting previously unselected package libkeyutils1:amd64.
+#6 7.807 Preparing to unpack .../3-libkeyutils1_1.6.3-6_amd64.deb ...
+#6 7.814 Unpacking libkeyutils1:amd64 (1.6.3-6) ...
+#6 7.871 Selecting previously unselected package libkrb5-3:amd64.
+#6 7.873 Preparing to unpack .../4-libkrb5-3_1.21.3-5+deb13u1_amd64.deb ...
+#6 7.879 Unpacking libkrb5-3:amd64 (1.21.3-5+deb13u1) ...
+#6 7.964 Selecting previously unselected package libgssapi-krb5-2:amd64.
+#6 7.966 Preparing to unpack .../5-libgssapi-krb5-2_1.21.3-5+deb13u1_amd64.deb ...
+#6 7.970 Unpacking libgssapi-krb5-2:amd64 (1.21.3-5+deb13u1) ...
+#6 8.018 Selecting previously unselected package libsasl2-modules-db:amd64.
+#6 8.019 Preparing to unpack .../6-libsasl2-modules-db_2.1.28+dfsg1-9_amd64.deb ...
+#6 8.026 Unpacking libsasl2-modules-db:amd64 (2.1.28+dfsg1-9) ...
+#6 8.077 Selecting previously unselected package libsasl2-2:amd64.
+#6 8.079 Preparing to unpack .../7-libsasl2-2_2.1.28+dfsg1-9_amd64.deb ...
+#6 8.085 Unpacking libsasl2-2:amd64 (2.1.28+dfsg1-9) ...
+#6 8.142 Selecting previously unselected package libldap2:amd64.
+#6 8.143 Preparing to unpack .../8-libldap2_2.6.10+dfsg-1_amd64.deb ...
+#6 8.150 Unpacking libldap2:amd64 (2.6.10+dfsg-1) ...
+#6 8.219 Selecting previously unselected package libpq5:amd64.
+#6 8.220 Preparing to unpack .../9-libpq5_17.10-0+deb13u1_amd64.deb ...
+#6 8.231 Unpacking libpq5:amd64 (17.10-0+deb13u1) ...
+#6 8.300 Setting up libkeyutils1:amd64 (1.6.3-6) ...
+#6 8.314 Setting up libcom-err2:amd64 (1.47.2-3+b11) ...
+#6 8.330 Setting up libkrb5support0:amd64 (1.21.3-5+deb13u1) ...
+#6 8.344 Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg1-9) ...
+#6 8.368 Setting up libk5crypto3:amd64 (1.21.3-5+deb13u1) ...
+#6 8.384 Setting up libsasl2-2:amd64 (2.1.28+dfsg1-9) ...
+#6 8.399 Setting up libkrb5-3:amd64 (1.21.3-5+deb13u1) ...
+#6 8.418 Setting up libldap2:amd64 (2.6.10+dfsg-1) ...
+#6 8.440 Setting up libgssapi-krb5-2:amd64 (1.21.3-5+deb13u1) ...
+#6 8.460 Setting up libpq5:amd64 (17.10-0+deb13u1) ...
+#6 8.476 Processing triggers for libc-bin (2.41-12+deb13u3) ...
+#6 DONE 8.9s
+
+#7 [tools 3/9] COPY requirements-quality.txt /opt/requirements-quality.txt
+#7 DONE 0.1s
+
+#8 [tools 4/9] COPY requirements-lineage.txt /opt/requirements-lineage.txt
+#8 DONE 0.1s
+
+#9 [tools 5/9] COPY requirements-catalog.txt /opt/requirements-catalog.txt
+#9 DONE 0.1s
+
+#10 [tools 6/9] RUN python -m venv /opt/venv/quality     && /opt/venv/quality/bin/pip install --no-cache-dir -r /opt/requirements-quality.txt
+#10 7.304 Collecting soda-postgres==4.19.0 (from -r /opt/requirements-quality.txt (line 2))
+#10 7.377   Downloading soda_postgres-4.19.0-py3-none-any.whl.metadata (244 bytes)
+#10 7.550 Collecting great_expectations==1.19.1 (from great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 7.568   Downloading great_expectations-1.19.1-py3-none-any.whl.metadata (9.7 kB)
+#10 7.688 Collecting psycopg2-binary==2.9.10 (from -r /opt/requirements-quality.txt (line 5))
+#10 7.703   Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+#10 7.771 Collecting soda-core==4.19.0 (from soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 7.787   Downloading soda_core-4.19.0-py3-none-any.whl.metadata (505 bytes)
+#10 7.827 Collecting psycopg>=3.2 (from psycopg[binary]>=3.2->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 7.842   Downloading psycopg-3.3.4-py3-none-any.whl.metadata (4.3 kB)
+#10 8.034 Collecting altair<7.0.0,>=5.0.0 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 8.050   Downloading altair-6.2.2-py3-none-any.whl.metadata (11 kB)
+#10 8.410 Collecting cryptography>=3.2 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 8.426   Downloading cryptography-50.0.0-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.3 kB)
+#10 8.456 Collecting jinja2>=3 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 8.471   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#10 8.526 Collecting jsonschema>=2.5.1 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 8.541   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+#10 8.633 Collecting marshmallow<4.0.0,>=3.7.1 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 8.647   Downloading marshmallow-3.26.2-py3-none-any.whl.metadata (7.3 kB)
+#10 8.690 Collecting mistune>=0.8.4 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 8.706   Downloading mistune-3.3.4-py3-none-any.whl.metadata (1.9 kB)
+#10 9.101 Collecting numpy>=1.22.4 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 9.116   Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+#10 9.153 Collecting packaging (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 9.166   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#10 9.371 Collecting pandas>=1.3.0 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 9.388   Downloading pandas-3.0.5-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (79 kB)
+#10 9.402      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.5/79.5 kB 7.1 MB/s eta 0:00:00
+#10 11.74 Collecting pydantic>=1.10.7 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 11.75   Downloading pydantic-2.13.4-py3-none-any.whl.metadata (109 kB)
+#10 11.76      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 109.4/109.4 kB 30.9 MB/s eta 0:00:00
+#10 11.82 Collecting pyparsing!=3.2.4,>=2.4 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 11.84   Downloading pyparsing-3.3.2-py3-none-any.whl.metadata (5.8 kB)
+#10 11.87 Collecting python-dateutil>=2.8.1 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 11.89   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#10 11.95 Collecting requests>=2.20 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 11.96   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#10 12.26 Collecting ruamel.yaml>=0.16 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 12.27   Downloading ruamel_yaml-0.19.1-py3-none-any.whl.metadata (16 kB)
+#10 12.51 Collecting scipy>=1.6.0 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 12.53   Downloading scipy-1.17.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+#10 12.53      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.1/62.1 kB 205.9 MB/s eta 0:00:00
+#10 12.65 Collecting tqdm>=4.59.0 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 12.66   Downloading tqdm-4.70.0-py3-none-any.whl.metadata (57 kB)
+#10 12.67      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.3/57.3 kB 187.7 MB/s eta 0:00:00
+#10 12.71 Collecting typing-extensions>=4.1.0 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 12.72   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#10 12.77 Collecting tzlocal>=1.2 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 12.78   Downloading tzlocal-5.4.4-py3-none-any.whl.metadata (7.7 kB)
+#10 13.58 Collecting sqlalchemy>=1.4.0 (from great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 13.60   Downloading sqlalchemy-2.0.51-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (9.5 kB)
+#10 13.63 Collecting ruamel.yaml>=0.16 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 13.65   Downloading ruamel.yaml-0.17.40-py3-none-any.whl.metadata (19 kB)
+#10 13.67 Collecting requests>=2.20 (from great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 13.68   Downloading requests-2.33.1-py3-none-any.whl.metadata (4.8 kB)
+#10 13.75 Collecting opentelemetry-api<2.0.0,>=1.16.0 (from soda-core==4.19.0->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 13.76   Downloading opentelemetry_api-1.44.0-py3-none-any.whl.metadata (1.4 kB)
+#10 13.80 Collecting opentelemetry-exporter-otlp-proto-http<2.0.0,>=1.16.0 (from soda-core==4.19.0->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 13.82   Downloading opentelemetry_exporter_otlp_proto_http-1.44.0-py3-none-any.whl.metadata (2.4 kB)
+#10 13.87 Collecting tabulate[widechars] (from soda-core==4.19.0->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 13.88   Downloading tabulate-0.10.0-py3-none-any.whl.metadata (40 kB)
+#10 13.89      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 40.8/40.8 kB 237.7 MB/s eta 0:00:00
+#10 13.92 Collecting python-dotenv~=1.0 (from soda-core==4.19.0->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 13.94   Downloading python_dotenv-1.2.2-py3-none-any.whl.metadata (27 kB)
+#10 14.49 Collecting sqlglot (from soda-core==4.19.0->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 14.51   Downloading sqlglot-30.15.0-py3-none-any.whl.metadata (25 kB)
+#10 14.65 Collecting narwhals>=2.4.0 (from altair<7.0.0,>=5.0.0->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 14.67   Downloading narwhals-2.24.0-py3-none-any.whl.metadata (15 kB)
+#10 14.90 Collecting cffi>=2.0.0 (from cryptography>=3.2->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 14.92   Downloading cffi-2.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+#10 15.13 Collecting MarkupSafe>=2.0 (from jinja2>=3->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 15.16   Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+#10 15.21 Collecting attrs>=22.2.0 (from jsonschema>=2.5.1->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 15.22   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+#10 15.26 Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=2.5.1->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 15.28   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+#10 15.34 Collecting referencing>=0.28.4 (from jsonschema>=2.5.1->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 15.35   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+#10 16.05 Collecting rpds-py>=0.25.0 (from jsonschema>=2.5.1->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 16.06   Downloading rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+#10 16.53 Collecting psycopg-binary==3.3.4 (from psycopg[binary]>=3.2->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 16.54   Downloading psycopg_binary-3.3.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.7 kB)
+#10 16.59 Collecting annotated-types>=0.6.0 (from pydantic>=1.10.7->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 16.60   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#10 18.26 Collecting pydantic-core==2.46.4 (from pydantic>=1.10.7->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 18.27   Downloading pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+#10 18.30 Collecting typing-inspection>=0.4.2 (from pydantic>=1.10.7->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 18.32   Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+#10 18.41 Collecting six>=1.5 (from python-dateutil>=2.8.1->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 18.42   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#10 18.67 Collecting charset_normalizer<4,>=2 (from requests>=2.20->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 18.68   Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (41 kB)
+#10 18.69      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.7/41.7 kB 203.7 MB/s eta 0:00:00
+#10 18.73 Collecting idna<4,>=2.5 (from requests>=2.20->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 18.74   Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)
+#10 18.81 Collecting urllib3<3,>=1.26 (from requests>=2.20->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 18.82   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+#10 18.87 Collecting certifi>=2023.5.7 (from requests>=2.20->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 18.88   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+#10 18.96 Collecting ruamel.yaml.clib>=0.2.7 (from ruamel.yaml>=0.16->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 18.97   Downloading ruamel_yaml_clib-0.2.15-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (3.5 kB)
+#10 19.51 Collecting greenlet>=1 (from sqlalchemy>=1.4.0->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 19.52   Downloading greenlet-3.5.4-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+#10 19.64 Collecting pycparser (from cffi>=2.0.0->cryptography>=3.2->great_expectations==1.19.1->great_expectations[postgresql]==1.19.1->-r /opt/requirements-quality.txt (line 3))
+#10 19.66   Downloading pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+#10 19.80 Collecting googleapis-common-protos~=1.52 (from opentelemetry-exporter-otlp-proto-http<2.0.0,>=1.16.0->soda-core==4.19.0->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 19.81   Downloading googleapis_common_protos-1.75.0-py3-none-any.whl.metadata (8.6 kB)
+#10 19.86 Collecting opentelemetry-exporter-otlp-proto-common==1.44.0 (from opentelemetry-exporter-otlp-proto-http<2.0.0,>=1.16.0->soda-core==4.19.0->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 19.87   Downloading opentelemetry_exporter_otlp_proto_common-1.44.0-py3-none-any.whl.metadata (1.8 kB)
+#10 19.91 Collecting opentelemetry-proto==1.44.0 (from opentelemetry-exporter-otlp-proto-http<2.0.0,>=1.16.0->soda-core==4.19.0->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 19.93   Downloading opentelemetry_proto-1.44.0-py3-none-any.whl.metadata (2.3 kB)
+#10 19.97 Collecting opentelemetry-sdk~=1.44.0 (from opentelemetry-exporter-otlp-proto-http<2.0.0,>=1.16.0->soda-core==4.19.0->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 19.98   Downloading opentelemetry_sdk-1.44.0-py3-none-any.whl.metadata (1.6 kB)
+#10 20.36 Collecting protobuf<8.0,>=5.0 (from opentelemetry-proto==1.44.0->opentelemetry-exporter-otlp-proto-http<2.0.0,>=1.16.0->soda-core==4.19.0->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 20.38   Downloading protobuf-7.35.1-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+#10 20.56 Collecting wcwidth (from tabulate[widechars]->soda-core==4.19.0->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 20.57   Downloading wcwidth-0.8.2-py3-none-any.whl.metadata (43 kB)
+#10 20.58      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.3/43.3 kB 177.7 MB/s eta 0:00:00
+#10 20.71 Collecting opentelemetry-semantic-conventions==0.65b0 (from opentelemetry-sdk~=1.44.0->opentelemetry-exporter-otlp-proto-http<2.0.0,>=1.16.0->soda-core==4.19.0->soda-postgres==4.19.0->-r /opt/requirements-quality.txt (line 2))
+#10 20.72   Downloading opentelemetry_semantic_conventions-0.65b0-py3-none-any.whl.metadata (2.4 kB)
+#10 20.84 Downloading soda_postgres-4.19.0-py3-none-any.whl (12 kB)
+#10 20.85 Downloading great_expectations-1.19.1-py3-none-any.whl (4.9 MB)
+#10 21.02    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.9/4.9 MB 29.6 MB/s eta 0:00:00
+#10 21.05 Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+#10 21.15    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 30.9 MB/s eta 0:00:00
+#10 21.17 Downloading soda_core-4.19.0-py3-none-any.whl (235 kB)
+#10 21.18    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 235.7/235.7 kB 44.0 MB/s eta 0:00:00
+#10 21.19 Downloading altair-6.2.2-py3-none-any.whl (797 kB)
+#10 21.21    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 797.6/797.6 kB 42.1 MB/s eta 0:00:00
+#10 21.23 Downloading cryptography-50.0.0-cp311-abi3-manylinux_2_34_x86_64.whl (4.7 MB)
+#10 21.37    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 33.7 MB/s eta 0:00:00
+#10 21.38 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#10 21.39    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.9/134.9 kB 270.3 MB/s eta 0:00:00
+#10 21.40 Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+#10 21.41    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 90.6/90.6 kB 277.0 MB/s eta 0:00:00
+#10 21.42 Downloading marshmallow-3.26.2-py3-none-any.whl (50 kB)
+#10 21.42    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 51.0/51.0 kB 170.6 MB/s eta 0:00:00
+#10 21.44 Downloading mistune-3.3.4-py3-none-any.whl (66 kB)
+#10 21.45    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 66.9/66.9 kB 27.5 MB/s eta 0:00:00
+#10 21.47 Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
+#10 22.01    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 29.8 MB/s eta 0:00:00
+#10 22.02 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#10 22.03    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 130.0/130.0 kB 64.8 MB/s eta 0:00:00
+#10 22.04 Downloading pandas-3.0.5-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (11.3 MB)
+#10 22.48    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.3/11.3 MB 25.3 MB/s eta 0:00:00
+#10 22.49 Downloading psycopg-3.3.4-py3-none-any.whl (213 kB)
+#10 22.50    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 213.0/213.0 kB 30.7 MB/s eta 0:00:00
+#10 22.52 Downloading psycopg_binary-3.3.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.2 MB)
+#10 22.75    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 22.5 MB/s eta 0:00:00
+#10 22.77 Downloading pydantic-2.13.4-py3-none-any.whl (472 kB)
+#10 22.79    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 472.3/472.3 kB 28.7 MB/s eta 0:00:00
+#10 22.80 Downloading pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+#10 22.89    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 24.3 MB/s eta 0:00:00
+#10 22.91 Downloading pyparsing-3.3.2-py3-none-any.whl (122 kB)
+#10 22.91    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 122.8/122.8 kB 195.2 MB/s eta 0:00:00
+#10 22.93 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#10 22.93    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 54.0 MB/s eta 0:00:00
+#10 22.95 Downloading requests-2.33.1-py3-none-any.whl (64 kB)
+#10 22.95    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 64.9/64.9 kB 319.9 MB/s eta 0:00:00
+#10 22.96 Downloading ruamel.yaml-0.17.40-py3-none-any.whl (113 kB)
+#10 22.97    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 113.7/113.7 kB 76.6 MB/s eta 0:00:00
+#10 22.98 Downloading scipy-1.17.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (35.3 MB)
+#10 24.48    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 35.3/35.3 MB 25.7 MB/s eta 0:00:00
+#10 24.49 Downloading sqlalchemy-2.0.51-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.3 MB)
+#10 24.62    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 26.1 MB/s eta 0:00:00
+#10 24.63 Downloading tqdm-4.70.0-py3-none-any.whl (80 kB)
+#10 24.64    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 80.2/80.2 kB 59.3 MB/s eta 0:00:00
+#10 24.65 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#10 24.66    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.6/45.6 kB 35.9 MB/s eta 0:00:00
+#10 24.67 Downloading tzlocal-5.4.4-py3-none-any.whl (18 kB)
+#10 24.68 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#10 24.70 Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+#10 24.70    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 67.5/67.5 kB 62.9 MB/s eta 0:00:00
+#10 24.71 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+#10 24.72    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 137.0/137.0 kB 100.1 MB/s eta 0:00:00
+#10 24.73 Downloading cffi-2.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (217 kB)
+#10 24.74    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 217.8/217.8 kB 79.9 MB/s eta 0:00:00
+#10 24.75 Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (221 kB)
+#10 24.76    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 221.3/221.3 kB 53.4 MB/s eta 0:00:00
+#10 24.77 Downloading greenlet-3.5.4-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (624 kB)
+#10 24.79    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 624.7/624.7 kB 34.3 MB/s eta 0:00:00
+#10 24.80 Downloading idna-3.18-py3-none-any.whl (65 kB)
+#10 24.81    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 65.5/65.5 kB 74.5 MB/s eta 0:00:00
+#10 24.82 Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+#10 24.83 Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#10 24.85 Downloading narwhals-2.24.0-py3-none-any.whl (461 kB)
+#10 24.87    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 461.0/461.0 kB 24.4 MB/s eta 0:00:00
+#10 24.88 Downloading opentelemetry_api-1.44.0-py3-none-any.whl (60 kB)
+#10 24.88    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.0/60.0 kB 37.6 MB/s eta 0:00:00
+#10 24.90 Downloading opentelemetry_exporter_otlp_proto_http-1.44.0-py3-none-any.whl (21 kB)
+#10 24.91 Downloading opentelemetry_exporter_otlp_proto_common-1.44.0-py3-none-any.whl (17 kB)
+#10 24.93 Downloading opentelemetry_proto-1.44.0-py3-none-any.whl (72 kB)
+#10 24.93    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 72.5/72.5 kB 126.5 MB/s eta 0:00:00
+#10 24.94 Downloading python_dotenv-1.2.2-py3-none-any.whl (22 kB)
+#10 24.96 Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+#10 24.97 Downloading rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+#10 24.98    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 371.3/371.3 kB 27.8 MB/s eta 0:00:00
+#10 25.00 Downloading ruamel_yaml_clib-0.2.15-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (777 kB)
+#10 25.03    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 777.6/777.6 kB 30.6 MB/s eta 0:00:00
+#10 25.04 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#10 25.05 Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+#10 25.07 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+#10 25.07    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 131.1/131.1 kB 73.1 MB/s eta 0:00:00
+#10 25.08 Downloading sqlglot-30.15.0-py3-none-any.whl (731 kB)
+#10 25.12    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 731.8/731.8 kB 25.6 MB/s eta 0:00:00
+#10 25.13 Downloading googleapis_common_protos-1.75.0-py3-none-any.whl (300 kB)
+#10 25.14    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 300.6/300.6 kB 43.3 MB/s eta 0:00:00
+#10 25.15 Downloading opentelemetry_sdk-1.44.0-py3-none-any.whl (137 kB)
+#10 25.15    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 137.2/137.2 kB 46.8 MB/s eta 0:00:00
+#10 25.17 Downloading opentelemetry_semantic_conventions-0.65b0-py3-none-any.whl (204 kB)
+#10 25.17    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 204.6/204.6 kB 48.0 MB/s eta 0:00:00
+#10 25.18 Downloading pycparser-3.0-py3-none-any.whl (48 kB)
+#10 25.19    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.2/48.2 kB 51.0 MB/s eta 0:00:00
+#10 25.21 Downloading tabulate-0.10.0-py3-none-any.whl (39 kB)
+#10 25.23 Downloading wcwidth-0.8.2-py3-none-any.whl (323 kB)
+#10 25.23    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 323.2/323.2 kB 53.7 MB/s eta 0:00:00
+#10 25.25 Downloading protobuf-7.35.1-cp310-abi3-manylinux2014_x86_64.whl (327 kB)
+#10 25.26    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 327.1/327.1 kB 47.8 MB/s eta 0:00:00
+#10 25.91 Installing collected packages: wcwidth, urllib3, tzlocal, typing-extensions, tqdm, tabulate, sqlglot, six, ruamel.yaml.clib, rpds-py, python-dotenv, pyparsing, pycparser, psycopg2-binary, psycopg-binary, protobuf, packaging, numpy, narwhals, mistune, MarkupSafe, idna, greenlet, charset_normalizer, certifi, attrs, annotated-types, typing-inspection, sqlalchemy, scipy, ruamel.yaml, requests, referencing, python-dateutil, pydantic-core, psycopg, opentelemetry-proto, opentelemetry-api, marshmallow, jinja2, googleapis-common-protos, cffi, pydantic, pandas, opentelemetry-semantic-conventions, opentelemetry-exporter-otlp-proto-common, jsonschema-specifications, cryptography, opentelemetry-sdk, jsonschema, opentelemetry-exporter-otlp-proto-http, altair, soda-core, great_expectations, soda-postgres
+#10 57.87 Successfully installed MarkupSafe-3.0.3 altair-6.2.2 annotated-types-0.8.0 attrs-26.1.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.4.9 cryptography-50.0.0 googleapis-common-protos-1.75.0 great_expectations-1.19.1 greenlet-3.5.4 idna-3.18 jinja2-3.1.6 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 marshmallow-3.26.2 mistune-3.3.4 narwhals-2.24.0 numpy-2.4.6 opentelemetry-api-1.44.0 opentelemetry-exporter-otlp-proto-common-1.44.0 opentelemetry-exporter-otlp-proto-http-1.44.0 opentelemetry-proto-1.44.0 opentelemetry-sdk-1.44.0 opentelemetry-semantic-conventions-0.65b0 packaging-26.3 pandas-3.0.5 protobuf-7.35.1 psycopg-3.3.4 psycopg-binary-3.3.4 psycopg2-binary-2.9.10 pycparser-3.0 pydantic-2.13.4 pydantic-core-2.46.4 pyparsing-3.3.2 python-dateutil-2.9.0.post0 python-dotenv-1.2.2 referencing-0.37.0 requests-2.33.1 rpds-py-2026.6.3 ruamel.yaml-0.17.40 ruamel.yaml.clib-0.2.15 scipy-1.17.1 six-1.17.0 soda-core-4.19.0 soda-postgres-4.19.0 sqlalchemy-2.0.51 sqlglot-30.15.0 tabulate-0.10.0 tqdm-4.70.0 typing-extensions-4.16.0 typing-inspection-0.4.2 tzlocal-5.4.4 urllib3-2.7.0 wcwidth-0.8.2
+#10 58.08 
+#10 58.08 [notice] A new release of pip is available: 24.0 -> 26.2.1
+#10 58.08 [notice] To update, run: python -m pip install --upgrade pip
+#10 DONE 60.6s
+
+#11 [tools 7/9] RUN python -m venv /opt/venv/lineage     && /opt/venv/lineage/bin/pip install --no-cache-dir -r /opt/requirements-lineage.txt
+#11 6.742 Collecting openlineage-python==1.52.0 (from -r /opt/requirements-lineage.txt (line 2))
+#11 6.816   Downloading openlineage_python-1.52.0-py3-none-any.whl.metadata (2.6 kB)
+#11 6.950 Collecting psycopg2-binary==2.9.10 (from -r /opt/requirements-lineage.txt (line 4))
+#11 6.964   Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+#11 7.030 Collecting attrs>=20.0 (from openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 7.050   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+#11 7.088 Collecting python-dateutil>=2.8.2 (from openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 7.103   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#11 7.173 Collecting pyyaml>=5.4 (from openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 7.188   Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+#11 7.250 Collecting requests>=2.32.4 (from openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 7.264   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#11 7.312 Collecting httpx>=0.27.0 (from openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 7.327   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+#11 7.373 Collecting packaging>=21.0 (from openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 7.388   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#11 7.452 Collecting anyio (from httpx>=0.27.0->openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 7.468   Downloading anyio-4.14.2-py3-none-any.whl.metadata (4.6 kB)
+#11 7.507 Collecting certifi (from httpx>=0.27.0->openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 7.523   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+#11 7.569 Collecting httpcore==1.* (from httpx>=0.27.0->openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 7.587   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+#11 7.625 Collecting idna (from httpx>=0.27.0->openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 7.639   Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)
+#11 7.680 Collecting h11>=0.16 (from httpcore==1.*->httpx>=0.27.0->openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 7.695   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#11 7.737 Collecting six>=1.5 (from python-dateutil>=2.8.2->openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 7.753   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#11 8.035 Collecting charset_normalizer<4,>=2 (from requests>=2.32.4->openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 8.051   Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (41 kB)
+#11 8.056      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.7/41.7 kB 24.8 MB/s eta 0:00:00
+#11 8.137 Collecting urllib3<3,>=1.26 (from requests>=2.32.4->openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 8.150   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+#11 8.240 Collecting typing_extensions>=4.5 (from anyio->httpx>=0.27.0->openlineage-python==1.52.0->-r /opt/requirements-lineage.txt (line 2))
+#11 8.255   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#11 8.289 Downloading openlineage_python-1.52.0-py3-none-any.whl (116 kB)
+#11 8.301    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 116.4/116.4 kB 12.9 MB/s eta 0:00:00
+#11 8.314 Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+#11 8.502    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 16.5 MB/s eta 0:00:00
+#11 8.525 Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+#11 8.529    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 67.5/67.5 kB 267.2 MB/s eta 0:00:00
+#11 8.555 Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+#11 8.560    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.5/73.5 kB 257.7 MB/s eta 0:00:00
+#11 8.584 Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+#11 8.586    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.8/78.8 kB 297.7 MB/s eta 0:00:00
+#11 8.605 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#11 8.610    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 130.0/130.0 kB 310.5 MB/s eta 0:00:00
+#11 8.639 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#11 8.647    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 46.2 MB/s eta 0:00:00
+#11 8.662 Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+#11 8.702    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 22.0 MB/s eta 0:00:00
+#11 8.717 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#11 8.722    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.1/73.1 kB 165.6 MB/s eta 0:00:00
+#11 8.746 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+#11 8.750    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 137.0/137.0 kB 236.7 MB/s eta 0:00:00
+#11 8.765 Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (221 kB)
+#11 8.772    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 221.3/221.3 kB 48.7 MB/s eta 0:00:00
+#11 8.788 Downloading idna-3.18-py3-none-any.whl (65 kB)
+#11 8.791    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 65.5/65.5 kB 269.9 MB/s eta 0:00:00
+#11 8.804 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#11 8.819 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+#11 8.822    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 131.1/131.1 kB 303.5 MB/s eta 0:00:00
+#11 8.836 Downloading anyio-4.14.2-py3-none-any.whl (125 kB)
+#11 8.841    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 125.8/125.8 kB 54.6 MB/s eta 0:00:00
+#11 8.854 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#11 8.867 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#11 8.871    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.6/45.6 kB 171.0 MB/s eta 0:00:00
+#11 9.030 Installing collected packages: urllib3, typing_extensions, six, pyyaml, psycopg2-binary, packaging, idna, h11, charset_normalizer, certifi, attrs, requests, python-dateutil, httpcore, anyio, httpx, openlineage-python
+#11 10.50 Successfully installed anyio-4.14.2 attrs-26.1.0 certifi-2026.7.22 charset_normalizer-3.4.9 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 idna-3.18 openlineage-python-1.52.0 packaging-26.3 psycopg2-binary-2.9.10 python-dateutil-2.9.0.post0 pyyaml-6.0.3 requests-2.34.2 six-1.17.0 typing_extensions-4.16.0 urllib3-2.7.0
+#11 10.71 
+#11 10.71 [notice] A new release of pip is available: 24.0 -> 26.2.1
+#11 10.71 [notice] To update, run: python -m pip install --upgrade pip
+#11 DONE 11.1s
+
+#12 [tools 8/9] RUN python -m venv /opt/venv/catalog     && /opt/venv/catalog/bin/pip install --no-cache-dir -r /opt/requirements-catalog.txt
+#12 9.081 Collecting openmetadata-ingestion==1.13.3.0 (from openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 9.300   Downloading openmetadata_ingestion-1.13.3.0-py3-none-any.whl.metadata (61 kB)
+#12 9.314      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.0/61.0 kB 6.0 MB/s eta 0:00:00
+#12 10.19 Collecting PyJWT>=2.13.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 10.20   Downloading pyjwt-2.13.0-py3-none-any.whl.metadata (3.4 kB)
+#12 10.23 Collecting tabulate==0.9.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 10.24   Downloading tabulate-0.9.0-py3-none-any.whl.metadata (34 kB)
+#12 10.51 Collecting pydantic<2.12,>=2.7.0,~=2.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 10.53   Downloading pydantic-2.11.10-py3-none-any.whl.metadata (68 kB)
+#12 10.53      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.6/68.6 kB 203.2 MB/s eta 0:00:00
+#12 10.61 Collecting kubernetes<36,>=21.0.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 10.62   Downloading kubernetes-35.0.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#12 10.71 Collecting google-crc32c (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 10.72   Downloading google_crc32c-1.8.0-cp311-cp311-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl.metadata (1.7 kB)
+#12 11.48 Collecting boto3~=1.41.5 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 11.49   Downloading boto3-1.41.5-py3-none-any.whl.metadata (6.8 kB)
+#12 11.94 Collecting cryptography>=48.0.1 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 11.95   Downloading cryptography-50.0.0-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.3 kB)
+#12 12.00 Collecting requests-aws4auth~=1.1 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 12.01   Downloading requests_aws4auth-1.3.2-py3-none-any.whl.metadata (18 kB)
+#12 12.05 Collecting jaraco.context>=6.1.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 12.07   Downloading jaraco_context-6.1.2-py3-none-any.whl.metadata (4.2 kB)
+#12 12.12 Collecting chardet==4.0.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 12.14   Downloading chardet-4.0.0-py2.py3-none-any.whl.metadata (3.5 kB)
+#12 12.18 Collecting mistune>=3.3.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 12.19   Downloading mistune-3.3.4-py3-none-any.whl.metadata (1.9 kB)
+#12 12.28 Collecting importlib-metadata>=4.13.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 12.29   Downloading importlib_metadata-9.0.0-py3-none-any.whl.metadata (4.5 kB)
+#12 12.48 Collecting collate-sqllineage>=2.1.3 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 12.50   Downloading collate_sqllineage-2.1.4-py3-none-any.whl.metadata (8.3 kB)
+#12 12.54 Collecting httpx~=0.28.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 12.56   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+#12 12.71 Collecting shapely (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 12.72   Downloading shapely-2.1.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.8 kB)
+#12 13.30 Collecting sqlalchemy<3,>=2.0.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 13.31   Downloading sqlalchemy-2.0.51-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (9.5 kB)
+#12 13.50 Collecting memory-profiler (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 13.51   Downloading memory_profiler-0.61.0-py3-none-any.whl.metadata (20 kB)
+#12 13.54 Collecting antlr4-python3-runtime==4.9.2 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 13.55   Downloading antlr4-python3-runtime-4.9.2.tar.gz (117 kB)
+#12 13.56      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.2/117.2 kB 67.6 MB/s eta 0:00:00
+#12 13.59   Installing build dependencies: started
+#12 15.96   Installing build dependencies: finished with status 'done'
+#12 15.96   Getting requirements to build wheel: started
+#12 16.23   Getting requirements to build wheel: finished with status 'done'
+#12 16.24   Preparing metadata (pyproject.toml): started
+#12 16.53   Preparing metadata (pyproject.toml): finished with status 'done'
+#12 16.59 Collecting dbt-extractor>=0.5.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 16.61   Downloading dbt_extractor-0.6.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.6 kB)
+#12 16.65 Collecting cached-property==1.5.2 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 16.66   Downloading cached_property-1.5.2-py2.py3-none-any.whl.metadata (11 kB)
+#12 16.69 Collecting typing-inspect (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 16.71   Downloading typing_inspect-0.9.0-py3-none-any.whl.metadata (1.5 kB)
+#12 17.22 Collecting lxml>=6.1.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 17.23   Downloading lxml-6.1.1-cp311-cp311-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.5 kB)
+#12 17.27 Collecting python-dotenv>=0.19.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 17.28   Downloading python_dotenv-1.2.2-py3-none-any.whl.metadata (27 kB)
+#12 17.34 Collecting requests>=2.23 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 17.35   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#12 17.39 Collecting jsonpatch<2.0,>=1.24 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 17.40   Downloading jsonpatch-1.33-py2.py3-none-any.whl.metadata (3.0 kB)
+#12 17.43 Collecting python-dateutil>=2.8.1 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 17.44   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#12 17.48 Collecting Jinja2>=2.11.3 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 17.49   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#12 17.54 Collecting packaging (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 17.55   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#12 17.59 Collecting tenacity<10,>=8.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 17.60   Downloading tenacity-9.1.4-py3-none-any.whl.metadata (1.2 kB)
+#12 17.64 Collecting idna>=3.15 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 17.66   Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)
+#12 17.69 Collecting pymysql~=1.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 17.71   Downloading pymysql-1.2.0-py3-none-any.whl.metadata (4.3 kB)
+#12 17.71 Requirement already satisfied: setuptools>=78.1.1 in /opt/venv/catalog/lib/python3.11/site-packages (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5)) (79.0.1)
+#12 17.74 Collecting Mako>=1.3.12 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 17.76   Downloading mako-1.4.1-py3-none-any.whl.metadata (2.9 kB)
+#12 17.82 Collecting PyYAML~=6.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 17.84   Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+#12 18.04 Collecting google-cloud-secret-manager==2.24.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 18.05   Downloading google_cloud_secret_manager-2.24.0-py3-none-any.whl.metadata (9.7 kB)
+#12 18.09 Collecting pydantic-settings>=2.14.2,~=2.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 18.10   Downloading pydantic_settings-2.14.2-py3-none-any.whl.metadata (3.4 kB)
+#12 18.13 Collecting mypy-extensions>=0.4.3 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 18.15   Downloading mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+#12 18.19 Collecting cachetools (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 18.21   Downloading cachetools-7.1.7-py3-none-any.whl.metadata (5.5 kB)
+#12 18.24 Collecting azure-keyvault-secrets (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 18.25   Downloading azure_keyvault_secrets-4.11.0-py3-none-any.whl.metadata (30 kB)
+#12 18.29 Collecting email-validator>=2.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 18.30   Downloading email_validator-2.3.0-py3-none-any.whl.metadata (26 kB)
+#12 18.35 Collecting azure-identity~=1.12 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 18.36   Downloading azure_identity-1.25.3-py3-none-any.whl.metadata (91 kB)
+#12 18.36      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 91.7/91.7 kB 287.5 MB/s eta 0:00:00
+#12 18.55 Collecting collate-data-diff>=0.11.11 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 18.56   Downloading collate_data_diff-0.11.14-py3-none-any.whl.metadata (4.0 kB)
+#12 18.59 Collecting jaraco.functools<4.2.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 18.60   Downloading jaraco.functools-4.1.0-py3-none-any.whl.metadata (2.9 kB)
+#12 19.79 Collecting numpy<2 (from openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 19.81   Downloading numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+#12 19.81      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.0/61.0 kB 222.3 MB/s eta 0:00:00
+#12 20.03 Collecting spacy<3.8 (from openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 20.04   Downloading spacy-3.7.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (27 kB)
+#12 20.08 Collecting presidio-analyzer==2.2.358 (from openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 20.09   Downloading presidio_analyzer-2.2.358-py3-none-any.whl.metadata (3.2 kB)
+#12 20.30 Collecting pandas~=2.1.4 (from openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 20.31   Downloading pandas-2.1.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (18 kB)
+#12 20.42 Collecting psycopg2-binary (from openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 20.43   Downloading psycopg2_binary-2.9.12-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+#12 20.48 Collecting GeoAlchemy2~=0.12 (from openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 20.49   Downloading geoalchemy2-0.20.0-py3-none-any.whl.metadata (2.0 kB)
+#12 20.67 Collecting google-api-core!=2.0.*,!=2.1.*,!=2.10.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*,!=2.8.*,!=2.9.*,<3.0.0,>=1.34.1 (from google-api-core[grpc]!=2.0.*,!=2.1.*,!=2.10.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*,!=2.8.*,!=2.9.*,<3.0.0,>=1.34.1->google-cloud-secret-manager==2.24.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 20.69   Downloading google_api_core-2.33.0-py3-none-any.whl.metadata (3.2 kB)
+#12 20.92 Collecting google-auth!=2.24.0,!=2.25.0,<3.0.0,>=2.14.1 (from google-cloud-secret-manager==2.24.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 20.93   Downloading google_auth-2.56.2-py3-none-any.whl.metadata (6.0 kB)
+#12 20.98 Collecting proto-plus<2.0.0,>=1.22.3 (from google-cloud-secret-manager==2.24.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 20.99   Downloading proto_plus-1.28.2-py3-none-any.whl.metadata (2.2 kB)
+#12 21.56 Collecting protobuf!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<7.0.0,>=3.20.2 (from google-cloud-secret-manager==2.24.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 21.57   Downloading protobuf-6.33.6-cp39-abi3-manylinux2014_x86_64.whl.metadata (593 bytes)
+#12 21.60 Collecting grpc-google-iam-v1<1.0.0,>=0.14.0 (from google-cloud-secret-manager==2.24.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 21.61   Downloading grpc_google_iam_v1-0.14.4-py3-none-any.whl.metadata (9.1 kB)
+#12 21.87 Collecting phonenumbers<9.0.0,>=8.12 (from presidio-analyzer==2.2.358->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 21.88   Downloading phonenumbers-8.13.55-py2.py3-none-any.whl.metadata (11 kB)
+#12 22.61 Collecting regex (from presidio-analyzer==2.2.358->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 22.62   Downloading regex-2026.7.19-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+#12 22.63      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 40.5/40.5 kB 143.9 MB/s eta 0:00:00
+#12 22.71 Collecting tldextract (from presidio-analyzer==2.2.358->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 22.72   Downloading tldextract-5.3.1-py3-none-any.whl.metadata (7.3 kB)
+#12 22.78 Collecting azure-core>=1.31.0 (from azure-identity~=1.12->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 22.80   Downloading azure_core-1.41.0-py3-none-any.whl.metadata (49 kB)
+#12 22.80      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 50.0/50.0 kB 212.7 MB/s eta 0:00:00
+#12 22.88 Collecting msal>=1.35.1 (from azure-identity~=1.12->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 22.89   Downloading msal-1.37.0-py3-none-any.whl.metadata (11 kB)
+#12 22.92 Collecting msal-extensions>=1.2.0 (from azure-identity~=1.12->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 22.94   Downloading msal_extensions-1.3.1-py3-none-any.whl.metadata (7.8 kB)
+#12 22.99 Collecting typing-extensions>=4.0.0 (from azure-identity~=1.12->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 23.00   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#12 24.10 Collecting botocore<1.42.0,>=1.41.5 (from boto3~=1.41.5->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 24.13   Downloading botocore-1.41.6-py3-none-any.whl.metadata (5.9 kB)
+#12 24.18 Collecting jmespath<2.0.0,>=0.7.1 (from boto3~=1.41.5->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 24.20   Downloading jmespath-1.1.0-py3-none-any.whl.metadata (7.6 kB)
+#12 24.28 Collecting s3transfer<0.16.0,>=0.15.0 (from boto3~=1.41.5->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 24.29   Downloading s3transfer-0.15.0-py3-none-any.whl.metadata (1.7 kB)
+#12 24.40 Collecting attrs>=23.1.0 (from collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 24.40   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+#12 24.46 Collecting click>=8.3.3 (from collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 24.47   Downloading click-8.4.2-py3-none-any.whl.metadata (2.6 kB)
+#12 24.65 Collecting dbt-core<2.0.0,>=1.0.0 (from collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 24.67   Downloading dbt_core-1.12.0-py3-none-any.whl.metadata (4.5 kB)
+#12 24.89 Collecting deepdiff<9.0,>=8.6.1 (from collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 24.90   Downloading deepdiff-8.6.2-py3-none-any.whl.metadata (8.8 kB)
+#12 24.93 Collecting dsnparse<0.2.0 (from collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 24.94   Downloading dsnparse-0.1.15.tar.gz (6.6 kB)
+#12 24.94   Installing build dependencies: started
+#12 27.07   Installing build dependencies: finished with status 'done'
+#12 27.07   Getting requirements to build wheel: started
+#12 27.37   Getting requirements to build wheel: finished with status 'done'
+#12 27.38   Preparing metadata (pyproject.toml): started
+#12 27.66   Preparing metadata (pyproject.toml): finished with status 'done'
+#12 27.74 Collecting keyring (from collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 27.76   Downloading keyring-25.7.0-py3-none-any.whl.metadata (21 kB)
+#12 27.81 Collecting mashumaro<3.11.0,>=2.9 (from mashumaro[msgpack]<3.11.0,>=2.9->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 27.82   Downloading mashumaro-3.10-py3-none-any.whl.metadata (102 kB)
+#12 27.83      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 102.7/102.7 kB 290.4 MB/s eta 0:00:00
+#12 27.98 Collecting rich (from collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 27.99   Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+#12 28.02 Collecting toml>=0.10.2 (from collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 28.03   Downloading toml-0.10.2-py2.py3-none-any.whl.metadata (7.1 kB)
+#12 28.17 Collecting urllib3<3,>=2.7.0 (from collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 28.19   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+#12 28.24 Collecting sqlparse==0.5.4 (from collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 28.26   Downloading sqlparse-0.5.4-py3-none-any.whl.metadata (4.7 kB)
+#12 28.32 Collecting networkx>=2.4 (from collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 28.33   Downloading networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+#12 28.37 Collecting collate-sqlfluff==3.5.3 (from collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 28.38   Downloading collate_sqlfluff-3.5.3-py3-none-any.whl.metadata (12 kB)
+#12 28.81 Collecting sqlglot==29.0.1 (from collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 28.82   Downloading sqlglot-29.0.1-py3-none-any.whl.metadata (22 kB)
+#12 28.88 Collecting platformdirs (from collate-sqlfluff==3.5.3->collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 28.89   Downloading platformdirs-4.11.0-py3-none-any.whl.metadata (5.5 kB)
+#12 28.91 Collecting click>=8.3.3 (from collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 28.92   Downloading click-8.3.3-py3-none-any.whl.metadata (2.6 kB)
+#12 28.98 Collecting colorama>=0.3 (from collate-sqlfluff==3.5.3->collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 28.99   Downloading colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+#12 29.06 Collecting diff-cover>=2.5.0 (from collate-sqlfluff==3.5.3->collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 29.08   Downloading diff_cover-10.4.1-py3-none-any.whl.metadata (21 kB)
+#12 29.11 Collecting pathspec (from collate-sqlfluff==3.5.3->collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 29.12   Downloading pathspec-1.1.1-py3-none-any.whl.metadata (14 kB)
+#12 29.40 Collecting pytest (from collate-sqlfluff==3.5.3->collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 29.41   Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+#12 29.60 Collecting tblib (from collate-sqlfluff==3.5.3->collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 29.63   Downloading tblib-3.2.2-py3-none-any.whl.metadata (27 kB)
+#12 29.75 Collecting tqdm (from collate-sqlfluff==3.5.3->collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 29.76   Downloading tqdm-4.70.0-py3-none-any.whl.metadata (57 kB)
+#12 29.76      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.3/57.3 kB 276.7 MB/s eta 0:00:00
+#12 29.99 Collecting cffi>=2.0.0 (from cryptography>=48.0.1->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.00   Downloading cffi-2.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+#12 30.04 Collecting dnspython>=2.0.0 (from email-validator>=2.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.05   Downloading dnspython-2.8.0-py3-none-any.whl.metadata (5.7 kB)
+#12 30.17 Collecting anyio (from httpx~=0.28.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.18   Downloading anyio-4.14.2-py3-none-any.whl.metadata (4.6 kB)
+#12 30.22 Collecting certifi (from httpx~=0.28.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.23   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+#12 30.28 Collecting httpcore==1.* (from httpx~=0.28.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.29   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+#12 30.32 Collecting h11>=0.16 (from httpcore==1.*->httpx~=0.28.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.33   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#12 30.40 Collecting zipp>=3.20 (from importlib-metadata>=4.13.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.41   Downloading zipp-4.1.0-py3-none-any.whl.metadata (3.6 kB)
+#12 30.45 Collecting backports.tarfile (from jaraco.context>=6.1.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.47   Downloading backports.tarfile-1.2.0-py3-none-any.whl.metadata (2.0 kB)
+#12 30.52 Collecting more-itertools (from jaraco.functools<4.2.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.54   Downloading more_itertools-11.1.0-py3-none-any.whl.metadata (41 kB)
+#12 30.54      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.4/41.4 kB 135.9 MB/s eta 0:00:00
+#12 30.65 Collecting MarkupSafe>=2.0 (from Jinja2>=2.11.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.66   Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+#12 30.70 Collecting jsonpointer>=1.9 (from jsonpatch<2.0,>=1.24->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.71   Downloading jsonpointer-3.1.1-py3-none-any.whl.metadata (2.4 kB)
+#12 30.76 Collecting six>=1.9.0 (from kubernetes<36,>=21.0.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.78   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#12 30.84 Collecting websocket-client!=0.40.0,!=0.41.*,!=0.42.*,>=0.32.0 (from kubernetes<36,>=21.0.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.86   Downloading websocket_client-1.9.0-py3-none-any.whl.metadata (8.3 kB)
+#12 30.89 Collecting requests-oauthlib (from kubernetes<36,>=21.0.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.90   Downloading requests_oauthlib-2.0.0-py2.py3-none-any.whl.metadata (11 kB)
+#12 30.93 Collecting durationpy>=0.7 (from kubernetes<36,>=21.0.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 30.94   Downloading durationpy-0.10-py3-none-any.whl.metadata (340 bytes)
+#12 31.14 Collecting pytz>=2020.1 (from pandas~=2.1.4->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 31.16   Downloading pytz-2026.3.post1-py2.py3-none-any.whl.metadata (22 kB)
+#12 31.19 Collecting tzdata>=2022.1 (from pandas~=2.1.4->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 31.20   Downloading tzdata-2026.3-py2.py3-none-any.whl.metadata (1.4 kB)
+#12 31.25 Collecting annotated-types>=0.6.0 (from pydantic<2.12,>=2.7.0,~=2.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 31.26   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#12 32.79 Collecting pydantic-core==2.33.2 (from pydantic<2.12,>=2.7.0,~=2.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 32.80   Downloading pydantic_core-2.33.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+#12 32.83 Collecting typing-inspection>=0.4.0 (from pydantic<2.12,>=2.7.0,~=2.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 32.84   Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+#12 33.22 Collecting charset_normalizer<4,>=2 (from requests>=2.23->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 33.23   Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (41 kB)
+#12 33.24      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.7/41.7 kB 127.2 MB/s eta 0:00:00
+#12 33.43 Collecting spacy-legacy<3.1.0,>=3.0.11 (from spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 33.44   Downloading spacy_legacy-3.0.12-py2.py3-none-any.whl.metadata (2.8 kB)
+#12 33.47 Collecting spacy-loggers<2.0.0,>=1.0.0 (from spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 33.48   Downloading spacy_loggers-1.0.5-py3-none-any.whl.metadata (23 kB)
+#12 33.55 Collecting murmurhash<1.1.0,>=0.28.0 (from spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 33.57   Downloading murmurhash-1.0.15-cp311-cp311-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl.metadata (2.3 kB)
+#12 33.65 Collecting cymem<2.1.0,>=2.0.2 (from spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 33.66   Downloading cymem-2.0.13-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (9.7 kB)
+#12 33.73 Collecting preshed<3.1.0,>=3.0.2 (from spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 33.74   Downloading preshed-3.0.13-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.2 kB)
+#12 33.98 Collecting thinc<8.3.0,>=8.2.2 (from spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 33.99   Downloading thinc-8.2.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (15 kB)
+#12 34.03 Collecting wasabi<1.2.0,>=0.9.1 (from spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 34.04   Downloading wasabi-1.1.3-py3-none-any.whl.metadata (28 kB)
+#12 34.14 Collecting srsly<3.0.0,>=2.4.3 (from spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 34.16   Downloading srsly-2.5.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (19 kB)
+#12 34.21 Collecting catalogue<2.1.0,>=2.0.6 (from spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 34.22   Downloading catalogue-2.0.10-py3-none-any.whl.metadata (14 kB)
+#12 34.25 Collecting weasel<0.5.0,>=0.1.0 (from spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 34.27   Downloading weasel-0.4.3-py3-none-any.whl.metadata (4.6 kB)
+#12 34.35 Collecting typer<1.0.0,>=0.3.0 (from spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 34.37   Downloading typer-0.27.1-py3-none-any.whl.metadata (16 kB)
+#12 34.47 Collecting langcodes<4.0.0,>=3.2.0 (from spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 34.48   Downloading langcodes-3.5.1-py3-none-any.whl.metadata (30 kB)
+#12 34.96 Collecting greenlet>=1 (from sqlalchemy<3,>=2.0.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 34.98   Downloading greenlet-3.5.4-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+#12 35.05 Collecting isodate>=0.6.1 (from azure-keyvault-secrets->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 35.06   Downloading isodate-0.7.2-py3-none-any.whl.metadata (11 kB)
+#12 35.30 Collecting psutil (from memory-profiler->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 35.31   Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (22 kB)
+#12 35.62 Collecting pycparser (from cffi>=2.0.0->cryptography>=48.0.1->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 35.63   Downloading pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+#12 35.77 Collecting agate<1.15,>=1.7.0 (from dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 35.79   Downloading agate-1.14.2-py3-none-any.whl.metadata (3.1 kB)
+#12 35.83 Collecting daff>=1.3.46 (from dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 35.84   Downloading daff-1.4.2-py3-none-any.whl.metadata (10 kB)
+#12 35.90 Collecting dbt-adapters<2.0,>=1.24.5 (from dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 35.92   Downloading dbt_adapters-1.24.5-py3-none-any.whl.metadata (4.6 kB)
+#12 35.96 Collecting dbt-common<2.0,>=1.37.5 (from dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 35.98   Downloading dbt_common-1.38.0-py3-none-any.whl.metadata (5.0 kB)
+#12 36.01 Collecting dbt-core-experimental-parser<3,>=2.0.0a4 (from dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 36.02   Downloading dbt_core_experimental_parser-2.0.0a5.tar.gz (4.5 kB)
+#12 36.03   Installing build dependencies: started
+#12 37.28   Installing build dependencies: finished with status 'done'
+#12 37.28   Getting requirements to build wheel: started
+#12 37.44   Getting requirements to build wheel: finished with status 'done'
+#12 37.44   Preparing metadata (pyproject.toml): started
+#12 40.16   Preparing metadata (pyproject.toml): finished with status 'done'
+#12 40.19 Collecting dbt-protos<2.0,>=1.0.514 (from dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 40.21   Downloading dbt_protos-1.0.541-py3-none-any.whl.metadata (859 bytes)
+#12 40.26 Collecting jsonschema<5.0,>=4.19.1 (from dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 40.28   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+#12 40.35 Collecting metricflow<1.0,>=0.211.0 (from dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 40.36   Downloading metricflow-0.211.0-py3-none-any.whl.metadata (19 kB)
+#12 40.39 Collecting pathspec (from collate-sqlfluff==3.5.3->collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 40.41   Downloading pathspec-1.0.4-py3-none-any.whl.metadata (13 kB)
+#12 40.57 Collecting snowplow-tracker<2.0,>=1.0.2 (from dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 40.58   Downloading snowplow_tracker-1.1.0-py3-none-any.whl.metadata (5.7 kB)
+#12 40.59 INFO: pip is looking at multiple versions of dbt-core to determine which version is compatible with other requirements. This could take a while.
+#12 40.60 Collecting dbt-core<2.0.0,>=1.0.0 (from collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 40.61   Downloading dbt_core-1.11.12-py3-none-any.whl.metadata (4.4 kB)
+#12 42.59 Collecting agate<1.10,>=1.7.0 (from dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 42.60   Downloading agate-1.9.1-py2.py3-none-any.whl.metadata (3.2 kB)
+#12 42.68 Collecting dbt-semantic-interfaces<0.10,>=0.9.0 (from dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 42.70   Downloading dbt_semantic_interfaces-0.9.0-py3-none-any.whl.metadata (2.6 kB)
+#12 42.72 Collecting pathspec (from collate-sqlfluff==3.5.3->collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 42.74   Downloading pathspec-0.12.1-py3-none-any.whl.metadata (21 kB)
+#12 42.83 Collecting dbt-core<2.0.0,>=1.0.0 (from collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 42.84   Downloading dbt_core-1.11.11-py3-none-any.whl.metadata (4.4 kB)
+#12 42.88   Downloading dbt_core-1.11.10-py3-none-any.whl.metadata (4.4 kB)
+#12 42.90 Collecting dbt-adapters<1.24,>=1.15.5 (from dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 42.91   Downloading dbt_adapters-1.23.0-py3-none-any.whl.metadata (4.6 kB)
+#12 42.93 Collecting dbt-core<2.0.0,>=1.0.0 (from collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 42.94   Downloading dbt_core-1.11.9-py3-none-any.whl.metadata (4.4 kB)
+#12 42.97   Downloading dbt_core-1.11.8-py3-none-any.whl.metadata (4.4 kB)
+#12 43.02   Downloading dbt_core-1.11.7-py3-none-any.whl.metadata (4.4 kB)
+#12 43.16 Collecting orderly-set<6,>=5.4.1 (from deepdiff<9.0,>=8.6.1->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 43.18   Downloading orderly_set-5.5.0-py3-none-any.whl.metadata (6.6 kB)
+#12 43.35 Collecting googleapis-common-protos<2.0.0,>=1.63.2 (from google-api-core!=2.0.*,!=2.1.*,!=2.10.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*,!=2.8.*,!=2.9.*,<3.0.0,>=1.34.1->google-api-core[grpc]!=2.0.*,!=2.1.*,!=2.10.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*,!=2.8.*,!=2.9.*,<3.0.0,>=1.34.1->google-cloud-secret-manager==2.24.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 43.36   Downloading googleapis_common_protos-1.75.0-py3-none-any.whl.metadata (8.6 kB)
+#12 44.99 Collecting grpcio<2.0.0,>=1.41.0 (from google-api-core[grpc]!=2.0.*,!=2.1.*,!=2.10.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*,!=2.8.*,!=2.9.*,<3.0.0,>=1.34.1->google-cloud-secret-manager==2.24.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 45.00   Downloading grpcio-1.83.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.7 kB)
+#12 45.13 Collecting grpcio-status<2.0.0,>=1.41.0 (from google-api-core[grpc]!=2.0.*,!=2.1.*,!=2.10.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*,!=2.8.*,!=2.9.*,<3.0.0,>=1.34.1->google-cloud-secret-manager==2.24.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 45.14   Downloading grpcio_status-1.83.0-py3-none-any.whl.metadata (1.2 kB)
+#12 45.27 Collecting pyasn1-modules>=0.2.1 (from google-auth!=2.24.0,!=2.25.0,<3.0.0,>=2.14.1->google-cloud-secret-manager==2.24.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 45.28   Downloading pyasn1_modules-0.4.2-py3-none-any.whl.metadata (3.5 kB)
+#12 45.88 Collecting msgpack>=0.5.6 (from mashumaro[msgpack]<3.11.0,>=2.9->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 45.89   Downloading msgpack-1.2.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+#12 47.17 Collecting blis<0.8.0,>=0.7.8 (from thinc<8.3.0,>=8.2.2->spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 47.18   Downloading blis-0.7.11-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.4 kB)
+#12 47.23 Collecting confection<1.0.0,>=0.0.1 (from thinc<8.3.0,>=8.2.2->spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 47.24   Downloading confection-0.1.5-py3-none-any.whl.metadata (19 kB)
+#12 47.40 Collecting shellingham>=1.3.0 (from typer<1.0.0,>=0.3.0->spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 47.41   Downloading shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+#12 47.46 Collecting annotated-doc>=0.0.2 (from typer<1.0.0,>=0.3.0->spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 47.47   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+#12 47.56 Collecting markdown-it-py>=2.2.0 (from rich->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 47.57   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+#12 47.63 Collecting pygments<3.0.0,>=2.13.0 (from rich->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 47.64   Downloading pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+#12 47.95 Collecting typer-slim<1.0.0,>=0.3.0 (from weasel<0.5.0,>=0.1.0->spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 47.97   Downloading typer_slim-0.24.0-py3-none-any.whl.metadata (4.2 kB)
+#12 48.02 Collecting cloudpathlib<1.0.0,>=0.7.0 (from weasel<0.5.0,>=0.1.0->spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 48.03   Downloading cloudpathlib-0.24.0-py3-none-any.whl.metadata (16 kB)
+#12 48.08 Collecting smart-open<8.0.0,>=5.2.1 (from weasel<0.5.0,>=0.1.0->spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 48.10   Downloading smart_open-7.7.1-py3-none-any.whl.metadata (25 kB)
+#12 48.44 Collecting SecretStorage>=3.2 (from keyring->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 48.45   Downloading secretstorage-3.5.0-py3-none-any.whl.metadata (4.0 kB)
+#12 48.51 Collecting jeepney>=0.4.2 (from keyring->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 48.52   Downloading jeepney-0.9.0-py3-none-any.whl.metadata (1.2 kB)
+#12 48.56 Collecting jaraco.classes (from keyring->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 48.57   Downloading jaraco.classes-3.4.0-py3-none-any.whl.metadata (2.6 kB)
+#12 48.88 Collecting oauthlib>=3.0.0 (from requests-oauthlib->kubernetes<36,>=21.0.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 48.89   Downloading oauthlib-3.3.1-py3-none-any.whl.metadata (7.9 kB)
+#12 49.00 Collecting requests-file>=1.4 (from tldextract->presidio-analyzer==2.2.358->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 49.01   Downloading requests_file-3.0.1-py2.py3-none-any.whl.metadata (1.7 kB)
+#12 49.08 Collecting filelock>=3.0.8 (from tldextract->presidio-analyzer==2.2.358->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 49.09   Downloading filelock-3.32.2-py3-none-any.whl.metadata (2.0 kB)
+#12 49.19 Collecting Babel>=2.0 (from agate<1.10,>=1.7.0->dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 49.20   Downloading babel-2.18.0-py3-none-any.whl.metadata (2.2 kB)
+#12 49.23 Collecting leather>=0.3.2 (from agate<1.10,>=1.7.0->dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 49.24   Downloading leather-0.4.1-py3-none-any.whl.metadata (3.0 kB)
+#12 49.27 Collecting parsedatetime!=2.5,>=2.1 (from agate<1.10,>=1.7.0->dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 49.28   Downloading parsedatetime-2.6-py3-none-any.whl.metadata (4.7 kB)
+#12 49.32 Collecting python-slugify>=1.2.1 (from agate<1.10,>=1.7.0->dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 49.33   Downloading python_slugify-8.0.4-py2.py3-none-any.whl.metadata (8.5 kB)
+#12 49.52 Collecting pytimeparse>=1.1.5 (from agate<1.10,>=1.7.0->dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 49.53   Downloading pytimeparse-1.1.8-py2.py3-none-any.whl.metadata (3.4 kB)
+#12 50.16 Collecting importlib-metadata>=4.13.0 (from openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 50.17   Downloading importlib_metadata-8.9.0-py3-none-any.whl.metadata (4.5 kB)
+#12 50.19 Collecting more-itertools (from jaraco.functools<4.2.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 50.20   Downloading more_itertools-10.8.0-py3-none-any.whl.metadata (39 kB)
+#12 50.45 Collecting pluggy<2,>=0.13.1 (from diff-cover>=2.5.0->collate-sqlfluff==3.5.3->collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 50.46   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+#12 51.03 Collecting jsonschema-specifications>=2023.03.6 (from jsonschema<5.0,>=4.19.1->dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 51.04   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+#12 51.11 Collecting referencing>=0.28.4 (from jsonschema<5.0,>=4.19.1->dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 51.12   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+#12 51.63 Collecting rpds-py>=0.25.0 (from jsonschema<5.0,>=4.19.1->dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 51.65   Downloading rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+#12 51.77 Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 51.78   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+#12 52.08 Collecting pyasn1<0.7.0,>=0.6.1 (from pyasn1-modules>=0.2.1->google-auth!=2.24.0,!=2.25.0,<3.0.0,>=2.14.1->google-cloud-secret-manager==2.24.0->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 52.09   Downloading pyasn1-0.6.4-py3-none-any.whl.metadata (8.4 kB)
+#12 52.96 Collecting wrapt (from smart-open<8.0.0,>=5.2.1->weasel<0.5.0,>=0.1.0->spacy<3.8->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 52.97   Downloading wrapt-2.3.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (7.4 kB)
+#12 53.34 Collecting iniconfig>=1.0.1 (from pytest->collate-sqlfluff==3.5.3->collate-sqllineage>=2.1.3->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 53.35   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+#12 53.92 Collecting text-unidecode>=1.3 (from python-slugify>=1.2.1->agate<1.10,>=1.7.0->dbt-core<2.0.0,>=1.0.0->collate-data-diff>=0.11.11->openmetadata-ingestion==1.13.3.0->openmetadata-ingestion[pii-processor,postgres]==1.13.3.0->-r /opt/requirements-catalog.txt (line 5))
+#12 53.93   Downloading text_unidecode-1.3-py2.py3-none-any.whl.metadata (2.4 kB)
+#12 54.26 Downloading openmetadata_ingestion-1.13.3.0-py3-none-any.whl (22.5 MB)
+#12 54.94    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 22.5/22.5 MB 35.7 MB/s eta 0:00:00
+#12 54.95 Downloading cached_property-1.5.2-py2.py3-none-any.whl (7.6 kB)
+#12 54.96 Downloading chardet-4.0.0-py2.py3-none-any.whl (178 kB)
+#12 54.97    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 178.7/178.7 kB 74.9 MB/s eta 0:00:00
+#12 54.98 Downloading google_cloud_secret_manager-2.24.0-py3-none-any.whl (218 kB)
+#12 54.99    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 218.1/218.1 kB 141.9 MB/s eta 0:00:00
+#12 55.00 Downloading presidio_analyzer-2.2.358-py3-none-any.whl (114 kB)
+#12 55.01    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 114.9/114.9 kB 180.1 MB/s eta 0:00:00
+#12 55.02 Downloading tabulate-0.9.0-py3-none-any.whl (35 kB)
+#12 55.03 Downloading azure_identity-1.25.3-py3-none-any.whl (192 kB)
+#12 55.04    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 192.1/192.1 kB 74.8 MB/s eta 0:00:00
+#12 55.05 Downloading boto3-1.41.5-py3-none-any.whl (139 kB)
+#12 55.05    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 139.3/139.3 kB 108.6 MB/s eta 0:00:00
+#12 55.06 Downloading collate_data_diff-0.11.14-py3-none-any.whl (134 kB)
+#12 55.07    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.1/134.1 kB 254.1 MB/s eta 0:00:00
+#12 55.08 Downloading collate_sqllineage-2.1.4-py3-none-any.whl (262 kB)
+#12 55.09    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 262.4/262.4 kB 97.5 MB/s eta 0:00:00
+#12 55.10 Downloading collate_sqlfluff-3.5.3-py3-none-any.whl (923 kB)
+#12 55.13    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 923.3/923.3 kB 29.9 MB/s eta 0:00:00
+#12 55.14 Downloading sqlglot-29.0.1-py3-none-any.whl (611 kB)
+#12 55.16    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 611.4/611.4 kB 45.7 MB/s eta 0:00:00
+#12 55.18 Downloading sqlparse-0.5.4-py3-none-any.whl (45 kB)
+#12 55.18    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.9/45.9 kB 123.5 MB/s eta 0:00:00
+#12 55.19 Downloading cryptography-50.0.0-cp311-abi3-manylinux_2_34_x86_64.whl (4.7 MB)
+#12 55.33    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 35.0 MB/s eta 0:00:00
+#12 55.34 Downloading dbt_extractor-0.6.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (442 kB)
+#12 55.36    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 442.7/442.7 kB 43.9 MB/s eta 0:00:00
+#12 55.37 Downloading email_validator-2.3.0-py3-none-any.whl (35 kB)
+#12 55.38 Downloading geoalchemy2-0.20.0-py3-none-any.whl (96 kB)
+#12 55.38    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.5/96.5 kB 152.5 MB/s eta 0:00:00
+#12 55.39 Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+#12 55.40    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.5/73.5 kB 192.8 MB/s eta 0:00:00
+#12 55.41 Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+#12 55.42    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.8/78.8 kB 33.1 MB/s eta 0:00:00
+#12 55.43 Downloading idna-3.18-py3-none-any.whl (65 kB)
+#12 55.43    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 65.5/65.5 kB 138.4 MB/s eta 0:00:00
+#12 55.45 Downloading jaraco_context-6.1.2-py3-none-any.whl (7.9 kB)
+#12 55.47 Downloading jaraco.functools-4.1.0-py3-none-any.whl (10 kB)
+#12 55.48 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#12 55.49    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.9/134.9 kB 200.2 MB/s eta 0:00:00
+#12 55.50 Downloading jsonpatch-1.33-py2.py3-none-any.whl (12 kB)
+#12 55.51 Downloading kubernetes-35.0.0-py2.py3-none-any.whl (2.0 MB)
+#12 55.57    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 39.1 MB/s eta 0:00:00
+#12 55.58 Downloading lxml-6.1.1-cp311-cp311-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+#12 55.74    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 35.3 MB/s eta 0:00:00
+#12 55.75 Downloading mako-1.4.1-py3-none-any.whl (80 kB)
+#12 55.75    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 80.0/80.0 kB 166.4 MB/s eta 0:00:00
+#12 55.76 Downloading mistune-3.3.4-py3-none-any.whl (66 kB)
+#12 55.77    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 66.9/66.9 kB 48.7 MB/s eta 0:00:00
+#12 55.78 Downloading mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+#12 55.79 Downloading numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.3 MB)
+#12 56.30    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.3/18.3 MB 36.2 MB/s eta 0:00:00
+#12 56.31 Downloading pandas-2.1.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.2 MB)
+#12 56.69    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.2/12.2 MB 31.9 MB/s eta 0:00:00
+#12 56.71 Downloading pydantic-2.11.10-py3-none-any.whl (444 kB)
+#12 56.76    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 444.8/444.8 kB 11.4 MB/s eta 0:00:00
+#12 56.78 Downloading pydantic_core-2.33.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.0 MB)
+#12 56.88    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 21.5 MB/s eta 0:00:00
+#12 56.89 Downloading pydantic_settings-2.14.2-py3-none-any.whl (61 kB)
+#12 56.90    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.7/61.7 kB 111.8 MB/s eta 0:00:00
+#12 56.91 Downloading pyjwt-2.13.0-py3-none-any.whl (31 kB)
+#12 56.92 Downloading pymysql-1.2.0-py3-none-any.whl (45 kB)
+#12 56.92    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.7/45.7 kB 209.3 MB/s eta 0:00:00
+#12 56.94 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#12 56.95    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 212.8 MB/s eta 0:00:00
+#12 56.96 Downloading python_dotenv-1.2.2-py3-none-any.whl (22 kB)
+#12 56.97 Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+#12 57.00    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 31.0 MB/s eta 0:00:00
+#12 57.01 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#12 57.02    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.1/73.1 kB 154.9 MB/s eta 0:00:00
+#12 57.03 Downloading requests_aws4auth-1.3.2-py3-none-any.whl (24 kB)
+#12 57.05 Downloading spacy-3.7.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (6.6 MB)
+#12 57.31    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.6/6.6 MB 26.1 MB/s eta 0:00:00
+#12 57.32 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#12 57.34    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 130.0/130.0 kB 115.1 MB/s eta 0:00:00
+#12 57.35 Downloading sqlalchemy-2.0.51-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.3 MB)
+#12 57.48    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 27.2 MB/s eta 0:00:00
+#12 57.49 Downloading tenacity-9.1.4-py3-none-any.whl (28 kB)
+#12 57.50 Downloading azure_keyvault_secrets-4.11.0-py3-none-any.whl (103 kB)
+#12 57.51    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.1/103.1 kB 172.2 MB/s eta 0:00:00
+#12 57.52 Downloading cachetools-7.1.7-py3-none-any.whl (16 kB)
+#12 57.53 Downloading google_crc32c-1.8.0-cp311-cp311-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl (33 kB)
+#12 57.54 Downloading memory_profiler-0.61.0-py3-none-any.whl (31 kB)
+#12 57.55 Downloading psycopg2_binary-2.9.12-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.3 MB)
+#12 57.73    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 25.0 MB/s eta 0:00:00
+#12 57.74 Downloading shapely-2.1.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (3.1 MB)
+#12 57.86    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.1/3.1 MB 28.2 MB/s eta 0:00:00
+#12 57.87 Downloading typing_inspect-0.9.0-py3-none-any.whl (8.8 kB)
+#12 57.88 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#12 57.90 Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+#12 57.91    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 67.5/67.5 kB 81.5 MB/s eta 0:00:00
+#12 57.93 Downloading azure_core-1.41.0-py3-none-any.whl (220 kB)
+#12 57.95    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 220.9/220.9 kB 123.4 MB/s eta 0:00:00
+#12 57.96 Downloading botocore-1.41.6-py3-none-any.whl (14.4 MB)
+#12 58.49    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.4/14.4 MB 27.3 MB/s eta 0:00:00
+#12 58.50 Downloading catalogue-2.0.10-py3-none-any.whl (17 kB)
+#12 58.52 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+#12 58.52    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 137.0/137.0 kB 272.9 MB/s eta 0:00:00
+#12 58.53 Downloading cffi-2.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (217 kB)
+#12 58.54    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 217.8/217.8 kB 41.3 MB/s eta 0:00:00
+#12 58.55 Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (221 kB)
+#12 58.56    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 221.3/221.3 kB 84.2 MB/s eta 0:00:00
+#12 58.57 Downloading click-8.3.3-py3-none-any.whl (110 kB)
+#12 58.58    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 110.5/110.5 kB 259.0 MB/s eta 0:00:00
+#12 58.59 Downloading cymem-2.0.13-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (244 kB)
+#12 58.60    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 244.5/244.5 kB 40.8 MB/s eta 0:00:00
+#12 58.62 Downloading dbt_core-1.11.7-py3-none-any.whl (1.0 MB)
+#12 58.65    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 38.2 MB/s eta 0:00:00
+#12 58.66 Downloading deepdiff-8.6.2-py3-none-any.whl (91 kB)
+#12 58.67    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 92.0/92.0 kB 206.0 MB/s eta 0:00:00
+#12 58.68 Downloading dnspython-2.8.0-py3-none-any.whl (331 kB)
+#12 58.69    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 331.1/331.1 kB 66.7 MB/s eta 0:00:00
+#12 58.70 Downloading durationpy-0.10-py3-none-any.whl (3.9 kB)
+#12 58.71 Downloading google_api_core-2.33.0-py3-none-any.whl (176 kB)
+#12 58.72    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 176.5/176.5 kB 268.2 MB/s eta 0:00:00
+#12 58.73 Downloading google_auth-2.56.2-py3-none-any.whl (258 kB)
+#12 58.74    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 258.6/258.6 kB 103.9 MB/s eta 0:00:00
+#12 58.75 Downloading greenlet-3.5.4-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (624 kB)
+#12 58.77    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 624.7/624.7 kB 44.1 MB/s eta 0:00:00
+#12 58.78 Downloading grpc_google_iam_v1-0.14.4-py3-none-any.whl (32 kB)
+#12 58.79 Downloading isodate-0.7.2-py3-none-any.whl (22 kB)
+#12 58.81 Downloading jmespath-1.1.0-py3-none-any.whl (20 kB)
+#12 58.82 Downloading jsonpointer-3.1.1-py3-none-any.whl (7.7 kB)
+#12 58.83 Downloading langcodes-3.5.1-py3-none-any.whl (183 kB)
+#12 58.83    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 183.1/183.1 kB 210.5 MB/s eta 0:00:00
+#12 58.85 Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#12 58.86 Downloading mashumaro-3.10-py3-none-any.whl (78 kB)
+#12 58.86    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.4/78.4 kB 240.4 MB/s eta 0:00:00
+#12 58.87 Downloading msal-1.37.0-py3-none-any.whl (123 kB)
+#12 58.88    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 123.7/123.7 kB 104.6 MB/s eta 0:00:00
+#12 58.89 Downloading msal_extensions-1.3.1-py3-none-any.whl (20 kB)
+#12 58.91 Downloading murmurhash-1.0.15-cp311-cp311-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl (128 kB)
+#12 58.91    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 128.4/128.4 kB 164.8 MB/s eta 0:00:00
+#12 58.92 Downloading networkx-3.6.1-py3-none-any.whl (2.1 MB)
+#12 59.00    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 29.2 MB/s eta 0:00:00
+#12 59.01 Downloading phonenumbers-8.13.55-py2.py3-none-any.whl (2.6 MB)
+#12 59.10    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.6/2.6 MB 30.4 MB/s eta 0:00:00
+#12 59.11 Downloading preshed-3.0.13-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (823 kB)
+#12 59.14    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 823.1/823.1 kB 36.1 MB/s eta 0:00:00
+#12 59.15 Downloading proto_plus-1.28.2-py3-none-any.whl (50 kB)
+#12 59.15    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 50.7/50.7 kB 93.8 MB/s eta 0:00:00
+#12 59.17 Downloading protobuf-6.33.6-cp39-abi3-manylinux2014_x86_64.whl (323 kB)
+#12 59.18    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 323.4/323.4 kB 43.2 MB/s eta 0:00:00
+#12 59.19 Downloading pytz-2026.3.post1-py2.py3-none-any.whl (508 kB)
+#12 59.22    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 508.3/508.3 kB 28.3 MB/s eta 0:00:00
+#12 59.24 Downloading s3transfer-0.15.0-py3-none-any.whl (85 kB)
+#12 59.24    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 86.0/86.0 kB 133.2 MB/s eta 0:00:00
+#12 59.26 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#12 59.27 Downloading spacy_legacy-3.0.12-py2.py3-none-any.whl (29 kB)
+#12 59.29 Downloading spacy_loggers-1.0.5-py3-none-any.whl (22 kB)
+#12 59.31 Downloading srsly-2.5.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.1 MB)
+#12 59.35    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 29.1 MB/s eta 0:00:00
+#12 59.37 Downloading thinc-8.2.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (920 kB)
+#12 59.40    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 920.2/920.2 kB 31.0 MB/s eta 0:00:00
+#12 59.42 Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)
+#12 59.43 Downloading tqdm-4.70.0-py3-none-any.whl (80 kB)
+#12 59.44    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 80.2/80.2 kB 157.5 MB/s eta 0:00:00
+#12 59.46 Downloading typer-0.27.1-py3-none-any.whl (122 kB)
+#12 59.46    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 122.9/122.9 kB 74.6 MB/s eta 0:00:00
+#12 59.49 Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+#12 59.49    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 310.7/310.7 kB 183.3 MB/s eta 0:00:00
+#12 59.51 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#12 59.51    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.6/45.6 kB 163.1 MB/s eta 0:00:00
+#12 59.53 Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+#12 59.54 Downloading tzdata-2026.3-py2.py3-none-any.whl (348 kB)
+#12 59.56    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 348.2/348.2 kB 26.2 MB/s eta 0:00:00
+#12 59.57 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+#12 59.58    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 131.1/131.1 kB 66.9 MB/s eta 0:00:00
+#12 59.59 Downloading wasabi-1.1.3-py3-none-any.whl (27 kB)
+#12 59.61 Downloading weasel-0.4.3-py3-none-any.whl (50 kB)
+#12 59.61    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 50.8/50.8 kB 56.9 MB/s eta 0:00:00
+#12 59.63 Downloading websocket_client-1.9.0-py3-none-any.whl (82 kB)
+#12 59.63    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 82.6/82.6 kB 229.0 MB/s eta 0:00:00
+#12 59.64 Downloading zipp-4.1.0-py3-none-any.whl (10 kB)
+#12 59.66 Downloading anyio-4.14.2-py3-none-any.whl (125 kB)
+#12 59.66    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 125.8/125.8 kB 278.1 MB/s eta 0:00:00
+#12 59.67 Downloading backports.tarfile-1.2.0-py3-none-any.whl (30 kB)
+#12 59.69 Downloading keyring-25.7.0-py3-none-any.whl (39 kB)
+#12 59.70 Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (155 kB)
+#12 59.70    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 155.6/155.6 kB 168.5 MB/s eta 0:00:00
+#12 59.72 Downloading regex-2026.7.19-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (801 kB)
+#12 59.75    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 801.4/801.4 kB 33.5 MB/s eta 0:00:00
+#12 59.76 Downloading requests_oauthlib-2.0.0-py2.py3-none-any.whl (24 kB)
+#12 59.77 Downloading tldextract-5.3.1-py3-none-any.whl (105 kB)
+#12 59.78    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 105.9/105.9 kB 184.6 MB/s eta 0:00:00
+#12 59.79 Downloading agate-1.9.1-py2.py3-none-any.whl (95 kB)
+#12 59.79    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 95.1/95.1 kB 146.1 MB/s eta 0:00:00
+#12 59.80 Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+#12 59.82 Downloading blis-0.7.11-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.2 MB)
+#12 60.16    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.2/10.2 MB 30.6 MB/s eta 0:00:00
+#12 60.17 Downloading cloudpathlib-0.24.0-py3-none-any.whl (63 kB)
+#12 60.17    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.2/63.2 kB 51.9 MB/s eta 0:00:00
+#12 60.19 Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+#12 60.20 Downloading confection-0.1.5-py3-none-any.whl (35 kB)
+#12 60.21 Downloading daff-1.4.2-py3-none-any.whl (144 kB)
+#12 60.22    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 144.9/144.9 kB 241.6 MB/s eta 0:00:00
+#12 60.23 Downloading dbt_adapters-1.24.5-py3-none-any.whl (177 kB)
+#12 60.24    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 177.3/177.3 kB 43.4 MB/s eta 0:00:00
+#12 60.25 Downloading dbt_common-1.38.0-py3-none-any.whl (88 kB)
+#12 60.26    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 88.5/88.5 kB 225.7 MB/s eta 0:00:00
+#12 60.27 Downloading dbt_protos-1.0.541-py3-none-any.whl (241 kB)
+#12 60.28    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 241.8/241.8 kB 46.5 MB/s eta 0:00:00
+#12 60.30 Downloading dbt_semantic_interfaces-0.9.0-py3-none-any.whl (147 kB)
+#12 60.31    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 147.0/147.0 kB 141.0 MB/s eta 0:00:00
+#12 60.32 Downloading importlib_metadata-8.9.0-py3-none-any.whl (27 kB)
+#12 60.33 Downloading more_itertools-10.8.0-py3-none-any.whl (69 kB)
+#12 60.34    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.7/69.7 kB 235.6 MB/s eta 0:00:00
+#12 60.35 Downloading diff_cover-10.4.1-py3-none-any.whl (59 kB)
+#12 60.36    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 59.9/59.9 kB 11.7 MB/s eta 0:00:00
+#12 60.37 Downloading filelock-3.32.2-py3-none-any.whl (98 kB)
+#12 60.38    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98.8/98.8 kB 86.0 MB/s eta 0:00:00
+#12 60.39 Downloading googleapis_common_protos-1.75.0-py3-none-any.whl (300 kB)
+#12 60.40    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 300.6/300.6 kB 130.7 MB/s eta 0:00:00
+#12 60.41 Downloading grpcio-1.83.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (7.1 MB)
+#12 60.67    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.1/7.1 MB 28.0 MB/s eta 0:00:00
+#12 60.68 Downloading grpcio_status-1.83.0-py3-none-any.whl (14 kB)
+#12 60.70 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#12 60.71 Downloading jeepney-0.9.0-py3-none-any.whl (49 kB)
+#12 60.72    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 49.0/49.0 kB 125.6 MB/s eta 0:00:00
+#12 60.73 Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+#12 60.73    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 90.6/90.6 kB 100.4 MB/s eta 0:00:00
+#12 60.74 Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+#12 60.75    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 91.7/91.7 kB 173.0 MB/s eta 0:00:00
+#12 60.76 Downloading msgpack-1.2.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (423 kB)
+#12 60.78    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 423.8/423.8 kB 44.8 MB/s eta 0:00:00
+#12 60.80 Downloading oauthlib-3.3.1-py3-none-any.whl (160 kB)
+#12 60.81    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 160.1/160.1 kB 160.4 MB/s eta 0:00:00
+#12 60.83 Downloading orderly_set-5.5.0-py3-none-any.whl (13 kB)
+#12 60.84 Downloading pathspec-0.12.1-py3-none-any.whl (31 kB)
+#12 60.85 Downloading pyasn1_modules-0.4.2-py3-none-any.whl (181 kB)
+#12 60.86    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 181.3/181.3 kB 223.8 MB/s eta 0:00:00
+#12 60.87 Downloading pygments-2.20.0-py3-none-any.whl (1.2 MB)
+#12 60.91    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 33.0 MB/s eta 0:00:00
+#12 60.92 Downloading requests_file-3.0.1-py2.py3-none-any.whl (4.5 kB)
+#12 60.93 Downloading secretstorage-3.5.0-py3-none-any.whl (15 kB)
+#12 60.95 Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+#12 60.96 Downloading smart_open-7.7.1-py3-none-any.whl (65 kB)
+#12 60.97    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 65.1/65.1 kB 208.9 MB/s eta 0:00:00
+#12 60.98 Downloading snowplow_tracker-1.1.0-py3-none-any.whl (44 kB)
+#12 60.98    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.1/44.1 kB 183.1 MB/s eta 0:00:00
+#12 61.00 Downloading typer_slim-0.24.0-py3-none-any.whl (3.4 kB)
+#12 61.01 Downloading jaraco.classes-3.4.0-py3-none-any.whl (6.8 kB)
+#12 61.03 Downloading platformdirs-4.11.0-py3-none-any.whl (23 kB)
+#12 61.04 Downloading pycparser-3.0-py3-none-any.whl (48 kB)
+#12 61.05    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.2/48.2 kB 60.6 MB/s eta 0:00:00
+#12 61.06 Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+#12 61.07    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 386.5/386.5 kB 58.4 MB/s eta 0:00:00
+#12 61.09 Downloading tblib-3.2.2-py3-none-any.whl (12 kB)
+#12 61.11 Downloading babel-2.18.0-py3-none-any.whl (10.2 MB)
+#12 61.41    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.2/10.2 MB 33.9 MB/s eta 0:00:00
+#12 61.42 Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+#12 61.43 Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+#12 61.45 Downloading leather-0.4.1-py3-none-any.whl (30 kB)
+#12 61.46 Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+#12 61.47 Downloading parsedatetime-2.6-py3-none-any.whl (42 kB)
+#12 61.48    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.5/42.5 kB 76.5 MB/s eta 0:00:00
+#12 61.49 Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+#12 61.50 Downloading pyasn1-0.6.4-py3-none-any.whl (84 kB)
+#12 61.51    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 84.4/84.4 kB 73.4 MB/s eta 0:00:00
+#12 61.52 Downloading python_slugify-8.0.4-py2.py3-none-any.whl (10 kB)
+#12 61.53 Downloading pytimeparse-1.1.8-py2.py3-none-any.whl (10.0 kB)
+#12 61.54 Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+#12 61.56 Downloading rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+#12 61.57    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 371.3/371.3 kB 104.2 MB/s eta 0:00:00
+#12 61.58 Downloading wrapt-2.3.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (161 kB)
+#12 61.59    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 161.7/161.7 kB 198.9 MB/s eta 0:00:00
+#12 61.60 Downloading text_unidecode-1.3-py2.py3-none-any.whl (78 kB)
+#12 61.60    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.2/78.2 kB 86.0 MB/s eta 0:00:00
+#12 62.16 Building wheels for collected packages: antlr4-python3-runtime, dsnparse
+#12 62.16   Building wheel for antlr4-python3-runtime (pyproject.toml): started
+#12 62.57   Building wheel for antlr4-python3-runtime (pyproject.toml): finished with status 'done'
+#12 62.57   Created wheel for antlr4-python3-runtime: filename=antlr4_python3_runtime-4.9.2-py3-none-any.whl size=144582 sha256=1088f26f15fb2d5b8bacabf53dcfef942313dcb0073348620a22c6930f8d10ba
+#12 62.57   Stored in directory: /tmp/pip-ephem-wheel-cache-es_qjjjc/wheels/02/5e/de/90c5aab11b66f94cf3f381ec55aaf3f2008213a7056310e25f
+#12 62.57   Building wheel for dsnparse (pyproject.toml): started
+#12 62.87   Building wheel for dsnparse (pyproject.toml): finished with status 'done'
+#12 62.87   Created wheel for dsnparse: filename=dsnparse-0.1.15-py3-none-any.whl size=6658 sha256=813e8f2aaebfaa75a593bbba24108ef68f7576365e4dc4cda8012277b7c45d7f
+#12 62.87   Stored in directory: /tmp/pip-ephem-wheel-cache-es_qjjjc/wheels/51/da/a5/dee0176fc943de3b9a32af92f357bf28105641202078c74135
+#12 62.87 Successfully built antlr4-python3-runtime dsnparse
+#12 65.41 Installing collected packages: text-unidecode, pytz, pytimeparse, phonenumbers, parsedatetime, leather, durationpy, dsnparse, daff, cached-property, antlr4-python3-runtime, zipp, wrapt, websocket-client, wasabi, urllib3, tzdata, typing-extensions, tqdm, toml, tenacity, tblib, tabulate, sqlparse, sqlglot, spacy-loggers, spacy-legacy, six, shellingham, rpds-py, regex, PyYAML, python-slugify, python-dotenv, pymysql, PyJWT, pygments, pycparser, pyasn1, psycopg2-binary, psutil, protobuf, pluggy, platformdirs, pathspec, packaging, orderly-set, oauthlib, numpy, networkx, mypy-extensions, murmurhash, msgpack, more-itertools, mistune, mdurl, MarkupSafe, lxml, langcodes, jsonpointer, jmespath, jeepney, isodate, iniconfig, idna, h11, greenlet, google-crc32c, filelock, dnspython, dbt-extractor, cymem, colorama, cloudpathlib, click, charset_normalizer, chardet, certifi, catalogue, cachetools, backports.tarfile, Babel, attrs, annotated-types, annotated-doc, typing-inspection, typing-inspect, srsly, sqlalchemy, smart-open, shapely, requests, referencing, python-dateutil, pytest, pydantic-core, pyasn1-modules, proto-plus, preshed, memory-profiler, mashumaro, markdown-it-py, Mako, jsonpatch, Jinja2, jaraco.functools, jaraco.context, jaraco.classes, importlib-metadata, httpcore, grpcio, googleapis-common-protos, email-validator, deepdiff, dbt-protos, cffi, blis, anyio, agate, snowplow-tracker, rich, requests-oauthlib, requests-file, requests-aws4auth, pydantic, pandas, jsonschema-specifications, httpx, grpcio-status, GeoAlchemy2, diff-cover, cryptography, botocore, azure-core, typer, tldextract, SecretStorage, s3transfer, pydantic-settings, kubernetes, jsonschema, grpc-google-iam-v1, google-auth, confection, collate-sqlfluff, azure-keyvault-secrets, typer-slim, thinc, msal, keyring, google-api-core, dbt-semantic-interfaces, dbt-common, collate-sqllineage, boto3, weasel, msal-extensions, dbt-adapters, spacy, google-cloud-secret-manager, dbt-core, azure-identity, presidio-analyzer, collate-data-diff, openmetadata-ingestion
+#12 158.7 Successfully installed Babel-2.18.0 GeoAlchemy2-0.20.0 Jinja2-3.1.6 Mako-1.4.1 MarkupSafe-3.0.3 PyJWT-2.13.0 PyYAML-6.0.3 SecretStorage-3.5.0 agate-1.9.1 annotated-doc-0.0.5 annotated-types-0.8.0 antlr4-python3-runtime-4.9.2 anyio-4.14.2 attrs-26.1.0 azure-core-1.41.0 azure-identity-1.25.3 azure-keyvault-secrets-4.11.0 backports.tarfile-1.2.0 blis-0.7.11 boto3-1.41.5 botocore-1.41.6 cached-property-1.5.2 cachetools-7.1.7 catalogue-2.0.10 certifi-2026.7.22 cffi-2.1.1 chardet-4.0.0 charset_normalizer-3.4.9 click-8.3.3 cloudpathlib-0.24.0 collate-data-diff-0.11.14 collate-sqlfluff-3.5.3 collate-sqllineage-2.1.4 colorama-0.4.6 confection-0.1.5 cryptography-50.0.0 cymem-2.0.13 daff-1.4.2 dbt-adapters-1.24.5 dbt-common-1.38.0 dbt-core-1.11.7 dbt-extractor-0.6.0 dbt-protos-1.0.541 dbt-semantic-interfaces-0.9.0 deepdiff-8.6.2 diff-cover-10.4.1 dnspython-2.8.0 dsnparse-0.1.15 durationpy-0.10 email-validator-2.3.0 filelock-3.32.2 google-api-core-2.33.0 google-auth-2.56.2 google-cloud-secret-manager-2.24.0 google-crc32c-1.8.0 googleapis-common-protos-1.75.0 greenlet-3.5.4 grpc-google-iam-v1-0.14.4 grpcio-1.83.0 grpcio-status-1.83.0 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 idna-3.18 importlib-metadata-8.9.0 iniconfig-2.3.0 isodate-0.7.2 jaraco.classes-3.4.0 jaraco.context-6.1.2 jaraco.functools-4.1.0 jeepney-0.9.0 jmespath-1.1.0 jsonpatch-1.33 jsonpointer-3.1.1 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 keyring-25.7.0 kubernetes-35.0.0 langcodes-3.5.1 leather-0.4.1 lxml-6.1.1 markdown-it-py-4.2.0 mashumaro-3.10 mdurl-0.1.2 memory-profiler-0.61.0 mistune-3.3.4 more-itertools-10.8.0 msal-1.37.0 msal-extensions-1.3.1 msgpack-1.2.1 murmurhash-1.0.15 mypy-extensions-1.1.0 networkx-3.6.1 numpy-1.26.4 oauthlib-3.3.1 openmetadata-ingestion-1.13.3.0 orderly-set-5.5.0 packaging-26.3 pandas-2.1.4 parsedatetime-2.6 pathspec-0.12.1 phonenumbers-8.13.55 platformdirs-4.11.0 pluggy-1.6.0 preshed-3.0.13 presidio-analyzer-2.2.358 proto-plus-1.28.2 protobuf-6.33.6 psutil-7.2.2 psycopg2-binary-2.9.12 pyasn1-0.6.4 pyasn1-modules-0.4.2 pycparser-3.0 pydantic-2.11.10 pydantic-core-2.33.2 pydantic-settings-2.14.2 pygments-2.20.0 pymysql-1.2.0 pytest-9.1.1 python-dateutil-2.9.0.post0 python-dotenv-1.2.2 python-slugify-8.0.4 pytimeparse-1.1.8 pytz-2026.3.post1 referencing-0.37.0 regex-2026.7.19 requests-2.34.2 requests-aws4auth-1.3.2 requests-file-3.0.1 requests-oauthlib-2.0.0 rich-15.0.0 rpds-py-2026.6.3 s3transfer-0.15.0 shapely-2.1.2 shellingham-1.5.4 six-1.17.0 smart-open-7.7.1 snowplow-tracker-1.1.0 spacy-3.7.5 spacy-legacy-3.0.12 spacy-loggers-1.0.5 sqlalchemy-2.0.51 sqlglot-29.0.1 sqlparse-0.5.4 srsly-2.5.3 tabulate-0.9.0 tblib-3.2.2 tenacity-9.1.4 text-unidecode-1.3 thinc-8.2.5 tldextract-5.3.1 toml-0.10.2 tqdm-4.70.0 typer-0.27.1 typer-slim-0.24.0 typing-extensions-4.16.0 typing-inspect-0.9.0 typing-inspection-0.4.2 tzdata-2026.3 urllib3-2.7.0 wasabi-1.1.3 weasel-0.4.3 websocket-client-1.9.0 wrapt-2.3.0 zipp-4.1.0
+#12 159.2 
+#12 159.2 [notice] A new release of pip is available: 24.0 -> 26.2.1
+#12 159.2 [notice] To update, run: python -m pip install --upgrade pip
+#12 DONE 164.7s
+
+#13 [tools 9/9] WORKDIR /workspace
+#13 DONE 0.1s
+
+#14 [tools] exporting to image
+#14 exporting layers
+#14 exporting layers 17.8s done
+#14 writing image sha256:9b64f6c7fc50002d5c3c74cd5dc357bada681c06b87c8951218a4c897c6c940e done
+#14 naming to docker.io/library/dgd-tools:phase3 0.0s done
+#14 DONE 17.8s
+
+#15 [tools] resolving provenance for metadata file
+#15 DONE 0.0s
+ tools  Built
+exit=0
+SETUP_DURATION=275s

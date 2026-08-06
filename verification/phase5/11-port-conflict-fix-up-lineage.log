@@ -1,0 +1,37 @@
+docker compose --profile lineage down
+ Container claude-demo-data-governance-marquez-web-1  Stopping
+ Container claude-demo-data-governance-marquez-web-1  Stopped
+ Container claude-demo-data-governance-marquez-web-1  Removing
+ Container claude-demo-data-governance-marquez-web-1  Removed
+ Container claude-demo-data-governance-marquez-api-1  Stopping
+ Container claude-demo-data-governance-marquez-api-1  Stopped
+ Container claude-demo-data-governance-marquez-api-1  Removing
+ Container claude-demo-data-governance-marquez-api-1  Removed
+ Container claude-demo-data-governance-marquez-db-1  Stopping
+ Container claude-demo-data-governance-marquez-db-1  Stopped
+ Container claude-demo-data-governance-marquez-db-1  Removing
+ Container claude-demo-data-governance-marquez-db-1  Removed
+ Network claude-demo-data-governance_default  Removing
+ Network claude-demo-data-governance_default  Resource is still in use
+docker compose --profile lineage up -d --wait
+ Container claude-demo-data-governance-marquez-db-1  Creating
+ Container claude-demo-data-governance-marquez-db-1  Created
+ Container claude-demo-data-governance-marquez-api-1  Creating
+ Container claude-demo-data-governance-marquez-api-1  Created
+ Container claude-demo-data-governance-marquez-web-1  Creating
+ Container claude-demo-data-governance-marquez-web-1  Created
+ Container claude-demo-data-governance-marquez-db-1  Starting
+ Container claude-demo-data-governance-marquez-db-1  Started
+ Container claude-demo-data-governance-marquez-db-1  Waiting
+ Container claude-demo-data-governance-marquez-db-1  Healthy
+ Container claude-demo-data-governance-marquez-api-1  Starting
+ Container claude-demo-data-governance-marquez-api-1  Started
+ Container claude-demo-data-governance-marquez-web-1  Starting
+ Container claude-demo-data-governance-marquez-web-1  Started
+ Container claude-demo-data-governance-marquez-api-1  Waiting
+ Container claude-demo-data-governance-marquez-web-1  Waiting
+ Container claude-demo-data-governance-marquez-db-1  Waiting
+ Container claude-demo-data-governance-marquez-api-1  Healthy
+ Container claude-demo-data-governance-marquez-web-1  Healthy
+ Container claude-demo-data-governance-marquez-db-1  Healthy
+exit=0

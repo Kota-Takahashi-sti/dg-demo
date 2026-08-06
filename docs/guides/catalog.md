@@ -134,6 +134,7 @@ API で付与します。
 取り込みログの最後に出力される要約(実測。タイムスタンプ・所要時間は実行ごとに
 変わります。12 レコード = サービス/DB/スキーマ 3 + テーブル 6 + ビュー 1 ほか):
 
+<!-- verbatim: skip -->
 ```text
 [2026-08-05 07:27:12] INFO     {metadata.Utils:logger:222} - Workflow Postgres Summary:
 [2026-08-05 07:27:12] INFO     {metadata.Utils:logger:222} - Processed records: 12
@@ -204,6 +205,7 @@ $ make demo-catalog-profile
 プロファイラの要約出力(実測。タイムスタンプ・所要時間は実行ごとに変わります。
 108 レコード = 9 オブジェクト × テーブル+各列の統計):
 
+<!-- verbatim: skip -->
 ```text
 [2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Workflow Profiler Summary:
 [2026-08-05 08:15:25] INFO     {metadata.Utils:logger:222} - Processed records: 108
@@ -231,6 +233,7 @@ $ make demo-catalog-profile
 行数・列統計が入っています(抜粋。`timestamp` はプロファイル取得時刻のため実行ごとに
 変わります):
 
+<!-- verbatim: skip -->
 ```json
   "profile": {
     "columnCount": 5.0,

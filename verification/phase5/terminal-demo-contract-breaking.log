@@ -1,0 +1,82 @@
+scenarios/demo_contract_breaking.sh
+# 実行日時: 2026-08-06 13:35:25 JST
+# コマンドログ: verification/phase4/demo-contract-breaking.log
+
+=== 1) 両契約の構文検証(lint)— どちらも ODCS としては正しい ===
+╭────────┬──────────────────────────────────────┬───────┬─────────╮
+│ Result │ Check                                │ Field │ Details │
+├────────┼──────────────────────────────────────┼───────┼─────────┤
+│ passed │ Data contract is syntactically valid │       │         │
+╰────────┴──────────────────────────────────────┴───────┴─────────╯
+🟢 data contract is valid. Run 1 checks. Took 0.383482 seconds.
+╭────────┬──────────────────────────────────────┬───────┬─────────╮
+│ Result │ Check                                │ Field │ Details │
+├────────┼──────────────────────────────────────┼───────┼─────────┤
+│ passed │ Data contract is syntactically valid │       │         │
+╰────────┴──────────────────────────────────────┴───────┴─────────╯
+🟢 data contract is valid. Run 1 checks. Took 0.342897 seconds.
+
+=== 2) datacontract changelog による差分表示(参考表示・常に exit 0)===
+Summary
+[ 1 Added ]  [ 4 Updated ]  [ 1 Removed ]
+╭─────────┬───────────────────────────────────────────────╮
+│ Change  │ Field                                         │
+├─────────┼───────────────────────────────────────────────┤
+│ Updated │ description                                   │
+│ Added   │ schema.daily_sales.properties.cancelled_count │
+│ Removed │ schema.daily_sales.properties.order_count     │
+│ Updated │ schema.daily_sales.properties.total_amount    │
+│ Updated │ status                                        │
+│ Updated │ version                                       │
+╰─────────┴───────────────────────────────────────────────╯
+
+Details
+╭─────────┬─────────────────────────────────────────────────────────────────────────┬────────────────────────────────┬────────────────────────────────╮
+│ Change  │ Path                                                                    │ Old Value                      │ New Value                      │
+├─────────┼─────────────────────────────────────────────────────────────────────────┼────────────────────────────────┼────────────────────────────────┤
+│ Updated │ description.purpose                                                     │ 日次の売上金額と注文数を BI    │ 日次の売上金額を BI            │
+│         │                                                                         │ ダッシュボード・経営レポート … │ ダッシュボード・経営レポート … │
+│         │                                                                         │ 生産者はデータエンジニアリン … │ では格納効率のため金額を整数 … │
+│ Updated │ description.usage                                                       │ 日次売上・注文数の推移の可視 … │ 日次売上の推移の可視化。sales… │
+│         │                                                                         │ 単位の集計値としてそのまま利 … │ 単位の集計値としてそのまま利 … │
+│ Added   │ schema.daily_sales.properties.cancelled_count                           │                                │                                │
+│ Added   │ schema.daily_sales.properties.cancelled_count.description               │                                │ その日のキャンセル注文数(v2  … │
+│ Added   │ schema.daily_sales.properties.cancelled_count.logicalType               │                                │ integer                        │
+│ Added   │ schema.daily_sales.properties.cancelled_count.physicalType              │                                │ bigint                         │
+│ Added   │ schema.daily_sales.properties.cancelled_count.required                  │                                │ False                          │
+│ Removed │ schema.daily_sales.properties.order_count                               │                                │                                │
+│ Removed │ schema.daily_sales.properties.order_count.description                   │ その日の注文数(order_id の di… │                                │
+│         │                                                                         │ カウント)                      │                                │
+│ Removed │ schema.daily_sales.properties.order_count.logicalType                   │ integer                        │                                │
+│ Removed │ schema.daily_sales.properties.order_count.physicalType                  │ bigint                         │                                │
+│ Removed │ schema.daily_sales.properties.order_count.quality                       │                                │                                │
+│ Removed │ schema.daily_sales.properties.order_count.quality.__pos_0__             │                                │                                │
+│ Removed │ schema.daily_sales.properties.order_count.quality.__pos_0__.description │ 注文数が NULL の行は存在しな … │                                │
+│ Removed │ schema.daily_sales.properties.order_count.quality.__pos_0__.id          │ order_count_no_nulls           │                                │
+│ Removed │ schema.daily_sales.properties.order_count.quality.__pos_0__.metric      │ nullValues                     │                                │
+│ Removed │ schema.daily_sales.properties.order_count.quality.__pos_0__.mustBe      │ 0                              │                                │
+│ Removed │ schema.daily_sales.properties.order_count.required                      │ True                           │                                │
+│ Updated │ schema.daily_sales.properties.total_amount.description                  │ その日の売上合計(quantity × u… │ その日の売上合計(v2 で整数円 … │
+│         │                                                                         │ の合計)                        │                                │
+│ Updated │ schema.daily_sales.properties.total_amount.logicalType                  │ number                         │ integer                        │
+│ Updated │ schema.daily_sales.properties.total_amount.physicalType                 │ numeric                        │ integer                        │
+│ Updated │ status                                                                  │ active                         │ proposed                       │
+│ Updated │ version                                                                 │ 1.0.0                          │ 2.0.0                          │
+╰─────────┴─────────────────────────────────────────────────────────────────────────┴────────────────────────────────┴────────────────────────────────╯
+[証跡] verification/phase4/changelog-v1-v2.txt
+
+=== 3) 自作判定スクリプトによる破壊的変更の判定 ===
+変更前: contracts/daily_sales.yaml (version: 1.0.0)
+変更後: contracts/daily_sales.v2-breaking.yaml (version: 2.0.0)
+
+[BREAKING] 列削除: daily_sales.order_count
+[BREAKING] 型変更: daily_sales.total_amount logicalType 'number' → 'integer'
+[BREAKING] 型変更: daily_sales.total_amount physicalType 'numeric' → 'integer'
+[OK]       列追加(非破壊): daily_sales.cancelled_count
+
+判定: 破壊的変更 3 件を検知(非破壊的変更 1 件)
+
+
+datacontract 結果: 破壊的変更を検知(exit 1)
+make: *** [Makefile:95: demo-contract-breaking] Error 1
+exit=2

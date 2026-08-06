@@ -1,0 +1,55 @@
+scenarios/demo_lineage.sh
+# 実行日時: 2026-08-06 11:32:28 JST
+# コマンドログ: verification/phase2/demo-lineage.log
+--- デモ用 DB(profile: base)を起動 ---
+ Container claude-demo-data-governance-postgres-demo-1  Running
+ Container claude-demo-data-governance-postgres-demo-1  Waiting
+ Container claude-demo-data-governance-postgres-demo-1  Healthy
+--- Marquez 一式(profile: lineage)を起動 ---
+ Container claude-demo-data-governance-marquez-db-1  Running
+ Container claude-demo-data-governance-marquez-api-1  Running
+ Container claude-demo-data-governance-marquez-web-1  Running
+ Container claude-demo-data-governance-marquez-db-1  Waiting
+ Container claude-demo-data-governance-marquez-db-1  Healthy
+ Container claude-demo-data-governance-marquez-web-1  Waiting
+ Container claude-demo-data-governance-marquez-api-1  Waiting
+ Container claude-demo-data-governance-marquez-db-1  Waiting
+ Container claude-demo-data-governance-marquez-api-1  Healthy
+ Container claude-demo-data-governance-marquez-db-1  Healthy
+ Container claude-demo-data-governance-marquez-web-1  Healthy
+--- Marquez API の起動を待機 ---
+Marquez API は応答しています(http://marquez-api:5000, 1 回目で成功)
+
+=== クリーンデータでパイプライン実行(OpenLineage イベント発行あり)===
+=== step: seed ===
+[openlineage] START    run_pipeline.seed (runId=019fd4ea-48f0-7433-a09c-bbba5ff2de76)
+[sql] 01_create_raw.sql を実行
+[seed] raw.customers: 1000 行
+[seed] raw.products: 200 行
+[seed] raw.orders: 5000 行
+[seed] raw.order_items: 12561 行
+[openlineage] COMPLETE run_pipeline.seed
+=== step: build_staging ===
+[openlineage] START    run_pipeline.build_staging (runId=019fd4ea-505f-78cd-bb36-f5e1227feee9)
+[sql] 02_staging.sql を実行
+[build_staging] staging.stg_orders: 11927 行
+[openlineage] COMPLETE run_pipeline.build_staging
+=== step: build_mart ===
+[openlineage] START    run_pipeline.build_mart (runId=019fd4ea-5485-7e6b-8dfa-1a4380ca2664)
+[sql] 03_mart.sql を実行
+[build_mart] mart.daily_sales: 365 行
+[build_mart] mart.customer_summary(ビュー): 1000 行
+[openlineage] COMPLETE run_pipeline.build_mart
+パイプライン完了
+
+=== 証跡: Marquez API レスポンスを保存 ===
+[証跡] verification/phase2/api-namespaces.json(marquez_api.py namespaces)
+[証跡] verification/phase2/api-jobs.json(marquez_api.py jobs)
+[証跡] verification/phase2/api-datasets.json(marquez_api.py datasets)
+[証跡] verification/phase2/api-dataset-daily-sales.json(marquez_api.py dataset demo.mart.daily_sales)
+[証跡] verification/phase2/api-lineage-daily-sales.json(marquez_api.py lineage demo.mart.daily_sales)
+
+Marquez UI: http://localhost:13000 で
+ジョブ(demo_pipeline)とリネージュグラフ(raw → staging → mart)を確認できます。
+リネージュデモ結果: 全ステップ COMPLETE(exit 0)
+exit=0

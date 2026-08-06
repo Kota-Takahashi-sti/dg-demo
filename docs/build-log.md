@@ -911,3 +911,76 @@ build-log 全体をレビューし(記録ルール4観点)、以下の記録漏�
   act v0.2.89 = nektos/act の GitHub Releases バイナリ(MIT)、ランナーイメージ
   catthehacker/ubuntu:act-22.04 = act 公式 README 推奨の medium イメージ(MIT)。
   ライセンス確認は 2026-08-06(上記「ライセンス一覧の確認」参照)。
+
+### クリーン環境からの通し検証(フェーズ5、2026-08-06)
+
+- 手段: 事前クリーンアップ(コンテナ・ボリューム・ネットワーク・生成物・.env・
+  本プロジェクトの Docker イメージをすべて削除。証跡
+  verification/phase5/00-clean-state.log。marquez 0.51.1 の 2 イメージのみ
+  他プロジェクトの停止コンテナが参照しており削除不可 → pull がスキップされるだけで
+  手順への影響なし)→ acceptance-checker サブエージェントが **README.md と
+  ガイド 4 本に書かれた手順のみ**で環境構築と全 16 デモを実行。
+- 結果: **全 16 デモが期待どおりの exit code・「成功の目印」で完走。
+  ガイドに書かれていない操作はゼロ**。実測: make setup 275 秒 /
+  make up-catalog 297 秒 / 通し全体 約 137 分。
+  証跡: verification/phase5/terminal-demo-*.log(16 本)+ セットアップ・UI 到達
+  確認等の連番ログ + findings.md。
+- 通し検証中に発生したポート 3000 競合(本プロジェクト外のコンテナが原因)は、
+  lineage.md §7 記載のトラブルシューティング(.env のポート変更)のみで解決した
+  (= ガイド外操作に該当しない。証跡 10/11 番ログ)。
+- ドキュメント指摘 3 件が挙がり、いずれも修正した:
+  1. catalog.md の出力例 3 ブロック(Workflow Summary ×2・profile JSON)は
+     タイムスタンプを含み、デモ再実行後の verbatim 照合で必ず不一致になる →
+     リポジトリ規約どおり `<!-- verbatim: skip -->` を付与(可変である旨の
+     本文注記は従来からあり)。
+  2. quality.md §4.4 の出力例中の `Makefile:44` に行番号変動の注記がなかった
+     (§4.2 にはあった)→ §4.2 と同じ注記を追加。
+  3. lineage.md §4.1 の columnLineage facet 自己確認コマンドが `lineage`
+     サブコマンド(グラフ照会。facet を含まない)になっていた →
+     `dataset` サブコマンド(B-1 が証跡保存に使う照会と同一)に修正し、
+     facet の含まれる場所の説明を追記。
+
+### 問題: 実行時生成物が root 所有でホストの rm では削除できない(フェーズ5、2026-08-06)
+
+- **現象**: `data/seed/csv-injected/`・`quality/gx/output/` は tools コンテナ
+  (root 実行)が bind mount 上に生成するため、Linux/WSL2 ではホストユーザーの
+  `rm -rf` が Permission denied になる(事前クリーンアップで発覚。
+  verification/phase5/00-clean-state.log に生ログ)。
+- **試行1**: README の完全後片付けを `docker compose --profile tools run --rm -T
+  tools rm -rf ...` に変更 → 削除は成功するが、**compose run が default
+  ネットワークを再作成し、後片付け後もネットワークが残存**することが
+  後片付け検証 1 回目で判明(verification/phase5/90-cleanup-verification-attempt1.log)。
+- **解決**: compose を経由しない `docker run --rm -v "$(pwd)":/workspace
+  dgd-tools:phase3 rm -rf ...` に変更(ネットワークを作らない)。
+  macOS(Docker Desktop はホスト uid にマップ)や sudo 利用の代替も README に注記。
+- **不採用の代替案**: tools サービスに `user:` を指定して生成物をホスト uid に
+  する — 全シナリオ・全証跡への影響が大きく、フェーズ5(新機能追加なし)の
+  スコープ外。sudo 前提の手順 — sudo が使えない環境で詰まるため主手順にしない。
+
+### 後片付け検証(フェーズ5、2026-08-06)
+
+- README「後片付け」の 3 段階(down → clean-db → 完全な後片付け)を修正後の
+  記載どおりに再実行し、以下を確認(証跡
+  verification/phase5/90-cleanup-verification.log。1 回目は同 -attempt1.log):
+  - コンテナ 0 件・ボリューム 0 件・**ネットワーク 0 件**(README の filter
+    コマンドで確認)
+  - 生成ファイル(csv-injected / quality/gx/output / .env)すべて不存在
+    (ls が No such file or directory)
+  - `git restore verification/` で phase1〜4 の tracked 証跡がコミット時点に復元
+    (tracked 変更 0 件)
+  - イメージは marquez 0.51.1 の 2 件のみ残存(他プロジェクトの停止コンテナが
+    参照。README 記載の想定内)
+- 注記: 最終版ログの rmi の `No such image` エラー 7 件は、1 回目の後片付けで
+  削除済みのイメージが再検証のための環境再構築(make setup + 品質デモ 2 本)では
+  再 pull されなかったことによる(ビルドキャッシュ利用のため)。
+
+### フェーズ5 検証結果まとめ(2026-08-06)
+
+| 検証 | 結果 |
+|---|---|
+| 通し検証(README + ガイドの手順のみ・全 16 デモ) | 全デモ期待どおり(正常系 exit 0 / 検知系 make exit 2)。ガイド外操作ゼロ |
+| verify-verbatim(ガイド修正後・正準証跡) | quality 8/8・lineage 6/6・catalog 7/7(SKIP 3)・contract 12/12 = **33/33 VERBATIM** |
+| 後片付け検証 | コンテナ・ボリューム・ネットワーク・生成ファイルの完全削除を確認 |
+
+- 証跡: verification/phase5/(通し 16 本 + セットアップ・確認ログ + findings.md +
+  後片付け 2 本 + VERBATIM 2 本)
