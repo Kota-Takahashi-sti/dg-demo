@@ -3,7 +3,7 @@
 # フェーズ1: quality(Soda Core / Great Expectations)
 # フェーズ2: lineage(openlineage-python)
 # フェーズ3: catalog(openmetadata-ingestion)
-FROM python:3.11-slim
+FROM docker.io/library/python:3.11-slim
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends libpq5 \

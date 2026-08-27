@@ -169,7 +169,7 @@ services:
   # Airflow ingestion コンテナは不採用(取り込みは tools から metadata CLI で実行)。
   # OM 内部の DB・Elasticsearch はホストへポート公開しない(衝突回避。デモで直接触らない)。
   om-postgresql:
-    image: docker.getcollate.io/openmetadata/postgresql:1.13.3
+    image: docker.io/openmetadata/postgresql:1.13.3
     profiles: ["catalog"]
     command: "--work_mem=10MB"
     environment:
@@ -202,7 +202,7 @@ services:
 
   # スキーマ移行のワンショット(完了後に om-server が起動する。公式構成どおり)
   om-migrate:
-    image: docker.getcollate.io/openmetadata/server:1.13.3
+    image: docker.io/openmetadata/server:1.13.3
     profiles: ["catalog"]
     command: "./bootstrap/openmetadata-ops.sh migrate"
     environment:
@@ -215,7 +215,7 @@ services:
         condition: service_healthy
 
   om-server:
-    image: docker.getcollate.io/openmetadata/server:1.13.3
+    image: docker.io/openmetadata/server:1.13.3
     profiles: ["catalog"]
     restart: always
     environment:

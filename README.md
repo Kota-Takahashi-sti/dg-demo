@@ -287,8 +287,8 @@ $ git restore verification/
 # このデモで使った Docker イメージを削除
 $ docker rmi dgd-tools:phase3 \
     marquezproject/marquez:0.51.1 marquezproject/marquez-web:0.51.1 \
-    docker.getcollate.io/openmetadata/server:1.13.3 \
-    docker.getcollate.io/openmetadata/postgresql:1.13.3 \
+  docker.io/openmetadata/server:1.13.3 \
+  docker.io/openmetadata/postgresql:1.13.3 \
     docker.elastic.co/elasticsearch/elasticsearch:9.3.0 \
     datacontract/cli:1.1.0 rhysd/actionlint:1.7.12 \
     postgres:16 postgres:14 python:3.11-slim

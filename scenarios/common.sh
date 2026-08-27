@@ -56,7 +56,9 @@ save_marquez_api() {
 ensure_catalog() {
     echo "--- OpenMetadata 一式(profile: catalog)を起動 ---"
     local start=$SECONDS
-    $COMPOSE --profile catalog up -d --wait
+    # om-migrate は成功時に終了するワンショットのため、podman-compose の
+    # `up --wait` では完了待ちにならない。REST API の応答で起動完了を判定する。
+    $COMPOSE --profile catalog up -d
     echo "--- OpenMetadata サーバの起動を待機 ---"
     $TOOLS_RUN $PYTHON_CATALOG catalog/om_api.py wait
     echo "(起動所要: $((SECONDS - start)) 秒。初回はイメージ展開と DB 移行でさらにかかる)"

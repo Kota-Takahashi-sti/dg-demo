@@ -135,6 +135,9 @@
 
 - **全フェーズ(0〜5)完了・検収合格(2026-08-06)。本プロジェクトの当初スコープは
   すべて完了しました。** phase5 は main へマージ済み。
+- 追加対応(2026-08-26): rootless Podman の `podman-compose up --wait` が正常終了する
+      om-migrate を待ち続ける問題を解消。catalog 起動判定を OpenMetadata REST API 応答へ統一し、
+      `make demo-catalog-ingest` の完走(exit 0)と 7 オブジェクトの取り込みを確認済み。
 - 環境の状態: 後片付け検証によりコンテナ・ボリューム・ネットワーク・生成物は
   すべて削除済み。再度動かす場合は README「環境構築」の `make setup` から。
 - 将来の課題(スコープ外・着手指示があれば):
