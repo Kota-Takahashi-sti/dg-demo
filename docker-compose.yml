@@ -100,6 +100,9 @@ services:
     # リポジトリ(verification/ 等)へ書き込めないため、ホスト側ユーザーに合わせる。
     # ホストの `id -u` が 1000 以外の場合は .env の DC_UID / DC_GID を変更する。
     user: "${DC_UID:-1000}:${DC_GID:-1000}"
+    # rootless Podman でもホスト UID とコンテナ UID を対応させ、
+    # bind mount した verification/ へ生成物を書き込めるようにする。
+    userns_mode: keep-id
     environment:
       # 任意 uid 実行でもホームディレクトリ書き込みが失敗しないようにする
       HOME: /tmp

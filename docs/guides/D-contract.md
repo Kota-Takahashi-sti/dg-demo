@@ -540,6 +540,9 @@ JSON・export・changelog の各証跡です)。
   `.env` に `DC_UID=<id -u の値>` / `DC_GID=<id -g の値>` を追記してください
   (フェーズ1〜3 から使っている `.env` にはこの変数がないため、`.env.example` の
   末尾を参考に追記します。値が既定の 1000 のままでよい場合は追記不要です)。
+  rootless Podman を `docker` コマンドとして使っている場合は、リポジトリを最新状態に
+  更新してください。Compose の `userns_mode: keep-id` により、コンテナ内 UID と
+  ホスト UID の対応を維持して生成物を書き込めます。
 - **D-3 の後に手動で `datacontract test` を実行すると失敗する**: 仕様です
   (汚染が残っています)。`make seed` で復旧してください。
 - **`demo-contract-precommit` が「未コミットの変更があります」で exit 2**:

@@ -737,6 +737,17 @@
   リポジトリへ書き込めない。compose で `user: "${DC_UID:-1000}:${DC_GID:-1000}"` +
   `HOME=/tmp` を指定して回避(実機検証済み。.env.example に変数を追記)。
 
+### 問題: rootless Podman で D-1 export が権限エラー(フェーズ4、2026-08-21)
+
+- **現象**: `make demo-contract-export` の lint は成功するが、`export html` で
+  `Errno 13 Permission denied: verification/phase4/export/daily_sales.html`。
+- **試行1**: コンテナ内の UID と bind mount の所有権を確認 → `user: 1000:1000` の
+  プロセスから見るとホスト UID 1000 のファイルが UID 0 になり、書き込み不可だった。
+- **解決**: contract サービスに `userns_mode: keep-id` を追加し、rootless Podman の
+  user namespace でもホスト UID とコンテナ UID を対応させた。修正後は html / mermaid /
+  markdown / sodacl / great-expectations の 5 形式を生成でき、生成物はホストユーザー
+  所有(`1000:1000`)で保持された。
+
 ### 設計判断: 破壊的変更(D-4)の判定は自作スクリプトによる契約 YAML の直接比較(フェーズ4、2026-08-05)
 
 - **判断**: `scripts/check_breaking.py`(仮称)で v1 / v2 の ODCS YAML の schema
