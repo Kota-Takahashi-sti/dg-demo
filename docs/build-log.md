@@ -1149,3 +1149,16 @@ build-log 全体をレビューし(記録ルール4観点)、以下の記録漏�
   - **各製品のバイナリ・ソースは同梱しておらず pip / docker pull で取得する構成**である旨
     (ELv2 / Collate CL に対する誤解を先回りで防ぐため)
 - バージョン一覧表に HK Grotesk 1.045(SIL OFL 1.1)の行を追加。
+
+### OpenMetadata Docker イメージ調査(2026-08-26)
+
+- 調査日: 2026-08-26 / 参照URL: https://github.com/open-metadata/OpenMetadata/releases/tag/1.13.3-release 、https://docs.open-metadata.org/v1.13.x/deployment/docker 、https://hub.docker.com/u/openmetadata 、https://hub.docker.com/r/openmetadata/server/tags?page=1&name=1.13.3 、https://hub.docker.com/r/openmetadata/postgresql/tags?page=1&name=1.13.3
+- リリース状況: OpenMetadata 1.13.3-release は 2026-07-31 公開の stable リリースで、公式 GitHub Release Assets に docker-compose-postgres.yml を含む。
+- 採用: docker.io/openmetadata/server:1.13.3 と docker.io/openmetadata/postgresql:1.13.3 へ切替。公式 Docker Hub 組織 openmetadata が公開する正式タグであり、同一 1.13.3 の組み合わせとして採用可能。
+- 実装に効く要点: 両タグは linux/amd64 と linux/arm64 を提供する。docker.io は Docker Hub の明示指定であり、タグなしの openmetadata/server:1.13.3 と同じ Docker Hub リポジトリを指す。docker.getcollate.io の匿名 pull レート制限を回避するため compose の catalog profile と README の削除対象を更新した。docker.getcollate.io の同名タグとの digest 同一性は公式一次情報で未確認のため、既存ボリュームを使わず clean volume で起動・DB migration・ingestion を実機検証する。
+
+### 問題: rootless Podman で C-1 の起動待機が完了しない(フェーズ3、2026-08-26)
+
+- **現象**: `make demo-catalog-ingest` が `ensure_catalog` の `docker compose --profile catalog up -d --wait` から進まない。一方、Podman 直検査では om-postgresql / om-elasticsearch / om-server は healthy、om-migrate は exit 0 だった。
+- **原因**: 実行環境の `docker compose` は podman-compose 1.6.0 であり、正常終了するワンショットの om-migrate を `up --wait` が起動完了と判定できない。Docker Compose での検証済み構成を rootless Podman で実行した際の互換性差異。
+- **解決**: `ensure_catalog` を `up -d` のみで起動し、既存の `catalog/om_api.py wait` による REST API 応答確認を起動完了判定として使用するよう変更。修正後の C-1 は 26 秒で API 応答を確認し、ingestion・メタデータ付与・API 証跡保存まで完了(exit 0)。

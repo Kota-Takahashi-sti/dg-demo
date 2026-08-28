@@ -72,8 +72,8 @@ $ make setup             # 共通セットアップ(.env 作成 + tools イメ�
 $ make up-catalog
 ```
 
-`make up-catalog` は om-postgresql / om-elasticsearch → om-migrate(ワンショット)→
-om-server の順に healthcheck を待ちながら起動します。
+`make up-catalog` は om-postgresql / om-elasticsearch、om-migrate(ワンショット)、
+om-server を起動した後、OpenMetadata REST API の応答を確認して完了します。
 
 - **初回起動の実測時間: まっさらな状態から約 3〜6 分**(検証環境での複数回の実測は
   186〜366 秒。`verification/phase3/resource-usage.log` 参照。イメージ pull が未了の
@@ -431,6 +431,15 @@ clean-db.log / down-lineage.log も同じディレクトリに置いています
   起動するため 3〜6 分かかります(実測)。Docker のメモリ割当が 6 GiB 未満の場合や、
   他プロファイル(lineage 等)と同時起動している場合はまず割当・停止状況を
   確認してください(`docker stats`)。
+- **Podman で `make demo-catalog-*` が起動待ちのまま進まない**: `docker` コマンドの
+  実体が `podman-compose` の環境では、正常終了する om-migrate を `up --wait` が
+  起動完了と見なせないことがあります。現行版は REST API の応答で待機するため対応済みです。
+  古い作業ツリーを使っている場合は更新してください。
+- **OpenMetadata イメージの pull が `toomanyrequests` で失敗する**: catalog profile は
+  Docker Hub の公式 `openmetadata` 組織からイメージを取得します。匿名 pull の上限に
+  達した状態なので、`docker login`(Podman を使う場合は `podman login docker.io`)で
+  ログインしてから `make up-catalog` を再実行してください。レジストリを切り替えた後は
+  `make clean-db` で既存のカタログ用ボリュームを初期化してから起動してください。
 - **ログに `ERROR ... relation "pg_stat_statements" does not exist` が出る**: 想定内です。
   取り込み前の接続テストのうち「クエリログ取得(GetQueries)」という**任意ステップ**が、
   デモ用 DB に pg_stat_statements 拡張がないため失敗と報告されるものです。
