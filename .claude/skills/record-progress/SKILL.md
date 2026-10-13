@@ -1,7 +1,7 @@
 ---
 name: record-progress
 description: build-log.md への追記と PROGRESS.md の更新を定型フォーマットで行う。設計判断をした時・バージョン調査をした時・問題に遭遇した時・作業の区切り・フェーズ完了報告時に使う。
-argument-hint: [追記する内容の種別: 設計判断 / 調査 / 問題 / 区切り / フェーズ完了]
+argument-hint: "追記する内容の種別: 設計判断 / 調査 / 問題 / 区切り / フェーズ完了"
 ---
 
 # 記録の定型化(build-log.md / PROGRESS.md)
